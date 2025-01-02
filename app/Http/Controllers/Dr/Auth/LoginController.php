@@ -32,7 +32,7 @@ class LoginController
 
     // Check if OTP exists before calculating remaining time
     if ($otp) {
-      $remainingTime = max(0, ($otp->created_at->addSeconds(30)->timestamp - now()->timestamp) * 1000);
+      $remainingTime = max(0, ($otp->created_at->addMinutes(2)->timestamp - now()->timestamp) * 1000);
     } else {
       $remainingTime = 0; // Or any default value you want to set
     }
@@ -110,7 +110,7 @@ class LoginController
     // بررسی وجود OTP با توکن جدید
     $otp = Otp::where('token', $token)
       ->where('used', 0)
-      ->where('created_at', '>=', Carbon::now()->subSeconds(30))
+      ->where('created_at', '>=', Carbon::now()->subMinutes(2))
       ->first();
     if (!$otp) {
       return response()->json([

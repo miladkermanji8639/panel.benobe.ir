@@ -21,7 +21,7 @@
      <div class="col-md-6 login-container position-relative">
       <div class="login-card custom-rounded custom-shadow p-7">
        <div class="logo-wrapper w-100 d-flex justify-content-center">
-        <img class="position-absolute mt-3" width="85px" src="{{ asset('app-assets/logos/benobe.svg') }}"
+        <img class="position-absolute mt-3 cursor-pointer" onclick="location.href='/'" width="85px" src="{{ asset('app-assets/logos/benobe.svg') }}"
          alt="">
        </div>
        <div class="d-flex justify-content-between align-items- mb-3 mt-4">
@@ -205,12 +205,12 @@
   // محاسبه زمان باقی‌مانده برای تایمر
   $remainingTime = 0;
   if (isset($otp) && $otp instanceof \App\Models\Dr\Otp) {
-      $remainingTime = max(0, ($otp->created_at->addSeconds(30)->timestamp - now()->timestamp) * 1000);
+      $remainingTime = max(0, ($otp->created_at->addMinutes(2)->timestamp - now()->timestamp) * 1000);
   } elseif (isset($token)) {
       // اگر توکن موجود است، تلاش برای بازیابی OTP
       $otp = \App\Models\Dr\Otp::where('token', $token)->first();
       if ($otp) {
-          $remainingTime = max(0, ($otp->created_at->addSeconds(30)->timestamp - now()->timestamp) * 1000);
+          $remainingTime = max(0, ($otp->created_at->addMinutes(2)->timestamp - now()->timestamp) * 1000);
       }
   }
  @endphp
@@ -260,7 +260,7 @@
    const token = "{{ $token ?? '' }}"; // Use an empty string as a fallback
    let countDownDate;
 
-   function startTimer(remainingTime = 30000) {
+   function startTimer(remainingTime = 120000) {
     clearInterval(window.timerInterval); // پاک کردن تایمر قبلی
 
     countDownDate = new Date().getTime() + remainingTime;
@@ -304,7 +304,7 @@
 
        $('#otp-form').attr('action', "{{ route('dr.auth.login-confirm', ['token' => ':token']) }}".replace(
         ':token', response.token));
-       startTimer(30000); // زمان جدید برای تایمر
+       startTimer(120000); // زمان جدید برای تایمر
       }
       // مخفی کردن دکمه ارسال مجدد
       $('#resend-otp').addClass('d-none');
