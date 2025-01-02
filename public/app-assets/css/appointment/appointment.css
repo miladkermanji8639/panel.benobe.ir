@@ -1,0 +1,472 @@
+main .patient-content {
+ width: 25% !important;
+}
+
+@media screen and (max-width: 1076px) {
+ main .patient-content {
+  width: 35% !important;
+ }
+}
+
+@media screen and (max-width: 976px) {
+ main .patient-content {
+  width: 35% !important;
+ }
+
+ .bottom-left-pishro {
+  display: flex;
+  flex-wrap: wrap;
+ }
+}
+
+@media screen and (max-width: 847px) {
+ main .patient-content {
+  width: 40% !important;
+ }
+}
+
+@media screen and (max-width: 839px) {
+ main .darkhaste-moshavereh-matni {
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+ }
+ main .form-text-visit {
+  padding: 0 !important;
+ }
+
+ main .top-user-info-header {
+  padding: 0 !important;
+ }
+
+ main .btn-buttom-form {
+  width: 100% !important;
+ }
+
+ main .btn-buttom-form button {
+  width: 100% !important;
+ }
+
+ main {
+  min-height: 160vh;
+ }
+
+ main .my-user-info-div {
+  margin-top: 50px !important;
+  width: 100% !important;
+ }
+
+ main .mystyle-clicked {
+  width: 100% !important;
+ }
+
+ main .container .my-nobat-div-patient .top-my-nobat {
+  margin-top: 30px;
+  min-height: 50px;
+ }
+
+ .my-nobat-div-patient {
+  width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+ }
+
+ main .container {
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ .dfff {
+  width: 100%;
+ }
+
+ main .patient-content {
+  width: 100% !important;
+ }
+}
+
+@media screen and (max-width: 593px) {
+ main {
+  min-height: 160vh;
+ }
+
+ main .mystyle-clicked {
+  width: 100% !important;
+ }
+
+ main .container .my-nobat-div-patient .top-my-nobat {
+  margin-top: 30px;
+  min-height: 50px;
+ }
+
+ .my-nobat-div-patient {
+  width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+ }
+
+ main .container {
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ .dfff {
+  width: 100%;
+ }
+
+ main .patient-content {
+  width: 100% !important;
+ }
+}
+
+@media screen and (max-width: 554px) {
+ main {
+  min-height: 160vh;
+ }
+
+ main .right-pishro {
+  width: 100% !important;
+ }
+
+ main .left-pishro {
+  width: 100% !important;
+ }
+
+ main .nobathay-pishro,
+ .nobathay-cancle-shodeh {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ main .mystyle-clicked {
+  width: 100% !important;
+ }
+
+ main .container .my-nobat-div-patient .top-my-nobat {
+  margin-top: 30px;
+  min-height: 50px;
+ }
+
+ .my-nobat-div-patient {
+  width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+ }
+
+ main .container {
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ .dfff {
+  width: 100%;
+ }
+
+ main .patient-content {
+  width: 100% !important;
+ }
+}
+
+@media screen and (max-width: 513px) {
+}
+
+@media screen and (max-width: 459px) {
+ main .form-text-visit {
+  padding: 0 !important;
+ }
+
+ main .top-user-info-header {
+  padding: 0 !important;
+ }
+
+ main {
+  min-height: 170vh !important;
+ }
+
+ main .my-nobat-content {
+  width: 100% !important;
+  overflow-y: hidden !important;
+  overflow-x: scroll !important;
+
+  text-wrap: nowrap;
+ }
+
+ main .top-my-nobat {
+  margin: 0 5px;
+  width: 100% !important;
+  overflow-y: hidden !important;
+  overflow-x: scroll !important;
+  display: flex;
+  justify-content: space-between !important;
+  gap: 15px !important;
+
+  text-wrap: nowrap;
+ }
+
+ main .mystyle-clicked {
+  margin: 0 !important;
+ }
+
+ main .my-nobat-div-patient {
+  width: 100% !important;
+ }
+
+ main {
+  min-height: 140vh;
+ }
+
+ main .right-pishro {
+  width: 100% !important;
+ }
+
+ main .left-pishro {
+  width: 100% !important;
+ }
+
+ main .nobathay-pishro,
+ .nobathay-cancle-shodeh {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ main .mystyle-clicked {
+  width: 100% !important;
+ }
+
+ main .container .my-nobat-div-patient .top-my-nobat {
+  margin-top: 30px;
+  min-height: 50px;
+ }
+
+ .my-nobat-div-patient {
+  width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+ }
+
+ main .container {
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ .dfff {
+  width: 100%;
+ }
+
+ main .patient-content {
+  width: 100% !important;
+ }
+}
+
+@media screen and (max-width: 411px) {
+ main .top-my-nobat a {
+  font-size: 12px;
+ }
+
+ main .patient-content span {
+  font-size: 14px;
+ }
+
+ main .dfff .sub-texts {
+  font-size: 12px !important;
+ }
+
+ main .my-text-style-span {
+  font-size: 13px !important;
+ }
+
+ main .sp-link a {
+  font-size: 13px !important;
+ }
+
+ main .my-nobat-content {
+  width: 100% !important;
+  overflow-y: hidden !important;
+  overflow-x: scroll !important;
+
+  text-wrap: nowrap;
+ }
+
+ main .top-my-nobat {
+  margin: 0 5px;
+  width: 100% !important;
+  overflow-y: hidden !important;
+  overflow-x: scroll !important;
+  display: flex;
+  justify-content: space-between !important;
+  gap: 15px !important;
+
+  text-wrap: nowrap;
+ }
+
+ main .mystyle-clicked {
+  margin: 0 !important;
+ }
+
+ main .my-nobat-div-patient {
+  width: 100% !important;
+ }
+
+ main {
+  min-height: 140vh;
+ }
+
+ main .right-pishro {
+  width: 100% !important;
+ }
+
+ main .left-pishro {
+  width: 100% !important;
+ }
+
+ main .nobathay-pishro,
+ .nobathay-cancle-shodeh {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ main .mystyle-clicked {
+  width: 100% !important;
+ }
+
+ main .container .my-nobat-div-patient .top-my-nobat {
+  margin-top: 30px;
+  min-height: 50px;
+ }
+
+ .my-nobat-div-patient {
+  width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+ }
+
+ main .container {
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ .dfff {
+  width: 100%;
+ }
+
+ main .patient-content {
+  width: 100% !important;
+ }
+}
+
+@media screen and (max-width: 368px) {
+ main .right-pishro {
+  display: flex;
+  flex-direction: column;
+ }
+
+ main .img-nurse {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+ }
+
+ main .top-my-nobat a {
+  font-size: 12px;
+ }
+
+ main .patient-content span {
+  font-size: 14px;
+ }
+
+ main .dfff .sub-texts {
+  font-size: 12px !important;
+ }
+
+ main .my-text-style-span {
+  font-size: 13px !important;
+ }
+
+ main .sp-link a {
+  font-size: 13px !important;
+ }
+
+ main .my-nobat-content {
+  width: 100% !important;
+  overflow-y: hidden !important;
+  overflow-x: scroll !important;
+
+  text-wrap: nowrap;
+ }
+
+ main .top-my-nobat {
+  margin: 0 5px;
+  width: 100% !important;
+  overflow-y: hidden !important;
+  overflow-x: scroll !important;
+  display: flex;
+  justify-content: space-between !important;
+  gap: 15px !important;
+
+  text-wrap: nowrap;
+ }
+
+ main .mystyle-clicked {
+  margin: 0 !important;
+ }
+
+ main .my-nobat-div-patient {
+  width: 100% !important;
+ }
+
+ main {
+  min-height: 140vh;
+ }
+
+ main .right-pishro {
+  width: 100% !important;
+ }
+
+ main .left-pishro {
+  width: 100% !important;
+ }
+
+ main .nobathay-pishro,
+ .nobathay-cancle-shodeh {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ main .mystyle-clicked {
+  width: 100% !important;
+ }
+
+ main .container .my-nobat-div-patient .top-my-nobat {
+  margin-top: 30px;
+  min-height: 50px;
+ }
+
+ .my-nobat-div-patient {
+  width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+ }
+
+ main .container {
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ .dfff {
+  width: 100%;
+ }
+
+ main .patient-content {
+  width: 100% !important;
+ }
+}

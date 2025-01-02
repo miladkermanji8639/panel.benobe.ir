@@ -1,0 +1,58 @@
+{
+ "data": [
+  {
+   "id": 1,
+   "name": "مدیریت سایت",
+   "assigned_to": ["Admin"],
+   "created_date": "14 فروردین 1400 ، 8:43"
+  },
+  {
+   "id": 2,
+   "name": "مدیریت پرداخت و نقش ها",
+   "assigned_to": ["Admin"],
+   "created_date": "10 اردیبهشت 1400 ، 8:43"
+  },
+  {
+   "id": 3,
+   "name": "افزودن و حذف ادمین",
+   "assigned_to": ["Admin", "Manager"],
+   "created_date": "16 خرداد 1400 ، 8:43"
+  },
+  {
+   "id": 4,
+   "name": "مدیریت اشتراک ها",
+   "assigned_to": ["Admin", "Users", "Support"],
+   "created_date": "9 تیر 1400 ، 8:43"
+  },
+  {
+   "id": 5,
+   "name": "مدیریت ایمیل",
+   "assigned_to": ["Admin", "Users", "Support"],
+   "created_date": "23 مرداد 1400 ، 8:43"
+  },
+  {
+   "id": 6,
+   "name": "مشاهده آمار و گزارشات",
+   "assigned_to": ["Admin", "Manager"],
+   "created_date": "30 شهریور 1400 ، 8:43"
+  },
+  {
+   "id": 7,
+   "name": "فقط نمایش",
+   "assigned_to": ["Admin", "Restricted"],
+   "created_date": "7 مهر 1400 ، 8:43"
+  },
+  {
+   "id": 8,
+   "name": "مدیریت امور بازاریابی",
+   "assigned_to": ["Admin", "Manager"],
+   "created_date": "06 آبان 1400 ، 8:43"
+  },
+  {
+   "id": 9,
+   "name": "مدیریت تسک ها",
+   "assigned_to": ["Admin", "Support"],
+   "created_date": "02 آذر 1400 ، 8:43"
+  }
+ ]
+}

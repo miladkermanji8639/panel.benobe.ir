@@ -1,0 +1,55 @@
+.calendar-svg {
+ position: absolute !important;
+ right: 448px !important;
+ top: 112px !important;
+ left: inherit !important;
+}
+.calendar-svg-2 {
+ position: absolute !important;
+ right: 220px !important;
+ top: 112px !important;
+ left: inherit !important;
+}
+.pwt-datepicker-input-element {
+ position: relative;
+ left: 50px;
+}
+.label-top-input {
+ min-height: 10px;
+ min-width: 20px;
+ background-color: #fff;
+ box-shadow:
+  rgba(27, 31, 35, 0.04) 0px 1px 0px,
+  rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+ border-radius: 4px;
+ position: absolute;
+ z-index: 2;
+ padding: 2px;
+ font-weight: bold;
+ right: inherit;
+ font-size: 12px;
+ top: 85px;
+}
+.label-top-input-special {
+ min-height: 10px;
+ min-width: 20px;
+ background-color: #fff;
+ box-shadow:
+  rgba(27, 31, 35, 0.04) 0px 1px 0px,
+  rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+ border-radius: 4px;
+ position: absolute;
+ z-index: 2;
+ padding: 2px;
+ font-weight: bold;
+ right: inherit;
+ font-size: 12px;
+ top: inherit;
+}
+.prescription-wrapper {
+ box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+}
+.all-noskhe-list {
+ box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+ height: 100%;
+}

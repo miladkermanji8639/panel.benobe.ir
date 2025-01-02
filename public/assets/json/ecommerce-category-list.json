@@ -1,0 +1,116 @@
+{
+ "data": [
+  {
+   "id": 1,
+   "cat_image": "product-1.png",
+   "categories": "تلفن همراه",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "99129ءتء",
+   "total_products": 1947
+  },
+  {
+   "id": 2,
+   "cat_image": "product-2.png",
+   "categories": "لوازم برقی",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "2512ءتء",
+   "total_products": 7283
+  },
+  {
+   "id": 3,
+   "cat_image": "product-3.png",
+   "categories": "ساعت",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "1612ءتء",
+   "total_products": 2954
+  },
+  {
+   "id": 4,
+   "cat_image": "product-4.png",
+   "categories": "کفش",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "3612ءتء",
+   "total_products": 4940
+  },
+  {
+   "id": 5,
+   "cat_image": "product-5.png",
+   "categories": "اکسسوری",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "79129ءتء",
+   "total_products": 4665
+  },
+  {
+   "id": 6,
+   "cat_image": "product-6.png",
+   "categories": "بازی و سرگرمی",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "29129ءتء",
+   "total_products": 5764
+  },
+  {
+   "id": 7,
+   "cat_image": "product-10.png",
+   "categories": "دکوراسیون داخلی",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "19120ءتء",
+   "total_products": 9184
+  },
+  {
+   "id": 8,
+   "cat_image": "product-16.png",
+   "categories": "سفر",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "7912ءتء",
+   "total_products": 4186
+  },
+  {
+   "id": 9,
+   "cat_image": "product-21.png",
+   "categories": "محصولات کودک",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "7912ءتء",
+   "total_products": 4186
+  },
+  {
+   "id": 10,
+   "cat_image": "product-22.png",
+   "categories": "جواهرات",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "7912ءتء",
+   "total_products": 4186
+  },
+  {
+   "id": 11,
+   "cat_image": "product-23.png",
+   "categories": "موارد غذایی",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "7912ءتء",
+   "total_products": 4186
+  },
+  {
+   "id": 12,
+   "cat_image": "product-24.png",
+   "categories": "لباس و پوشاک",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "7912ءتء",
+   "total_products": 4186
+  },
+  {
+   "id": 13,
+   "cat_image": "product-25.png",
+   "categories": "کتاب",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "7912ءتء",
+   "total_products": 4186
+  },
+  {
+   "id": 14,
+   "cat_image": "product-26.png",
+   "categories": "لوازم آرایشی",
+   "category_detail": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+   "total_earnings": "7912ءتء",
+   "total_products": 4186
+  }
+ ]
+}

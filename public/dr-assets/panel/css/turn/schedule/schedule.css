@@ -1,0 +1,550 @@
+@import url('./../../../../../app-assets/fonts/IRANSans/style.css');
+body {
+ font-family: 'IRANSans' !important;
+}
+.seven-col-calendar {
+ /* background-color: #fff; */
+ width: 100%;
+ border-radius: 5px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ flex-wrap: wrap;
+}
+
+.seven-col-calendar .days-calendar-cards {
+ display: flex;
+ gap: 5px;
+ justify-content: center;
+ flex-wrap: wrap;
+}
+
+.seven-col-calendar .days-calendar-cards {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 16px; /* فاصله بین کارت‌های روزانه */
+}
+
+.seven-col-calendar .days-calendar-cards .day-calendar-card {
+ width: 130px;
+ height: 100px;
+
+ border: 1px solid #dddd;
+ border-radius: 8px;
+ background-color: #fff;
+ color: #707070;
+ cursor: pointer;
+ box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+ position: relative;
+}
+
+.appointment-pattern-container {
+ position: relative;
+ width: 100%; /* عرض کامل */
+ margin-top: 0; /* بدون فاصله برای الگوها */
+}
+.overflow-y-scroll {
+ overflow-y: scroll !important;
+}
+.card-with-pattern {
+ background-color: #fdcb6e;
+}
+
+.card-with-pattern path {
+ fill: white; /* تغییر رنگ اس‌وی‌جی تیک */
+}
+.d-details {
+ position: absolute; /* همچنان absolute */
+ top: 92%; /* فاصله زیر کارت */
+ width: 100%;
+ background-color: #ffffff; /* رنگ پس‌زمینه الگوها */
+ padding: 4px;
+ border: 1px solid #dddd; /* حاشیه */
+ box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; /* سایه */
+ border-radius: 5px;
+}
+
+.switch {
+ position: relative;
+ display: inline-block;
+ width: 54px;
+ height: 29px;
+}
+
+.switch input {
+ opacity: 0;
+ width: 0;
+ height: 0;
+}
+
+.slider {
+ position: absolute;
+ cursor: pointer;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background-color: #ccc;
+ -webkit-transition: 0.4s;
+ transition: 0.4s;
+}
+
+.slider:before {
+ position: absolute;
+ content: '';
+ height: 26px;
+ width: 26px;
+ left: 4px;
+ bottom: 4px;
+ background-color: white;
+ -webkit-transition: 0.4s;
+ transition: 0.4s;
+}
+
+input:checked + .slider {
+ background-color: #2196f3;
+}
+
+input:focus + .slider {
+ box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+ -webkit-transform: translateX(26px);
+ -ms-transform: translateX(26px);
+ transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+ border-radius: 34px;
+}
+
+.slider.round:before {
+ border-radius: 50%;
+}
+
+.autoTurnBox_addVisitTimeContentDesktop__2YOX3 {
+ background-color: #ddd;
+}
+
+.timePicker_timestamps__1w759 {
+ position: absolute;
+ top: unset;
+ bottom: calc(100% + 0.5rem);
+ width: 100%;
+ background-color: #fff;
+ height: 200px;
+ overflow-y: auto;
+ opacity: 0;
+ pointer-events: none;
+ transition: opacity 0.3s ease;
+ z-index: 100;
+}
+
+.timePicker_value__2mDs3 {
+ padding: 0.4rem 0.5rem;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: #fff;
+ color: #000;
+ border-radius: 4px;
+ cursor: pointer;
+}
+
+.autoTurnBox_rightPart__3ic_w {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ grid-gap: 0.5rem;
+ gap: 0.5rem;
+}
+
+.autoTurnBox_number__2NRCD span {
+ color: #404040;
+ font-size: 0.95rem;
+}
+
+.inputNumber_number__1djBN {
+ width: 35px;
+ height: 35px;
+ background-color: #fff;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ border-top-left-radius: 4px;
+ border-bottom-left-radius: 4px;
+}
+
+.autoTurnBox_addVisitTimeSettings__3lVhP {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-top: 0.4rem;
+}
+
+.autoTurnBox_addVisitTimeContentDesktop__2YOX3 {
+ background-color: #eee;
+ flex: 1 1;
+ margin-top: 0.5rem;
+ padding: 1.25rem 1.5rem 0;
+}
+
+input[type='color'],
+input[type='date'],
+input[type='datetime-local'],
+input[type='datetime'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'],
+input[type='week'],
+select:focus,
+textarea {
+ font-size: 16px !important;
+}
+
+[role='button'],
+a,
+area,
+button,
+input:not([type='range']),
+label,
+select,
+summary,
+textarea {
+ -ms-touch-action: manipulation;
+ touch-action: manipulation;
+}
+
+input[type='number'],
+input[type='password'],
+input[type='text'],
+textarea {
+ appearance: none;
+}
+
+.autoTurnBox_input__2eWbU {
+ border: none;
+ background-color: #f3f3f3;
+ border-radius: 4px;
+ padding: 0.5rem 0.5rem 0.4rem;
+ color: #000;
+ width: 100%;
+}
+
+.autoTurnBox_leftPart__23kR5 {
+ display: flex;
+ align-items: center;
+ grid-gap: 0.75rem;
+ gap: 0.75rem;
+}
+
+.autoTurnBox_number__2NRCD {
+ display: flex;
+ align-items: center;
+ grid-gap: 0.5rem;
+ gap: 0.5rem;
+}
+
+.inputNumber_inputNumberContainer__jKdrJ {
+ display: flex;
+}
+
+.autoTurnBox_number__2NRCD span {
+ color: #404040;
+ font-size: 0.95rem;
+}
+
+.inputNumber_actions__3o_my {
+ display: flex;
+ flex-direction: column;
+}
+
+.autoTurnBox_number__2NRCD span {
+ color: #404040;
+ font-size: 0.95rem;
+}
+
+.inputNumber_number__1djBN {
+ width: 35px;
+ height: 35px;
+ background-color: #fff;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ border-top-left-radius: 4px;
+ border-bottom-left-radius: 4px;
+}
+
+.inputNumber_btn__2PYlq:first-child {
+ border-top-right-radius: 4px;
+}
+
+[type='button']:not(:disabled),
+[type='reset']:not(:disabled),
+[type='submit']:not(:disabled),
+button:not(:disabled) {
+ cursor: pointer;
+}
+
+.inputNumber_btn__2PYlq {
+ width: 20px;
+ height: 17.5px;
+ border: none;
+ background-color: #fff;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 0.7rem;
+}
+
+.anticon {
+ display: inline-block;
+ color: inherit;
+ font-style: normal;
+ line-height: 0;
+ text-align: center;
+ text-transform: none;
+ vertical-align: -0.125em;
+ text-rendering: optimizeLegibility;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+}
+
+.anticon svg {
+ display: inline-block;
+}
+
+svg:not(:root) {
+ overflow: hidden;
+}
+
+.anticon > * {
+ line-height: 1;
+}
+.inputNumber_btn__2PYlq:last-child {
+ border-bottom-right-radius: 4px;
+}
+[type='button']:not(:disabled),
+[type='reset']:not(:disabled),
+[type='submit']:not(:disabled),
+button:not(:disabled) {
+ cursor: pointer;
+}
+.inputNumber_btn__2PYlq {
+ width: 20px;
+ height: 17.5px;
+ border: none;
+ background-color: #fff;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 0.7rem;
+}
+.autoTurnBox_number__2NRCD span {
+ color: #404040;
+ font-size: 0.95rem;
+}
+.autoTurnBox_addVisitBtn__3QL34 {
+ width: 35px;
+ height: 35px;
+ border-radius: 50%;
+ border: none;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: #000;
+ color: #fff;
+ font-size: 1.1rem;
+}
+.timePicker_timestamp__3JL-J {
+ display: block;
+ padding: 0.4rem 0.5rem;
+ text-align: center !important;
+ border-bottom: 1px solid #eee;
+ cursor: pointer;
+}
+.turnBox_turnsBoxContainerDesktop__3m5mm {
+ height: 40vh;
+ padding: 0 1.5rem;
+ overflow-y: auto;
+}
+.turnBoxItem_inputContainer__382f1 {
+ display: flex;
+ align-items: center;
+ margin-top: 2rem;
+}
+.turnBoxItem_input__35i7L {
+ flex: 1 1;
+ border: none;
+ background-color: #f3f3f3;
+ border-radius: 8px;
+ padding: 0.5rem 0.5rem 0.4rem;
+ color: #000;
+}
+.turnBoxItem_saveBtn__2tACg {
+ color: #fff;
+ background-color: #9fcf00;
+ border-radius: 15px;
+ margin-right: 0.5rem;
+ border: none;
+ font-size: 0.75rem;
+ padding: 0.25rem 1rem;
+}
+.turnBoxItem_visitDetails__1-Hgl {
+ margin-top: 1rem;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+.turnBoxItem_visitDuration__2Uf83 {
+ font-weight: bolder;
+ display: flex;
+ align-items: center;
+ grid-gap: 0.5rem;
+ gap: 0.5rem;
+}
+.timePicker_timePicker__38JPD {
+ min-width: 60px;
+ position: relative;
+}
+.timePicker_timePicker__38JPD.timePicker_toBottom__3bEb0
+ .timePicker_timestamps__1w759 {
+ bottom: unset;
+ top: calc(100% + 0.5rem);
+}
+.timePicker_timestamps__1w759 {
+ position: absolute;
+ top: unset;
+ bottom: calc(100% + 0.5rem);
+ width: 100%;
+ background-color: #fff;
+ height: 200px;
+ overflow-y: auto;
+ opacity: 0;
+ pointer-events: none;
+ transition: opacity 0.3s ease;
+ z-index: 100;
+}
+.timePicker_timestamp__3JL-J {
+ display: block;
+ padding: 0.4rem 0.5rem;
+ text-align: center !important;
+ border-bottom: 1px solid #eee;
+ cursor: pointer;
+}
+.timePicker_value__2mDs3 {
+ padding: 0.4rem 0.5rem;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: #fff;
+ color: #000;
+ border-radius: 4px;
+ cursor: pointer;
+}
+.turnBox_modalHeaderDesktop__VrzQ1 {
+ height: 50px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ color: #8db509;
+ font-size: 0.85rem;
+ padding: 0 1.5rem;
+}
+
+.slider:before {
+ position: absolute;
+ content: '';
+ height: 21px;
+ width: 20px;
+ left: 4px;
+ bottom: 4px;
+ background-color: white;
+ -webkit-transition: 0.4s;
+ transition: 0.4s;
+}
+/* custom styles */
+.holiday a {
+ color: #9fcf00 !important;
+ font-weight: bold !important;
+ color: #fff !important;
+}
+a.ui-state-default {
+ font-weight: bold !important;
+}
+.has-appointments {
+ position: relative; /* اجازه به عناصر داخلی که در موقعیت مطلق قرار بگیرند */
+}
+
+.has-appointment {
+ background-color: #f6ffd8 !important; /* پس‌زمینه سبز */
+ color: white !important;
+ position: relative;
+ border: 2.3px solid #9fcf00 !important;
+ border-radius: 3px !important;
+}
+.has-appointment::after {
+ content: attr(title); /* بجای مشخص کردن مقدار، از -title استفاده می‌کنیم */
+ position: absolute;
+ top: -8px;
+ left: -8px;
+ background: #9fcf00;
+ color: white;
+ font-family: 'IRANSans' !important;
+ font-size: 10px;
+ width: 20px;
+ height: 20px;
+ border-radius: 50%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ z-index: 1;
+}
+.bg-ddd {
+ background-color: #ddd !important;
+ border: 1px solid #fff !important;
+}
+.appointment-count {
+ position: absolute; /* امکان تعیین موقعیت */
+ top: 5px; /* فاصله از بالا */
+ left: 5px; /* فاصله از چپ */
+ background-color: rgba(0, 0, 0, 0.8); /* رنگ پس زمینه */
+ color: white; /* رنگ متن */
+ padding: 2px 4px; /* فضای داخلی */
+ border-radius: 3px; /* گوشه‌های گرد */
+ font-size: 12px; /* اندازه فونت */
+ z-index: 1; /* قرار دادن بالاتر */
+}
+.guid-color-div .guide-box {
+ width: 10px;
+ height: 10px;
+
+ border-radius: 2px;
+}
+.tbl_fix_overflow {
+ height: 100px !important;
+ overflow-y: scroll !important;
+}
+.guid-color-div {
+ display: flex;
+ gap: 10px;
+}
+.guide-blue {
+ background-color: #428bca;
+}
+.guide-red {
+ background-color: red;
+}
+.guide-secondary {
+ background-color: #ebebeb;
+}
+/* custom styles */

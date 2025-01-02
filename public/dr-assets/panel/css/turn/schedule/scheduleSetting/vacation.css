@@ -1,0 +1,35 @@
+.vacation-wrapper-content {
+ background-color: #fff;
+ border-radius: 10px;
+ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+ width: 650px;
+}
+.vacation-list {
+ border: 1px solid #6d6d6d;
+ border-radius: 8px;
+ min-height: 300px;
+ background-color: #ecececcc;
+}
+.h-24 {
+ height: 100px !important;
+}
+.has-list-vacation {
+ border: 1px solid #ddd;
+ border-radius: 8px;
+ margin: 10px;
+}
+@media only screen and (max-width: 425px) {
+ .alert-warning {
+  font-size: 10.5px !important;
+ }
+ .text-dark {
+  font-size: 11px !important;
+ }
+ button {
+  font-size: 13px !important;
+ }
+ select {
+  font-size: 11px !important;
+  font-weight: bold !important;
+ }
+}

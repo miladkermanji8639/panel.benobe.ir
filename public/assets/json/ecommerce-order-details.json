@@ -1,0 +1,36 @@
+{
+ "data": [
+  {
+   "id": 1,
+   "product_name": "گوشی موبایل Oneplus 10",
+   "product_info": "حافظه:128gb",
+   "image": "oneplus.png",
+   "qty": 3,
+   "price": 896
+  },
+  {
+   "id": 2,
+   "product_name": "کفش اسپورت Nike Jordan",
+   "product_info": "اندازه:8UK",
+   "image": "nikejordan.png",
+   "qty": 1,
+   "price": 392
+  },
+  {
+   "id": 3,
+   "product_name": "صندلی چوبی",
+   "product_info": "جنس: چوب",
+   "image": "woodenchair.png",
+   "qty": 2,
+   "price": 841
+  },
+  {
+   "id": 4,
+   "product_name": "کرم مرطوب کننده صورت",
+   "product_info": "مناسب برای : خانم ها",
+   "image": "facecream.png",
+   "qty": 2,
+   "price": 813
+  }
+ ]
+}

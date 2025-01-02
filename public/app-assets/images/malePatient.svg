@@ -1,0 +1,44 @@
+<svg id="Group_1795" data-name="Group 1795" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="90" height="90" viewBox="0 0 90 90">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.375" x2="0.625" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ebb889"/>
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0.161" stop-color="#fff"/>
+      <stop offset="0.344" stop-color="#fff"/>
+      <stop offset="0.515" stop-color="#ebebeb"/>
+      <stop offset="1" stop-color="#d6d6d6"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.127" y1="1" x2="0.873" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ebb889"/>
+      <stop offset="0.184" stop-color="#ebb889"/>
+      <stop offset="0.344" stop-color="#ffc794"/>
+      <stop offset="0.515" stop-color="#ffc794"/>
+      <stop offset="1" stop-color="#ffc794"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="-0.25" y1="0.728" x2="1.25" y2="0.272" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="red"/>
+      <stop offset="0.529" stop-color="#ffc794"/>
+      <stop offset="1" stop-color="#ffc794"/>
+    </linearGradient>
+  </defs>
+  <rect id="Rectangle_2881" data-name="Rectangle 2881" width="90" height="89.957" transform="translate(0 0)" fill="#349afc"/>
+  <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(18.305 13.655)">
+    <g id="Group_1794" data-name="Group 1794" transform="translate(0 0)">
+      <path id="Ellipse_2_copy_4" data-name="Ellipse 2 copy 4" d="M16.963,24.494a11.42,11.42,0,0,1-7.825-3.776,9.537,9.537,0,0,1,.4-19.066,9.642,9.642,0,0,1,1.163.07A12.25,12.25,0,0,1,28.8,15.418l-.042.156-2.6,8.92Z" transform="translate(12.323)"/>
+      <g id="Ellipse_3_copy_3" data-name="Ellipse 3 copy 3" transform="translate(15.622 36.268)">
+        <ellipse id="Ellipse_3_copy_3-2" data-name="Ellipse 3 copy 3" cx="12.605" cy="12.599" rx="12.605" ry="12.599" fill="#fff"/>
+        <path id="Gradient_Overlay" data-name="Gradient Overlay" d="M12.6,0A12.6,12.6,0,1,1,0,12.6,12.6,12.6,0,0,1,12.6,0Z" fill="url(#linear-gradient)"/>
+        <path id="Color_Overlay" data-name="Color Overlay" d="M12.6,0A12.6,12.6,0,1,1,0,12.6,12.6,12.6,0,0,1,12.6,0Z" fill="#fff"/>
+      </g>
+      <path id="Shape_3" data-name="Shape 3" d="M21.989,34.66H0L6.261,10.783A11.772,11.772,0,0,1,14.688,2.43l.089-.023,7.442-1.7a15.118,15.118,0,0,1,2.35,1.8L27.4,0,41.774,6.594l-.072.072a11.655,11.655,0,0,1,5.957,9.819h.005V34.617H24.827l-.01.043ZM14.706,2.425l-.018,0h0Z" transform="translate(0 41.685)" fill="#fff"/>
+    </g>
+  </g>
+  <path id="Ellipse_3_copy" data-name="Ellipse 3 copy" d="M0,34.382H0V26.846H2.314L13.729,12.959a8.01,8.01,0,1,1,13.1-.725l.029.012L9.044,37.528,9,37.457a5.066,5.066,0,0,1-9-3.075Z" transform="translate(38.403 24.02)" fill="url(#linear-gradient-2)"/>
+  <path id="Ellipse_3_copy_2" data-name="Ellipse 3 copy 2" d="M6.974,18.767h0l-3.2-1.1.469-2.59a8.106,8.106,0,0,1-1.088-.7A8,8,0,0,1,1.644,3.149,7.925,7.925,0,0,1,4.517.8a8.088,8.088,0,0,1,3.5-.8,8.007,8.007,0,0,1,6.8,12.234l.029.012-3.617,5.133h0a1.767,1.767,0,1,0-3.416-.885l-.034-.009-.8,2.282Z" transform="translate(50.418 24.02)"/>
+  <path id="Rounded_Rectangle_1_copy" data-name="Rounded Rectangle 1 copy" d="M660.7,555.442a12.337,12.337,0,0,1,8.692,15.1l-3.2,11.82a12.295,12.295,0,1,1-23.746-6.384l3.2-11.82A12.288,12.288,0,0,1,660.7,555.442Z" transform="translate(-611.386 -537.588)" fill="#ffc794"/>
+  <path id="Ellipse_2_copy_3" data-name="Ellipse 2 copy 3" d="M693.616,667.025h0a8.244,8.244,0,0,1-7.99,6.106h-.06L683.02,668.1Z" transform="translate(-642.727 -623.21)" fill="#fff"/>
+  <path id="Rectangle_4_copy_2" data-name="Rectangle 4 copy 2" d="M679.471,632l3.964,6.828-5.415-1.443Z" transform="translate(-638.905 -596.442)" opacity="0.259" fill="url(#linear-gradient-3)"/>
+  <path id="Rounded_Rectangle_3" data-name="Rounded Rectangle 3" d="M666.9,520.413l19.116,5.12a10.6,10.6,0,0,1,7.5,12.979l-1.219,4.549-14.565-3.9A15.306,15.306,0,0,1,666.9,520.413Z" transform="translate(-630.006 -511.132)"/>
+  <path id="Shape_2" data-name="Shape 2" d="M732.591,583.977l5.831,10.094L740.8,585.2l-8.193-2.194Z" transform="translate(-680.619 -558.984)"/>
+  <path id="Ellipse_3_copy_4" data-name="Ellipse 3 copy 4" d="M3.534,7.889a1.06,1.06,0,0,1,.707-1V0h.707V6.889a1.06,1.06,0,1,1-1.414,1ZM0,7.889a1.06,1.06,0,0,1,.707-1V0h.707V6.889A1.06,1.06,0,1,1,0,7.889Z" transform="translate(40.052 66.408)" fill="#004871"/>
+</svg>

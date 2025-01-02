@@ -1,0 +1,21 @@
+.my-container-fluid {
+ max-width: 1300px !important;
+}
+#map {
+ height: 400px;
+ width: 100%;
+ border: 1px solid #ddd;
+ border-radius: 8px;
+}
+iframe {
+ height: 400px;
+ width: 100%;
+}
+@media only screen and (max-width: 991px) {
+ .card-body {
+  padding: 0 !important;
+ }
+ .container-fluid {
+  max-width: 100% !important;
+ }
+}

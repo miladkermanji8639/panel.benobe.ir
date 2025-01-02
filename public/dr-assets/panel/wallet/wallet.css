@@ -1,0 +1,41 @@
+body {
+ font-family: 'IRANSans' !important;
+}
+.alert-warning {
+ color: #504520;
+ background-color: #ffefbd;
+ border-color: #e6b31b;
+ background-image: none;
+}
+.alert-warning {
+ color: #856404;
+ background-color: #fff3cd;
+ border-color: #ffeeba;
+}
+.alert {
+ position: relative;
+ padding: 0.75rem 1.25rem;
+ margin-bottom: 1rem;
+ border: 1px solid transparent;
+ border-radius: 0.25rem;
+}
+.alert-warning {
+ color: #856404;
+ background-color: #fff3cd;
+ border-color: #ffeeba;
+}
+.alert {
+ position: relative;
+ padding: 0.75rem 1.25rem;
+ margin-bottom: 1rem;
+ border: 1px solid transparent;
+ border-radius: 0.25rem;
+}
+.wallet_totalprice {
+ display: block;
+ padding: 10px;
+ color: #2d2d2d;
+ border: 2px solid #56af56;
+ margin-bottom: 10px;
+ border-radius: 4px;
+}

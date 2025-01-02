@@ -1,0 +1,7 @@
+@media screen and (max-width: 994px) {
+ main {
+  position: relative !important;
+  top: 158px !important;
+  padding-bottom: 135px !important;
+ }
+}

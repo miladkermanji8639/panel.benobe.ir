@@ -1,0 +1,245 @@
+.workhours-wrapper-content {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow:
+    rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.alert-info {
+  font-size: 14px !important;
+}
+
+.select2-container {
+  width: 100% !important;
+}
+
+.my-modal-lg {
+  width: 638px !important;
+  max-width: 800px !important;
+}
+
+.form-check-input:checked {
+  background-color: #0d6efd;
+  /* Bootstrap primary color */
+  border-color: #0d6efd;
+  /* Bootstrap primary border color */
+}
+
+#scheduleModal .timepicker-ui-input {
+  width: 300px !important;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box !important;
+}
+
+.my-copy-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 10px;
+}
+
+.timepicker-ui-wrapper {
+  direction: ltr !important;
+}
+
+.form-check-input:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  /* Focus shadow */
+}
+
+.card {
+  transition: all 0.3s ease;
+  width: 327px;
+  height: 452px;
+}
+
+.label-top-input-special-takhasos-panel {
+  min-height: 10px;
+  min-width: 20px;
+  background-color: #fff;
+  box-shadow:
+    rgba(27, 31, 35, 0.04) 0px 1px 0px,
+    rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+  border-radius: 4px;
+  position: absolute;
+  z-index: 3;
+  padding: 2px;
+  font-weight: bold;
+  right: 0;
+  font-size: 12px;
+  top: -20px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 992px) {
+  .datepicker-container {
+    position: absolute !important;
+    top: 561.188px !important;
+  }
+}
+
+.form-check-input {
+  width: 1rem;
+  /* Change width as needed */
+  height: 0.87rem;
+  /* Change height as needed */
+  border-radius: 0.5rem;
+  /* Adjust border radius */
+}
+
+.form-check-label {
+  margin-left: 0.5rem;
+  /* Space between checkbox and label */
+}
+
+.card-body {
+  letter-spacing: 0 !important;
+  line-height: 28px !important;
+}
+
+label {
+  margin-bottom: 0 !important;
+}
+
+.border-radius-0 {
+  border-top-right-radius: 6px !important;
+  border-bottom-right-radius: 6px !important;
+  border-bottom-left-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+}
+
+.badge-time-styles {
+  border: 1px solid #c7c7c7;
+  border-radius: 50px;
+  height: 30px;
+  padding: 3px 12px;
+  text-wrap: nowrap;
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.badge-time-styles-plus {
+  border: 1px solid #c7c7c7;
+  border-radius: 50px;
+  height: 30px;
+  padding: 3px 12px;
+  text-wrap: nowrap;
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.badge-time-styles-day {
+  border: 1px solid #c7c7c7;
+  border-radius: 50px;
+  height: 30px;
+  padding: 3px 12px;
+  text-wrap: nowrap;
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.workhours-wrapper-content {
+  width: 850px;
+}
+
+@media only screen and (max-width: 768px) {
+  .workhours-wrapper-content {
+    width: 98vw;
+  }
+
+  .breadcrumb-item {
+    font-size: 14px !important;
+    font-weight: bold !important;
+  }
+
+  .my-768px-styles-day-and-times {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .text-dark {
+    font-size: 14px !important;
+  }
+
+  .alert-info {
+    font-size: 12px !important;
+    font-weight: bold !important;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .workhours-wrapper-content {
+    width: 98vw;
+  }
+
+  .my-425-styles-input {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-top: 20px !important;
+  }
+
+  .mt-xs-3 {
+    margin-top: 10px !important;
+  }
+
+  .my-768px-styles-day-and-times {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .text-dark {
+    font-size: 14px !important;
+  }
+
+  .alert-info {
+    font-size: 12px !important;
+    font-weight: bold !important;
+  }
+}
+
+.badge-time-styles:hover {
+  background-color: #eeeeee;
+  transition: 0.4s ease-in background-color;
+}
+
+.badge-time-styles-plus:hover {
+  background-color: #eeeeee;
+  transition: 0.4s ease-in background-color;
+}
+
+.badge-time-styles-day:hover {
+  background-color: #eeeeee;
+  transition: 0.4s ease-in background-color;
+}
+
+.active-hours {
+  border: 1px solid #7c82fc;
+  color: #7c82fc;
+}
+
+.gap-10 {
+  display: flex !important;
+  gap: 10px !important;
+}

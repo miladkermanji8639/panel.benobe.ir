@@ -1,0 +1,425 @@
+header {
+ .top-header-scedule {
+  width: 100%;
+
+  .span-time {
+   font-family: 'IranSans';
+   color: #838383;
+   font-weight: 400;
+   font-size: 15px;
+  }
+ }
+}
+
+main {
+ min-height: 120vh !important;
+
+ .right-information-schedule {
+  width: 580px !important;
+  border: 1px solid #ddd;
+  min-height: 35vh !important;
+  max-height: 39vh !important;
+
+  .mablagh-div {
+   border: 1px solid #ddd;
+   margin: 5px 20px;
+   height: 19vh;
+   border-radius: 12px;
+   padding: 15px;
+
+   .bottom-mablagh {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+   }
+
+   span {
+    color: #515151;
+    font-family: 'IranSans';
+    font-size: 13px;
+   }
+
+   .fw-bolder {
+    font-size: 15px !important;
+   }
+  }
+
+  .zemanat-bazgasht {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 5.5vh;
+
+   width: 100%;
+
+   span {
+    color: #515151;
+    font-family: 'IranSans';
+    font-size: 13px;
+   }
+
+   div {
+    background-color: #f1f5f8;
+    border-radius: 50px;
+    padding: 8px 3px;
+    display: flex;
+    justify-content: center;
+    width: 70%;
+   }
+  }
+ }
+
+ .copon-div {
+  width: 100%;
+  background-color: #fff;
+  // height: 14vh;
+  // height: 8vh;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  .top-copon {
+   width: 100%;
+   display: block;
+  }
+
+  .copon-content {
+  }
+ }
+ // .rotate{
+ //     transform: rotate(180deg) !important;
+ // }
+ .h-14vh {
+  height: 14vh !important;
+ }
+ .h-8vh {
+  height: 8vh !important;
+ }
+
+ .left-schedule-content {
+  width: calc(1000px - 580px) !important;
+  box-shadow: #d6dffa !important;
+  border: 1px solid #a7bafd;
+  min-height: 27vh;
+ }
+
+ .my-pointer {
+  cursor: pointer;
+ }
+
+ .p-style {
+  color: #838383;
+  font-weight: 500;
+ }
+}
+
+@media screen and (max-width: 1006px) {
+ main {
+  .right-information-schedule {
+   width: 590px !important;
+  }
+
+  .left-schedule-content {
+   width: 360px !important;
+  }
+ }
+}
+
+@media screen and (max-width: 992px) {
+ main {
+  .right-information-schedule {
+   width: 590px !important;
+  }
+
+  .left-schedule-content {
+   width: 340px !important;
+  }
+ }
+}
+
+@media screen and (max-width: 945px) {
+ main {
+  .right-information-schedule {
+   width: 580px !important;
+  }
+
+  .left-schedule-content {
+   width: 330px !important;
+  }
+ }
+}
+
+@media screen and (max-width: 923px) {
+ main {
+  .right-information-schedule {
+   width: 560px !important;
+  }
+
+  .left-schedule-content {
+   width: 320px !important;
+  }
+ }
+}
+
+@media screen and (max-width: 894px) {
+ main {
+  .right-information-schedule {
+   width: 530px !important;
+  }
+
+  .left-schedule-content {
+   width: 320px !important;
+  }
+ }
+}
+
+@media screen and (max-width: 870px) {
+ main {
+  .right-information-schedule {
+   width: 500px !important;
+  }
+
+  .left-schedule-content {
+   width: 320px !important;
+  }
+ }
+}
+
+@media screen and (max-width: 839px) {
+ .right-information-schedule {
+  min-height: 50vh !important;
+ }
+
+ .left-schedule-content {
+  .top-left-schedule {
+   .about-top-sce-nure {
+    width: 100% !important;
+   }
+  }
+ }
+
+ header {
+  .top-header-scedule {
+   width: 100%;
+  }
+ }
+
+ main {
+  .content-edit-modal {
+   width: 100% !important;
+   height: 70vh !important;
+   position: absolute;
+   top: 20% !important;
+   right: 0 !important;
+
+   form {
+    width: 100% !important;
+
+    .form-group {
+     width: 100% !important;
+     margin-top: 10px !important;
+    }
+   }
+  }
+
+  .sharayet-and-btn-contenue {
+   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+   display: flex;
+   flex-wrap: wrap;
+
+   .sharayet {
+    width: 100% !important;
+   }
+
+   .btn-contenue-div {
+    margin-top: 10px;
+    width: 100% !important;
+   }
+  }
+
+  .checkout-schedule-content {
+   width: 100% !important;
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column-reverse;
+
+   .right-information-schedule {
+    width: 100% !important;
+   }
+
+   .left-schedule-content {
+    width: 100% !important;
+   }
+  }
+ }
+
+ main {
+  .calender-select-o-t-wrapper {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+  }
+
+  .checkout-schedule-content {
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column-reverse;
+
+   .right-information-schedule {
+    width: 100% !important;
+   }
+
+   .left-schedule-content {
+    width: 100% !important;
+   }
+  }
+
+  .right-calender-select-o-t {
+   width: 100% !important;
+   height: 15vh !important;
+   overflow-y: hidden !important;
+   overflow-x: scroll !important;
+
+   .calenders-cards {
+    width: 100%;
+    height: 13vh !important;
+    display: flex;
+    flex-direction: row !important;
+   }
+  }
+
+  .left-calender-select-o-t {
+   width: 100% !important;
+  }
+ }
+}
+
+@media screen and (max-width: 792px) {
+ header {
+  .top-header-scedule {
+   width: 100%;
+  }
+ }
+
+ main {
+  .checkout-schedule-content {
+   width: 100% !important;
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column-reverse;
+
+   .right-information-schedule {
+    width: 100% !important;
+   }
+
+   .left-schedule-content {
+    width: 100% !important;
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 768px) {
+ header {
+  .container {
+   max-width: 768px;
+  }
+ }
+
+ main {
+  .container {
+   max-width: 768px;
+  }
+ }
+}
+
+@media screen and (max-width: 436px) {
+ .bottom-choose-sick {
+  span {
+   font-size: 14px;
+  }
+ }
+}
+@media screen and (max-width: 403px) {
+ .zemanat-bazgasht {
+  padding: 10px 2px !important;
+  svg {
+   width: 18px;
+   height: 18px;
+  }
+  span {
+   font-size: 11px !important;
+  }
+ }
+}
+
+@media screen and (max-width: 396px) {
+ .bottom-choose-sick {
+  span {
+   font-size: 12px;
+   font-weight: bolder;
+  }
+ }
+ .btn-start-chat {
+  width: 100%;
+  button {
+   width: 100% !important;
+  }
+ }
+}
+
+@media screen and (max-width: 357px) {
+ header {
+  height: 150px;
+ }
+
+ .stepper-wrapper {
+  .stepper-item {
+   .step-name {
+    font-size: 10px !important;
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 353px) {
+ .sharayet-text {
+  font-size: 14px;
+ }
+}
+@media screen and (max-width: 344px) {
+ .zemanat-bazgasht {
+  padding: 10px 2px !important;
+
+  svg {
+   width: 17px;
+   height: 17px;
+  }
+
+  span {
+   font-size: 10px !important;
+  }
+ }
+}
+@media screen and (max-width: 329px) {
+ .zemanat-bazgasht {
+  padding: 10px 2px !important;
+
+  svg {
+   width: 17px;
+   height: 17px;
+  }
+
+  span {
+   font-size: 10px !important;
+  }
+ }
+ .left-schedule-content {
+  height: 30vh !important;
+  .buttom-left-sce {
+   p {
+    font-size: 12px !important;
+   }
+  }
+ }
+}

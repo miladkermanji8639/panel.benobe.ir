@@ -1,0 +1,575 @@
+main {
+ background-color: #f0f2f4 !important;
+ top: 108px;
+ position: relative;
+
+ .main-content-expertise {
+  .top-expertise-breadcrumb {
+   padding: 10px;
+
+   .bread-crumb-expertise {
+    a,
+    span {
+     color: #939393;
+     font-weight: 400;
+     font-size: 13px;
+    }
+   }
+  }
+
+  .expertise-active-div {
+   .content-expertise-active {
+    .cards-expertise-active {
+     min-height: 17vh;
+
+     .card-expertise-active {
+      display: flex;
+      align-items: center;
+
+      .right-expertise-active {
+       width: 70%;
+
+       .expertise-active-card-header {
+        h6 {
+         a {
+          font-size: 17px;
+         }
+        }
+       }
+
+       .expertise-active-card-description {
+        p {
+         color: #898888;
+         font-weight: 500;
+         width: 95%;
+         text-align: justify;
+        }
+       }
+      }
+
+      border-bottom: 1px solid #dddd;
+      padding-bottom: 15px;
+
+      .left-expertise-active {
+       .left-expertise-btn-839 {
+        display: none;
+       }
+
+       width: 30%;
+
+       .left-expertise-profs-and-count {
+        .left-expertise-profs {
+         img {
+          width: 50px;
+          border-radius: 50%;
+          border: 1px solid blue;
+          background-color: #fff;
+         }
+        }
+
+        .left-expertise-count-nurses {
+         span {
+          color: #898888;
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 992px) {
+ header {
+  height: 115px;
+
+  .search-top-expertise-header {
+   display: flex !important;
+
+   form {
+    padding: 0 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .my-input-search {
+     width: 82%;
+     height: 40px;
+     border-radius: 30px;
+     border: 1px solid rgb(26, 171, 73);
+     background-color: #fff;
+     outline: none;
+     padding-right: 10px;
+     border-top-left-radius: 0;
+     border-bottom-left-radius: 0;
+     border-left: none;
+    }
+
+    .my-input-search::placeholder {
+     font-weight: 500;
+     font-size: 13px;
+     padding-right: 10px;
+     color: rgb(26, 171, 73);
+    }
+
+    .city-and-search-icon-in-input {
+     width: 120px;
+     height: 40px;
+     border-radius: 30px;
+     border: 1px solid rgb(26, 171, 73);
+     background-color: #fff;
+     outline: none;
+     padding-right: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: end !important;
+     border-right: none;
+     border-top-right-radius: 0;
+     border-bottom-right-radius: 0;
+    }
+
+    .btn-search {
+     display: none;
+     overflow: hidden;
+     padding: 8px;
+     border-radius: 50%;
+     background: rgb(26, 171, 73);
+     -webkit-box-pack: center;
+     justify-content: center;
+     -webkit-box-align: center;
+     align-items: center;
+     border: none;
+     color: rgb(255, 255, 255);
+     width: 30px;
+     height: 30px;
+     align-items: center;
+    }
+   }
+  }
+ }
+ main {
+  position: relative;
+  top: 60px !important;
+  .main-content-expertise {
+   .container {
+    max-width: 960px;
+
+    .expertise-active-div {
+     .content-expertise-active {
+      .cards-expertise-active {
+       min-height: 17vh;
+
+       .card-expertise-active {
+        .right-expertise-active {
+         width: 65%;
+
+         .expertise-active-card-header {
+          h6 {
+           a {
+            font-size: 17px;
+           }
+          }
+         }
+
+         .expertise-active-card-description {
+          p {
+           color: #898888;
+           font-weight: 500;
+           width: 95%;
+          }
+         }
+        }
+
+        border-bottom: 1px solid #dddd;
+        padding-bottom: 15px;
+
+        .left-expertise-active {
+         width: 35%;
+
+         .left-expertise-profs-and-count {
+          .left-expertise-profs {
+           img {
+            width: 50px;
+            border-radius: 50%;
+            border: 1px solid blue;
+            background-color: #fff;
+           }
+          }
+
+          .left-expertise-count-nurses {
+           span {
+            color: #898888;
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}
+@media screen and (min-width: 992px) {
+ header {
+  height: 108px;
+
+  .search-top-expertise-header {
+   display: flex !important;
+   position: relative;
+   bottom: 95px;
+
+   form {
+    padding: 0 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .my-input-search {
+     width: 35%;
+     height: 50px;
+     border-radius: 30px;
+     border: 1px solid rgb(26, 171, 73);
+     background-color: #fff;
+     outline: none;
+     padding-right: 10px;
+     border-top-left-radius: 0;
+     border-bottom-left-radius: 0;
+     border-left: none;
+    }
+
+    .my-input-search::placeholder {
+     font-weight: 500;
+     font-size: 13px;
+     padding-right: 10px;
+     color: rgb(26, 171, 73);
+    }
+
+    .city-and-search-icon-in-input {
+     width: 120px;
+     height: 50px;
+     border-radius: 30px;
+     border: 1px solid rgb(26, 171, 73);
+     background-color: #fff;
+     outline: none;
+     padding-right: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: end;
+     border-right: none;
+     border-top-right-radius: 0;
+     border-bottom-right-radius: 0;
+    }
+
+    .btn-search {
+     display: flex;
+     overflow: hidden;
+     padding: 8px;
+     border-radius: 50%;
+     background: rgb(26, 171, 73);
+     -webkit-box-pack: center;
+     justify-content: center;
+     -webkit-box-align: center;
+     align-items: center;
+     border: none;
+     color: rgb(255, 255, 255);
+     width: 30px;
+     height: 30px;
+     align-items: center;
+    }
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 839px) {
+ header {
+  height: 115px;
+  .search-top-expertise-header {
+   display: flex !important;
+   form {
+    padding: 0 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .my-input-search {
+     width: 82%;
+     height: 40px;
+     border-radius: 30px;
+     border: 1px solid rgb(26, 171, 73);
+     background-color: #fff;
+     outline: none;
+     padding-right: 10px;
+     border-top-left-radius: 0;
+     border-bottom-left-radius: 0;
+     border-left: none;
+    }
+
+    .my-input-search::placeholder {
+     font-weight: 500;
+     font-size: 13px;
+     padding-right: 10px;
+     color: rgb(26, 171, 73);
+    }
+
+    .city-and-search-icon-in-input {
+     width: 120px;
+     height: 40px;
+     border-radius: 30px;
+     border: 1px solid rgb(26, 171, 73);
+     background-color: #fff;
+     outline: none;
+     padding-right: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: end !important;
+     border-right: none;
+     border-top-right-radius: 0;
+     border-bottom-right-radius: 0;
+    }
+
+    .btn-search {
+     display: none;
+     overflow: hidden;
+     padding: 8px;
+     border-radius: 50%;
+     background: rgb(26, 171, 73);
+     -webkit-box-pack: center;
+     justify-content: center;
+     -webkit-box-align: center;
+     align-items: center;
+     border: none;
+     color: rgb(255, 255, 255);
+     width: 30px;
+     height: 30px;
+     align-items: center;
+    }
+   }
+  }
+ }
+ main {
+  position: relative !important;
+  top: 115px !important;
+  .main-content-expertise {
+   .container {
+    max-width: 960px;
+
+    .expertise-active-div {
+     .content-expertise-active {
+      .cards-expertise-active {
+       width: 100%;
+       // min-height: 17vh;
+
+       .card-expertise-active {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        flex-direction: column !important;
+
+        .right-expertise-active {
+         width: 100% !important;
+
+         .expertise-active-card-header {
+          h6 {
+           a {
+            font-size: 17px;
+           }
+          }
+         }
+
+         .expertise-active-card-description {
+          p {
+           color: #898888;
+           font-weight: 500;
+           width: 100%;
+          }
+         }
+        }
+
+        border-bottom: 1px solid #dddd;
+        padding-bottom: 15px;
+
+        .left-expertise-active {
+         width: 100% !important;
+
+         .left-expertise-profs-and-count {
+          .left-expertise-profs {
+           img {
+            width: 50px;
+            border-radius: 50%;
+            border: 1px solid blue;
+            background-color: #fff;
+           }
+          }
+
+          .left-expertise-count-nurses {
+           span {
+            color: #898888;
+           }
+          }
+         }
+         .left-expertise-btn {
+          display: none;
+         }
+         .left-expertise-btn-839 {
+          display: flex;
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}
+@media screen and (max-width: 599px) {
+ main {
+  .main-content-expertise {
+   .container {
+    max-width: 960px;
+
+    .expertise-active-div {
+     .content-expertise-active {
+      .cards-expertise-active {
+       width: 100%;
+       // min-height: 17vh;
+
+       .card-expertise-active {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        flex-direction: column !important;
+
+        .right-expertise-active {
+         width: 100% !important;
+
+         .expertise-active-card-header {
+          h6 {
+           a {
+            font-size: 17px;
+           }
+          }
+         }
+
+         .expertise-active-card-description {
+          p {
+           color: #898888;
+           font-weight: 500;
+           width: 100%;
+          }
+         }
+        }
+
+        border-bottom: 1px solid #dddd;
+        padding-bottom: 15px;
+
+        .left-expertise-active {
+         width: 100% !important;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+
+         .left-expertise-profs-and-count {
+          .left-expertise-profs {
+           img {
+            width: 50px;
+            border-radius: 50%;
+            border: 1px solid blue;
+            background-color: #fff;
+           }
+          }
+
+          .left-expertise-count-nurses {
+           span {
+            color: #898888;
+           }
+          }
+         }
+
+         .left-expertise-btn {
+          display: none;
+         }
+
+         .left-expertise-btn-839 {
+          display: flex;
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}
+@media screen and (max-width: 444px) {
+ header {
+  height: 115px;
+
+  .search-top-expertise-header {
+   display: flex !important;
+
+   form {
+    padding: 0 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .my-input-search {
+     width: 76%;
+     height: 40px;
+     border-radius: 30px;
+     border: 1px solid rgb(26, 171, 73);
+     background-color: #fff;
+     outline: none;
+     padding-right: 10px;
+     border-top-left-radius: 0;
+     border-bottom-left-radius: 0;
+     border-left: none;
+    }
+
+    .my-input-search::placeholder {
+     font-weight: 500;
+     font-size: 13px;
+     padding-right: 10px;
+     color: rgb(26, 171, 73);
+    }
+
+    .city-and-search-icon-in-input {
+     width: 120px;
+     height: 40px;
+     border-radius: 30px;
+     border: 1px solid rgb(26, 171, 73);
+     background-color: #fff;
+     outline: none;
+     padding-right: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: end;
+     border-right: none;
+     border-top-right-radius: 0;
+     border-bottom-right-radius: 0;
+    }
+
+    .btn-search {
+     display: none;
+     overflow: hidden;
+     padding: 8px;
+     border-radius: 50%;
+     background: rgb(26, 171, 73);
+     -webkit-box-pack: center;
+     justify-content: center;
+     -webkit-box-align: center;
+     align-items: center;
+     border: none;
+     color: rgb(255, 255, 255);
+     width: 30px;
+     height: 30px;
+     align-items: center;
+    }
+   }
+  }
+ }
+}

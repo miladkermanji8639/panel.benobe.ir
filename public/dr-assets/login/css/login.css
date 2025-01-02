@@ -1,0 +1,187 @@
+@import url('./../../fonts/yekan-bakh/stylesheet.css');
+@import url('./../../fonts/IRANSans/style.css');
+
+* {
+    direction: rtl;
+    text-align: right;
+    font-family: "Yekan Bakh";
+}
+
+body {
+    background-color: #f0f8ff !important;
+    
+}
+
+.form-control {
+    direction: ltr !important;
+    text-align: left;
+    font-family: IRANSans !important;
+    font-size: 15px !important;
+}
+
+input::placeholder {
+    font-family: 'IRANSans' !important;
+    padding-left: 10px !important;
+    color: #7a7a7a !important;
+}
+.gap-80{
+    display: flex;
+    gap: 80px;
+}
+button{
+    border: none !important;
+}
+
+
+#swal2-content {
+    text-align: center !important;
+}
+
+.custom-shadow {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.custom-gradient {
+    background: linear-gradient(to right, #2E86C1, #84CAF9);
+    color: white;
+}
+
+.custom-rounded {
+    border-radius: 1rem;
+}
+
+.text-custom-gray {
+    color: #707070;
+}
+
+.otp-input {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+
+
+.back-link {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.password-toggle {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.h-fit {
+    height: fit-content !important;
+}
+
+.h-50 {
+    height: 50px !important;
+}
+
+.gap-150 {
+    display: flex !important;
+    gap: 150px !important;
+}
+
+.p-7 {
+    padding: 4rem !important;
+}
+
+.h-100vh {
+    height: 100vh;
+}
+
+.w-100rem {
+    width: 100rem !important;
+}
+
+
+.login-card {
+    width: 500px;
+    min-height: 300px;
+    background-color: #fff;
+}
+.logo-wrapper img{
+position: absolute;
+top: 20px;
+}
+
+.my-form-control {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #e7e7e7;
+    width: 100%;
+    position: relative;
+    font-family: IRANSans !important;
+    height: 50px;
+}
+
+.my-form-control:focus {
+    border: 2px solid #3088c2 !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+}
+
+.my-form-control::placeholder {
+    font-family: IRANSans !important;
+
+}
+.banner-img{
+    width: 100%;
+}
+
+@media only screen and (max-width:508px) {
+ .login-card {
+    width: 95vw;
+ } 
+ 
+}
+@media only screen and (max-width:425px) {
+ .login-card {
+    width: 95vw;
+ }
+ .p-7{
+    padding: 4rem 1rem !important;
+ }
+ 
+}
+
+.invalid-feedback {
+    color: #dc3545;
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+.cursor-pointer{
+    cursor: pointer !important;
+}
+/* loading code */
+
+.loader {
+  border: 4px solid #f3f3f3; /* Light grey */
+  border-top: 4px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* loading code */
+.error-message {
+   color: red;
+   font-size: 0.8rem;
+   margin-top: 5px;
+  }

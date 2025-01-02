@@ -1,0 +1,13 @@
+.consult-wrapper {
+ width: 750px !important;
+}
+@media only screen and (max-width: 991px) {
+ .consult-wrapper {
+  width: 97% !important;
+ }
+}
+@media only screen and (max-width: 425px) {
+ label {
+  font-size: 12px !important;
+ }
+}

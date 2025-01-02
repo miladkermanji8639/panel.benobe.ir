@@ -1,0 +1,63 @@
+@font-face {
+ font-family: font-primary;
+ src:
+  url('woff/iransansx-medium.woff') format('woff'),
+  url('woff2/iransansx-medium.woff2') format('woff2');
+ font-variation-settings: 'rdot' 1;
+}
+
+@font-face {
+ font-family: font-ultra-light;
+ src:
+  url('woff/iransansx-ultralight.woff') format('woff'),
+  url('woff2/iransansx-ultralight.woff2') format('woff2');
+ font-variation-settings: 'rdot' 1;
+}
+
+@font-face {
+ font-family: font-light;
+ src:
+  url('woff/iransansx-light.woff') format('woff'),
+  url('woff2/iransansx-light.woff2') format('woff2');
+ font-variation-settings: 'rdot' 1;
+}
+
+@font-face {
+ font-family: font-regular;
+ src:
+  url('woff/iransansx-regular.woff') format('woff'),
+  url('woff2/iransansx-regular.woff2') format('woff2');
+ font-variation-settings: 'rdot' 1;
+}
+
+@font-face {
+ font-family: font-medium;
+ src:
+  url('woff/iransansx-medium.woff') format('woff'),
+  url('woff2/iransansx-medium.woff2') format('woff2');
+ font-variation-settings: 'rdot' 1;
+}
+
+@font-face {
+ font-family: font-bold;
+ src:
+  url('woff/iransansx-bold.woff') format('woff'),
+  url('woff2/iransansx-bold.woff2') format('woff2');
+ font-variation-settings: 'rdot' 1;
+}
+
+@font-face {
+ font-family: font-demi-bold;
+ src:
+  url('woff/iransansx-demibold.woff') format('woff'),
+  url('woff2/iransansx-demibold.woff2') format('woff2');
+ font-variation-settings: 'rdot' 1;
+}
+
+@font-face {
+ font-family: font-extra-bold;
+ src:
+  url('woff/iransansx-extrabold.woff') format('woff'),
+  url('woff2/iransansx-extrabold.woff2') format('woff2');
+ font-variation-settings: 'rdot' 1;
+}

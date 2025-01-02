@@ -1,0 +1,288 @@
+body {
+ background-color: #f0f2f4 !important;
+}
+
+main {
+ position: relative !important;
+ /* top: 85px !important; */
+ height: 100vh;
+}
+main .item-click-bg {
+ background-color: #e6f3ff;
+}
+main .my-selected {
+ background-color: #e6f3ff;
+ border-radius: 30px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ padding: 10px;
+ height: 40px;
+}
+main .my-selected a {
+ color: #1a7cdd !important;
+}
+main .mystyle-clicked {
+ margin: 0 15px !important;
+ width: 75% !important;
+}
+main .container .patient-content {
+ position: relative;
+ top: 20px;
+ box-shadow:
+  rgba(0, 0, 0, 0.16) 0px 1px 3px 0px,
+  rgba(0, 0, 0, 0.16) 0px 1px 8px 0px;
+ background-color: #fff;
+ width: 100%;
+ min-height: 48vh;
+ max-height: 60vh;
+ border-radius: 12px;
+}
+main .container .patient-content .main-menu-patient .sections {
+ width: 100%;
+}
+main .container .patient-content .main-menu-patient .sections div {
+ padding: 10px;
+ color: #575757;
+ font-weight: 400;
+}
+main .container .patient-content .main-menu-patient .sections .border-b {
+ width: 100%;
+ border-bottom: 1px solid #ddd;
+ display: flex;
+ justify-content: start;
+}
+main .container .patient-content .main-menu-patient .sections .exit-h:hover {
+ cursor: pointer;
+ color: rgb(15, 83, 83) !important;
+}
+main .container .patient-content .main-menu-patient .sections .border-b:hover {
+ cursor: pointer;
+ color: rgb(15, 83, 83);
+}
+main .container .my-nobat-div-patient .top-my-nobat {
+ border-bottom: 1px solid #ddd;
+ min-height: 80px;
+ display: flex;
+ justify-content: center;
+ gap: 35px;
+ align-items: center;
+}
+main
+ .container
+ .my-nobat-div-patient
+ .bottom-my-nobat-content
+ .nothing-nobat-div
+ img {
+ width: 250px;
+}
+main
+ .container
+ .my-nobat-div-patient
+ .bottom-my-nobat-content
+ .find-nurese-btn
+ button {
+ width: 250px !important;
+}
+main .container .my-nobat-div-patient .nobathay-pishro,
+main .container .my-nobat-div-patient .nobathay-cancle-shodeh {
+ border: 1px solid #ddd;
+ background-color: #fff;
+ padding: 15px;
+ border-radius: 12px;
+}
+main .container .my-nobat-div-patient .nobathay-pishro .right-pishro,
+main .container .my-nobat-div-patient .nobathay-cancle-shodeh .right-pishro {
+ line-height: 2rem;
+ width: 70%;
+ display: flex;
+ gap: 20px;
+}
+main
+ .container
+ .my-nobat-div-patient
+ .nobathay-pishro
+ .right-pishro
+ .img-nurse
+ img,
+main
+ .container
+ .my-nobat-div-patient
+ .nobathay-cancle-shodeh
+ .right-pishro
+ .img-nurse
+ img {
+ width: 50px;
+ border-radius: 50%;
+}
+main
+ .container
+ .my-nobat-div-patient
+ .nobathay-pishro
+ .right-pishro
+ .info-nurse-and-nobat-detail
+ .sub-texts,
+main
+ .container
+ .my-nobat-div-patient
+ .nobathay-cancle-shodeh
+ .right-pishro
+ .info-nurse-and-nobat-detail
+ .sub-texts {
+ color: #594741;
+ font-weight: 400;
+ font-size: 15px;
+}
+main
+ .container
+ .my-nobat-div-patient
+ .nobathay-pishro
+ .right-pishro
+ .info-nurse-and-nobat-detail
+ .my-text-style-span,
+main
+ .container
+ .my-nobat-div-patient
+ .nobathay-cancle-shodeh
+ .right-pishro
+ .info-nurse-and-nobat-detail
+ .my-text-style-span {
+ color: #4d4a48;
+ font-weight: 515;
+ font-size: 15px;
+}
+main .container .my-nobat-div-patient .nobathay-pishro .left-pishro,
+main .container .my-nobat-div-patient .nobathay-cancle-shodeh .left-pishro {
+ width: 30%;
+}
+main
+ .container
+ .my-nobat-div-patient
+ .nobathay-pishro
+ .left-pishro
+ .bottom-left-pishro,
+main
+ .container
+ .my-nobat-div-patient
+ .nobathay-cancle-shodeh
+ .left-pishro
+ .bottom-left-pishro {
+ display: flex;
+ gap: 10px;
+}
+main .container .my-user-info-div {
+ margin-top: 18px;
+ width: 75%;
+}
+main .container .my-user-info-div .my-user-info-content {
+ margin: 0 15px;
+}
+main .container .my-user-info-div .my-user-info-content .top-user-info-header {
+ border-bottom: 1px solid #ddd;
+ display: flex;
+ justify-content: start;
+ padding: 10px;
+}
+main .container .my-user-info-div .form-text-visit input::placeholder {
+ color: #b7b7b7;
+ font-size: 14px;
+}
+main .container .my-user-info-div .form-text-visit .phone-f {
+ background-color: #f1f1f1;
+ direction: ltr;
+}
+main .container .my-user-info-div .form-text-visit .my-form-border {
+ border: 1px solid #ddd !important;
+ outline-color: rgb(42, 146, 180);
+ transition: 2s outline-color ease;
+}
+main .container .my-user-info-div .form-text-visit .firstInput {
+ display: flex;
+ flex-direction: row-reverse;
+ border-right: none !important;
+ margin-left: 0px !important;
+ border-top-right-radius: 0 !important;
+ border-bottom-right-radius: 0 !important;
+ background-color: #e6f3ff;
+}
+main .container .my-user-info-div .form-text-visit .radio {
+ display: none;
+}
+main .container .my-user-info-div .form-text-visit .secondInput {
+ display: flex;
+ flex-direction: row-reverse;
+ border-bottom-left-radius: 0px !important;
+ border-top-left-radius: 0px !important;
+ margin-left: 0px !important;
+}
+main .container .my-user-info-div .form-text-visit .inner {
+ border-radius: 10px;
+ padding: 10px 12px 10px 20px;
+ display: flex;
+ flex: 1 1 0%;
+ -webkit-box-pack: center;
+ justify-content: center;
+ -webkit-box-align: center;
+ align-items: center;
+ border: 1px solid rgb(169, 169, 169);
+ height: 56px;
+}
+main .container .my-user-info-div .form-text-visit .f-name {
+ border-left: none !important;
+ border-top-left-radius: 0;
+ border-bottom-left-radius: 0;
+}
+main .container .my-user-info-div .form-text-visit .l-name {
+ border-top-right-radius: 0;
+ border-bottom-right-radius: 0;
+}
+main .container .my-user-info-div .form-text-visit .bottom-form ul li {
+ list-style-type: circle;
+ font-size: 13px;
+}
+main .container .my-user-info-div .form-text-visit .btn-buttom-form {
+ display: flex;
+ justify-content: center;
+}
+main
+ .container
+ .my-user-info-div
+ .form-text-visit
+ .btn-buttom-form
+ .btn-my-light {
+ border: none !important;
+ background-color: #f2f2f2 !important;
+ width: 80%;
+ height: 50px;
+}
+main .container .darkhaste-moshavereh-matni {
+ width: 75%;
+ height: 60vh;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+main .container .darkhaste-moshavereh-matni .top-d-m-matni {
+ display: flex;
+ align-items: center;
+}
+main .container .darkhaste-moshavereh-matni .desc-m-matni ul li {
+ font-size: 17px;
+ color: #4d4a48;
+ font-weight: 400;
+}
+main .container .darkhaste-moshavereh-matni .description-m-matni p {
+ font-weight: 450;
+}
+
+@media screen and (max-width: 1200px) {
+ .container {
+  max-width: 1260px !important;
+ }
+}
+@media screen and (max-width: 992px) {
+ main {
+  position: relative !important;
+  top: 60px !important;
+ }
+} /*# sourceMappingURL=patient.css.map */

@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/sendotp",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\SendOtp\\": "app/",
+            "Modules\\SendOtp\\Database\\Factories\\": "database/factories/",
+            "Modules\\SendOtp\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\SendOtp\\Tests\\": "tests/"
+        }
+    }
+}

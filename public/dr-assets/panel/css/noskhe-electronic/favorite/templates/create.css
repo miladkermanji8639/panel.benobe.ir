@@ -1,0 +1,179 @@
+.noskhe-option-content-layouts {
+ background-color: #fff;
+ border-radius: 8px;
+ box-shadow: 0 4px 135px rgba(63, 63, 121, 0.07);
+ padding: 5px;
+}
+.label-top-input-create-noskhe {
+ min-height: 10px;
+ min-width: 20px;
+ background-color: #fff;
+ box-shadow:
+  rgba(27, 31, 35, 0.04) 0px 1px 0px,
+  rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+ border-radius: 4px;
+ position: absolute;
+ z-index: 2;
+ padding: 2px;
+ font-weight: bold;
+ right: inherit;
+ font-size: 12px;
+ bottom: inherit;
+ top: 0px;
+}
+.label-top-input-content-noskhe {
+ min-height: 10px;
+ min-width: 20px;
+ background-color: #fff;
+ box-shadow:
+  rgba(27, 31, 35, 0.04) 0px 1px 0px,
+  rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+ border-radius: 4px;
+ position: absolute;
+ z-index: 2;
+ padding: 2px;
+ font-weight: bold;
+ right: inherit;
+ font-size: 12px;
+
+ top: -15px;
+}
+.container-fluid {
+ max-width: 1300px;
+}
+.top-noskhe-create {
+ border-bottom: 1px solid #ddd;
+ padding-bottom: 15px;
+}
+.header-chosser-option ul li {
+ padding: 15px;
+ cursor: pointer;
+}
+.header-chosser-option ul li:hover {
+ background-color: #ececec;
+ transition: 0.5s ease-in-out background-color;
+ border-bottom: 2px #ddd solid;
+}
+.header-chosser-option ul li a {
+ background-color: #ddd;
+}
+
+.header-chosser-option {
+ display: flex;
+ justify-content: start;
+ align-items: center;
+}
+.header-chosser-option ul {
+ border-bottom: 1px solid #ddd;
+ width: 100%;
+}
+.my-border-bottom-primary {
+ border-bottom: 2px blue solid;
+ color: blue;
+}
+.gap-8 {
+ display: flex;
+ gap: 8px !important;
+}
+.content-current-chooser .col,
+.col-sm-2,
+.col-md-2,
+.col-lg-1,
+.col-md-3 {
+ padding-left: 0 !important;
+ padding-right: 0 !important;
+}
+.lists-of {
+ box-shadow:
+  rgba(27, 31, 35, 0.04) 0px 1px 0px,
+  rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+}
+
+@media only screen and (max-width: 738px) {
+ .top-noskhe-create form .gap-20 {
+  display: flex;
+  flex-wrap: wrap;
+ }
+ .text-nothing {
+  font-size: 13px !important;
+  font-weight: bold !important;
+ }
+ .top-noskhe-create form .gap-4 {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+ }
+ .top-noskhe-create form .btn-top-noskhe-wrapper {
+  width: 100% !important;
+ }
+ .top-noskhe-create form .save-btn-top-noskhe {
+  width: 100% !important;
+ }
+ #tasvir-bardary .gap-8 {
+  display: flex !important;
+  justify-content: center !important;
+ }
+ input {
+  font-size: 13px !important;
+  font-weight: bold !important;
+ }
+ .tab span {
+  font-size: 13px !important;
+  font-weight: bold !important;
+ }
+ .header-chosser-option ul li {
+  padding: 10px;
+ }
+ button {
+  font-size: 13px !important;
+  font-weight: bold !important;
+ }
+ table th {
+  font-size: 12px !important;
+  font-weight: bold !important;
+ }
+ .my-738px-input input {
+  width: 88vw !important;
+ }
+}
+@media only screen and (max-width: 359px) {
+ .top-noskhe-create form .gap-20 {
+  display: flex;
+  flex-wrap: wrap;
+ }
+ .top-noskhe-create form .gap-4 {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+ }
+ .top-noskhe-create form .btn-top-noskhe-wrapper {
+  width: 100% !important;
+ }
+ .top-noskhe-create form .save-btn-top-noskhe {
+  width: 100% !important;
+ }
+
+ input {
+  font-size: 13px !important;
+  font-weight: bold !important;
+ }
+ .tab span {
+  font-size: 10.8px !important;
+  font-weight: bold !important;
+ }
+ .header-chosser-option ul li {
+  padding: 10px;
+ }
+ button {
+  font-size: 13px !important;
+  font-weight: bold !important;
+ }
+ table th {
+  font-size: 12px !important;
+  font-weight: bold !important;
+  text-wrap: nowrap !important;
+ }
+ .my-738px-input input {
+  width: 88vw !important;
+ }
+}

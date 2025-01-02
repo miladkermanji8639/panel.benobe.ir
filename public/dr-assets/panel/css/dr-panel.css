@@ -1,0 +1,23 @@
+@import url('./../../../app-assets/fonts/IRANSans/style.css');
+
+.badge-font-size {
+ font-size: 17px !important;
+}
+.main-content .row .col-3 {
+ box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+.p-10 {
+ padding: 10px;
+}
+.center {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.dropdown-select {
+ display: none !important;
+}
+option,
+select {
+ font-family: 'IRANSans' !important;
+}

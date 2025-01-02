@@ -1,0 +1,18 @@
+@media only screen and (max-width: 425px) {
+ .col-md-12 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+ }
+ th {
+  font-size: 11px;
+ }
+ h4 {
+  font-size: 16px;
+ }
+ button {
+  font-size: 13px !important;
+ }
+}
+th {
+ text-wrap: nowrap !important;
+}

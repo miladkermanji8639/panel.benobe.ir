@@ -1,0 +1,34 @@
+.turnContract_main__wWIFo {
+ display: flex;
+ height: 100vh;
+ flex-direction: column;
+ justify-content: center;
+ background: #fff;
+ width: 100%;
+ padding: 0 15px;
+}
+.turnContract_download_box__LIQ5L {
+ height: 400px;
+ display: flex;
+ align-items: center;
+ justify-content: space-around;
+ width: 100%;
+ align-content: space-between;
+ flex-direction: column;
+}
+.turnContract_download_box__LIQ5L > span {
+ display: block;
+ text-align: center !important;
+}
+.turnContract_icon_box__3SKw0 {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ cursor: pointer;
+}
+.turnContract_icon_box__3SKw0 > span {
+ color: #999;
+ font-size: 12px;
+ margin-top: 10px;
+}

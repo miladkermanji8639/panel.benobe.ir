@@ -1,0 +1,3231 @@
+// home scss
+// yekan-bakh and iransans font
+@import url('./../../../fonts/IRANSans/style.css');
+@import url('./../../../fonts/yekan-bakh/stylesheet.css');
+@import url('./../../../css/home/my-styles.css');
+
+// yekan-bakh and iransans font
+* {
+ font-family: 'Yekan Bakh';
+ font-weight: 600;
+}
+
+body {
+ font-family: 'Yekan Bakh' !important;
+ font-weight: 600;
+}
+
+header {
+ background-color: #fff !important;
+ width: 100%;
+
+ // position: fixed;
+ .top-header {
+  width: 100%;
+  height: 108px !important;
+  box-shadow:
+   0px 4px 6px -2px rgba(50, 50, 50, 0.03),
+   0px -3px 10px -4px rgba(50, 50, 50, 0.08);
+ }
+
+ .nav-tog-show {
+  width: 300px;
+  height: 100vh;
+  overflow-y: scroll;
+  background-color: #fbfcfe;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 125;
+
+  .nav-tog-show-items {
+   .nav-tog-list-content {
+    ul {
+     li {
+      a {
+       text-decoration: none;
+       color: #333;
+      }
+     }
+    }
+   }
+
+   .top-nav-tog {
+    height: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .top-nav-tog-logo {
+     img {
+      width: 80px;
+     }
+    }
+
+    .top-nav-tog-close-icon {
+     img {
+      width: 35px;
+     }
+    }
+
+    .top-nav-tog-close-icon:hover {
+     cursor: pointer;
+    }
+   }
+
+   .nav-tog-poshtibani {
+    background-color: #fbfcfe;
+    border-bottom: 1px solid #ddd;
+    padding: 13px 2px;
+   }
+
+   .nav-tog-list-items {
+    margin-top: 10px;
+
+    .nav-tog-list-content {
+     ul {
+      // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      list-style-type: none !important;
+
+      li {
+       border-bottom: 1px solid #ddd;
+       padding: 13px 2px;
+       background-color: #fbfcfe;
+
+       a {
+        text-decoration: none;
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+
+ .tog-show-t-all {
+  margin-top: 0 !important;
+  height: 20vh;
+  overflow-y: scroll;
+
+  ul {
+   li {
+    background-color: #e6f3ff !important;
+   }
+  }
+ }
+
+ .top-right-logo-header {
+  a {
+   img {
+    width: 85px;
+   }
+  }
+ }
+
+ .btn-reg-log {
+  border: 1px solid #0067cd !important;
+  color: #0067cd !important;
+ }
+
+ .btn-reg-log:hover {
+  color: #0351a0;
+ }
+
+ .top-nav-header {
+  nav {
+   a {
+    font-weight: bold;
+    font-size: 14px;
+    color: #000;
+   }
+  }
+ }
+
+ .log-reg-modal {
+  min-width: 420px;
+  max-width: 100vw;
+  height: 395px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 12px;
+  position: absolute;
+  z-index: 77;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 40%);
+
+  .close-modal:hover {
+   cursor: pointer;
+  }
+
+  .content-log-reg-modal {
+   .modal-logo {
+    img {
+     width: 80px;
+    }
+   }
+
+   .regestration-modal {
+    input::placeholder {
+     font-size: 17px !important;
+     font-weight: bold;
+     color: #ddd;
+    }
+   }
+  }
+ }
+
+ .takhasos {
+  width: 1100px;
+  background-color: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  height: 80vh;
+  position: absolute;
+  border-radius: 12px;
+  right: 0;
+  top: 55px;
+
+  a {
+   text-decoration: none;
+  }
+
+  .prev-mega-menu {
+   position: absolute;
+   top: 89% !important;
+   transform: translate(-50%, 50%);
+  }
+
+  .next-mega-menu {
+   position: absolute;
+   top: 89% !important;
+   left: 5%;
+   transform: translate(-50%, 50%);
+  }
+ }
+}
+
+.poshtibany-icon {
+ img {
+  width: 60px;
+  left: 10px;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: fixed;
+  top: 80% !important;
+  z-index: 888;
+  transform: translate(5%, 25%);
+ }
+
+ img:hover {
+  cursor: pointer;
+ }
+}
+
+.bg-success-10 {
+ background-color: rgb(26, 171, 73);
+}
+
+.text-success-10 {
+ color: rgb(26, 171, 73);
+}
+
+.text-success-20 {
+ color: #148539;
+}
+
+.text-xs {
+ font-size: 13px;
+ font-weight: 400;
+}
+
+.text-primary-70 {
+ color: #0067cd !important;
+}
+
+.border-1-primary {
+ border: 1px solid #0067cd !important;
+}
+
+.rounded-full {
+ border-radius: 120px;
+}
+
+.text-gray-10 {
+ color: #b9b9b9;
+ font-weight: 300;
+}
+
+.bg-ddd {
+ background-color: #dddd !important;
+}
+
+.text-primary-80 {
+ color: #004e9c !important;
+}
+
+.bg-primary-70 {
+ background-color: #0067cd !important;
+}
+
+.bg-primary-40 {
+ background-color: #97cbff !important;
+}
+
+.bg-primary-30 {
+ background-color: #cce6ff;
+}
+
+.bg-primary-20 {
+ background-color: #daedff;
+}
+
+.bg-primary-10 {
+ background-color: #e6f3ff;
+}
+
+.bg-f4faff {
+ background-color: #f4faff !important;
+}
+
+::-webkit-scrollbar {
+ display: none;
+}
+
+main {
+ width: 100% !important;
+
+ .s-tekrar-content {
+  display: flex;
+  flex-wrap: nowrap !important;
+  // gap: 5px 5px;
+  text-wrap: nowrap !important;
+  overflow-x: scroll !important;
+  // overflow-y: hidden !important;
+  flex-direction: row !important;
+ }
+
+ .top-main-search {
+  form {
+   display: flex;
+   // width: 100%;
+   flex-direction: row;
+  }
+ }
+
+ .top-h-main {
+  text-align: center;
+  line-height: 3.5rem;
+  font-weight: bold;
+
+  .text-pr-f-iran {
+   font-family: IRANSans !important;
+   font-weight: 500;
+   padding: 0 2px;
+  }
+ }
+
+ .my-input-search {
+  width: 550px;
+  height: 50px;
+  border-radius: 30px;
+  border: 1px solid rgb(26, 171, 73);
+  background-color: #fff;
+  outline: none;
+  padding-right: 10px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none;
+ }
+
+ .my-input-search::placeholder {
+  font-weight: 500;
+  font-size: 13px;
+  padding-right: 10px;
+ }
+
+ .city-and-search-icon-in-input {
+  width: 120px;
+  height: 50px;
+  border-radius: 30px;
+  border: 1px solid rgb(26, 171, 73);
+  background-color: #fff;
+  outline: none;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+ }
+
+ .btn-search {
+  display: flex;
+  overflow: hidden;
+  padding: 8px;
+  border-radius: 50%;
+  background: rgb(26, 171, 73);
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  border: none;
+  color: rgb(255, 255, 255);
+  width: 30px;
+  height: 30px;
+  align-items: center;
+ }
+
+ .text-most-searches {
+  margin: 10px;
+ }
+
+ .most-searches-item-styles {
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  padding: 5px 7px;
+  margin-top: 12px;
+  // margin-right: 15px;
+  font-weight: 400;
+ }
+
+ .card-services-main-top {
+  .card-services {
+   display: flex;
+   justify-content: center;
+   gap: 10px 10px;
+
+   .card-service {
+    width: 265px;
+    height: 275px;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+
+    .img-overlay {
+     img {
+      position: relative;
+      z-index: 2;
+      bottom: 20px;
+     }
+    }
+
+    .content-card-service-description {
+     p {
+      font-size: 14px;
+      width: 85%;
+     }
+    }
+   }
+  }
+ }
+
+ .cards-online-nurses {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px 10px !important;
+
+  .online-status-overlay {
+   width: 14px;
+   height: 14px;
+   border-radius: 50%;
+   background-color: #22dd5e;
+   position: relative;
+   top: 12px;
+   left: 17px;
+  }
+
+  .card-online-nurse {
+   background-color: #f4fdf7;
+   width: 300px;
+   height: 300px;
+   border: 1px solid #e5fbec;
+   border-radius: 12px;
+   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+
+   .top-star-nurse {
+    text-align: left !important;
+
+    span {
+     font-family: IranSans !important;
+     font-size: 13px;
+     font-weight: 400;
+    }
+   }
+
+   .img-online-nurse-prof {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    img {
+     width: 55px;
+     border-radius: 50%;
+    }
+
+    .text-xs {
+     font-size: 13px;
+     font-weight: 400;
+    }
+   }
+
+   .btn-online-nurse {
+    a {
+     width: 240px;
+     border: 1px solid #67bf84;
+     color: #67bf84;
+     font-weight: bold;
+    }
+   }
+  }
+ }
+
+ .all-takhasos {
+  width: 100%;
+  min-height: 80vh !important;
+  background-color: #e6f3ff !important;
+  position: relative;
+
+  // overflow-x: scroll;
+  .takhasos-cards {
+   // min-height: 45vh !important;
+   .takhasos-card {
+    margin: 10px;
+    width: 180px;
+    height: 180px;
+    background-color: #fff;
+    border-radius: 12px;
+    border: 1px solid #417cb6;
+   }
+  }
+ }
+
+ .next-slide {
+  position: absolute;
+  left: 11%;
+  top: 54%;
+  // transform: translate(-50%, 50%);
+ }
+
+ .prev-slide {
+  position: absolute;
+  right: 11%;
+  top: 54%;
+  // transform: translate(-50%, 50%);
+ }
+
+ // .prev-fix {
+ //     position: relative;
+ //     top: 90px !important;
+ //     right: 200px !important;
+ // }
+ .overly-img {
+  border: 2px solid rgb(255, 179, 0);
+ }
+
+ .heart-overly-nurse {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #fff !important;
+  position: relative;
+  z-index: 33;
+  top: 50px;
+  left: 22px;
+ }
+
+ // .mp{
+ // }
+ .mp-s {
+  div:hover {
+   cursor: pointer;
+  }
+ }
+
+ .card-nurse {
+  height: 330px !important;
+ }
+
+ .change-slide-nurse-card {
+  display: flex;
+  justify-content: center;
+  gap: 10px 10px;
+
+  div {
+   width: 12px;
+   height: 12px;
+   border-radius: 50%;
+   background-color: #dddd;
+  }
+ }
+
+ .k-image {
+  width: 100px !important;
+ }
+
+ .clinic-details {
+  border: 1px solid #b9b9b9;
+  border-radius: 12px;
+  padding: 10px;
+  margin-top: 15px;
+ }
+
+ .card-clinic {
+  height: 270px !important;
+  border: none !important;
+ }
+
+ .guide-benobeh {
+  width: 100%;
+  // min-height: 93vh;
+  background-color: #e6f3ff !important;
+
+  .top-left-guide {
+   img {
+    width: 270px;
+    position: relative;
+    bottom: 80px;
+   }
+  }
+ }
+
+ .downloads {
+  img {
+   width: 180px;
+  }
+ }
+
+ .right-bottom-guide {
+  border-left: 1px solid #0067cd;
+ }
+
+ .users-comment {
+  .card-comment {
+   width: 350px;
+   height: 190px;
+   border: 1px solid #004e9c;
+   border-radius: 12px;
+   padding: 15px;
+  }
+ }
+
+ .comment-text-card-comment {
+  margin-top: 10px;
+
+  p {
+   font-size: 12px;
+  }
+ }
+
+ .takhasos-list {
+  width: 100%;
+  // height: 50vh;
+  border: 1px solid #d5ebff;
+  padding: 15px;
+  border-radius: 12px;
+
+  .t-list-all {
+   ul {
+    li {
+     a {
+      text-decoration: none;
+      font-size: 14px;
+      color: #000;
+     }
+    }
+   }
+  }
+ }
+
+ .show-all-toggler-takhasos-list {
+  span:hover {
+   cursor: pointer;
+  }
+ }
+}
+
+.h-50px {
+ height: 50px !important;
+}
+
+footer {
+ margin-top: 30px !important;
+ background-color: #003365;
+ width: 100%;
+ min-height: 70vh !important;
+ padding-bottom: 100px;
+
+ .logo-footer {
+  img {
+   width: 90px;
+   z-index: 66;
+   margin-top: 120px;
+  }
+ }
+
+ .mid-footer-items {
+  margin-top: 130px !important;
+
+  h6 {
+   color: #65b1f8;
+  }
+
+  ul {
+   list-style: none;
+  }
+
+  a {
+   line-height: 2.5rem;
+   text-decoration: none;
+   text-align: center !important;
+   color: #fff;
+   font-weight: bold;
+  }
+ }
+
+ .left-footer-items {
+  margin-top: 130px;
+
+  h6 {
+   color: #65b1f8;
+  }
+
+  .namads-footer {
+   img {
+    width: 90px;
+    background-color: #97cbff;
+    border-radius: 12px;
+    margin: 5px;
+   }
+
+   .n2 {
+    width: 90px !important;
+    height: 90px;
+   }
+  }
+
+  .javayez {
+   h6 {
+    color: #65b1f8;
+   }
+  }
+ }
+}
+
+//menu-bottom
+.bottom-menu-839 {
+ height: 62px;
+ width: 100vw;
+ position: fixed;
+ bottom: 0px;
+ right: 0px;
+ display: flex;
+ flex-direction: row;
+ -webkit-box-pack: justify;
+ justify-content: space-between;
+ padding: 0px 8px;
+ background-color: rgb(255, 255, 255);
+ box-shadow: rgba(96, 100, 106, 0.08) 0px -4px 16px 0px;
+ z-index: 100;
+
+ .content-bottom-menu-839 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .home-menu-item-div,
+  .nurses-menu-item-div,
+  .nobatha-menu-item-div,
+  .profile-menu-item-div {
+   a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #333;
+    align-items: center;
+    padding: 5px 10px;
+   }
+  }
+
+  .home-menu-item-div {
+   a {
+    color: #0067cd;
+
+    svg {
+     fill: #0067cd;
+    }
+   }
+  }
+ }
+}
+
+//end menu-bottom
+@media screen and (min-width: 1400px) {
+ .next-slide {
+  position: absolute !important;
+  left: 50px !important;
+  top: 360px !important;
+ }
+
+ .prev-slide {
+  position: absolute !important;
+  right: 50px !important;
+  top: 360px !important;
+ }
+}
+
+@media screen and (max-width: 1400px) {
+ .next-slide {
+  position: absolute !important;
+  left: 130px !important;
+  top: 360px !important;
+ }
+
+ .prev-slide {
+  position: absolute !important;
+  right: 130px !important;
+  top: 360px !important;
+ }
+}
+
+@media screen and (max-width: 1316px) {
+ .next-slide {
+  position: absolute !important;
+  left: 80px !important;
+  top: 360px !important;
+ }
+
+ .prev-slide {
+  position: absolute !important;
+  right: 80px !important;
+  top: 360px !important;
+ }
+}
+
+@media screen and (max-width: 1220px) {
+ .next-slide {
+  position: absolute !important;
+  left: 40px !important;
+  top: 360px !important;
+ }
+
+ .prev-slide {
+  position: absolute !important;
+  right: 40px !important;
+  top: 360px !important;
+ }
+}
+
+@media screen and (max-width: 1200px) {
+ .all-takhasos {
+  .next-slide {
+   position: absolute !important;
+   left: 40px !important;
+   top: 450px !important;
+  }
+
+  .prev-slide {
+   position: absolute !important;
+   right: 40px !important;
+   top: 450px !important;
+  }
+ }
+
+ .visit-nurse {
+  .cards-online-nurses {
+   .card-online-nurse {
+    .btn-online-nurse {
+     a {
+      width: 200px;
+     }
+    }
+   }
+  }
+ }
+
+ .nobat-dehi {
+  .cards-online-nurses {
+   .card-online-nurse {
+    width: 400px;
+    text-wrap: nowrap;
+
+    .btn-online-nurse {
+     a {
+      width: 200px;
+     }
+    }
+   }
+  }
+ }
+
+ .marakez-darmani {
+  .cards-online-nurses {
+   .card-online-nurse {
+    text-wrap: nowrap !important;
+
+    .clinic-details {
+     width: 220px;
+    }
+
+    .btn-online-nurse {
+     a {
+      width: 200px;
+     }
+    }
+   }
+  }
+ }
+
+ .card-services {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px 10px;
+
+  .card-service {
+   // margin: 10px !important;
+   width: 325px !important;
+   height: 275px !important;
+   border-radius: 12px;
+   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+
+   h4 {
+    font-size: 16px;
+    font-weight: bold !important;
+   }
+
+   a {
+    font-size: 14px !important;
+   }
+
+   .h-m-1200 {
+    margin: 22px !important;
+   }
+
+   .img-overlay {
+    img {
+     position: relative;
+     z-index: 2;
+     bottom: 10px;
+     width: 50px;
+    }
+   }
+
+   .content-card-service-description {
+    p {
+     font-size: 14px;
+     width: 85%;
+    }
+   }
+  }
+ }
+
+ .right-top-visit-nurse {
+  h2 {
+   font-size: 25px;
+  }
+ }
+
+ .guide-benobeh {
+  height: 105vh !important;
+
+  .downlod-items {
+   img {
+    width: 160px !important;
+   }
+  }
+ }
+
+ .users-comment {
+  .card-comment {
+   width: 290px;
+   height: 220px;
+  }
+ }
+
+ .takhasos {
+  width: 1000px !important;
+  height: 85vh !important;
+ }
+
+ .moarefi-pezeshk {
+  .card-online-nurse {
+   width: 290px;
+   // padding: 0px !important;
+  }
+
+  .online-nurse-time-response-div {
+   span {
+    font-size: 12px !important;
+   }
+  }
+ }
+
+ .marakez-darmani {
+  .cards-online-nurses {
+   display: flex;
+   // justify-content: center;
+   gap: 10px 10px;
+  }
+
+  .card-online-nurse {
+   width: 250px;
+
+   .clinic-details {
+    width: 230px;
+   }
+
+   .btn-online-nurse {
+    a {
+     width: 205px;
+    }
+   }
+  }
+ }
+}
+
+@media screen and (min-width: 1200px) {
+ .guide-benobeh {
+  height: 105vh !important;
+ }
+}
+
+@media screen and (max-width: 1069px) {
+ .visit-nurse {
+  .cards-online-nurses {
+   .card-online-nurse {
+    width: 220px;
+
+    .btn-online-nurse {
+     a {
+      width: 200px;
+     }
+    }
+   }
+  }
+ }
+
+ .nobat-dehi {
+  .cards-online-nurses {
+   .card-online-nurse {
+    width: 220px !important;
+    text-wrap: nowrap;
+
+    .btn-online-nurse {
+     a {
+      width: 200px !important;
+     }
+    }
+   }
+  }
+ }
+
+ .card-services {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px 10px;
+
+  .card-service {
+   // margin: 10px !important;
+   width: 325px !important;
+   height: 275px !important;
+   border-radius: 12px;
+   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+
+   h4 {
+    font-size: 16px;
+    font-weight: bold !important;
+   }
+
+   a {
+    font-size: 14px !important;
+   }
+
+   .h-m-1200 {
+    margin: 22px !important;
+   }
+
+   .img-overlay {
+    img {
+     position: relative;
+     z-index: 2;
+     bottom: 10px;
+     width: 50px;
+    }
+   }
+
+   .content-card-service-description {
+    p {
+     font-size: 14px;
+     width: 85%;
+    }
+   }
+  }
+ }
+
+ .right-top-visit-nurse {
+  h2 {
+   font-size: 25px;
+  }
+ }
+
+ .guide-benobeh {
+  .downlod-items {
+   img {
+    width: 160px !important;
+   }
+  }
+ }
+
+ .users-comment {
+  .card-comment {
+   width: 290px;
+   height: 220px;
+  }
+ }
+
+ .takhasos {
+  width: 900px !important;
+  height: 85vh !important;
+ }
+
+ .moarefi-pezeshk {
+  .card-online-nurse {
+   width: 400px;
+   // padding: 0px !important;
+  }
+
+  .online-nurse-time-response-div {
+   span {
+    font-size: 12px !important;
+   }
+  }
+ }
+
+ .marakez-darmani {
+  .cards-online-nurses {
+   display: flex;
+   flex-wrap: wrap;
+   // min-height: 90vh !important;
+   margin-bottom: 20px !important;
+   // justify-content: center;
+   gap: 10px 10px;
+  }
+
+  .card-online-nurse {
+   width: 220px !important;
+
+   .clinic-details {
+    width: 215px !important;
+   }
+
+   .btn-online-nurse {
+    a {
+     width: 190px !important;
+    }
+   }
+  }
+ }
+
+ .visit-nurse {
+  // min-height: 100vh !important;
+  .cards-online-nurses {
+   display: flex;
+   flex-wrap: wrap;
+   // min-height: 90vh !important;
+  }
+
+  .card-online-nurse {
+   width: 280px;
+  }
+
+  .btn-online-nurse {
+   a {
+    width: 225px;
+    margin: 0 5px;
+   }
+  }
+ }
+
+ .nobat-dehi {
+  .cards-online-nurses {
+   display: flex;
+   flex-wrap: wrap;
+   // min-height: 90vh !important;
+   margin-bottom: 20px !important;
+
+   .card-online-nurse {
+    width: 400px;
+   }
+  }
+
+  .change-slide-nurse-card {
+   margin-top: 40px !important;
+  }
+
+  .btn-online-nurse {
+   a {
+    width: 225px;
+    margin: 0 5px;
+   }
+  }
+ }
+
+ footer {
+  .namads-footer {
+   img {
+    width: 60px !important;
+    height: 60px !important;
+   }
+  }
+
+  .mid-footer-items {
+   a {
+    font-size: 13px;
+    font-weight: 400 !important;
+   }
+  }
+
+  .right-footer-items {
+   a {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+   }
+
+   span {
+    font-size: 14px !important;
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 992px) {
+ .change-main-container-js,
+ .most-searches-container,
+ .remove-container-all-takhasos-use-js,
+ .n-r-c,
+ .md-r-c,
+ .gb-r-c,
+ .us-r-c,
+ .tld-r-c {
+  max-width: 960px !important;
+ }
+
+ header {
+  .d-none-top-header {
+   display: none;
+  }
+
+  align-items: center !important;
+
+  .top-header-991 {
+   height: 60px !important;
+   background-color: #fff;
+   // max-width: 960px !important;
+   display: flex;
+   justify-content: space-between;
+   align-items: center !important;
+
+   .nav-toggle-992 {
+    img {
+     width: 32px;
+     height: 32px;
+    }
+   }
+
+   .top-left-regestration-header {
+    // width: 0 !important;
+    .btn-reg-log {
+     width: 32px;
+     height: 32px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+
+     svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 500px !important;
+     }
+    }
+   }
+
+   .top-center-logo-header {
+    img {
+     width: 75px;
+    }
+   }
+  }
+
+  width: 100% !important;
+
+  .top-header {
+   min-height: 40px !important;
+
+   .top-header-container {
+    max-width: 960px !important;
+   }
+  }
+
+  .text-login {
+   display: none;
+  }
+
+  .for-nurses-top-header {
+   display: none;
+  }
+
+  .top-right-logo-header {
+   img {
+    position: absolute !important;
+    right: 46.3%;
+    top: 37%;
+    width: 70px !important;
+   }
+  }
+
+  .top-regestration-header {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   a {
+    width: 40px;
+    height: 35px;
+    position: absolute;
+    top: 37%;
+    left: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+  }
+ }
+
+ main {
+  position: relative;
+  top: 10px !important;
+  width: 100% !important;
+
+  .top-main-header {
+   margin-top: 50px !important;
+
+   h1 {
+    font-size: 22px;
+    line-height: 2rem;
+   }
+  }
+
+  .top-main-search {
+   padding: 0 20px;
+   width: 100% !important;
+
+   form {
+    width: 90% !important;
+    display: flex;
+    justify-content: center !important;
+    padding: 0 5px;
+
+    input {
+     width: 100% !important;
+     min-width: 100% !important;
+    }
+
+    .city-and-search-icon-in-input {
+     padding: 0 10px;
+
+     .city-location {
+      width: 70px !important;
+     }
+    }
+   }
+  }
+
+  .most-searches {
+   margin-top: 10px;
+   width: 100%;
+
+   .text-most-searches {
+    .jt {
+     text-align: center !important;
+     display: block !important;
+    }
+   }
+
+   .s-tekrar-content {
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap !important;
+    // gap: 5px 5px;
+    text-wrap: nowrap !important;
+    overflow-x: scroll !important;
+    // overflow-y: hidden !important;
+    flex-direction: row !important;
+   }
+  }
+
+  .card-services-main-top {
+   .nurses-list-div {
+    svg {
+     padding: 0 30px;
+    }
+   }
+
+   .card-services {
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+
+    .card-service {
+     width: 98% !important;
+     height: 100px !important;
+     display: flex;
+     align-items: center;
+
+     .caret-left-in-services {
+      position: absolute;
+      right: 92%;
+     }
+
+     .content-card-service-description {
+      p {
+       display: none;
+      }
+     }
+
+     .card-srvice-header {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+
+      .csh-h-fix {
+       padding: 0 1px !important;
+      }
+     }
+    }
+
+    .nurses-list-div {
+     a {
+      display: none !important;
+     }
+    }
+   }
+  }
+
+  .visit-nurse {
+   padding-bottom: 30px !important;
+   width: 100% !important;
+
+   .right-top-visit-nurse {
+    // padding: 0 5px;
+    h2 {
+     font-size: 19px;
+    }
+
+    span {
+     font-size: 13px;
+    }
+   }
+
+   .show-all-visit-nurse {
+    display: none;
+
+    a {
+     // padding: 0 20px;
+     font-size: 14px;
+
+     svg {
+      width: 22px !important;
+      height: 22px !important;
+     }
+    }
+   }
+
+   .show-all-visit-nurse-992 {
+    display: grid !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+   }
+
+   .cards-online-nurses {
+    width: 100% !important;
+    display: flex;
+    // justify-content: center;
+
+    .card-online-nurse {
+     width: 450px;
+     // margin: 10px !important;
+     position: relative !important;
+
+     .btn-online-nurse {
+      a {
+       width: 410px;
+      }
+     }
+    }
+   }
+  }
+
+  .all-takhasos {
+   display: flex !important;
+   padding-bottom: 50px !important;
+
+   // overflow: hidden !important;
+   .right-top-visit-nurse {
+    padding: 0 10px;
+
+    h2 {
+     font-size: 22px;
+
+     br {
+      display: none;
+     }
+    }
+
+    span {
+     font-size: 13px;
+    }
+   }
+
+   .show-all-visit-nurse {
+    display: none;
+
+    a {
+     padding: 0 20px;
+     font-size: 14px;
+
+     svg {
+      width: 22px !important;
+      height: 22px !important;
+     }
+    }
+   }
+
+   .next-slide,
+   .prev-slide {
+    display: none;
+   }
+
+   .takhasos-cards-up-991 {
+    display: none !important;
+   }
+
+   .takhasos-cards-991 {
+    display: flex !important;
+
+    width: 100% !important;
+    padding-bottom: 8px !important;
+
+    .takhasos-cards {
+     padding: 0 10px !important;
+     display: grid !important;
+     grid-template-columns: repeat(20, 1fr);
+     grid-template-rows: repeat(2, 1fr);
+     overflow-x: scroll;
+     overflow-y: hidden;
+     gap: 5px;
+    }
+   }
+
+   .takhasos-cards {
+    .takhasos-card {
+     width: 140px;
+     height: 120px;
+     margin: 0px !important;
+     display: flex !important;
+     flex-wrap: nowrap !important;
+     // text-wrap: nowrap !important;
+    }
+   }
+  }
+
+  .nobat-dehi {
+   .change-slide-nurse-card {
+    margin-top: 60px !important;
+   }
+
+   .show-all-visit-nurse {
+    display: none;
+   }
+
+   // min-height: 115vh !important;
+   .n-r-c {
+    .right-top-visit-nurse {
+     padding: 0 10px;
+
+     h2 {
+      font-size: 19px;
+     }
+
+     span {
+      font-size: 13px;
+     }
+    }
+
+    .show-all-visit-nurse {
+     a {
+      padding: 0 20px;
+      font-size: 14px;
+
+      svg {
+       width: 22px !important;
+       height: 22px !important;
+      }
+     }
+    }
+
+    .cards-online-nurses {
+     display: flex;
+
+     .card-online-nurse {
+      width: 400px;
+
+      .btn-online-nurse {
+       a {
+        width: 360px;
+       }
+      }
+     }
+    }
+   }
+
+   .cards-online-nurses {
+    .card-online-nurse {
+     width: 400px;
+    }
+   }
+  }
+
+  .marakez-darmani {
+   .cards-online-nurses {
+    display: flex;
+    // justify-content: center;
+    gap: 10px 10px;
+   }
+
+   .show-all-visit-nurse {
+    display: none;
+   }
+
+   margin-top: 100px !important;
+
+   // margin-bottom: 40px !important;
+   .md-r-c {
+    .cards-online-nurses {
+     display: flex;
+     // justify-content: center;
+     gap: 10px 10px;
+
+     .card-online-nurse {
+      width: 400px;
+
+      .btn-online-nurse {
+       display: flex;
+       justify-content: center;
+
+       a {
+        width: 360px;
+       }
+      }
+
+      .clinic-details {
+       width: 380px;
+      }
+     }
+    }
+
+    // margin-top: 130px !important;
+    .right-top-visit-nurse {
+     padding: 0 10px;
+
+     h2 {
+      font-size: 19px;
+     }
+
+     span {
+      font-size: 13px;
+     }
+    }
+
+    .show-all-visit-nurse {
+     a {
+      padding: 0 20px;
+      font-size: 14px;
+
+      svg {
+       width: 22px !important;
+       height: 22px !important;
+      }
+     }
+    }
+   }
+  }
+
+  .guide-benobeh {
+   margin-top: 150px !important;
+   min-height: 180vh !important;
+
+   .top-guide {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+
+    .top-right-guide {
+     width: 100% !important;
+
+     h3 {
+      width: 100%;
+      text-align: center;
+      margin-top: 5px !important;
+     }
+
+     p {
+      width: 100% !important;
+     }
+
+     .downlod-items {
+      margin-top: 50px !important;
+     }
+    }
+
+    .top-left-guide {
+     display: flex;
+     justify-content: center;
+
+     img {
+      width: 270px !important;
+     }
+    }
+   }
+
+   .buttom-guide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .right-bottom-guide {
+     border-left: none !important;
+     border-bottom: 1px solid #0067cd;
+     padding-bottom: 20px;
+     // border-width: 20% !important;
+    }
+
+    .left-bottom-guide {
+     padding-bottom: 20px;
+     margin-top: 10px !important;
+    }
+   }
+  }
+
+  .users-comment {
+   .card-comment {
+    height: 200px;
+   }
+  }
+ }
+
+ footer {
+  margin-top: 150px !important;
+
+  .container {
+   max-width: 960px !important;
+  }
+
+  .footer-items {
+   display: flex;
+   flex-direction: column;
+
+   .right-footer-items {
+    span {
+     font-size: 17px !important;
+     font-weight: 400 !important;
+    }
+
+    .qavanin {
+     a {
+      font-size: 15px !important;
+     }
+    }
+   }
+
+   .mid-footer-items {
+    .h6-footer-up-991 {
+     display: none;
+    }
+
+    width: 100% !important;
+    display: flex;
+    justify-content: start;
+    flex-direction: row !important;
+
+    h6 {
+     text-align: right !important;
+     padding-right: 10px;
+    }
+
+    .ul-footer-up-991 {
+     display: none;
+    }
+
+    a {
+     font-size: 15px;
+    }
+   }
+  }
+ }
+
+ .card-services {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px 10px;
+
+  .card-service {
+   // margin: 10px !important;
+   width: 325px !important;
+   height: 275px !important;
+   border-radius: 12px;
+   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+
+   h4 {
+    font-size: 16px;
+    font-weight: bold !important;
+   }
+
+   a {
+    font-size: 14px !important;
+   }
+
+   .h-m-1200 {
+    margin: 22px !important;
+   }
+
+   .img-overlay {
+    img {
+     position: relative;
+     z-index: 2;
+     bottom: 10px;
+     width: 50px;
+    }
+   }
+
+   .content-card-service-description {
+    p {
+     font-size: 14px;
+     width: 85%;
+    }
+   }
+  }
+ }
+
+ .right-top-visit-nurse {
+  h2 {
+   font-size: 25px;
+  }
+ }
+
+ .guide-benobeh {
+  .downlod-items {
+   img {
+    width: 160px !important;
+   }
+  }
+ }
+
+ .users-comment {
+  .card-comment {
+   width: 290px;
+   height: 230px !important;
+  }
+ }
+
+ .takhasos {
+  width: 900px !important;
+  height: 85vh !important;
+ }
+
+ .moarefi-pezeshk {
+  .card-online-nurse {
+   width: 400px;
+
+   // padding: 0px !important;
+   .btn-online-nurse {
+    a {
+     width: 330px;
+    }
+   }
+  }
+
+  .online-nurse-time-response-div {
+   span {
+    font-size: 12px !important;
+   }
+  }
+ }
+
+ .marakez-darmani {
+  .cards-online-nurses {
+   display: flex;
+   flex-wrap: wrap;
+   // min-height: 90vh !important;
+   gap: 10px 10px;
+   margin-bottom: 20px !important;
+  }
+
+  .card-online-nurse {
+   width: 300px;
+
+   .clinic-details {
+    width: 100px;
+   }
+
+   .btn-online-nurse {
+    a {
+     width: 225px;
+    }
+   }
+  }
+ }
+
+ .visit-nurse {
+  width: 100%;
+
+  .cards-online-nurses {
+   width: 100%;
+   display: flex !important;
+   gap: 10px !important;
+
+   .card-online-nurse {
+    .responseed {
+     span {
+      font-size: 13px !important;
+     }
+    }
+   }
+
+   // min-height: 90vh !important;
+  }
+
+  .btn-online-nurse {
+   a {
+    width: 225px;
+    margin: 0 5px;
+   }
+  }
+ }
+
+ .nobat-dehi {
+  .cards-online-nurses {
+   display: flex;
+   flex-wrap: wrap;
+   // min-height: 90vh !important;
+   margin-bottom: 20px !important;
+  }
+
+  .change-slide-nurse-card {
+   margin-top: 40px !important;
+  }
+
+  .btn-online-nurse {
+   a {
+    width: 330px;
+    margin: 0 5px;
+   }
+  }
+ }
+
+ footer {
+  .namads-footer {
+   img {
+    width: 60px !important;
+    height: 60px !important;
+   }
+  }
+
+  .mid-footer-items {
+   a {
+    font-size: 13px;
+    font-weight: 400 !important;
+   }
+  }
+
+  .right-footer-items {
+   a {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+   }
+
+   span {
+    font-size: 14px !important;
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 880px) {
+ .nobat-dehi {
+  width: 100%;
+
+  .cards-online-nurses {
+   .card-online-nurse {
+    width: 225px;
+
+    .btn-online-nurse {
+     a {
+      width: 200px;
+     }
+    }
+   }
+  }
+ }
+
+ .marakez-darmani {
+  .cards-online-nurses {
+   .card-online-nurse {
+    width: 400px;
+
+    .btn-online-nurse {
+     a {
+      width: 360px;
+     }
+    }
+
+    .clinic-details {
+     width: 215px;
+    }
+   }
+  }
+ }
+}
+
+@media screen and (min-width: 992px) {
+ .users-comment {
+  .card-comment {
+   width: 290px;
+   height: 230px !important;
+  }
+ }
+
+ .takhasos-cards-up-991 {
+  display: inline-block !important;
+ }
+
+ .takhasos-cards-991 {
+  display: none !important;
+ }
+
+ .top-header-991 {
+  display: none;
+ }
+
+ .mid-footer-items {
+  h6 {
+   text-align: right !important;
+   direction: ltr !important;
+   width: 100%;
+  }
+ }
+
+ .ul-footer-right {
+  text-align: right !important;
+  direction: rtl !important;
+  width: 100% !important;
+
+  a {
+   font-size: 15px !important;
+  }
+ }
+
+ .top-header {
+  display: inline-block !important;
+ }
+
+ .show-all-visit-nurse-992 {
+  display: none;
+ }
+
+ .h6-footer-up-991 {
+  display: inline-block;
+ }
+
+ .h6-footer-991 {
+  display: none;
+ }
+
+ .ul-footer-up-991 {
+  display: inline-block;
+ }
+
+ .ul-footer-991 {
+  display: none;
+ }
+}
+
+@media screen and (max-width: 960px) {
+ .all-takhasos {
+  .next-slide {
+   position: absolute !important;
+   left: 20px !important;
+   top: 450px !important;
+  }
+
+  .prev-slide {
+   position: absolute !important;
+   right: 20px !important;
+   top: 450px !important;
+  }
+ }
+}
+
+@media screen and (max-width: 934px) {
+ .visit-nurse {
+  .cards-online-nurses {
+   display: flex;
+   flex-wrap: nowrap;
+   overflow-x: scroll;
+   overflow-y: hidden;
+   width: 100%;
+
+   .card-online-nurse {
+    width: 240px !important;
+
+    .btn-online-nurse {
+     a {
+      width: 220px !important;
+     }
+    }
+   }
+  }
+ }
+
+ .nobat-dehi {
+  .cards-online-nurses {
+   display: flex;
+   flex-wrap: nowrap;
+   overflow-x: scroll;
+   overflow-y: hidden;
+   width: 100%;
+
+   .card-online-nurse {
+    width: 240px !important;
+
+    .btn-online-nurse {
+     a {
+      width: 220px !important;
+     }
+    }
+   }
+  }
+ }
+
+ .marakez-darmani {
+  .cards-online-nurses {
+   display: flex;
+   flex-wrap: nowrap;
+   overflow-x: scroll;
+   overflow-y: hidden;
+   width: 100%;
+
+   .card-online-nurse {
+    width: 240px !important;
+
+    .clinic-details {
+     width: 220px !important;
+    }
+
+    .btn-online-nurse {
+     a {
+      width: 205px !important;
+     }
+    }
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 901px) {
+ .all-takhasos {
+  .next-slide {
+   position: absolute !important;
+   left: 0px !important;
+   top: 450px !important;
+  }
+
+  .prev-slide {
+   position: absolute !important;
+   right: 0px !important;
+   top: 450px !important;
+  }
+ }
+}
+
+@media screen and (max-width: 858px) {
+ .all-takhasos {
+  .next-slide {
+   position: absolute !important;
+   left: 0px !important;
+   top: 750px !important;
+  }
+
+  .prev-slide {
+   position: absolute !important;
+   right: 0px !important;
+   top: 750px !important;
+  }
+ }
+}
+
+@media screen and (min-width: 839px) {
+ .bottom-menu-839 {
+  display: none;
+ }
+}
+
+@media screen and (max-width: 834px) {
+ .visit-nurse {
+  .cards-online-nurses {
+   .card-online-nurse {
+    width: 350px !important;
+
+    .btn-online-nurse {
+     a {
+      width: 310px !important;
+     }
+    }
+   }
+  }
+ }
+
+ .nobat-dehi {
+  .cards-online-nurses {
+   display: flex;
+   flex-wrap: nowrap;
+   overflow-x: scroll;
+   overflow-y: hidden;
+   width: 100%;
+
+   .card-online-nurse {
+    width: 240px !important;
+
+    .btn-online-nurse {
+     a {
+      width: 220px !important;
+     }
+    }
+   }
+  }
+ }
+
+ .marakez-darmani {
+  .cards-online-nurses {
+   display: flex;
+   flex-wrap: nowrap;
+   overflow-x: scroll;
+   overflow-y: hidden;
+   width: 100%;
+
+   .card-online-nurse {
+    width: 240px !important;
+
+    .clinic-details {
+     width: 220px !important;
+    }
+
+    .btn-online-nurse {
+     a {
+      width: 205px !important;
+     }
+    }
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 817px) {
+ .users-comment {
+  width: 100%;
+
+  .top-header-users-comment {
+   h3 {
+    font-size: 17px;
+   }
+
+   span {
+    font-size: 13px;
+   }
+  }
+
+  .cards-comment {
+   width: 100% !important;
+   display: grid !important;
+   flex-wrap: nowrap !important;
+   grid-template-columns: repeat(3, 1fr) !important;
+   grid-template-rows: repeat(1, 1fr) !important;
+   overflow-y: hidden !important;
+   overflow-x: scroll !important;
+
+   .card-comment {
+    width: 350px !important;
+   }
+  }
+ }
+
+ footer {
+  .footer-items {
+   .right-footer-items {
+    width: 100% !important;
+
+    span {
+     font-size: 13px !important;
+    }
+
+    a {
+     font: 13px !important;
+    }
+   }
+
+   .mid-footer-items {
+    width: 100% !important;
+   }
+
+   .left-footer-items {
+    width: 100% !important;
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 734px) {
+ .visit-nurse {
+  .cards-online-nurses {
+   display: flex;
+   flex-wrap: nowrap;
+   overflow-x: scroll;
+   overflow-y: hidden;
+   width: 100%;
+
+   .card-online-nurse {
+    width: 240px !important;
+
+    .btn-online-nurse {
+     a {
+      width: 220px !important;
+     }
+    }
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 541px) {
+ .top-main-search {
+  form {
+   padding: 0 13px !important;
+  }
+ }
+
+ .caret-left-in-services {
+  display: flex;
+  align-items: center;
+
+  a {
+   position: absolute !important;
+   left: 5px !important;
+   // top: 2px !important;
+  }
+ }
+
+ .visit-nurse {
+  .top-visit-nurse {
+   display: flex;
+   flex-direction: column;
+
+   .show-all-visit-nurse {
+    margin-top: 50px;
+   }
+  }
+ }
+
+ .all-takhasos {
+  .top-visit-nurse {
+   display: flex;
+   flex-direction: column;
+
+   .show-all-visit-nurse {
+    margin-top: 50px;
+   }
+  }
+ }
+
+ .nobat-dehi,
+ .marakez-darmani {
+  .top-visit-nurse {
+   display: flex;
+   flex-direction: column;
+
+   .show-all-visit-nurse {
+    margin-top: 50px;
+   }
+  }
+ }
+
+ .guide-benobeh {
+  h3 {
+   font-size: 17px;
+  }
+
+  .downlod-items {
+   h3 {
+    text-align: center;
+   }
+
+   .downloads {
+    margin-top: 50px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+   }
+  }
+
+  .top-guide {
+   .top-left-guide {
+    img {
+     width: 200px;
+    }
+   }
+
+   .top-right-guide {
+    width: 100% !important;
+
+    p {
+     text-align: justify;
+    }
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 530px) {
+ .visit-nurse {
+  .cards-online-nurses {
+   display: flex;
+   height: 50vh;
+   // flex-wrap: nowrap;
+   flex-direction: row;
+   overflow-x: auto;
+
+   .card-online-nurse {
+    span {
+     font-size: 12px;
+    }
+
+    text-wrap: nowrap;
+
+    .btn-online-nurse {
+     a {
+      font-size: 12px;
+     }
+    }
+   }
+  }
+ }
+
+ .nobat-dehi {
+  .cards-online-nurses {
+   display: flex;
+   height: 50vh;
+   // flex-wrap: nowrap;
+   flex-direction: row;
+   overflow-x: auto;
+
+   .card-online-nurse {
+    span {
+     font-size: 12px;
+    }
+
+    text-wrap: nowrap;
+
+    .btn-online-nurse {
+     a {
+      font-size: 12px;
+     }
+    }
+   }
+  }
+ }
+
+ .marakez-darmani {
+  .cards-online-nurses {
+   display: flex;
+   height: 50vh;
+   // flex-wrap: nowrap;
+   flex-direction: row;
+   overflow-x: auto;
+
+   .card-online-nurse {
+    span {
+     font-size: 12px;
+    }
+
+    text-wrap: nowrap;
+
+    .btn-online-nurse {
+     a {
+      font-size: 12px;
+     }
+    }
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 477px) {
+ .guide-benobeh {
+  height: 190vh !important;
+ }
+}
+
+@media screen and (max-width: 400px) {
+ .top-main-search {
+  form {
+   padding: 0 20px !important;
+  }
+ }
+}
+
+@media screen and (max-width: 477px) {
+ .guide-benobeh {
+  height: 210vh !important;
+ }
+
+ .guide-benobeh {
+  .top-left-guide {
+   display: flex;
+   justify-content: center;
+
+   img {
+    width: 225px !important;
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 430px) {
+ .log-reg-modal {
+  min-width: 400px !important;
+ }
+
+ .guide-benobeh {
+  .top-left-guide {
+   display: flex;
+   justify-content: center;
+
+   img {
+    width: 225px !important;
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 405px) {
+ .log-reg-modal {
+  min-width: 370px !important;
+ }
+
+ .guide-benobeh {
+  .top-left-guide {
+   display: flex;
+   justify-content: center;
+
+   img {
+    width: 220px !important;
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 386px) {
+ footer {
+  .mid-footer-items {
+   a {
+    font-size: 12px !important;
+   }
+  }
+
+  .javayez {
+   span {
+    font-size: 12px !important;
+   }
+  }
+ }
+
+ .guide-benobeh {
+  .top-left-guide {
+   display: flex;
+   justify-content: center;
+
+   img {
+    width: 200px !important;
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 372px) {
+ .log-reg-modal {
+  min-width: 350px !important;
+ }
+
+ .guide-benobeh {
+  .top-left-guide {
+   display: flex;
+   justify-content: center;
+
+   img {
+    width: 180px !important;
+   }
+  }
+ }
+}
+
+// home scss
+header {
+ .top-faq-header {
+  height: 130px;
+
+  .right-top-faq-header {
+   .right-logo-top-faq {
+    img {
+     width: 90px;
+    }
+   }
+  }
+
+  .left-top-faq-header {
+   display: flex;
+   gap: 15px;
+  }
+ }
+}
+
+main {
+ background-color: #fff !important;
+
+ .faq-for-users {
+  .faq-for-users-cards {
+   margin-top: 20px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   gap: 10px;
+   align-items: center;
+   flex-direction: column;
+   // min-height: 100vh !important;
+
+   .faq-for-users-card {
+    .faq-for-users-card-tab-content {
+     display: none;
+    }
+
+    a {
+     text-decoration: none;
+    }
+
+    :hover {
+     cursor: pointer;
+    }
+
+    span {
+     font-weight: bold !important;
+    }
+
+    .faq-for-users-card-toggle-icon {
+     span {
+      font-size: 14px !important;
+     }
+    }
+
+    .faq-for-users-card-tab-content {
+     p {
+      font-size: 16px;
+      font-weight: 500;
+     }
+
+     ol {
+      li {
+       font-size: 16px;
+       font-weight: 400;
+       line-height: 2rem;
+      }
+     }
+    }
+
+    width: 70%;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 15px;
+
+    .faq-for-users-card-tab-title {
+     display: flex;
+     flex-direction: row-reverse;
+     justify-content: start;
+     align-items: center;
+    }
+   }
+  }
+ }
+
+ .faq-for-nurses {
+  .faq-for-nurse-cards {
+   margin-top: 20px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   gap: 10px;
+   align-items: center;
+   flex-direction: column;
+
+   .faq-for-nurse-card {
+    .faq-for-nurse-card-tab-content {
+     display: none;
+    }
+
+    a {
+     text-decoration: none;
+    }
+
+    :hover {
+     cursor: pointer;
+    }
+
+    span {
+     font-weight: bold !important;
+    }
+
+    .faq-for-nurse-card-toggle-icon {
+     span {
+      font-size: 14px !important;
+     }
+    }
+
+    .faq-for-nurse-card-tab-content {
+     p {
+      font-size: 16px;
+      font-weight: 500;
+     }
+
+     ol {
+      li {
+       font-size: 16px;
+       font-weight: 400;
+       line-height: 2rem;
+      }
+     }
+    }
+
+    width: 70%;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 15px;
+
+    .faq-for-nurse-card-tab-title {
+     display: flex;
+     flex-direction: row-reverse;
+     justify-content: start;
+     align-items: center;
+    }
+   }
+  }
+ }
+}
+
+footer {
+ position: relative;
+ top: 15px;
+ background-color: #fff !important;
+ min-height: 15vh !important;
+
+ .footer-content {
+  border-bottom: 2px solid #0069d1;
+
+  // padding-bottom: 10px;
+  .right-faq-footer {
+   .logo-faq-footer {
+    img {
+     width: 100px;
+    }
+   }
+
+   .menu-faq-footer {
+    .bl {
+     border-left: 2px solid #0069d1;
+    }
+   }
+  }
+
+  .left-faq-footer {
+   .socials-faq-footer {
+    img {
+     width: 35px;
+    }
+   }
+  }
+ }
+
+ .bootom-footer {
+  p {
+   text-align: center !important;
+  }
+ }
+}
+
+@media screen and (max-width: 1400px) {
+ header,
+ main,
+ footer {
+  .container {
+   max-width: 1320px;
+  }
+ }
+}
+
+@media screen and (max-width: 992px) {
+ main {
+  .faq-for-nurse-card,
+  .faq-for-users-card {
+   width: 100% !important;
+  }
+ }
+
+ footer {
+  position: relative !important;
+ }
+}
+
+@media screen and (max-width: 881px) {
+ footer {
+  .right-faq-footer {
+   img {
+    width: 75px !important;
+   }
+
+   ul {
+    li {
+     padding: 0 3px !important;
+    }
+   }
+  }
+
+  .left-faq-footer {
+   ul {
+    li {
+     padding: 0 3px !important;
+    }
+
+    .list-inline-item:not(:last-child) {
+     margin-right: 0rem;
+    }
+   }
+  }
+ }
+}
+@media screen and (min-width: 839px) {
+ .right-logo-top-faq {
+  img {
+   display: flex;
+  }
+ }
+}
+@media screen and (max-width: 839px) {
+ header {
+  .right-logo-top-faq {
+   img {
+    display: none;
+   }
+  }
+  .left-top-faq-header {
+   .text-primary {
+    display: none;
+   }
+  }
+  .nav-toggle-992 {
+   display: flex !important;
+   img {
+    width: 35px;
+   }
+  }
+ }
+}
+
+@media screen and (min-width: 787px) {
+ footer {
+  .logo-faq-footer-786 {
+   display: none;
+  }
+ }
+}
+
+@media screen and (max-width: 787px) {
+ footer {
+  .footer-content {
+   display: flex !important;
+   flex-wrap: wrap !important;
+   flex-direction: column !important;
+   align-items: center !important;
+   border-top: 2px solid #0069d1;
+
+   .right-faq-footer {
+    img {
+     width: 130px !important;
+     display: none;
+    }
+
+    .bl {
+     margin-top: 10px;
+    }
+
+    ul {
+     li {
+      padding: 0 3px !important;
+     }
+    }
+
+    .menu-faq-footer {
+     margin-top: 20px;
+     width: 100% !important;
+
+     .logo-faq-footer-786 {
+      display: flex;
+      justify-content: center;
+
+      img {
+       display: flex;
+      }
+     }
+
+     .logo-faq-footer {
+      width: 100% !important;
+      display: flex !important;
+      justify-content: center !important;
+     }
+
+     ul {
+      margin-top: 10px;
+     }
+    }
+   }
+
+   .left-faq-footer {
+    ul {
+     li {
+      padding: 0 3px !important;
+     }
+
+     .list-inline-item:not(:last-child) {
+      margin-right: 0rem;
+     }
+    }
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 465px) {
+ main {
+  .faq-for-users-card {
+   .faq-for-users-card-title-text {
+    font-size: 14px !important;
+   }
+  }
+
+  .faq-for-nurse-card {
+   .faq-for-nurse-card-title-text {
+    font-size: 14px !important;
+   }
+  }
+ }
+
+ footer {
+  .footer-content {
+   display: flex !important;
+   flex-wrap: wrap !important;
+   justify-content: space-around !important;
+
+   .right-faq-footer {
+    img {
+     width: 130px !important;
+     display: none;
+    }
+
+    .bl {
+     margin-top: 10px;
+    }
+
+    ul {
+     li {
+      padding: 0 3px !important;
+     }
+    }
+
+    .menu-faq-footer {
+     display: flex;
+     flex-wrap: wrap;
+     text-align: center !important;
+     justify-content: center;
+     align-items: center;
+
+     .li-center {
+      margin-top: 10px;
+     }
+
+     margin-top: 20px;
+     width: 100% !important;
+
+     .logo-faq-footer-786 {
+      display: flex;
+      justify-content: center;
+
+      img {
+       display: flex;
+      }
+     }
+
+     .logo-faq-footer {
+      width: 100% !important;
+      display: flex !important;
+      justify-content: center !important;
+     }
+
+     ul {
+      margin-top: 10px;
+     }
+    }
+   }
+
+   .left-faq-footer {
+    ul {
+     li {
+      padding: 0 3px !important;
+     }
+
+     .list-inline-item:not(:last-child) {
+      margin-right: 0rem;
+     }
+    }
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 373px) {
+ main {
+  .faq-for-users {
+   .faq-for-users-cards {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    flex-direction: column;
+
+    .faq-for-users-card {
+     .faq-for-users-card-tab-content {
+      display: none;
+     }
+
+     a {
+      text-decoration: none;
+     }
+
+     :hover {
+      cursor: pointer;
+     }
+
+     span {
+      font-weight: bold !important;
+     }
+
+     .faq-for-users-card-toggle-icon {
+      span {
+       font-size: 12px !important;
+      }
+     }
+
+     .faq-for-users-card-tab-content {
+      p {
+       font-size: 14px !important;
+       font-weight: 500;
+      }
+
+      ol {
+       li {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 2rem;
+       }
+      }
+     }
+
+     width: 70%;
+     border: 1px solid #ddd;
+     border-radius: 12px;
+     padding: 15px;
+
+     .faq-for-users-card-tab-title {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: start;
+      align-items: center;
+     }
+    }
+   }
+  }
+
+  .faq-for-nurses {
+   .faq-for-nurse-cards {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    flex-direction: column;
+
+    .faq-for-nurse-card {
+     .faq-for-nurse-card-tab-content {
+      display: none;
+     }
+
+     a {
+      text-decoration: none;
+     }
+
+     :hover {
+      cursor: pointer;
+     }
+
+     span {
+      font-weight: bold !important;
+     }
+
+     .faq-for-nurse-card-toggle-icon {
+      span {
+       font-size: 14px !important;
+      }
+     }
+
+     .faq-for-nurse-card-tab-content {
+      p {
+       font-size: 16px;
+       font-weight: 500;
+      }
+
+      ol {
+       li {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 2rem;
+       }
+      }
+     }
+
+     width: 70%;
+     border: 1px solid #ddd;
+     border-radius: 12px;
+     padding: 15px;
+
+     .faq-for-nurse-card-tab-title {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: start;
+      align-items: center;
+     }
+    }
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 343px) {
+ footer {
+  .footer-content {
+   display: flex !important;
+   flex-wrap: wrap !important;
+   justify-content: space-around !important;
+
+   .right-faq-footer {
+    img {
+     width: 100px !important;
+     display: none;
+    }
+
+    .bl {
+     margin-top: 10px;
+    }
+
+    ul {
+     li {
+      padding: 0 3px !important;
+      font-size: 14px;
+     }
+    }
+
+    .menu-faq-footer {
+     display: flex;
+     flex-wrap: wrap;
+     text-align: center !important;
+     justify-content: center;
+     align-items: center;
+
+     .li-center {
+      margin-top: 10px;
+     }
+
+     margin-top: 20px;
+     width: 100% !important;
+
+     .logo-faq-footer-786 {
+      display: flex;
+      justify-content: center;
+
+      img {
+       display: flex;
+      }
+     }
+
+     .logo-faq-footer {
+      width: 100% !important;
+      display: flex !important;
+      justify-content: center !important;
+     }
+
+     ul {
+      margin-top: 10px;
+     }
+    }
+   }
+
+   .left-faq-footer {
+    ul {
+     li {
+      padding: 0 3px !important;
+     }
+
+     .list-inline-item:not(:last-child) {
+      margin-right: 0rem;
+     }
+    }
+   }
+  }
+ }
+}

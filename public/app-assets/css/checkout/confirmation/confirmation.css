@@ -1,0 +1,316 @@
+header .top-header-scedule {
+ width: 100%;
+}
+header .top-header-scedule .span-time {
+ font-family: 'IranSans';
+ color: #838383;
+ font-weight: 400;
+ font-size: 15px;
+}
+
+main {
+ min-height: 120vh !important;
+}
+main .right-information-schedule {
+ width: 580px !important;
+ border: 1px solid #ddd;
+ min-height: 35vh !important;
+ max-height: 39vh !important;
+}
+main .right-information-schedule .mablagh-div {
+ border: 1px solid #ddd;
+ margin: 5px 20px;
+ height: 19vh;
+ border-radius: 12px;
+ padding: 15px;
+}
+main .right-information-schedule .mablagh-div .bottom-mablagh {
+ border-top: 1px solid #ddd;
+ padding-top: 10px;
+ display: flex;
+ align-items: center;
+}
+main .right-information-schedule .mablagh-div span {
+ color: #515151;
+ font-family: 'IranSans';
+ font-size: 13px;
+}
+main .right-information-schedule .mablagh-div .fw-bolder {
+ font-size: 15px !important;
+}
+main .right-information-schedule .zemanat-bazgasht {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 5.5vh;
+ width: 100%;
+}
+main .right-information-schedule .zemanat-bazgasht span {
+ color: #515151;
+ font-family: 'IranSans';
+ font-size: 13px;
+}
+main .right-information-schedule .zemanat-bazgasht div {
+ background-color: #f1f5f8;
+ border-radius: 50px;
+ padding: 8px 3px;
+ display: flex;
+ justify-content: center;
+ width: 70%;
+}
+main .copon-div {
+ width: 100%;
+ background-color: #fff;
+ border-radius: 12px;
+ border: 1px solid #ddd;
+}
+main .copon-div .top-copon {
+ width: 100%;
+ display: block;
+}
+main .h-14vh {
+ height: 14vh !important;
+}
+main .h-8vh {
+ height: 8vh !important;
+}
+main .left-schedule-content {
+ width: 420px !important;
+ box-shadow: #d6dffa !important;
+ border: 1px solid #a7bafd;
+ min-height: 27vh;
+}
+main .my-pointer {
+ cursor: pointer;
+}
+main .p-style {
+ color: #838383;
+ font-weight: 500;
+}
+
+@media screen and (max-width: 1006px) {
+ main .right-information-schedule {
+  width: 590px !important;
+ }
+ main .left-schedule-content {
+  width: 360px !important;
+ }
+}
+@media screen and (max-width: 992px) {
+ main .right-information-schedule {
+  width: 590px !important;
+ }
+ main .left-schedule-content {
+  width: 340px !important;
+ }
+}
+@media screen and (max-width: 945px) {
+ main .right-information-schedule {
+  width: 580px !important;
+ }
+ main .left-schedule-content {
+  width: 330px !important;
+ }
+}
+@media screen and (max-width: 923px) {
+ main .right-information-schedule {
+  width: 560px !important;
+ }
+ main .left-schedule-content {
+  width: 320px !important;
+ }
+}
+@media screen and (max-width: 894px) {
+ main .right-information-schedule {
+  width: 530px !important;
+ }
+ main .left-schedule-content {
+  width: 320px !important;
+ }
+}
+@media screen and (max-width: 870px) {
+ main .right-information-schedule {
+  width: 500px !important;
+ }
+ main .left-schedule-content {
+  width: 320px !important;
+ }
+}
+@media screen and (max-width: 839px) {
+ .right-information-schedule {
+  min-height: 50vh !important;
+ }
+ .left-schedule-content .top-left-schedule .about-top-sce-nure {
+  width: 100% !important;
+ }
+ header .top-header-scedule {
+  width: 100%;
+ }
+ main .content-edit-modal {
+  width: 100% !important;
+  height: 70vh !important;
+  position: absolute;
+  top: 20% !important;
+  right: 0 !important;
+ }
+ main .content-edit-modal form {
+  width: 100% !important;
+ }
+ main .content-edit-modal form .form-group {
+  width: 100% !important;
+  margin-top: 10px !important;
+ }
+ main .sharayet-and-btn-contenue {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  display: flex;
+  flex-wrap: wrap;
+ }
+ main .sharayet-and-btn-contenue .sharayet {
+  width: 100% !important;
+ }
+ main .sharayet-and-btn-contenue .btn-contenue-div {
+  margin-top: 10px;
+  width: 100% !important;
+ }
+ main .checkout-schedule-content {
+  width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+ }
+ main .checkout-schedule-content .right-information-schedule {
+  width: 100% !important;
+ }
+ main .checkout-schedule-content .left-schedule-content {
+  width: 100% !important;
+ }
+ main .calender-select-o-t-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ }
+ main .checkout-schedule-content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+ }
+ main .checkout-schedule-content .right-information-schedule {
+  width: 100% !important;
+ }
+ main .checkout-schedule-content .left-schedule-content {
+  width: 100% !important;
+ }
+ main .right-calender-select-o-t {
+  width: 100% !important;
+  height: 15vh !important;
+  overflow-y: hidden !important;
+  overflow-x: scroll !important;
+ }
+ main .right-calender-select-o-t .calenders-cards {
+  width: 100%;
+  height: 13vh !important;
+  display: flex;
+  flex-direction: row !important;
+ }
+ main .left-calender-select-o-t {
+  width: 100% !important;
+ }
+}
+@media screen and (max-width: 792px) {
+ header .top-header-scedule {
+  width: 100%;
+ }
+ main .checkout-schedule-content {
+  width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+ }
+ main .checkout-schedule-content .right-information-schedule {
+  width: 100% !important;
+ }
+ main .checkout-schedule-content .left-schedule-content {
+  width: 100% !important;
+ }
+}
+@media screen and (max-width: 768px) {
+ header .container {
+  max-width: 768px;
+ }
+ main .container {
+  max-width: 768px;
+ }
+}
+@media screen and (max-width: 436px) {
+ .bottom-choose-sick span {
+  font-size: 14px;
+ }
+}
+@media screen and (max-width: 403px) {
+ .zemanat-bazgasht {
+  padding: 10px 2px !important;
+ }
+ .zemanat-bazgasht svg {
+  width: 18px;
+  height: 18px;
+ }
+ .zemanat-bazgasht span {
+  font-size: 11px !important;
+ }
+}
+@media screen and (max-width: 396px) {
+ .bottom-choose-sick span {
+  font-size: 12px;
+  font-weight: bolder;
+ }
+ .btn-start-chat {
+  width: 100%;
+ }
+ .btn-start-chat button {
+  width: 100% !important;
+ }
+}
+@media screen and (max-width: 357px) {
+ header {
+  height: 150px;
+ }
+ .stepper-wrapper .stepper-item .step-name {
+  font-size: 10px !important;
+ }
+}
+@media screen and (max-width: 353px) {
+ .sharayet-text {
+  font-size: 14px;
+ }
+}
+@media screen and (max-width: 344px) {
+ .zemanat-bazgasht {
+  padding: 10px 2px !important;
+ }
+ .zemanat-bazgasht svg {
+  width: 17px;
+  height: 17px;
+ }
+ .zemanat-bazgasht span {
+  font-size: 10px !important;
+ }
+}
+@media screen and (max-width: 329px) {
+ .zemanat-bazgasht {
+  padding: 10px 2px !important;
+ }
+ .zemanat-bazgasht svg {
+  width: 17px;
+  height: 17px;
+ }
+ .zemanat-bazgasht span {
+  font-size: 10px !important;
+ }
+ .left-schedule-content {
+  height: 30vh !important;
+ }
+ .left-schedule-content .buttom-left-sce p {
+  font-size: 12px !important;
+ }
+} /*# sourceMappingURL=confirmation.css.map */

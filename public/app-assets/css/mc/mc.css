@@ -1,0 +1,1079 @@
+main .morafi-content-div {
+ border-top-right-radius: 0 !important;
+ border-top-left-radius: 0 !important;
+}
+main .title {
+ margin-top: 50px !important;
+}
+@media screen and (max-width: 994px) {
+ main {
+  position: relative !important;
+  top: 162px !important;
+  padding-bottom: 140px !important;
+ }
+}
+main .btn-primary-600 {
+ background-color: #047ad8;
+ color: #fff;
+}
+main .btn-success-400 {
+ background-color: #1aab49;
+ color: #fff;
+}
+main .text-primary-600 {
+ color: #047ad8;
+ font-size: 18px;
+}
+main .text-success-400 {
+ color: #1aab49;
+}
+main .collaps-bottom {
+ transform: rotate(180deg);
+}
+main .my-text {
+ color: #505050;
+ font-weight: 400;
+ text-align: justify;
+}
+main .left-top-similar-nurse :hover {
+ cursor: pointer;
+}
+main .plus-minues {
+ color: rgb(0, 103, 205);
+ display: flex;
+ -webkit-box-pack: center;
+ justify-content: center;
+ -webkit-box-align: center;
+ align-items: center;
+ background-color: rgb(229, 242, 255);
+ border-radius: 51px;
+ width: 24px;
+ height: 24px;
+ min-width: 24px;
+ min-height: 24px;
+ font-size: 17px;
+}
+main .rounded-star {
+ background-color: #eceff1;
+ width: 55px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ border-radius: 3px;
+}
+main .rounded-star span {
+ font-family: 'IranSans';
+ font-size: 12px;
+ color: #555555;
+}
+main .dr-content-all .left-right-wrapper-dr {
+ display: flex;
+ gap: 20px;
+ min-height: 405vh;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr {
+ width: 70%;
+ background-color: #fff;
+ border-radius: 12px;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .collaps-bottom {
+ transform: rotate(180deg);
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .nurse-nazarat {
+ border-top: 1px solid #ddd;
+ background-color: #fff;
+ min-height: 40vh;
+ border-bottom-left-radius: 12px;
+ border-bottom-right-radius: 12px;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .nurse-nazarat
+ .show-more-comment
+ :hover {
+ cursor: pointer;
+ color: #0067cd;
+ transition: 1s ease-in;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .nurse-nazarat
+ .rating-component
+ span {
+ font-family: 'IranSans';
+ color: #505050;
+ font-size: 15px;
+ font-weight: 400;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .nurse-nazarat
+ .cards-nazarat-content {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 15px;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .nurse-nazarat
+ .cards-nazarat-content
+ .card-nazar {
+ width: 100%;
+ border: 1px solid #ddd;
+ min-height: 120px;
+ border-radius: 12px;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .nurse-nazarat
+ .cards-nazarat-content
+ .card-nazar
+ .text-comment-style {
+ color: #505050;
+ font-weight: 600;
+ font-size: 14px;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .nurse-nazarat
+ .cards-nazarat-content
+ .card-nazar
+ .rounded-star {
+ background-color: #eceff1;
+ width: 55px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ border-radius: 3px;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .nurse-nazarat
+ .cards-nazarat-content
+ .card-nazar
+ .star-text {
+ font-family: 'IranSans';
+ font-weight: 400;
+ font-size: 14px;
+ color: #505050;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .my-list {
+ color: #707070;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .my-list li {
+ font-family: 'IranSans' !important;
+ font-size: 13px;
+ font-weight: 400;
+ line-height: 2rem;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .top-right-content-dr {
+ min-height: 40vh;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .top-right-content-dr
+ .top-right-card-dr {
+ padding: 25px;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .top-right-content-dr
+ .top-right-card-dr
+ img {
+ width: 130px;
+ border-radius: 50%;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .top-right-content-dr
+ .top-right-card-dr
+ .s-takasos-span {
+ color: #707070;
+ font-weight: 500;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .top-right-content-dr
+ .top-right-card-dr
+ .share
+ :hover {
+ cursor: pointer;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .top-right-content-dr
+ .top-right-card-dr
+ .view-count-dr
+ span {
+ font-family: 'IranSans';
+ color: #555555;
+ font-weight: 400;
+ font-size: 12px;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .my-text {
+ color: #505050;
+ font-weight: 400;
+ text-align: justify;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .bg-gray {
+ background-color: #eceff1;
+ font-family: 'IranSans';
+ font-size: 12px;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .btnContent :hover {
+ cursor: pointer;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .locdiv-and-comment-star {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-flex-direction: row;
+ -ms-flex-direction: row;
+ flex-direction: row;
+ -webkit-align-items: flex-start;
+ -webkit-box-align: flex-start;
+ -ms-flex-align: flex-start;
+ align-items: flex-start;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+ width: 100%;
+ gap: 4px;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .locdiv-and-comment-star
+ .location-div {
+ -webkit-flex: 1;
+ -ms-flex: 1;
+ flex: 1;
+ display: flex;
+ -webkit-flex-direction: row;
+ -ms-flex-direction: row;
+ flex-direction: row;
+ -webkit-align-items: flex-start;
+ -webkit-box-align: flex-start;
+ -ms-flex-align: flex-start;
+ align-items: flex-start;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+ gap: 4px;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .locdiv-and-comment-star
+ .divider {
+ width: 0;
+ height: 20px;
+ border-right: 1px solid #c4ced4;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .locdiv-and-comment-star
+ .comment-and-star {
+ -webkit-flex: 1;
+ -ms-flex: 1;
+ flex: 1;
+ display: flex;
+ -webkit-flex-direction: row;
+ -ms-flex-direction: row;
+ flex-direction: row;
+ -webkit-align-items: flex-start;
+ -webkit-box-align: flex-start;
+ -ms-flex-align: flex-start;
+ align-items: flex-start;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+ gap: 4px;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .border-bottom-primary {
+ border-bottom: 5px solid #0067cd;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .div-bottom-menu-wrapper {
+ width: 90%;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .comment-and-star span,
+main .dr-content-all .left-right-wrapper-dr .right-dr .location-div span {
+ font-family: 'IranSans';
+ font-size: 13px;
+ color: #707070;
+ font-weight: 400;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .morafi-content-div {
+ border-top: 1px solid #ddd;
+ background-color: #fff;
+ border-radius: 12px;
+ width: 100%;
+ min-height: 55vh;
+}
+main .dr-content-all .left-right-wrapper-dr .right-dr .etelate-tamas-morefi {
+ border-top: 1px solid #ddd;
+ background-color: #fff;
+ margin-top: 47px !important;
+ width: 100%;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .etelate-tamas-morefi
+ .my-address-n {
+ line-height: 2.9rem;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .right-dr
+ .etelate-tamas-morefi
+ .my-address-n
+ span {
+ color: #505050;
+ font-weight: 550;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr {
+ width: 30%;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .nobat-visit-hozory {
+ background-color: #fff;
+ border-radius: 12px;
+ min-height: 22vh;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .nothing-nobat {
+ height: 17vh;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .nothing-nobat span {
+ font-size: 14px;
+ font-weight: 500;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .text-success-400 {
+ color: #1aab49;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .btn-success-400 {
+ background-color: #1aab49;
+ color: #fff;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .price-rounded {
+ width: 55px;
+ background-color: #e3effd;
+ border-radius: 50px;
+ padding: 3px 10px;
+ color: #4589d1;
+ font-family: 'IranSans';
+ font-size: 12px;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .text-primary-600 {
+ color: #047ad8;
+ font-size: 18px;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .btn-primary-600 {
+ background-color: #047ad8;
+ color: #fff;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .single-container span {
+ color: #555555;
+ font-size: 13px;
+ font-weight: 400;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .first-empty-div span {
+ color: #555555;
+ font-size: 14px;
+ font-weight: 400;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .time-and-day span {
+ color: #555555;
+ font-size: 12px;
+ font-weight: 500;
+ font-family: 'IranSans';
+}
+main .dr-content-all .similar-nurse {
+ border: 1px solid #ddd;
+ background-color: #fff;
+ border-radius: 12px;
+ margin-top: 10px !important;
+ width: 100%;
+}
+main .dr-content-all .similar-nurse .cards-similar-nurse {
+ padding: 5px;
+ margin-top: 30px;
+ display: grid;
+ gap: 10px;
+ overflow-x: scroll !important;
+ overflow-y: hidden !important;
+ flex-wrap: nowrap;
+ flex-direction: row;
+ grid-template-columns: repeat(8, 1fr);
+ grid-template-rows: repeat(1, 1fr);
+}
+main .dr-content-all .similar-nurse .cards-similar-nurse .card-similar-nurse {
+ width: 200px;
+ height: 200px;
+ background-color: #fff;
+ border-radius: 12px;
+ border: 1px solid #ddd;
+}
+main
+ .dr-content-all
+ .similar-nurse
+ .cards-similar-nurse
+ .card-similar-nurse
+ .top-card-similar-img {
+ display: flex;
+ justify-content: center;
+}
+main
+ .dr-content-all
+ .similar-nurse
+ .cards-similar-nurse
+ .card-similar-nurse
+ .top-card-similar-img
+ .name
+ span {
+ font-size: 13px;
+}
+main
+ .dr-content-all
+ .similar-nurse
+ .cards-similar-nurse
+ .card-similar-nurse
+ .top-card-similar-img
+ .takhasos-z
+ span,
+main
+ .dr-content-all
+ .similar-nurse
+ .cards-similar-nurse
+ .card-similar-nurse
+ .top-card-similar-img
+ .address
+ span {
+ color: #555555;
+ font-weight: 400;
+ font-size: 12px;
+}
+main
+ .dr-content-all
+ .similar-nurse
+ .cards-similar-nurse
+ .card-similar-nurse
+ .top-card-similar-img
+ img {
+ width: 40px;
+ border-radius: 50%;
+}
+main .dr-content-all .question-nurse .question-cards {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 15px;
+}
+main .dr-content-all .question-nurse .question-cards .question-card {
+ padding: 0 10px;
+ border: 2px solid #e0edf9;
+ border-radius: 12px;
+ background-color: #fff;
+ width: 100%;
+ height: 130px;
+ display: flex;
+ align-items: center;
+}
+main .dr-content-all .question-nurse .question-cards .question-card :hover {
+ cursor: pointer;
+}
+main
+ .dr-content-all
+ .question-nurse
+ .question-cards
+ .question-card
+ .answer-style {
+ padding-right: 26px;
+ margin-top: 15px;
+}
+main
+ .dr-content-all
+ .question-nurse
+ .question-cards
+ .question-card
+ .answer-style
+ span {
+ color: #505050;
+ font-weight: 400;
+}
+main .dr-content-all .takhasos-city-ostan {
+ width: 100%;
+ min-height: 25vh;
+ background-color: #fff;
+ border-radius: 12px;
+}
+main .dr-content-all .takhasos-city-ostan .takhasos-cards {
+ width: 100%;
+ display: flex;
+ gap: 15px;
+ flex-wrap: wrap;
+}
+main .dr-content-all .takhasos-city-ostan .takhasos-cards .takhasos-card {
+ width: 100%;
+ border: 1px solid #ddd;
+ border-radius: 12px;
+ min-height: 80px;
+}
+main
+ .dr-content-all
+ .takhasos-city-ostan
+ .takhasos-cards
+ .takhasos-card
+ :hover {
+ cursor: pointer;
+}
+main
+ .dr-content-all
+ .takhasos-city-ostan
+ .takhasos-cards
+ .takhasos-card
+ .city-takhasos
+ a {
+ text-decoration: none;
+ font-weight: 400;
+ font-size: 14px;
+}
+main
+ .dr-content-all
+ .takhasos-city-ostan
+ .takhasos-cards
+ .takhasos-card
+ .city-takhasos
+ span {
+ color: #1579dc;
+}
+main
+ .dr-content-all
+ .takhasos-city-ostan
+ .takhasos-cards
+ .takhasos-card
+ .city-takhasos
+ .city-takhasos-content-all {
+ margin-top: 20px;
+}
+main
+ .dr-content-all
+ .takhasos-city-ostan
+ .takhasos-cards
+ .takhasos-card
+ .city-takhasos
+ .city-takhasos-content-all
+ .expanded {
+ display: grid;
+ -webkit-transition: max-height 0.3s ease-in;
+ transition: max-height 0.3s ease-in;
+ padding: 0 16px 0;
+ grid-template-columns: repeat(4, auto);
+ color: #0067cd;
+}
+main
+ .dr-content-all
+ .takhasos-city-ostan
+ .takhasos-cards
+ .takhasos-card
+ .city-takhasos
+ .ostan-takhasos-content-all {
+ margin-top: 20px;
+}
+main
+ .dr-content-all
+ .takhasos-city-ostan
+ .takhasos-cards
+ .takhasos-card
+ .city-takhasos
+ .ostan-takhasos-content-all
+ .expanded {
+ display: grid;
+ -webkit-transition: max-height 0.3s ease-in;
+ transition: max-height 0.3s ease-in;
+ padding: 0 16px 0;
+ grid-template-columns: repeat(4, auto);
+ color: #0067cd;
+}
+@media screen and (min-width: 1400px) {
+ .dr-content-all .container {
+  max-width: 1400px !important;
+ }
+}
+@media screen and (max-width: 1400px) {
+ .top-header-container {
+  max-width: 1330px !important;
+ }
+ main .container {
+  max-width: 1330px !important;
+ }
+}
+@media screen and (max-width: 1223px) {
+ main .left-right-wrapper-dr {
+  display: flex !important;
+  gap: 10px !important;
+ }
+ main .left-right-wrapper-dr .left-dr {
+  width: 30%;
+ }
+ main .left-right-wrapper-dr .left-dr .card-nobat {
+  width: 400px;
+ }
+ main .left-right-wrapper-dr .right-dr {
+  width: 75% !important;
+ }
+ main .left-right-wrapper-dr .btn-and-tags-moarefi-content {
+  width: 100%;
+ }
+}
+@media screen and (max-width: 1098px) {
+ main .left-right-wrapper-dr {
+  display: flex !important;
+  gap: 10px !important;
+ }
+ main .left-right-wrapper-dr .left-dr {
+  width: 30%;
+ }
+ main .left-right-wrapper-dr .left-dr .card-nobat {
+  width: 380px;
+ }
+ main .left-right-wrapper-dr .right-dr {
+  width: 65% !important;
+ }
+}
+@media screen and (max-width: 1060px) {
+ main .morefi-wrapper {
+  min-height: 65vh !important;
+ }
+ main .morefi-wrapper .address-description {
+  font-size: 14px !important;
+ }
+ main .left-right-wrapper-dr {
+  display: flex !important;
+  gap: 10px !important;
+ }
+ main .left-right-wrapper-dr .left-dr {
+  width: 30%;
+ }
+ main .left-right-wrapper-dr .left-dr .card-nobat {
+  width: 380px;
+ }
+ main .left-right-wrapper-dr .right-dr {
+  width: 65% !important;
+ }
+}
+@media screen and (min-width: 992px) {
+ .left-dr-991 {
+  display: none !important;
+ }
+}
+@media screen and (max-width: 992px) {
+ main .recive-nobat-992 {
+  display: flex !important;
+ }
+ main .city-takhasos a {
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
+ }
+ main .city-takhasos span {
+  color: #1579dc;
+ }
+ main .city-takhasos .city-takhasos-content-all {
+  margin-top: 20px;
+ }
+ main .city-takhasos .city-takhasos-content-all .expanded {
+  display: grid;
+  -webkit-transition: max-height 0.3s ease-in;
+  transition: max-height 0.3s ease-in;
+  padding: 0 16px 0;
+  grid-template-columns: repeat(2, 1fr) !important;
+  color: #0067cd;
+ }
+ main .city-takhasos .ostan-takhasos-content-all {
+  margin-top: 20px;
+ }
+ main .city-takhasos .ostan-takhasos-content-all .expanded {
+  display: grid !important;
+  -webkit-transition: max-height 0.3s ease-in;
+  transition: max-height 0.3s ease-in;
+  padding: 0 16px 0;
+  grid-template-columns: repeat(2, auto) !important;
+  color: #0067cd;
+ }
+ main .morefi-wrapper {
+  min-height: 125vh;
+ }
+ main .left-right-wrapper-dr {
+  display: flex !important;
+  gap: 15px !important;
+  flex-wrap: wrap !important;
+  flex-direction: column-reverse;
+ }
+ main .left-right-wrapper-dr .left-dr-991 {
+  display: grid;
+  flex-direction: column !important;
+  gap: 15px !important;
+  flex-wrap: wrap !important;
+  grid-template-columns: repeat(1, 1fr);
+ }
+ main .left-right-wrapper-dr .left-dr-991 .card-nobat span {
+  color: #505050 !important;
+  font-size: 15px;
+  font-weight: 400;
+ }
+ main .left-right-wrapper-dr .left-dr-991 .card-nobat {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  width: 100% !important;
+ }
+ main .left-right-wrapper-dr .left-dr {
+  display: none;
+  top: 500px;
+  width: 100% !important;
+ }
+ main .left-right-wrapper-dr .left-dr .card-nobat {
+  width: 100% !important;
+ }
+ main .left-right-wrapper-dr .right-dr {
+  width: 100% !important;
+ }
+ main .left-right-wrapper-dr .right-dr .nobat-dehi {
+  display: flex !important;
+ }
+}
+@media screen and (max-width: 646px) {
+ .top-expertise-breadcrumb {
+  width: 100% !important;
+ }
+ .top-expertise-breadcrumb .bread-crumb-expertise {
+  overflow-x: scroll !important;
+  overflow-y: hidden !important;
+ }
+ .top-expertise-breadcrumb .bread-crumb-expertise .list-inline {
+  width: 100% !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  text-wrap: nowrap;
+ }
+ .right-dr {
+  padding: 0px !important;
+ }
+ .top-right-card-dr {
+  padding: 10px !important;
+ }
+ .top-right-content-dr .pic-dr img {
+  width: 100px !important;
+ }
+ .top-right-content-dr .center-card-loc-and-comment-star {
+  width: 95% !important;
+ }
+}
+@media screen and (max-width: 632px) {
+ .btn-and-tags-moarefi-content {
+  width: 100% !important;
+ }
+ main .city-takhasos a {
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
+ }
+ main .city-takhasos span {
+  color: #1579dc;
+ }
+ main .city-takhasos .city-takhasos-content-all {
+  margin-top: 20px;
+ }
+ main .city-takhasos .city-takhasos-content-all .expanded {
+  display: grid !important;
+  -webkit-transition: max-height 0.3s ease-in;
+  transition: max-height 0.3s ease-in;
+  padding: 0 16px 0;
+  grid-template-columns: repeat(1, auto) !important;
+  color: #0067cd;
+ }
+ main .city-takhasos .ostan-takhasos-content-all {
+  margin-top: 20px;
+ }
+ main .city-takhasos .ostan-takhasos-content-all .expanded {
+  display: grid !important;
+  -webkit-transition: max-height 0.3s ease-in;
+  transition: max-height 0.3s ease-in;
+  padding: 0 16px 0;
+  grid-template-columns: repeat(1, auto) !important;
+  color: #0067cd;
+ }
+}
+@media screen and (max-width: 604px) {
+ main .address-description {
+  width: 50%;
+ }
+ main .div-bottom-menu-wrapper {
+  display: flex !important;
+  justify-content: space-between !important;
+ }
+ main .div-bottom-menu-wrapper .moarefi {
+  width: 50% !important;
+ }
+}
+@media screen and (max-width: 449px) {
+ main .morafi-content-div {
+  padding: 2px !important;
+ }
+}
+@media screen and (max-width: 425px) {
+ main .morafi-content-div {
+  padding: 5px !important;
+ }
+ main .left-dr-991 .nobat-visit-hozory {
+  padding: 5px 10px !important;
+ }
+ main .takhasos-city-ostan {
+  padding: 5px !important;
+ }
+ main .takhasos-city-ostan .takhasos-card {
+  padding: 30px 10px !important;
+ }
+ main .etelate-tamas span,
+ main .nazarat span,
+ main .moarefi span {
+  font-size: 14px;
+ }
+ main .city-takhasos span {
+  font-size: 13px;
+ }
+ main .faq-question {
+  font-size: 13px;
+ }
+ main .question-card .faq-answer span {
+  font-size: 12px;
+ }
+}
+@media screen and (max-width: 402px) {
+ main .address-description {
+  width: 50%;
+ }
+ main .pic-clinic img {
+  width: 50px !important;
+ }
+ main .div-bottom-menu-wrapper {
+  display: flex !important;
+  justify-content: space-between !important;
+ }
+ main .div-bottom-menu-wrapper .moarefi {
+  width: 50% !important;
+ }
+}
+@media screen and (max-width: 398px) {
+ main .morafi-content-div {
+  padding: 2px !important;
+ }
+ main .left-dr-991 .right-card-l-c-c-w-c {
+  width: 60% !important;
+ }
+}
+@media screen and (max-width: 371px) {
+ main .morafi-content-div {
+  padding: 2px !important;
+ }
+ main .left-dr-991 .nobat-visit-hozory {
+  padding: 3px !important;
+ }
+ main .left-dr-991 .right-card-l-c-c-w-c {
+  width: 60% !important;
+ }
+ main .left-dr-991 .right-card-l-c-c-w-c span {
+  font-size: 14px !important;
+ }
+ main .left-dr-991 .right-card-l-c-c-w-c img {
+  width: 40px !important;
+ }
+ main .center-card-dr-name span {
+  font-size: 16px !important;
+ }
+}
+@media screen and (max-width: 343px) {
+ header .search-top-expertise-header form input {
+  width: 70% !important;
+ }
+ main .etelate-tamas span,
+ main .moarefi span,
+ main .nazarat span {
+  font-size: 12px !important;
+ }
+}
+main .radio {
+ width: 1.8rem;
+ height: 1.8rem;
+ border: 0.2rem solid rgb(169, 169, 169);
+ border-radius: 100px;
+ margin-left: 8px;
+ cursor: pointer;
+ transition: background-color 200ms ease-in-out 0s;
+}
+main .my-map-modal .modal-header {
+ box-shadow:
+  rgba(0, 0, 0, 0.16) 0px 1px 3px 0px,
+  rgba(0, 0, 0, 0.16) 0px 1px 8px 0px;
+ padding: 20px;
+ margin-bottom: 0px;
+ font-size: 16px;
+ font-weight: 500;
+ position: absolute;
+ left: 0px;
+ top: 0px;
+ width: 100%;
+ z-index: 1111;
+ color: rgb(0, 26, 52);
+ background-color: rgba(255, 255, 255, 0.75);
+}
+main .my-map-modal iframe {
+ width: 100%;
+ height: 400px;
+}
+main .dr-content-all .left-right-wrapper-dr {
+ min-height: 60vh !important;
+}
+
+main .dr-content-all .left-right-wrapper-dr .left-dr,
+main .dr-content-all .left-right-wrapper-dr .left-dr-991 {
+ min-height: 20vh !important;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .nobat-visit-hozory,
+main .dr-content-all .left-right-wrapper-dr .left-dr-991 .nobat-visit-hozory {
+ min-height: 200px !important;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .card-nobat,
+main .dr-content-all .left-right-wrapper-dr .left-dr-991 .card-nobat {
+ min-height: 200px !important;
+}
+main .dr-content-all .left-right-wrapper-dr .left-dr .inner,
+main .dr-content-all .left-right-wrapper-dr .left-dr-991 .inner {
+ border: 1px solid #ddd;
+ border-radius: 8px;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .left-dr
+ .left-content-clininic-wrapper-content
+ .cards-l-c-c-w-c
+ .card-l-c-c-w-c
+ span,
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .left-dr-991
+ .left-content-clininic-wrapper-content
+ .cards-l-c-c-w-c
+ .card-l-c-c-w-c
+ span {
+ color: #3b3b3b;
+ font-weight: 600;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .left-dr
+ .left-content-clininic-wrapper-content
+ .cards-l-c-c-w-c
+ .card-l-c-c-w-c
+ .r-l-l-c-c-w-c
+ .right-card-l-c-c-w-c,
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .left-dr-991
+ .left-content-clininic-wrapper-content
+ .cards-l-c-c-w-c
+ .card-l-c-c-w-c
+ .r-l-l-c-c-w-c
+ .right-card-l-c-c-w-c {
+ width: 70%;
+ display: flex;
+}
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .left-dr
+ .left-content-clininic-wrapper-content
+ .cards-l-c-c-w-c
+ .card-l-c-c-w-c
+ .r-l-l-c-c-w-c
+ .right-card-l-c-c-w-c
+ img,
+main
+ .dr-content-all
+ .left-right-wrapper-dr
+ .left-dr-991
+ .left-content-clininic-wrapper-content
+ .cards-l-c-c-w-c
+ .card-l-c-c-w-c
+ .r-l-l-c-c-w-c
+ .right-card-l-c-c-w-c
+ img {
+ width: 50px;
+ border-radius: 50%;
+ border: 1px solid blue;
+}
+main .top-right-content-dr {
+ min-height: 35vh !important;
+}
+main .morafi-content-div {
+ min-height: 5vh !important;
+}
+main .etelate-tamas-morefi {
+ border-top: 0 !important;
+}
+
+@media screen and (max-width: 1296px) {
+ main .right-dr {
+  width: 65% !important;
+ }
+ main .left-dr {
+  width: 35% !important;
+ }
+}
+@media screen and (max-width: 1223px) {
+ main .left-right-wrapper-dr {
+  max-width: 1420px !important;
+ }
+ main .right-dr {
+  width: 60%;
+ }
+ main .left-dr {
+  width: 40% !important;
+ }
+} /*# sourceMappingURL=mc.css.map */

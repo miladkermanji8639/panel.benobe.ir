@@ -1,0 +1,59 @@
+.schedule-setting-content .schedule-setting-wrapper {
+ background-color: #fff;
+ border-radius: 8px;
+ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.workhours-moshavere-wrapper-content {
+ width: 850px;
+ background-color: #fff;
+ border-radius: 10px;
+ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+@media only screen and (max-width: 991px) {
+ .workhours-moshavere-wrapper-content {
+  width: 97% !important;
+ }
+}
+@media only screen and (max-width: 768px) {
+ .input-group {
+  margin-top: 15px !important;
+ }
+ label {
+  font-size: 13px !important;
+ }
+}
+@media only screen and (max-width: 425px) {
+ .input-group {
+  margin-top: 15px !important;
+ }
+ label {
+  font-size: 11px !important;
+  font-weight: bold !important;
+ }
+}
+.label-top-input-special-takhasos {
+ z-index: 200 !important;
+}
+.my-svg-setting-nobat {
+ background-color: #f0f0f2;
+ padding: 15px;
+ border-radius: 8px;
+}
+.border-bottom-1 {
+ border-bottom: 1px solid #ddd !important;
+}
+.mtb-6 {
+ margin-top: 6px !important;
+ margin-bottom: 6px !important;
+}
+.my-card-hover {
+ border-radius: 8px;
+}
+.my-card-hover:hover {
+ background-color: #f0f0f2;
+ transition: 0.4s ease-in all;
+}
+.top-21 {
+ position: absolute !important;
+ top: 21px !important;
+}

@@ -1,0 +1,16 @@
+.payment-setting-content-wrapper {
+ width: 650px;
+ background-color: #fff;
+ border-radius: 10px;
+ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.border-bottom-primary {
+ border-bottom: 3px solid #3f6efb;
+}
+.border-bottom-ddd {
+ border-bottom: 1px solid #ddd;
+}
+.gozaresh-mali-card-bg {
+ background: linear-gradient(#4f4f8f, #1a1d4e);
+ border-radius: 12px;
+}

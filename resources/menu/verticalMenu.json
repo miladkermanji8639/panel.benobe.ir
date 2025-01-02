@@ -1,0 +1,349 @@
+{
+ "menu": [
+  {
+   "name": "Dashboards",
+   "icon": "menu-icon tf-icons ti ti-smart-home",
+   "slug": "dashboard",
+   "badge": ["primary", "10"],
+   "submenu": [
+    {
+     "url": "admin/dashboard/cities",
+     "name": "cities",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-cities"
+    },
+    {
+     "url": "admin/dashboard/specialty",
+     "name": "specialty",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-specialty"
+    },
+    {
+     "url": "admin/dashboard/membershipfee",
+     "name": "membershipfee",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-membershipfee"
+    },
+    {
+     "url": "admin/dashboard/menu",
+     "name": "menu",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-menu"
+    },
+    {
+     "url": "admin/dashboard/home_page",
+     "name": "home_page",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-home_page"
+    },
+    {
+     "url": "admin/dashboard/holiday",
+     "name": "holiday",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-holiday"
+    },
+    {
+     "url": "admin/dashboard/usershipfee",
+     "name": "usershipfee",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-usershipfee"
+    },
+    {
+     "url": "admin/dashboard/amar",
+     "name": "amar",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-amar"
+    },
+    {
+     "url": "admin/dashboard/payment_gateways",
+     "name": "payment_gateways",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-payment_gateways"
+    },
+    {
+     "url": "admin/dashboard/setting",
+     "name": "setting",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-setting"
+    }
+   ]
+  },
+  {
+   "name": "agent",
+   "icon": "menu-icon tf-icons ti ti-layout-sidebar",
+   "slug": "agent",
+   "badge": ["primary", "2"],
+   "submenu": [
+    {
+     "url": "admin/agent",
+     "name": "agent",
+     "slug": "agent"
+    },
+    {
+     "url": "admin/agent/agent-wallet",
+     "name": "agent-wallet",
+     "slug": "agent-wallet"
+    }
+   ]
+  },
+  {
+   "name": "Content Management",
+   "icon": "menu-icon tf-icons ti ti-files",
+   "slug": "front-pages",
+   "badge": ["primary", "8"],
+
+   "submenu": [
+    {
+     "url": "admin/content-management/slide/",
+     "name": "Slide",
+     "slug": "slide"
+    },
+    {
+     "url": "admin/content-management/blog/",
+     "name": "Blog",
+     "slug": "Blog"
+    },
+    {
+     "url": "admin/content-management/tags/",
+     "name": "Tags",
+     "slug": "Tags"
+    },
+    {
+     "url": "admin/content-management/category-blog/",
+     "name": "Category Blog",
+     "slug": "Category Blog"
+    },
+    {
+     "url": "admin/content-management/comments/",
+     "name": "Comments",
+     "slug": "Comments"
+    },
+    {
+     "url": "admin/content-management/home-video/",
+     "name": "Home Video",
+     "slug": "Home Video"
+    },
+    {
+     "url": "admin/content-management/links/",
+     "name": "Links",
+     "slug": "Links"
+    },
+    {
+     "url": "admin/content-management/front-pages/",
+     "name": "Front Pages",
+     "slug": "Front Pages"
+    }
+   ]
+  },
+  {
+   "name": "Questions",
+   "icon": "menu-icon tf-icons ti ti-brand-php",
+   "slug": "laravel-example",
+   "badge": ["primary", "2"],
+
+   "submenu": [
+    {
+     "url": "admin/questions/question",
+     "name": "Question",
+     "slug": "Question"
+    },
+    {
+     "url": "admin/questions/question-cat",
+     "name": "Question Category",
+     "slug": "Question Category"
+    }
+   ]
+  },
+
+  {
+   "name": "Tools",
+   "icon": "menu-icon tf-icons ti ti-calendar",
+   "slug": "calendar",
+   "badge": ["primary", "5"],
+
+   "submenu": [
+    {
+     "url": "admin/tools/file-manager",
+     "name": "File Manager",
+     "icon": "menu-icon tf-icons ti ti-mail",
+     "slug": "File Manager"
+    },
+    {
+     "url": "admin/tools/news-latter",
+     "name": "News Latter",
+     "icon": "menu-icon tf-icons ti ti-mail",
+     "slug": "News Latter"
+    },
+    {
+     "url": "admin/tools/redirects",
+     "name": "Redirects",
+     "icon": "menu-icon tf-icons ti ti-mail",
+     "slug": "Redirects"
+    },
+    {
+     "url": "admin/tools/mail-template",
+     "name": "Mail Template",
+     "icon": "menu-icon tf-icons ti ti-mail",
+     "slug": "Mail Template"
+    },
+    {
+     "url": "admin/tools/site-map",
+     "name": "Site Map",
+     "icon": "menu-icon tf-icons ti ti-mail",
+     "slug": "Site Map"
+    }
+   ]
+  },
+
+  {
+   "name": "Doctors",
+   "icon": "menu-icon tf-icons ti ti-building-factory-2",
+   "slug": "Doctors",
+   "badge": ["primary", "6"],
+
+   "submenu": [
+    {
+     "url": "admin/doctors/logs-doctor",
+     "name": "Logs Doctor",
+     "slug": "Logs Doctor"
+    },
+    {
+     "url": "admin/doctors/order-visit",
+     "name": "Order Visit",
+     "slug": "Order Visit"
+    },
+    {
+     "url": "admin/doctors/doctors-management",
+     "name": "Doctors Management",
+     "slug": "Doctors Management"
+    },
+    {
+     "url": "admin/doctors/wallet-doctor-request",
+     "name": "Wallet Doctor Request",
+     "slug": "Wallet Doctor Request"
+    },
+    {
+     "url": "admin/doctors/comment-doctor",
+     "name": "Comment Doctor",
+     "slug": "Comment Doctor"
+    },
+    {
+     "url": "admin/doctors/moshavere",
+     "name": "Moshavere",
+     "slug": "moshavere"
+    }
+   ]
+  },
+  {
+   "name": "Hospitals",
+   "icon": "menu-icon tf-icons ti ti-book",
+   "slug": "Hospitals",
+   "badge": ["primary", "3"],
+
+   "submenu": [
+    {
+     "url": "admin/hospitals/hospitals-management",
+     "name": "Hospitals Management",
+     "slug": "Hospitals Management"
+    },
+    {
+     "url": "admin/hospitals/wallet-hospital-request",
+     "name": "Wallet Hospital Request",
+     "slug": "Wallet Hospital Request"
+    },
+    {
+     "url": "admin/hospitals/logs-hospital",
+     "name": "Logs Hospital",
+     "slug": "Logs Hospital"
+    }
+   ]
+  },
+  {
+   "name": "Application",
+   "icon": "menu-icon tf-icons ti ti-truck",
+   "slug": "Application",
+   "badge": ["primary", "1"],
+
+   "submenu": [
+    {
+     "url": "admin/application",
+     "name": "Application Main",
+     "slug": "Application Main"
+    }
+   ]
+  },
+  {
+   "name": "Users Management",
+   "icon": "menu-icon tf-icons ti ti-file-dollar",
+   "slug": "Users Management",
+   "badge": ["danger", "8"],
+   "submenu": [
+    {
+     "url": "admin/users-management/auth",
+     "name": "Authentication",
+     "slug": "Authentication"
+    },
+    {
+     "url": "admin/users-management/charge-account",
+     "name": "Charge Account",
+     "slug": "Charge Account"
+    },
+    {
+     "url": "admin/users-management/wallet-checkout-user",
+     "name": "Wallet Checkout User",
+     "slug": "Wallet Checkout User"
+    },
+    {
+     "url": "admin/users-management/logs-upgrade",
+     "name": "Logs Upgrade",
+     "slug": "Logs Upgrade"
+    },
+    {
+     "url": "admin/users-management/membershipfee-logs",
+     "name": "Membershipfee Logs",
+     "slug": "Membershipfee Logs"
+    },
+    {
+     "url": "admin/users-management/wallet-checkout-monshi",
+     "name": "Wallet Checkout Monshi",
+     "slug": "Wallet Checkout Monshi"
+    },
+    {
+     "url": "admin/users-management/users",
+     "name": "Users Benobe",
+     "slug": "Users Benobe"
+    },
+    {
+     "url": "admin/users-management/user-group",
+     "name": "User Group",
+     "slug": "User Group"
+    }
+   ]
+  },
+
+  {
+   "name": "Ads",
+   "icon": "menu-icon tf-icons ti ti-settings",
+   "slug": "Ads",
+   "badge": ["warning", "3"],
+
+   "submenu": [
+    {
+     "url": "admin/ads/banner",
+     "name": "Banner",
+     "slug": "Banner"
+    },
+    {
+     "url": "admin/ads/banner/packages",
+     "name": "Packages",
+     "slug": "Packages"
+    },
+    {
+     "url": "admin/ads/banner/ads-log",
+     "name": "Ads Log",
+     "slug": "Ads Log"
+    }
+   ]
+  }
+ ]
+}

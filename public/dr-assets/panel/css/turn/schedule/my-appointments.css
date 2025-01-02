@@ -1,0 +1,60 @@
+.my-sm-badge {
+ border-radius: 50px;
+ background-color: #f1f4f8;
+ color: #808283;
+ padding: 4px 15px;
+}
+.drop-side-details-content {
+ background-color: #fff;
+ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+ border-radius: 10px;
+ position: absolute;
+ z-index: 2;
+ left: inherit;
+}
+.font-medium {
+ font-size: 15px !important;
+}
+@media only screen and (max-width: 991px) {
+ .appointments-content {
+  padding: 10px !important;
+ }
+ .appointments-content-wrapper {
+  width: 100% !important;
+ }
+}
+@media only screen and (max-width: 425px) {
+ .appointments-content {
+  padding: 10px !important;
+ }
+ .appointments-content-wrapper {
+  width: 100% !important;
+ }
+ .mx-2 h6 {
+  font-size: 12px !important;
+ }
+ .my-sm-badge {
+  font-size: 10px !important;
+  font-weight: bold !important;
+ }
+ .text-sm {
+  font-size: 12px !important;
+  font-weight: bold !important;
+ }
+ button {
+  font-size: 13px !important;
+ }
+ .p-3 {
+  padding: 0.8rem !important;
+ }
+ .p-4 {
+  padding: 1.2rem !important;
+ }
+ .prof-img {
+  width: 50px !important;
+  height: 50px !important;
+ }
+ .font-size-13 {
+  font-size: 11px !important;
+ }
+}

@@ -1,0 +1,204 @@
+main {
+ .medical-centers-content {
+  .cards-medical-centers {
+   display: flex;
+   gap: 10px;
+   flex-direction: column;
+   .card-medical-centers {
+    padding: 20px;
+    width: 100%;
+    border-radius: 12px;
+    background-color: #fff;
+    min-height: 200px;
+    display: flex;
+    justify-content: space-between;
+
+    .right-card-medical-centers {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+
+     .top-right-card-medical-centers {
+      display: flex;
+
+      .img-and-view-in-top-right-card-medical-centers {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       flex-direction: column;
+
+       .img-in-top-right-card-medical-centers {
+        img {
+         width: 70px;
+         border-radius: 50%;
+        }
+       }
+
+       .view-in-top-right-card-medical-centers {
+        .view-count {
+         font-family: 'IranSans';
+         font-size: 11px;
+         font-weight: 500;
+         color: #7a7a7a;
+        }
+       }
+      }
+     }
+
+     .clinic-name-and-nobat {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-right: 20px;
+     }
+
+     .nobat-in-medical-centers {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+     }
+
+     .m-telephony-medical-centers {
+      span {
+       color: #5f5f5f;
+       font-weight: 500;
+      }
+
+      img {
+       background-color: #e5f2ff;
+       border-radius: 50%;
+       padding: 6px;
+       width: 25px;
+       height: 25px;
+      }
+     }
+     .bottom-right-card-medical-centers {
+      .detail {
+       color: #5f5f5f;
+       font-weight: 300;
+      }
+     }
+    }
+
+    .left-card-medical-centers {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     a {
+      color: #2174d3;
+      font-size: 13px;
+     }
+     .buttom-btn-left-card-medical-centers {
+      margin-top: 40px;
+      button {
+       width: 300px !important;
+       background-color: #00be43 !important;
+       height: 45px !important;
+      }
+     }
+    }
+   }
+  }
+  .paginate-evist-content {
+   a {
+    margin: 2px;
+   }
+  }
+ }
+}
+@media screen and (max-width: 992px) {
+ main {
+  .medical-centers-content {
+   .paginate-evist {
+    .paginate-evist-content {
+     .prev-p,
+     .next-p {
+      display: none !important;
+     }
+    }
+   }
+  }
+ }
+}
+@media screen and (max-width: 839px) {
+ main {
+  .medical-centers-content {
+   .card-medical-centers {
+    display: flex;
+    flex-wrap: wrap;
+    .left-card-medical-centers {
+     width: 100%;
+     .show-profile-left-card-medical-centers {
+      a {
+       display: none;
+      }
+     }
+    }
+    .right-card-medical-centers {
+     .address-medical-centers {
+      margin-top: 20px;
+     }
+    }
+   }
+
+   .paginate-evist {
+    .paginate-evist-content {
+     .prev-p,
+     .next-p {
+      display: none !important;
+     }
+    }
+   }
+  }
+ }
+}
+@media screen and (max-width: 395px) {
+ main {
+  .medical-centers-content {
+   .card-medical-centers {
+    display: flex;
+    flex-wrap: wrap;
+
+    .left-card-medical-centers {
+     width: 100%;
+
+     .show-profile-left-card-medical-centers {
+      a {
+       display: none;
+      }
+     }
+    }
+    .nobat-in-medical-centers {
+     width: 100%;
+
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     align-items: center;
+     .nobat-hozory-div {
+      margin-right: 15px;
+     }
+     .m-telephony-medical-centers {
+      margin-top: 5px;
+     }
+    }
+
+    .right-card-medical-centers {
+     .address-medical-centers {
+      margin-top: 20px;
+     }
+    }
+   }
+
+   .paginate-evist {
+    .paginate-evist-content {
+     .prev-p,
+     .next-p {
+      display: none !important;
+     }
+    }
+   }
+  }
+ }
+}

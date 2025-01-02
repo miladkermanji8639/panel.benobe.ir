@@ -1,0 +1,13 @@
+.consult-term-content-wrapper {
+ background-color: #fff;
+ border-radius: 10px;
+ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.font-size-20 {
+ font-size: 20px !important;
+}
+@media only screen and (max-width: 991px) {
+ .consult-term-content-wrapper {
+  width: 97% !important;
+ }
+}

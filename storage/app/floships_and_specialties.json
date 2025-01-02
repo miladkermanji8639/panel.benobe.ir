@@ -1,0 +1,1876 @@
+{
+ "specialties": [
+  {
+   "name": "کارشناسی گفتاردرمانی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی کاردرمانی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی پزشکی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی مامایی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی فیزیوتراپی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی علوم تغذیه",
+   "description": null
+  },
+  {
+   "name": "کارشناسی علوم آزمایشگاهی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی شنوایی‌شناسی (ادیولوژی)",
+   "description": null
+  },
+  {
+   "name": "کارشناسی دندانپزشکی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی داروسازی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی بینایی‌سنجی (اپتومتری)",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد گفتاردرمانی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد کاردرمانی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد پزشکی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد مامایی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد فیزیوتراپی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد فناوری دارویی (فارماسیوتیکس)",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد فارماکوگنوزی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد علوم تغذیه در بحران و حوادث غیرمترقبه",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد علوم تغذیه",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد علوم بهداشتی در تغذیه",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد طب سوزنی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد شنوایی‌شناسی (ادیولوژی)",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد دندانپزشکی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد داروشناسی (فارماکولوژی)",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد داروسازی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد تغذیه ورزشی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد تغذیه بالینی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد بینایی‌سنجی (اپتومتری)",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد بهداشت مادر و کودک",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد ارتز و پروتز (ارتوپدی فنی)",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارشد آموزش مامایی",
+   "description": null
+  },
+  {
+   "name": "کارشناسی ارتز و پروتز (ارتوپدی فنی)",
+   "description": null
+  },
+  {
+   "name": "کارشناس ارشد ویروس‌شناسی پزشکی",
+   "description": null
+  },
+  {
+   "name": "کارشناس ارشد مشاوره مامایی",
+   "description": null
+  },
+  {
+   "name": "کارشناس ارشد فیزیوتراپی ورزشی",
+   "description": null
+  },
+  {
+   "name": "پسا دکترای لنفولوژی",
+   "description": null
+  },
+  {
+   "name": "متخصص میکروب‌شناسی (میکروبیولوژی)",
+   "description": null
+  },
+  {
+   "name": "متخصص جراحی قلب",
+   "description": null
+  },
+  {
+   "name": "متخصص جراحی ترمیمی دهان، فک و صورت",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص ژنتیک پزشکی",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص پزشکی ورزشی",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص مراقبت‌های ویژه (آی سی یو)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص لاپاراسکوپی و آی‌وی‌اف",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص طب نوزادی و پیرامون تولد",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص سرطان‌شناسی زنان (انکولوژی زنان)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص سرطان‌شناسی (انکولوژی)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص روان‌پزشکی کودک و نوجوان",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص روانپزشکی عصبی و نورولوژی رفتاری",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص خون‌شناسی بالینی (هماتولوژی بالینی)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص جراحی کودکان",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص جراحی کلیه، مجاری ادراری و تناسلی کودکان (اورولوژی کودکان)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص جراحی پلاستیک، ترمیمی و سوختگی",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص جراحی قلب و قفسه صدری (قلب و توراکس)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص جراحی قلب و عروق",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص جراحی قفسه صدری (جراحی توراکس)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص جراحی غدد و سرطان",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص جراحی عروق",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص جراحی زانو",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص جراحی دست",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص جراحی تعویض مفصل ران و اندام‌های تحتانی",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص تصویربرداری اعصاب (نورورادیولوژی)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های گوارش کودکان",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های گوارش و کبد بزرگسالان",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های کلیه کودکان (نفرولوژی کودکان)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های کلیه بزرگسالان (نفرولوژی بزرگسالان)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های مغز و اعصاب کودکان (نورولوژی کودکان)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های متابولیک ارثی",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های قلب کودکان",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های قلب و عروق",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های غدد درون‌ریز و متابولیسم کودکان (اندوکرینولوژی کودکان)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های غدد درون‌ریز و متابولیسم (اندوکرینولوژی)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های عفونی کودکان",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های عفونی و گرمسیری",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های ریه کودکان",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های ریه",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های روماتولوژی کودکان",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های روماتولوژی",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های خون و سرطان بزرگسالان (هماتولوژی انکولوژی بزرگسالان)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص بیماری‌های خون و سرطان (هماتولوژی انکولوژی) کودکان",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص الکترومیوگرافی و هدایت عصبی محیطی",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص اختلالات خواب",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص آلرژی و ایمنی‌شناسی بالینی (آلرژی و ایمونولوژی بالینی)",
+   "description": null
+  },
+  {
+   "name": "فوق تخصص آسیب‌شناسی خون (هماتوپاتولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ یووئیت و بیماری‌های التهابی چشم",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ گلوکوم",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ کنترل عفونت‌های بیمارستانی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ کاشت دندان (ایمپلنت)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ کاردیوانکولوژی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ چشم‌پزشکی کودکان و انحراف چشم (استرابیسم)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ پیوند کلیه",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ پیوند کبد",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ پوست کودکان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ پروتزهای فک و صورت (پروتزهای ماگزیلوفاشیال)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ پرستو ایمپلنت",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ پرتودرمانی (رادیوتراپی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ پایش و تشخیص اعصاب حین جراحی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ پاتولوژی کبد",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ ویتره و رتین",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ نوروژنتیک",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ نوروفیزیولوژی بالینی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ نفرولوژی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ نازایی و آی‌وی‌اف",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ نازائی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ نارسایی قلب و پیوند",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ نارسایی قلب",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ ناباروری و اختلالات جنسی مردان (آندرولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ ناباروری",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ مولکولار پاتولوژی و سیتوژنتیک",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ مولتیپل اسکلروزیس (ام‌اس)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ مراقبت‌های ویژه کودکان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ مراقبت‌های ویژه (آی سی یو)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ لاپاراسکوپی و هیستروسکوپی زنان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ لاپاراسکوپی و آی‌وی‌اف",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ لارنگولوژی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ قرنیه و خارج چشمی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ قرنیه",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ فیزیولوژی اعصاب (نوروفیزیولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ فتودرماتولوژی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ علوم اعصاب بینایی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ عفونی کودکان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ عصبی عضلانی (نوروماسکولار)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ طب نوزادی و پیرامون تولد",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ طب مادر و جنین (پریناتولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ طب سالمندان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ طب روان‌تنی (سایکوسوماتیک)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ طب روان جنسی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ طب خواب کودکان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ طب خواب",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ طب توان‌بخشی ضایعات نخاعی و ستون فقرات",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ طب توان‌بخشی ستون فقرات و اختلالات اسکلتی عضلانی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ طب تسکینی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ طب اورژانس",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ صرع (اپی لپسی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ شبکیه",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ سی‌تی‌اسکن و ام‌آرآی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ سیتوژنتیک",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ سکته مغزی (استروک)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ سونوگرافی عضلانی اسکلتی و درمان های اینترونشنال ستون فقرات با استفاده از روش فلوروسکوپی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ سونوگرافی زنان و زایمان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ سوختگی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ سم‌شناسی بالینی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ سرطان‌شناسی چشم (افتالموانکولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ سرطان‌شناسی (انکولوژی) زنان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ سرطان‌ های دستگاه ادراری - تناسلی (اوروانکولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ سردرد و دردهای صورت",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ سردرد",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ سالمندشناسی (ژریاتریک)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ زیبایی پوست و لیزر",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ روان‌پزشکی کودک و نوجوان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ روان‌پزشکی پریناتال",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ روان‌پزشکی نظامی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ روان‌پزشکی سالمندان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ روان‌درمانی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ روان پزشکی عصبی و نورولوژی رفتاری",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ رانیماسیون",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ رادیولوژی عضلانی اسکلتی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ رادیولوژی زنان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ دندانپزشکی بیمارستانی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ دمانس",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ درمان اعتیاد",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ درمان اختلالات جنسی و زوج‌درمانی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ دردهای مزمن دهانی،صورتی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ درد",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ داروسازی در مراقبت‌های ویژه",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی‌های کبد، پانکراس، مجاری صفراوی و پیوند اعضاء داخل شکم",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی کم تهاجمی پیشرفته و چاقی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی کلیه، مجاری ادراری و تناسلی کودکان (اورولوژی کودکان)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی کلیه، مجاری ادراری و تناسلی زنان (اورولوژی زنان)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی پیوند کبد",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی پیشرفته ایمپلنت",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی پوست",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی پلاستیک چشم و انحراف چشم (اکولوپلاستی و استرابیسم)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی پلاستیک و ترمیمی چشم (اکولوپلاستی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی پلاستیک صورت",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی پلاستیک دست و اعصاب محیطی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی پستان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی پا و مچ پا",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی هیپ و لگن",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی هیپ و زانو",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی هیپ",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی میکروسکوپی عروق مغز",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی مغز و اعصاب کودکان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی لگن",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی لثه و کاشت دندان (پریوایمپلنت)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی قاعده جمجمه",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی غدد درون ریز",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی عروق، پیوند کلیه و کبد",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی عروق و تروما",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی عروق",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی شانه و آرنج",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی شانه",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی سرطان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی سر و گردن",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی ستون فقرات",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی زیبایی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی زانو",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی روده بزرگ (جراحی کولورکتال)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی دست",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی درون‌بین کلیه، مجاری ادراری و تناسلی (اندویورولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی درون‌بین (لاپاراسکوپی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی درون بین زنان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی جمجمه، فک و صورت",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی تومورهای سیستم اسکلتی و عضلانی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی ترومای فک و صورت",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی ترمیمی دهان، فک و صورت",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی ترمیمی اورولوژی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی ترمیمی اندام تحتانی و سرطان‌شناسی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی بینی و سینوس (رینولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی بازسازی فک و صورت",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی استخوان و مفاصل کودکان (ارتوپدی کودکان)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ جراحی آرتروسکوپی زانو و هیپ",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ تکاملی عصبی کودکان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ تصویربرداری مداخله‌ای عروق (واسکولار اینترونشنال رادیولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ تصویربرداری مداخله‌ای اعصاب (اینترونشنال نورورادیولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ تصویربرداری مداخله‌ای (اینترونشنال رادیولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ تصویربرداری قلب و عروق",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ تصویربرداری اعصاب (نورورادیولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ تصویربرداری از شکم",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ تروما در جراحی عمومی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیهوشی کودکان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیهوشی پیوند اعضای داخلی شکم",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیهوشی ناحیه ای",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیهوشی مغز و اعصاب",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیهوشی قلب",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیماری‌های متابولیک استخوان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیماری‌های مادرزادی قلب و عروق در بزرگسالان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیماری‌های غدد درون‌ریز و متابولیسم (اندوکرینولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیماری‌های عفونی در بیماران پیوندی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیماری‌های عفونی در بیماران مبتلا به نقص ایمنی و پیوند",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیماری‌های سطح چشم",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیماری‌های ریه کودکان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیماری‌های روماتولوژی کودکان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ بیماری ایدز بالینی (HIV/AIDS)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ اینترونشن غیر جراحی ستون فقرات",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ ایمنی‌شناسی بالینی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ اکوکاردیوگرافی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ اورولوژی زنان و جراحی ترمیمی لگن",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ انکولوژی هسته‌ای",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ انکولوژی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ ام‌آرآی قلب",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ الکتروفیزیولوژی بالینی قلب",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ اقدامات مداخله‌ای قلب و عروق (اینترونشنال کاردیولوژی) بزرگسالان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ اقدامات مداخله‌ای عروق اعصاب (نوروواسکولار اینترونشن)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ اقدامات مداخله‌ای اعصاب (نورواینترونشن)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ استروتاکسی و فانکشنال مغز و اعصاب",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ استرابیسم، اطفال",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ استرابیسم",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ ارتوسرجری",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ ارتودنسی کرانیوفاسیال",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ ارتودنسی شکاف کام و لب",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ اختلالات کف لگن در زنان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ اختلالات حرکتی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ اتولوژی - نورواتولوژی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آی‌وی‌اف",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آنکولوژی دهان، فک و صورت",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آلرژی و ایمنی‌شناسی بالینی (آلرژی و ایمونولوژی بالینی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آسیب‌شناسی گوارش (پاتولوژی گوارش)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آسیب‌شناسی کلیه و مجاری ادراری (اوروپاتولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آسیب‌شناسی چشم (افتالموپاتولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آسیب‌شناسی پوست (درماتوپاتولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آسیب‌شناسی قفسه صدری (توراسیک پاتولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آسیب‌شناسی سلولی (سیتوپاتولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آسیب‌شناسی دستگاه تناسلی زنان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آسیب‌شناسی خون (هماتوپاتولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آسیب‌شناسی اعصاب (نوروپاتولوژی)",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آسیب‌شناسی (پاتولوژی) کودکان",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ آرتروپلاستی",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ PET/CT",
+   "description": null
+  },
+  {
+   "name": "فلوشیپ Bariatric",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای کایروپراکتیک",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای ژنتیک پزشکی با گرایش ژنتیک مولکولی",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای ژنتیک پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای ژنتیک مولکولی بالینی",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای ژنتیک مولکولی انسانی",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای ناتروپاتی",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای میکروب‌شناسی آزمایشگاهی (میکروبیولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای فیزیوتراپی",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای علوم تغذیه",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای علوم آزمایشگاهی",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای شنوایی‌شناسی (ادیولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای دندانپزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای داروسازی",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای خون‌شناسی بالینی (هماتولوژی بالینی)",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای بیوشیمی بالینی",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای بیوشیمی آزمایشگاهی",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای بینایی‌سنجی (اپتومتری)",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای باکتری‌شناسی آزمایشگاهی (باکتریولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای ایمنی‌شناسی آزمایشگاهی",
+   "description": null
+  },
+  {
+   "name": "دکترای حرفه‌ای آسیب‌شناسی (پاتولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی پژوهشی (PhD by Research)  بیماری‌های غدد درون‌ریز و متابولیسم (اندوکرینولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی پژوهشی (Ph.D by Research) علوم تغذیه",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی پژوهشی (Ph.D by Research) علوم اعصاب",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی پژوهشی (Ph.D by Research) سلامت دهان و دندانپزشکی اجتماعی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی پژوهشی (Ph.D by Research) داروشناسی (فارماکولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) گفتاردرمانی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) کاشت دندان (ایمپلنت)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) کاردرمانی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ژنتیک پزشکی با گرایش ژنتیک مولکولی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ژنتیک پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ژنتیک مولکولی بالینی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ژنتیک مولکولی انسانی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ژنتیک انسانی با گرایش مولکولی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) پزشکی ورزشی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) پزشکی مولکولی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) پزشکی اجتماعی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) پروتزهای دندانی (پروستودانتیکس)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ویروس‌شناسی پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ویروس‌شناسی آزمایشگاهی (ویرولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) هماتولوژی پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) هماتولوژی با گرایش بالینی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) هماتولوژی آزمایشگاهی و بانک خون",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) نانو فناوری پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) میکروب‌شناسی پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) میکروب‌شناسی آزمایشگاهی (میکروبیولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) مطالعات اعتیاد",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) مدیریت خدمات بهداشتی و درمانی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) مامایی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) لیزر در دندانپزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) قارچ‌شناسی پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) قارچ‌شناسی آزمایشگاهی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) فیزیولوژی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) فیزیوتراپی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) فناوری دارویی (فارماسیوتیکس)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) فارماکوگنوزی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) علوم تغذیه",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) علوم تشریحی (آناتومی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) علوم اعصاب گرایش شنوایی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) علوم اعصاب",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) علوم آزمایشگاهی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) طب سنتی چین",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) طب سنتی ایرانی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) طب تولیدمثل با گرایش آندرولوژی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) شیمی دارویی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) شنوایی‌شناسی (ادیولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) سیتوژنتیک پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) سیتوژنتیک",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) سم‌شناسی عمومی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) سم‌شناسی داروشناسی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) سم‌شناسی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) سلامت دهان و دندانپزشکی اجتماعی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) سالمندشناسی (ژریاتریک)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) زیست‌فناوری دارویی (بیوتکنولوژی دارویی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) زیست مواد دندانی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) روانشناسی نظامی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) روانشناسی بالینی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) دندانپزشکی کودکان",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) دندانپزشکی ترمیمی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) داروشناسی (فارماکولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) داروسازی سنتی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) داروسازی بالینی (کلینیکال فارماسی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) داروسازی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) خون‌شناسی بالینی (هماتولوژی بالینی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) بیوشیمی پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) بیوشیمی بالینی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) بیوشیمی آزمایشگاهی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) بینایی‌سنجی (اپتومتری)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) بیماری‌های غدد درون‌ریز و متابولیسم (اندوکرینولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) بهداشت عمومی دندانپزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) بهداشت باروری",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) باکتری‌شناسی پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) باکتری‌شناسی آزمایشگاهی (باکتریولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) بالینی طب چینی و سوزنی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) بافت‌شناسی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ایمونولوژی پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ایمنی‌شناسی و خون‌شناسی (ایمونوهماتولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ایمنی‌شناسی و انگل‌شناسی (ایمونوپارازیتولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ایمنی‌شناسی بالینی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ایمنی‌شناسی آزمایشگاهی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ایمنی‌شناسی (ایمونولوژی) سرطان",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ایمنی‌شناسی (ایمونولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) اپیدمیولوژی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) انگل‌شناسی پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) انگل‌شناسی آزمایشگاهی (پارازیتولوژی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) ارتز و پروتز (ارتوپدی فنی)",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) اخلاق پزشکی",
+   "description": null
+  },
+  {
+   "name": "دکترای تخصصی (Ph.D) آموزش بهداشت و ارتقاءسلامت",
+   "description": null
+  },
+  {
+   "name": "دوره تکمیلی تخصصی علوم آزمایشگاهی",
+   "description": null
+  },
+  {
+   "name": "تخصص گوش، گلو، بینی و جراحی سر و گردن",
+   "description": null
+  },
+  {
+   "name": "تخصص ژنتیک پزشکی",
+   "description": null
+  },
+  {
+   "name": "تخصص ژنتیک مولکولی بالینی",
+   "description": null
+  },
+  {
+   "name": "تخصص ژنتیک انسانی با گرایش مولکولی",
+   "description": null
+  },
+  {
+   "name": "تخصص چشم‌پزشکی",
+   "description": null
+  },
+  {
+   "name": "تخصص پزشکی ورزشی",
+   "description": null
+  },
+  {
+   "name": "تخصص پزشکی هسته‌ای",
+   "description": null
+  },
+  {
+   "name": "تخصص پزشکی قانونی",
+   "description": null
+  },
+  {
+   "name": "تخصص پزشکی فیزیکی و توان‌بخشی",
+   "description": null
+  },
+  {
+   "name": "تخصص پزشکی خانواده",
+   "description": null
+  },
+  {
+   "name": "تخصص پزشکی اجتماعی",
+   "description": null
+  },
+  {
+   "name": "تخصص پروتزهای دندانی (پروستودانتیکس)",
+   "description": null
+  },
+  {
+   "name": "تخصص پرتودرمانی (رادیوتراپی)",
+   "description": null
+  },
+  {
+   "name": "تخصص ویروس‌شناسی آزمایشگاهی (ویرولوژی)",
+   "description": null
+  },
+  {
+   "name": "تخصص میکروب‌شناسی آزمایشگاهی (میکروبیولوژی)",
+   "description": null
+  },
+  {
+   "name": "تخصص مدیریت خدمات بهداشتی و درمانی",
+   "description": null
+  },
+  {
+   "name": "تخصص لیزر در دندانپزشکی",
+   "description": null
+  },
+  {
+   "name": "تخصص قارچ‌شناسی آزمایشگاهی",
+   "description": null
+  },
+  {
+   "name": "تخصص فیزیکال مدیسین و روماتولوژی",
+   "description": null
+  },
+  {
+   "name": "تخصص فیزیولوژی",
+   "description": null
+  },
+  {
+   "name": "تخصص فناوری دارویی (فارماسیوتیکس)",
+   "description": null
+  },
+  {
+   "name": "تخصص علوم تغذیه",
+   "description": null
+  },
+  {
+   "name": "تخصص علوم تشریحی (آناتومی)",
+   "description": null
+  },
+  {
+   "name": "تخصص علوم آزمایشگاهی",
+   "description": null
+  },
+  {
+   "name": "تخصص طب کار",
+   "description": null
+  },
+  {
+   "name": "تخصص طب هوافضا و زیرسطحی",
+   "description": null
+  },
+  {
+   "name": "تخصص طب هوافضا",
+   "description": null
+  },
+  {
+   "name": "تخصص طب سالمندی",
+   "description": null
+  },
+  {
+   "name": "تخصص طب اورژانس",
+   "description": null
+  },
+  {
+   "name": "تخصص سم‌شناسی عمومی",
+   "description": null
+  },
+  {
+   "name": "تخصص زنان و زایمان",
+   "description": null
+  },
+  {
+   "name": "تخصص روان‌پزشکی",
+   "description": null
+  },
+  {
+   "name": "تخصص رادیوانکولوژی",
+   "description": null
+  },
+  {
+   "name": "تخصص دندانپزشکی کودکان",
+   "description": null
+  },
+  {
+   "name": "تخصص دندانپزشکی ترمیمی",
+   "description": null
+  },
+  {
+   "name": "تخصص دندانپزشکی",
+   "description": null
+  },
+  {
+   "name": "تخصص درمان ریشه (اندودانتیکس)",
+   "description": null
+  },
+  {
+   "name": "تخصص داروسازی بالینی (کلینیکال فارماسی)",
+   "description": null
+  },
+  {
+   "name": "تخصص جراحی کودکان",
+   "description": null
+  },
+  {
+   "name": "تخصص جراحی کلیه، مجاری ادراری و تناسلی (اورولوژی)",
+   "description": null
+  },
+  {
+   "name": "تخصص جراحی پلاستیک، ترمیمی و سوختگی",
+   "description": null
+  },
+  {
+   "name": "تخصص جراحی مغز و اعصاب",
+   "description": null
+  },
+  {
+   "name": "تخصص جراحی لثه (پریودانتیکس)",
+   "description": null
+  },
+  {
+   "name": "تخصص جراحی قلب و عروق",
+   "description": null
+  },
+  {
+   "name": "تخصص جراحی قفسه صدری (جراحی توراکس)",
+   "description": null
+  },
+  {
+   "name": "تخصص جراحی عمومی با گرایش غدد",
+   "description": null
+  },
+  {
+   "name": "تخصص جراحی عمومی",
+   "description": null
+  },
+  {
+   "name": "تخصص جراحی عروق",
+   "description": null
+  },
+  {
+   "name": "تخصص جراحی دهان، فک و صورت",
+   "description": null
+  },
+  {
+   "name": "تخصص جراحی ترمیمی و پلاستیک",
+   "description": null
+  },
+  {
+   "name": "تخصص جراحی استخوان و مفاصل (ارتوپدی)",
+   "description": null
+  },
+  {
+   "name": "تخصص تصویربرداری دهان، فک و صورت (رادیولوژی دهان، فک و صورت)",
+   "description": null
+  },
+  {
+   "name": "تخصص تصویربرداری اعصاب (نورورادیولوژی)",
+   "description": null
+  },
+  {
+   "name": "تخصص تصویربرداری (رادیولوژی)",
+   "description": null
+  },
+  {
+   "name": "تخصص بیولوژی دهان",
+   "description": null
+  },
+  {
+   "name": "تخصص بیوشیمی بالینی",
+   "description": null
+  },
+  {
+   "name": "تخصص بیوشیمی آزمایشگاهی",
+   "description": null
+  },
+  {
+   "name": "تخصص بیهوشی کودکان",
+   "description": null
+  },
+  {
+   "name": "تخصص بیهوشی",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های گوارش و کبد بزرگسالان",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های کودکان",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های کلیه بزرگسالان (نفرولوژی بزرگسالان)",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های پوست (درماتولوژی)",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های مغز و اعصاب (نورولوژی)",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های قلب و عروق",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های غدد درون‌ریز و متابولیسم (اندوکرینولوژی)",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های عفونی و گرمسیری",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های ریه",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های روماتولوژی",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های دهان، فک و صورت",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های داخلی",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های خون و سرطان (هماتولوژی و انکولوژی) بزرگسالان",
+   "description": null
+  },
+  {
+   "name": "تخصص بیماری‌های خون (هماتولوژی)",
+   "description": null
+  },
+  {
+   "name": "تخصص بهداشت مادر و کودک",
+   "description": null
+  },
+  {
+   "name": "تخصص بهداشت عمومی دندانپزشکی",
+   "description": null
+  },
+  {
+   "name": "تخصص بهداشت عمومی",
+   "description": null
+  },
+  {
+   "name": "تخصص بهداشت خانواده",
+   "description": null
+  },
+  {
+   "name": "تخصص باکتری‌شناسی آزمایشگاهی (باکتریولوژی)",
+   "description": null
+  },
+  {
+   "name": "تخصص ایمنی‌شناسی بالینی",
+   "description": null
+  },
+  {
+   "name": "تخصص ایمنی‌شناسی آزمایشگاهی",
+   "description": null
+  },
+  {
+   "name": "تخصص اپیدمیولوژی",
+   "description": null
+  },
+  {
+   "name": "تخصص انگل‌شناسی آزمایشگاهی (پارازیتولوژی)",
+   "description": null
+  },
+  {
+   "name": "تخصص ارتوپدی، تروماتولوژی و طب ورزشی",
+   "description": null
+  },
+  {
+   "name": "تخصص ارتودانتیکس",
+   "description": null
+  },
+  {
+   "name": "تخصص آناتومی دندان",
+   "description": null
+  },
+  {
+   "name": "تخصص آلرژی و ایمنی‌شناسی بالینی (آلرژی و ایمونولوژی بالینی)",
+   "description": null
+  },
+  {
+   "name": "تخصص آسیب‌شناسی پوست (درماتوپاتولوژی)",
+   "description": null
+  },
+  {
+   "name": "تخصص آسیب‌شناسی فک و دهان (پاتولوژی فک و دهان)",
+   "description": null
+  },
+  {
+   "name": "تخصص آسیب‌شناسی (پاتولوژی)",
+   "description": null
+  }
+ ]
+}

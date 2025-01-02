@@ -1,0 +1,198 @@
+body {
+ font-family: tahoma;
+}
+.btn-file {
+ position: relative;
+ overflow: hidden;
+}
+.btn-file input[type='file'] {
+ position: absolute;
+ top: 0;
+ right: 0;
+ min-width: 100%;
+ min-height: 100%;
+ font-size: 100px;
+ text-align: right;
+ filter: alpha(opacity=0);
+ opacity: 0;
+ background: red;
+ cursor: inherit;
+ display: block;
+}
+input[readonly] {
+ background-color: white !important;
+ cursor: text !important;
+}
+
+.gallery {
+ width: 115px;
+ height: 115px;
+ float: right;
+ margin-left: 15px;
+ position: relative;
+ /*overflow: height: idden;*/
+ text-align: center;
+ margin-bottom: 20px;
+ border: 1px solid #ddd;
+ background: #fff;
+ box-shadow: #eee 1px 0px 10px;
+ border-radius: 4px;
+ -webkit-border-radius: 4px;
+ -moz-border-radius: 4px;
+ font: 9pt/1.8 tahoma;
+}
+.gallery:last-child {
+ margin-left: 0;
+}
+.gallery a {
+ color: #5693de;
+ text-decoration: none;
+}
+.gallery a:hover {
+ text-decoration: underline;
+ color: #226ecc;
+}
+.gallery i {
+ line-height: 0.7;
+ padding-top: 36px;
+ padding-bottom: 11px;
+ font-size: 33pt;
+}
+
+#loading {
+ display: none;
+ position: absolute;
+ top: 50px;
+ left: 850px;
+ font-size: 25px;
+}
+.actioncenter {
+ position: absolute;
+ /* width: 130px; */
+ /* padding: 4px; */
+ font: 8pt/1.8 tahoma;
+ /* background: rgba(239, 239, 239, 0.4); */
+ /* border-top: 1px solid rgb(239, 239, 239); */
+ /* box-shadow: rgb(220, 220, 220) 0 -2px 99px; */
+ top: 0;
+ left: 0;
+ /* float: left; */
+ margin-top: -10px;
+ margin-left: -10px;
+}
+.actioncenter img {
+ width: 24px;
+ height: 24px;
+}
+
+#Wrapper {
+ position: relative;
+ overflow: hidden;
+}
+.window {
+ position: relative;
+ padding: 3px 3px 3px;
+ margin: 5px 5px 15px;
+ line-height: 2;
+ border-radius: 4px;
+ background: -webkit-gradient(
+   linear,
+   left top,
+   left 23,
+   from(#83afe6),
+   to(#4b8cdc)
+  )
+  0;
+ -webkit-box-shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.5);
+}
+.window .body {
+ background: #fff;
+ padding: 20px;
+}
+.clrfix {
+ display: block;
+}
+
+.clrfix:after {
+ visibility: hidden;
+ display: block;
+ font-size: 0;
+ content: ' ';
+ clear: both;
+ height: 0;
+}
+.up {
+ color: goldenrod;
+}
+.window span.head {
+ color: #fff;
+ padding: 10px;
+ font-weight: bold;
+ font-size: 10pt;
+}
+.removedirectory {
+ background: #cc0000;
+ color: #fff;
+ width: 16px;
+ height: 16px;
+ border-radius: 32px;
+ position: absolute;
+ line-height: 1;
+ top: -6px;
+ left: -7px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.removedirectory i {
+ color: #fff;
+ line-height: 0;
+ font-size: 9pt;
+ padding: 0px;
+ margin: 0px;
+}
+.removefile {
+ background: #cc0000;
+ color: #fff;
+ width: 16px;
+ height: 16px;
+ border-radius: 32px;
+ position: absolute;
+ line-height: 1;
+ top: -6px;
+ left: -7px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.removefile i {
+ color: #fff;
+ line-height: 0;
+ font-size: 9pt;
+ padding: 0px;
+ margin: 0px;
+}
+.gallery img {
+ width: 100%;
+ height: 100%;
+}
+.none {
+ display: none;
+}
+.alertbox {
+ position: absolute;
+ top: -15px;
+ font-size: 12px;
+ padding: 3px 15px;
+ border-radius: 0px 0px 4px 4px;
+}
+.captionname {
+ position: absolute;
+ bottom: 0;
+ background: rgba(0, 0, 0, 0.55);
+ color: #fff;
+ padding: 0px 10px;
+ text-align: center;
+ direction: ltr;
+ border-radius: 12px 0px 0px 12px;
+}

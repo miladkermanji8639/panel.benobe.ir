@@ -1,0 +1,1164 @@
+{
+ "menu": [
+  {
+   "name": "Dashboards",
+   "icon": "menu-icon tf-icons ti ti-smart-home",
+   "slug": "dashboard",
+   "submenu": [
+    {
+     "url": "admin/",
+     "icon": "menu-icon tf-icons ti ti-chart-pie-2",
+     "name": "Analytics",
+     "slug": "dashboard-analytics"
+    },
+    {
+     "url": "admin/dashboard/cities",
+     "name": "cities",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-cities"
+    },
+    {
+     "url": "admin/dashboard/specialty",
+     "name": "specialty",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-specialty"
+    },
+    {
+     "url": "admin/dashboard/cities",
+     "name": "membershipfee",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-cities"
+    },
+    {
+     "url": "admin/dashboard/cities",
+     "name": "menu",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-cities"
+    },
+    {
+     "url": "admin/dashboard/cities",
+     "name": "home_page",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-cities"
+    },
+    {
+     "url": "admin/dashboard/cities",
+     "name": "holiday",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-cities"
+    },
+    {
+     "url": "admin/dashboard/cities",
+     "name": "usershipfee",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-cities"
+    },
+    {
+     "url": "admin/dashboard/cities",
+     "name": "amar",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-cities"
+    },
+    {
+     "url": "admin/dashboard/cities",
+     "name": "payment_gateways",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-cities"
+    },
+    {
+     "url": "admin/dashboard/cities",
+     "name": "setting",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "dashboard-cities"
+    }
+   ]
+  },
+  {
+   "name": "Layouts",
+   "icon": "menu-icon tf-icons ti ti-layout-sidebar",
+   "slug": "layouts",
+   "submenu": [
+    {
+     "url": "admin/layouts/without-menu",
+     "name": "Without menu",
+     "icon": "menu-icon tf-icons ti ti-menu-2",
+     "slug": "layouts-without-menu"
+    },
+    {
+     "url": "admin/layouts/vertical",
+     "name": "Vertical",
+     "icon": "menu-icon tf-icons ti ti-layout-distribute-vertical",
+     "slug": "layouts-vertical",
+     "target": "_blank"
+    },
+    {
+     "url": "admin/layouts/fluid",
+     "name": "Fluid",
+     "icon": "menu-icon tf-icons ti ti-maximize",
+     "slug": "layouts-fluid"
+    },
+    {
+     "url": "admin/layouts/container",
+     "name": "Container",
+     "icon": "menu-icon tf-icons ti ti-arrows-maximize",
+     "slug": "layouts-container"
+    },
+    {
+     "url": "admin/layouts/blank",
+     "name": "Blank",
+     "icon": "menu-icon tf-icons ti ti-square",
+     "slug": "layouts-blank",
+     "target": "_blank"
+    }
+   ]
+  },
+  {
+   "name": "Apps",
+   "icon": "menu-icon tf-icons ti ti-layout-grid-add",
+   "slug": ["app", "laravel"],
+   "submenu": [
+    {
+     "url": "admin/app/email",
+     "name": "Email",
+     "icon": "menu-icon tf-icons ti ti-mail",
+     "slug": "app-email"
+    },
+    {
+     "url": "admin/app/chat",
+     "name": "Chat",
+     "icon": "menu-icon tf-icons ti ti-messages",
+     "slug": "app-chat"
+    },
+    {
+     "name": "Calendar",
+     "icon": "menu-icon tf-icons ti ti-calendar",
+     "slug": "Calendar",
+     "submenu": [
+      {
+       "url": "admin/app/calendar-jalali",
+       "name": "Solar Calendar",
+       "slug": "app-calendar-jalali"
+      },
+      {
+       "url": "admin/app/calendar",
+       "name": "Gregorian Calendar",
+       "slug": "app-calendar"
+      }
+     ]
+    },
+    {
+     "url": "admin/app/kanban",
+     "name": "Kanban",
+     "icon": "menu-icon tf-icons ti ti-layout-kanban",
+     "slug": "app-kanban"
+    },
+    {
+     "name": "eCommerce",
+     "icon": "menu-icon tf-icons ti ti-building-factory-2",
+     "slug": "app-ecommerce",
+     "submenu": [
+      {
+       "url": "admin/app/ecommerce/dashboard",
+       "name": "Dashboard",
+       "slug": "app-ecommerce-dashboard"
+      },
+      {
+       "name": "Products",
+       "slug": "app-ecommerce-product",
+       "submenu": [
+        {
+         "url": "admin/app/ecommerce/product/list",
+         "name": "Product List",
+         "slug": "app-ecommerce-product-list"
+        },
+        {
+         "url": "admin/app/ecommerce/product/add",
+         "name": "Add Product",
+         "slug": "app-ecommerce-product-add"
+        },
+        {
+         "url": "admin/app/ecommerce/product/category",
+         "name": "Category List",
+         "slug": "app-ecommerce-product-category"
+        }
+       ]
+      },
+      {
+       "name": "Order",
+       "slug": "app-ecommerce-order",
+       "submenu": [
+        {
+         "url": "admin/app/ecommerce/order/list",
+         "name": "Order List",
+         "slug": "app-ecommerce-order-list"
+        },
+        {
+         "url": "admin/app/ecommerce/order/details",
+         "name": "Order Details",
+         "slug": "app-ecommerce-order-details"
+        }
+       ]
+      },
+      {
+       "name": "Customer",
+       "slug": "app-ecommerce-customer",
+       "submenu": [
+        {
+         "url": "admin/app/ecommerce/customer/all",
+         "name": "All Customers",
+         "slug": "app-ecommerce-customer-all"
+        },
+        {
+         "name": "Customer Details",
+         "slug": "app-ecommerce-customer-details",
+         "submenu": [
+          {
+           "url": "admin/app/ecommerce/customer/details/overview",
+           "name": "Overview",
+           "slug": "app-ecommerce-customer-details-overview"
+          },
+          {
+           "url": "admin/app/ecommerce/customer/details/security",
+           "name": "Security",
+           "slug": "app-ecommerce-customer-details-security"
+          },
+          {
+           "url": "admin/app/ecommerce/customer/details/billing",
+           "name": "Address & Billing",
+           "slug": "app-ecommerce-customer-details-billing"
+          },
+          {
+           "url": "admin/app/ecommerce/customer/details/notifications",
+           "name": "Notifications",
+           "slug": "app-ecommerce-customer-details-notifications"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "url": "admin/app/ecommerce/manage/reviews",
+       "name": "Manage Reviews",
+       "slug": "app-ecommerce-manage-reviews"
+      },
+      {
+       "url": "admin/app/ecommerce/referrals",
+       "name": "Referrals",
+       "slug": "app-ecommerce-referrals"
+      },
+      {
+       "name": "Settings",
+       "slug": "app-ecommerce-settings",
+       "submenu": [
+        {
+         "url": "admin/app/ecommerce/settings/details",
+         "name": "Store",
+         "slug": "app-ecommerce-settings-details"
+        },
+        {
+         "url": "admin/app/ecommerce/settings/payments",
+         "name": "Payments",
+         "slug": "app-ecommerce-settings-payments"
+        },
+        {
+         "url": "admin/app/ecommerce/settings/checkout",
+         "name": "Checkout",
+         "slug": "app-ecommerce-settings-checkout"
+        },
+        {
+         "url": "admin/app/ecommerce/settings/shipping",
+         "name": "Shipping & Delivery",
+         "slug": "app-ecommerce-settings-shipping"
+        },
+        {
+         "url": "admin/app/ecommerce/settings/locations",
+         "name": "Locations",
+         "slug": "app-ecommerce-settings-locations"
+        },
+        {
+         "url": "admin/app/ecommerce/settings/notifications",
+         "name": "Notifications",
+         "slug": "app-ecommerce-settings-notifications"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Academy",
+     "icon": "menu-icon tf-icons ti ti-book",
+     "slug": "app-academy",
+     "submenu": [
+      {
+       "url": "admin/app/academy/dashboard",
+       "name": "Dashboard",
+       "slug": "app-academy-dashboard"
+      },
+      {
+       "url": "admin/app/academy/course",
+       "name": "My Course",
+       "slug": "app-academy-course"
+      },
+      {
+       "url": "admin/app/academy/course-details",
+       "name": "Course Details",
+       "slug": "app-academy-course-details"
+      }
+     ]
+    },
+    {
+     "name": "Logistics",
+     "icon": "menu-icon tf-icons ti ti-truck",
+     "slug": "app-logistics",
+     "submenu": [
+      {
+       "url": "admin/app/logistics/dashboard",
+       "name": "Dashboard",
+       "slug": "app-logistics-dashboard"
+      },
+      {
+       "url": "admin/app/logistics/fleet",
+       "name": "Fleet",
+       "slug": "app-logistics-fleet"
+      },
+      {
+       "url": "admin/app/logistics/fleetMapbox",
+       "name": "Fleet Mapbox",
+       "slug": "app-logistics-fleet-mapbox"
+      }
+     ]
+    },
+    {
+     "name": "Invoice",
+     "icon": "menu-icon tf-icons ti ti-file-dollar",
+     "slug": "app-invoice",
+     "submenu": [
+      {
+       "url": "admin/app/invoice/list",
+       "name": "List",
+       "slug": "app-invoice-list"
+      },
+      {
+       "url": "admin/app/invoice/preview",
+       "name": "Preview",
+       "slug": "app-invoice-preview"
+      },
+      {
+       "url": "admin/app/invoice/edit",
+       "name": "Edit",
+       "slug": "app-invoice-edit"
+      },
+      {
+       "url": "admin/app/invoice/add",
+       "name": "Add",
+       "slug": "app-invoice-add"
+      }
+     ]
+    },
+    {
+     "name": "Users",
+     "slug": "app-user",
+     "icon": "menu-icon tf-icons ti ti-users",
+     "submenu": [
+      {
+       "url": "admin/app/user/list",
+       "name": "List",
+       "slug": "app-user-list"
+      },
+      {
+       "name": "View",
+       "slug": "app-user-view",
+       "submenu": [
+        {
+         "url": "admin/app/user/view/account",
+         "name": "Account",
+         "slug": "app-user-view-account"
+        },
+        {
+         "url": "admin/app/user/view/security",
+         "name": "Security",
+         "slug": "app-user-view-security"
+        },
+        {
+         "url": "admin/app/user/view/billing",
+         "name": "Billing & Plans",
+         "slug": "app-user-view-billing"
+        },
+        {
+         "url": "admin/app/user/view/notifications",
+         "name": "Notifications",
+         "slug": "app-user-view-notifications"
+        },
+        {
+         "url": "admin/app/user/view/connections",
+         "name": "Connections",
+         "slug": "app-user-view-connections"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Roles & Permissions",
+     "icon": "menu-icon tf-icons ti ti-settings",
+     "slug": "app-access",
+     "submenu": [
+      {
+       "url": "admin/app/access-roles",
+       "name": "Roles",
+       "slug": "app-access-roles"
+      },
+      {
+       "url": "admin/app/access-permission",
+       "name": "Permission",
+       "slug": "app-access-permission"
+      }
+     ]
+    },
+    {
+     "name": "Laravel Example",
+     "icon": "menu-icon tf-icons ti ti-brand-php",
+     "slug": "laravel-example",
+     "submenu": [
+      {
+       "url": "admin/laravel/user-management",
+       "name": "User Management",
+       "slug": "laravel-example-user-management"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Pages",
+   "icon": "menu-icon tf-icons ti ti-file",
+   "slug": ["pages", "auth", "wizard-ex", "modal"],
+   "submenu": [
+    {
+     "name": "Front Pages",
+     "icon": "menu-icon tf-icons ti ti-files",
+     "slug": "front-pages",
+     "submenu": [
+      {
+       "url": "admin/front-pages/landing",
+       "name": "Landing",
+       "slug": "front-pages-landing",
+       "target": "_blank"
+      },
+      {
+       "url": "admin/front-pages/pricing",
+       "name": "Pricing",
+       "slug": "front-pages-pricing",
+       "target": "_blank"
+      },
+      {
+       "url": "admin/front-pages/payment",
+       "name": "Payments",
+       "slug": "front-pages-payment",
+       "target": "_blank"
+      },
+      {
+       "url": "admin/front-pages/checkout",
+       "name": "Checkout",
+       "slug": "front-pages-checkout",
+       "target": "_blank"
+      },
+      {
+       "url": "admin/front-pages/help-center",
+       "name": "Help Center",
+       "slug": "front-pages-help-center",
+       "target": "_blank"
+      }
+     ]
+    },
+    {
+     "name": "User Profile",
+     "icon": "menu-icon tf-icons ti ti-user-circle",
+     "slug": "pages-profile",
+     "submenu": [
+      {
+       "url": "admin/pages/profile-user",
+       "name": "Profile",
+       "slug": "pages-profile-user"
+      },
+      {
+       "url": "admin/pages/profile-teams",
+       "name": "Teams",
+       "slug": "pages-profile-teams"
+      },
+      {
+       "url": "admin/pages/profile-projects",
+       "name": "Projects",
+       "slug": "pages-profile-projects"
+      },
+      {
+       "url": "admin/pages/profile-connections",
+       "name": "Connections",
+       "slug": "pages-profile-connections"
+      }
+     ]
+    },
+    {
+     "name": "Account Settings",
+     "icon": "menu-icon tf-icons ti ti-settings",
+     "slug": "pages-account-settings",
+     "submenu": [
+      {
+       "url": "admin/pages/account-settings-account",
+       "name": "Account",
+       "slug": "pages-account-settings-account"
+      },
+      {
+       "url": "admin/pages/account-settings-security",
+       "name": "Security",
+       "slug": "pages-account-settings-security"
+      },
+      {
+       "url": "admin/pages/account-settings-billing",
+       "name": "Billing & Plans",
+       "slug": "pages-account-settings-billing"
+      },
+      {
+       "url": "admin/pages/account-settings-notifications",
+       "name": "Notifications",
+       "slug": "pages-account-settings-notifications"
+      },
+      {
+       "url": "admin/pages/account-settings-connections",
+       "name": "Connections",
+       "slug": "pages-account-settings-connections"
+      }
+     ]
+    },
+    {
+     "url": "admin/pages/faq",
+     "name": "FAQ",
+     "icon": "menu-icon tf-icons ti ti-help",
+     "slug": "pages-faq"
+    },
+    {
+     "url": "admin/pages/pricing",
+     "name": "Pricing",
+     "icon": "menu-icon tf-icons ti ti-diamond",
+     "slug": "pages-pricing"
+    },
+    {
+     "name": "Misc",
+     "icon": "menu-icon tf-icons ti ti-3d-cube-sphere",
+     "slug": "pages-misc",
+     "submenu": [
+      {
+       "url": "admin/pages/misc-error",
+       "name": "Error",
+       "slug": "pages-misc-error",
+       "target": "_blank"
+      },
+      {
+       "url": "admin/pages/misc-under-maintenance",
+       "name": "Under Maintenance",
+       "slug": "pages-misc-under-maintenance",
+       "target": "_blank"
+      },
+      {
+       "url": "admin/pages/misc-comingsoon",
+       "name": "Coming Soon",
+       "slug": "pages-misc-comingsoon",
+       "target": "_blank"
+      },
+      {
+       "url": "admin/pages/misc-not-authorized",
+       "name": "Not Authorized",
+       "slug": "pages-misc-not-authorized",
+       "target": "_blank"
+      }
+     ]
+    },
+    {
+     "name": "Authentications",
+     "icon": "menu-icon tf-icons ti ti-lock",
+     "slug": "auth",
+     "submenu": [
+      {
+       "name": "Login",
+       "slug": "auth-login",
+       "submenu": [
+        {
+         "url": "admin/auth/login-basic",
+         "name": "Basic",
+         "slug": "auth-login-basic",
+         "target": "_blank"
+        },
+        {
+         "url": "admin/auth/login-cover",
+         "name": "Cover",
+         "slug": "auth-login-cover",
+         "target": "_blank"
+        }
+       ]
+      },
+      {
+       "name": "Register",
+       "slug": "auth-register",
+       "submenu": [
+        {
+         "url": "admin/auth/register-basic",
+         "name": "Basic",
+         "slug": "auth-register-basic",
+         "target": "_blank"
+        },
+        {
+         "url": "admin/auth/register-cover",
+         "name": "Cover",
+         "slug": "auth-register-cover",
+         "target": "_blank"
+        },
+        {
+         "url": "admin/auth/register-multisteps",
+         "name": "Multi-steps",
+         "slug": "auth-register-multisteps",
+         "target": "_blank"
+        }
+       ]
+      },
+      {
+       "name": "Verify Email",
+       "slug": "auth-verify-email",
+       "submenu": [
+        {
+         "url": "admin/auth/verify-email-basic",
+         "name": "Basic",
+         "slug": "auth-verify-email-basic",
+         "target": "_blank"
+        },
+        {
+         "url": "admin/auth/verify-email-cover",
+         "name": "Cover",
+         "slug": "auth-verify-email-cover",
+         "target": "_blank"
+        }
+       ]
+      },
+      {
+       "name": "Reset Password",
+       "slug": "auth-reset-password",
+       "submenu": [
+        {
+         "url": "admin/auth/reset-password-basic",
+         "name": "Basic",
+         "slug": "auth-reset-password-basic",
+         "target": "_blank"
+        },
+        {
+         "url": "admin/auth/reset-password-cover",
+         "name": "Cover",
+         "slug": "auth-reset-password-cover",
+         "target": "_blank"
+        }
+       ]
+      },
+      {
+       "name": "Forgot Password",
+       "slug": "auth-forgot-password",
+       "submenu": [
+        {
+         "url": "admin/auth/forgot-password-basic",
+         "name": "Basic",
+         "slug": "auth-forgot-password-basic",
+         "target": "_blank"
+        },
+        {
+         "url": "admin/auth/forgot-password-cover",
+         "name": "Cover",
+         "slug": "auth-forgot-password-cover",
+         "target": "_blank"
+        }
+       ]
+      },
+      {
+       "name": "Two Steps",
+       "slug": "auth-two-steps",
+       "submenu": [
+        {
+         "url": "admin/auth/two-steps-basic",
+         "name": "Basic",
+         "slug": "auth-two-steps-basic",
+         "target": "_blank"
+        },
+        {
+         "url": "admin/auth/two-steps-cover",
+         "name": "Cover",
+         "slug": "auth-two-steps-cover",
+         "target": "_blank"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Wizard Examples",
+     "icon": "menu-icon tf-icons ti ti-forms",
+     "slug": "wizard-ex",
+     "submenu": [
+      {
+       "url": "admin/wizard/ex-checkout",
+       "name": "Checkout",
+       "slug": "wizard-ex-checkout"
+      },
+      {
+       "url": "admin/wizard/ex-property-listing",
+       "name": "Property Listing",
+       "slug": "wizard-ex-property-listing"
+      },
+      {
+       "url": "admin/wizard/ex-create-deal",
+       "name": "Create Deal",
+       "slug": "wizard-ex-create-deal"
+      }
+     ]
+    },
+    {
+     "url": "admin/modal-examples",
+     "name": "Modal Examples",
+     "icon": "menu-icon tf-icons ti ti-square",
+     "slug": "modal-examples"
+    }
+   ]
+  },
+  {
+   "name": "Components",
+   "icon": "menu-icon tf-icons ti ti-toggle-left",
+   "slug": ["cards", "ui", "extended", "icons"],
+   "submenu": [
+    {
+     "name": "Cards",
+     "icon": "menu-icon tf-icons ti ti-id",
+     "slug": "cards",
+     "submenu": [
+      {
+       "url": "admin/cards/basic",
+       "name": "Basic",
+       "slug": "cards-basic"
+      },
+      {
+       "url": "admin/cards/advance",
+       "name": "Advance",
+       "slug": "cards-advance"
+      },
+      {
+       "url": "admin/cards/statistics",
+       "name": "Statistics",
+       "slug": "cards-statistics"
+      },
+      {
+       "url": "admin/cards/analytics",
+       "name": "Analytics",
+       "slug": "cards-analytics"
+      },
+      {
+       "url": "admin/cards/actions",
+       "name": "Actions",
+       "slug": "cards-actions"
+      }
+     ]
+    },
+    {
+     "name": "User interface",
+     "icon": "menu-icon tf-icons ti ti-color-swatch",
+     "slug": "ui",
+     "submenu": [
+      {
+       "url": "admin/ui/accordion",
+       "name": "Accordion",
+       "slug": "ui-accordion"
+      },
+      {
+       "url": "admin/ui/alerts",
+       "name": "Alerts",
+       "slug": "ui-alerts"
+      },
+      {
+       "url": "admin/ui/badges",
+       "name": "Badges",
+       "slug": "ui-badges"
+      },
+      {
+       "url": "admin/ui/buttons",
+       "name": "Buttons",
+       "slug": "ui-buttons"
+      },
+      {
+       "url": "admin/ui/carousel",
+       "name": "Carousel",
+       "slug": "ui-carousel"
+      },
+      {
+       "url": "admin/ui/collapse",
+       "name": "Collapse",
+       "slug": "ui-collapse"
+      },
+      {
+       "url": "admin/ui/dropdowns",
+       "name": "Dropdowns",
+       "slug": "ui-dropdowns"
+      },
+      {
+       "url": "admin/ui/footer",
+       "name": "Footer",
+       "slug": "ui-footer"
+      },
+      {
+       "url": "admin/ui/list-groups",
+       "name": "List groups",
+       "slug": "ui-list-groups"
+      },
+      {
+       "url": "admin/ui/modals",
+       "name": "Modals",
+       "slug": "ui-modals"
+      },
+      {
+       "url": "admin/ui/navbar",
+       "name": "Navbar",
+       "slug": "ui-navbar"
+      },
+      {
+       "url": "admin/ui/offcanvas",
+       "name": "Offcanvas",
+       "slug": "ui-offcanvas"
+      },
+      {
+       "url": "admin/ui/pagination-breadcrumbs",
+       "name": "Pagination & Breadcrumbs",
+       "slug": "ui-pagination-breadcrumbs"
+      },
+      {
+       "url": "admin/ui/progress",
+       "name": "Progress",
+       "slug": "ui-progress"
+      },
+      {
+       "url": "admin/ui/spinners",
+       "name": "Spinners",
+       "slug": "ui-spinners"
+      },
+      {
+       "url": "admin/ui/tabs-pills",
+       "name": "Tabs & Pills",
+       "slug": "ui-tabs-pills"
+      },
+      {
+       "url": "admin/ui/toasts",
+       "name": "Toasts",
+       "slug": "ui-toasts"
+      },
+      {
+       "url": "admin/ui/tooltips-popovers",
+       "name": "Tooltips & Popovers",
+       "slug": "ui-tooltips-popovers"
+      },
+      {
+       "url": "admin/ui/typography",
+       "name": "Typography",
+       "slug": "ui-typography"
+      }
+     ]
+    },
+    {
+     "name": "Extended UI",
+     "icon": "menu-icon tf-icons ti ti-components",
+     "slug": "extended",
+     "submenu": [
+      {
+       "url": "admin/extended/ui-avatar",
+       "name": "Avatar",
+       "slug": "extended-ui-avatar"
+      },
+      {
+       "url": "admin/extended/ui-blockui",
+       "name": "BlockUI",
+       "slug": "extended-ui-blockui"
+      },
+      {
+       "url": "admin/extended/ui-drag-and-drop",
+       "name": "Drag & Drop",
+       "slug": "extended-ui-drag-and-drop"
+      },
+      {
+       "url": "admin/extended/ui-media-player",
+       "name": "Media Player",
+       "slug": "extended-ui-media-player"
+      },
+      {
+       "url": "admin/extended/ui-perfect-scrollbar",
+       "name": "Perfect Scrollbar",
+       "slug": "extended-ui-perfect-scrollbar"
+      },
+      {
+       "url": "admin/extended/ui-star-ratings",
+       "name": "Star Ratings",
+       "slug": "extended-ui-star-ratings"
+      },
+      {
+       "url": "admin/extended/ui-sweetalert2",
+       "name": "SweetAlert2",
+       "slug": "extended-ui-sweetalert2"
+      },
+      {
+       "url": "admin/extended/ui-text-divider",
+       "name": "Text Divider",
+       "slug": "extended-ui-text-divider"
+      },
+      {
+       "name": "Timeline",
+       "slug": "extended-ui-timeline",
+       "submenu": [
+        {
+         "url": "admin/extended/ui-timeline-basic",
+         "name": "Basic",
+         "slug": "extended-ui-timeline-basic"
+        },
+        {
+         "url": "admin/extended/ui-timeline-fullscreen",
+         "name": "Fullscreen",
+         "slug": "extended-ui-timeline-fullscreen"
+        }
+       ]
+      },
+      {
+       "url": "admin/extended/ui-tour",
+       "name": "Tour",
+       "slug": "extended-ui-tour"
+      },
+      {
+       "url": "admin/extended/ui-treeview",
+       "name": "Treeview",
+       "slug": "extended-ui-treeview"
+      },
+      {
+       "url": "admin/extended/ui-misc",
+       "name": "Miscellaneous",
+       "slug": "extended-ui-misc"
+      }
+     ]
+    },
+    {
+     "name": "Icons",
+     "icon": "menu-icon tf-icons ti ti-brand-tabler",
+     "slug": "icons",
+     "submenu": [
+      {
+       "url": "admin/icons/tabler",
+       "name": "Tabler",
+       "slug": "icons-tabler"
+      },
+      {
+       "url": "admin/icons/font-awesome",
+       "name": "Fontawesome",
+       "slug": "icons-font-awesome"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Forms",
+   "icon": "menu-icon tf-icons ti ti-forms",
+   "slug": ["forms", "form-layouts", "form-wizard", "form"],
+   "submenu": [
+    {
+     "name": "Form Elements",
+     "icon": "menu-icon tf-icons ti ti-toggle-left",
+     "slug": "forms",
+     "submenu": [
+      {
+       "url": "admin/forms/basic-inputs",
+       "name": "Basic Inputs",
+       "slug": "forms-basic-inputs"
+      },
+      {
+       "url": "admin/forms/input-groups",
+       "name": "Input groups",
+       "slug": "forms-input-groups"
+      },
+      {
+       "url": "admin/forms/custom-options",
+       "name": "Custom Options",
+       "slug": "forms-custom-options"
+      },
+      {
+       "url": "admin/forms/editors",
+       "name": "Editors",
+       "slug": "forms-editors"
+      },
+      {
+       "url": "admin/forms/file-upload",
+       "name": "File Upload",
+       "slug": "forms-file-upload"
+      },
+      {
+       "url": "admin/forms/pickers",
+       "name": "Pickers",
+       "slug": "forms-pickers"
+      },
+      {
+       "url": "admin/forms/pickers-jalali",
+       "name": "Solar Date Pickers",
+       "slug": "forms-pickers-jalali"
+      },
+      {
+       "url": "admin/forms/selects",
+       "name": "Select & Tags",
+       "slug": "forms-selects"
+      },
+      {
+       "url": "admin/forms/sliders",
+       "name": "Sliders",
+       "slug": "forms-sliders"
+      },
+      {
+       "url": "admin/forms/switches",
+       "name": "Switches",
+       "slug": "forms-switches"
+      },
+      {
+       "url": "admin/forms/extras",
+       "name": "Extras",
+       "slug": "forms-extras"
+      }
+     ]
+    },
+    {
+     "name": "Form Layouts",
+     "icon": "menu-icon tf-icons ti ti-layout-navbar",
+     "slug": "form-layouts",
+     "submenu": [
+      {
+       "url": "admin/form/layouts-vertical",
+       "name": "Vertical Form",
+       "slug": "form-layouts-vertical"
+      },
+      {
+       "url": "admin/form/layouts-horizontal",
+       "name": "Horizontal Form",
+       "slug": "form-layouts-horizontal"
+      },
+      {
+       "url": "admin/form/layouts-sticky",
+       "name": "Sticky Actions",
+       "slug": "form-layouts-sticky"
+      }
+     ]
+    },
+    {
+     "name": "Form Wizard",
+     "icon": "menu-icon tf-icons ti ti-text-wrap-disabled",
+     "slug": "form-wizard",
+     "submenu": [
+      {
+       "url": "admin/form/wizard-numbered",
+       "name": "Numbered",
+       "slug": "form-wizard-numbered"
+      },
+      {
+       "url": "admin/form/wizard-icons",
+       "name": "Icons",
+       "slug": "form-wizard-icons"
+      }
+     ]
+    },
+    {
+     "url": "admin/form/validation",
+     "name": "Form Validation",
+     "icon": "menu-icon tf-icons ti ti-checkbox",
+     "slug": "form-validation"
+    }
+   ]
+  },
+  {
+   "name": "Tables",
+   "icon": "menu-icon tf-icons ti ti-layout-grid",
+   "slug": ["tables", "tables-datatables"],
+   "submenu": [
+    {
+     "url": "admin/tables/basic",
+     "name": "Tables",
+     "icon": "menu-icon tf-icons ti ti-table",
+     "slug": "tables-basic"
+    },
+    {
+     "name": "Datatables",
+     "icon": "menu-icon tf-icons ti ti-layout-grid",
+     "slug": "tables-datatables",
+     "submenu": [
+      {
+       "url": "admin/tables/datatables-basic",
+       "name": "Basic",
+       "slug": "tables-datatables-basic"
+      },
+      {
+       "url": "admin/tables/datatables-advanced",
+       "name": "Advanced",
+       "slug": "tables-datatables-advanced"
+      },
+      {
+       "url": "admin/tables/datatables-extensions",
+       "name": "Extensions",
+       "slug": "tables-datatables-extensions"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Charts & Maps",
+   "icon": "menu-icon tf-icons ti ti-chart-bar",
+   "slug": ["charts", "maps"],
+   "submenu": [
+    {
+     "name": "Charts",
+     "icon": "menu-icon tf-icons ti ti-chart-pie",
+     "slug": "charts",
+     "submenu": [
+      {
+       "url": "admin/charts/apex",
+       "name": "Apex Charts",
+       "slug": "charts-apex"
+      },
+      {
+       "url": "admin/charts/chartjs",
+       "name": "ChartJS",
+       "slug": "charts-chartjs"
+      }
+     ]
+    },
+    {
+     "url": "admin/maps/leaflet",
+     "icon": "menu-icon tf-icons ti ti-map",
+     "name": "Leaflet Maps",
+     "slug": "maps-leaflet"
+    }
+   ]
+  },
+  {
+   "name": "Misc",
+   "icon": "menu-icon tf-icons ti ti-box-multiple",
+   "slug": "misc",
+   "submenu": [
+    {
+     "url": "admin/https://pixinvent.ticksy.com/",
+     "icon": "menu-icon tf-icons ti ti-lifebuoy",
+     "name": "Support",
+     "slug": "support",
+     "target": "_blank"
+    },
+    {
+     "url": "admin/https://demos.pixinvent.com/vuexy-html-admin-template/documentation/laravel-introduction.html",
+     "icon": "menu-icon tf-icons ti ti-file-description",
+     "name": "Documentation",
+     "slug": "documentation",
+     "target": "_blank"
+    }
+   ]
+  }
+ ]
+}

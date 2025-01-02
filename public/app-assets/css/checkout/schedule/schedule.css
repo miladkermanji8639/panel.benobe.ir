@@ -1,0 +1,583 @@
+body {
+ background-color: #f0f2f4 !important;
+}
+
+header {
+ width: 100%;
+ height: 140px;
+ background-color: #fff;
+ box-shadow:
+  rgba(50, 50, 50, 0.03) 0px 4px 6px -2px,
+  rgba(50, 50, 50, 0.08) 0px -3px 10px -4px;
+}
+header .top-header-scedule {
+ width: 53%;
+ display: flex;
+ justify-content: space-between;
+}
+header .top-header-scedule .center-top-scedule img {
+ width: 70px;
+}
+header .bottom-header-scedule {
+ margin-top: 10px;
+ width: 100%;
+ display: flex;
+ justify-content: center;
+}
+header .bottom-header-scedule p {
+ font-size: 11px;
+ color: #6c6c6c;
+}
+header .bottom-header-scedule ol {
+ list-style-type: none;
+ display: flex;
+ justify-content: space-between;
+ width: 70%;
+ align-items: center;
+ justify-self: center;
+}
+header .bottom-header-scedule .stepper-wrapper {
+ width: 50%;
+ margin-top: auto;
+ display: flex;
+ justify-content: space-between;
+ margin-bottom: 20px;
+}
+header .bottom-header-scedule .step-name {
+ font-size: 12px;
+ color: #6c6c6c;
+}
+header .bottom-header-scedule .stepper-item {
+ position: relative;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ flex: 1;
+}
+header .bottom-header-scedule .stepper-item::before {
+ position: absolute;
+ content: '';
+ border-bottom: 2px solid #ccc;
+ width: 100%;
+ top: 20px;
+ left: -50%;
+ z-index: 2;
+}
+header .bottom-header-scedule .stepper-item::after {
+ position: absolute;
+ content: '';
+ border-bottom: 2px solid #ccc;
+ width: 100%;
+ top: 20px;
+ left: 50%;
+ z-index: 2;
+}
+header .bottom-header-scedule .stepper-item .step-counter {
+ position: relative;
+ z-index: 5;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 30px;
+ height: 30px;
+ border-radius: 50%;
+ background: #ccc;
+ margin-bottom: 6px;
+}
+header .bottom-header-scedule .stepper-item.active {
+ font-weight: bold;
+}
+header .bottom-header-scedule .stepper-item.completed .step-counter {
+ background-color: #4bb543;
+ font-family: 'IranSans';
+ font-size: 10px;
+}
+header .bottom-header-scedule .stepper-item .step-counter {
+ font-family: 'IranSans';
+ font-size: 10px;
+}
+header .bottom-header-scedule .stepper-item.completed::after {
+ position: absolute;
+ content: '';
+ border-bottom: 2px solid #4bb543;
+ width: 100%;
+ top: 20px;
+ left: 50%;
+ z-index: 3;
+}
+header .bottom-header-scedule .stepper-item:first-child::before {
+ content: none;
+}
+header .bottom-header-scedule .stepper-item:last-child::after {
+ content: none;
+}
+
+main {
+ position: relative !important;
+ top: 140px !important;
+ background-color: #f1f5f9 !important;
+}
+main .b-b-primary {
+ border-bottom: 2px solid rgb(51, 51, 244);
+}
+main .text-time-style {
+ font-family: 'IranSans';
+ font-size: 14px;
+ color: #6c6c6c;
+}
+main .bg-opacity-5 {
+ opacity: 0.05;
+}
+main .bg-fff {
+ background-color: #fff !important;
+}
+main .container {
+ display: flex;
+ justify-content: center;
+}
+main .container .checkout-schedule-content {
+ margin-top: 0px;
+ width: 1000px;
+ justify-content: center;
+ display: flex;
+ gap: 10px;
+}
+main .container .checkout-schedule-content .right-schedule-content {
+ margin-top: 30px;
+ width: 690px;
+ min-height: 76vh;
+ background-color: #fff;
+ border-radius: 12px;
+ box-shadow:
+  rgba(50, 50, 50, 0.03) 0px 4px 6px -2px,
+  rgba(50, 50, 50, 0.08) 0px -3px 10px -4px;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .fastest-empty-time
+ .fastest-empty-time-container {
+ border: 1px solid #ddd;
+ padding: 10px;
+ border-radius: 12px;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .fastest-empty-time
+ .fastest-empty-time-container
+ .my-text-span-styles {
+ font-size: 15px;
+ color: #6c6c6c;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content {
+ border-radius: 12px;
+ border-right: none;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper {
+ display: flex;
+ gap: 5px;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .right-calender-select-o-t {
+ min-width: 130px;
+ border-top: none;
+ height: 40vh;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .right-calender-select-o-t
+ .calenders-cards {
+ padding: 2px;
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+ height: 40vh;
+ overflow: scroll;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .right-calender-select-o-t
+ .calenders-cards
+ .calender-card {
+ background-color: #f5f7ff;
+ border-radius: 12px;
+ display: flex;
+ flex-direction: column;
+ border: 1px solid #ddd;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .right-calender-select-o-t
+ .calenders-cards
+ .calender-card
+ .card-item-calender {
+ width: 100px;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .right-calender-select-o-t
+ .calenders-cards
+ .calender-card
+ .card-item-calender
+ :hover {
+ cursor: pointer;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .right-calender-select-o-t
+ .calenders-cards
+ .calender-card
+ .card-item-calender
+ span {
+ color: #6478fb;
+ font-size: 12px;
+ font-weight: 500;
+ text-wrap: nowrap;
+ font-family: 'IranSans';
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .left-calender-select-o-t {
+ width: 600px;
+ border: 1px solid #ddd;
+ border-radius: 12px;
+ height: 40vh;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .left-calender-select-o-t
+ .morning-afternon-selective {
+ border-bottom: 1px solid #ddd;
+ height: 45px;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .left-calender-select-o-t
+ .morning-afternon-selective
+ .morning
+ :hover {
+ cursor: pointer;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .left-calender-select-o-t
+ .morning-afternon-selective
+ .afternoon
+ :hover {
+ cursor: pointer;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .left-calender-select-o-t
+ .mor-after-content {
+ height: 40vh;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .left-calender-select-o-t
+ .mor-after-content
+ .morning-times {
+ overflow: scroll;
+ margin-top: 10px;
+ width: 100%;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 5px;
+ justify-content: space-around;
+ height: 30vh;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .left-calender-select-o-t
+ .mor-after-content
+ .morning-times
+ .morning-item-time {
+ width: 85px;
+ height: 45px;
+ border-radius: 8px;
+ border: 1px solid #ddd;
+}
+main
+ .container
+ .checkout-schedule-content
+ .right-schedule-content
+ .calender-select-other-time-content
+ .calender-select-o-t-wrapper
+ .left-calender-select-o-t
+ .mor-after-content
+ .afternoon-times
+ .afternonn-item-time {
+ width: 85px;
+ height: 45px;
+ border-radius: 8px;
+ border: 1px solid #ddd;
+}
+main .container .checkout-schedule-content .left-schedule-content {
+ margin-top: 30px;
+ width: 310px;
+ background-color: #fff;
+ border-radius: 12px;
+ height: 25vh;
+ box-shadow:
+  rgba(50, 50, 50, 0.03) 0px 4px 6px -2px,
+  rgba(50, 50, 50, 0.08) 0px -3px 10px -4px;
+}
+main
+ .container
+ .checkout-schedule-content
+ .left-schedule-content
+ .top-left-schedule {
+ background-color: #f8fafc;
+ margin: 10px;
+ border-radius: 8px;
+}
+main
+ .container
+ .checkout-schedule-content
+ .left-schedule-content
+ .top-left-schedule
+ .pic-nurse
+ img {
+ width: 65px;
+ border-radius: 50%;
+}
+main
+ .container
+ .checkout-schedule-content
+ .left-schedule-content
+ .top-left-schedule
+ .fw-bolder {
+ font-size: 14px;
+}
+main
+ .container
+ .checkout-schedule-content
+ .left-schedule-content
+ .top-left-schedule
+ span {
+ color: #6c6c6c;
+ font-size: 11px;
+ font-weight: 500;
+}
+main
+ .container
+ .checkout-schedule-content
+ .left-schedule-content
+ .buttom-left-sce {
+ padding: 0 15px;
+}
+main
+ .container
+ .checkout-schedule-content
+ .left-schedule-content
+ .buttom-left-sce
+ .bottom-sce-con {
+ border-right: 2px solid #e6e6e6;
+}
+main
+ .container
+ .checkout-schedule-content
+ .left-schedule-content
+ .buttom-left-sce
+ .bottom-sce-con
+ span {
+ padding: 0 10px;
+ color: #6c6c6c;
+ font-size: 12px;
+}
+
+@media screen and (max-width: 1006px) {
+ main .right-schedule-content {
+  width: 670px !important;
+ }
+ main .left-schedule-content {
+  width: 300px !important;
+ }
+}
+@media screen and (max-width: 992px) {
+ main .right-schedule-content {
+  width: 650px !important;
+ }
+ main .left-schedule-content {
+  width: 280px !important;
+ }
+}
+@media screen and (max-width: 945px) {
+ main .right-schedule-content {
+  width: 630px !important;
+ }
+ main .left-schedule-content {
+  width: 280px !important;
+ }
+}
+@media screen and (max-width: 923px) {
+ main .right-schedule-content {
+  width: 600px !important;
+ }
+ main .left-schedule-content {
+  width: 280px !important;
+ }
+}
+@media screen and (max-width: 894px) {
+ main .right-schedule-content {
+  width: 570px !important;
+ }
+ main .left-schedule-content {
+  width: 280px !important;
+ }
+}
+@media screen and (max-width: 870px) {
+ main .right-schedule-content {
+  width: 540px !important;
+ }
+ main .left-schedule-content {
+  width: 280px !important;
+ }
+}
+@media screen and (max-width: 839px) {
+ header .top-header-scedule {
+  width: 100%;
+ }
+ main .checkout-schedule-content {
+  width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+ }
+ main .checkout-schedule-content .right-schedule-content {
+  width: 100% !important;
+ }
+ main .checkout-schedule-content .left-schedule-content {
+  width: 100% !important;
+ }
+ main .calender-select-o-t-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ }
+ main .checkout-schedule-content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+ }
+ main .checkout-schedule-content .right-schedule-content {
+  width: 100% !important;
+ }
+ main .checkout-schedule-content .left-schedule-content {
+  width: 100% !important;
+ }
+ main .right-calender-select-o-t {
+  width: 100% !important;
+  height: 15vh !important;
+  overflow-y: hidden !important;
+  overflow-x: scroll !important;
+ }
+ main .right-calender-select-o-t .calenders-cards {
+  width: 100%;
+  height: 13vh !important;
+  display: flex;
+  flex-direction: row !important;
+ }
+ main .left-calender-select-o-t {
+  width: 100% !important;
+ }
+}
+@media screen and (max-width: 792px) {
+ header .top-header-scedule {
+  width: 100%;
+ }
+ main .checkout-schedule-content {
+  width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+ }
+ main .checkout-schedule-content .right-schedule-content {
+  width: 100% !important;
+ }
+ main .checkout-schedule-content .left-schedule-content {
+  width: 100% !important;
+ }
+}
+@media screen and (max-width: 768px) {
+ header .container {
+  max-width: 768px;
+ }
+ main .container {
+  max-width: 768px;
+ }
+}
+@media screen and (max-width: 357px) {
+ header {
+  height: 150px;
+ }
+ .stepper-wrapper .stepper-item .step-name {
+  font-size: 10px !important;
+ }
+} /*# sourceMappingURL=schedule.css.map */

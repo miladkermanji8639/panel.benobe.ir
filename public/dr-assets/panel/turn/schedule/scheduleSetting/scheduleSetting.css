@@ -1,0 +1,224 @@
+.font-40 {
+ font-size: 40px !important;
+}
+.card-hover:hover {
+ /* cursor: pointer; */
+ box-shadow:
+  rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+  rgba(0, 0, 0, 0.3) 0px 30px 60px -30px !important;
+ background-color: rgb(183, 255, 251) !important;
+ color: #fff !important;
+ transition: 0.4s ease-in-out all;
+}
+.btn-trash {
+ padding: 1px 11px !important;
+}
+.ant-input-number {
+ height: 42px !important;
+}
+.ant-input-number {
+ -webkit-box-sizing: border-box;
+ box-sizing: border-box;
+ font-variant: tabular-nums;
+ list-style: none;
+ -webkit-font-feature-settings: 'tnum';
+ font-feature-settings: 'tnum', 'tnum';
+ position: relative;
+ width: 100%;
+ height: 32px;
+ color: rgba(0, 0, 0, 0.65);
+ font-size: 14px;
+ line-height: 1.5;
+ background-color: #fff;
+ background-image: none;
+ -webkit-transition: all 0.3s;
+ transition: all 0.3s;
+ display: inline-block;
+ width: 90px;
+ margin: 0;
+ padding: 0;
+ border: 1px solid #d9d9d9;
+ border-radius: 4px;
+}
+.ant-input-number-handler-wrap {
+ position: absolute;
+ top: 0;
+ right: 0;
+ width: 22px;
+ height: 100%;
+ background: #fff;
+ border-left: 1px solid #d9d9d9;
+ border-radius: 0 4px 4px 0;
+ opacity: 0;
+ -webkit-transition: opacity 0.24s linear 0.1s;
+ transition: opacity 0.24s linear 0.1s;
+}
+.ant-input-number-handler-up {
+ border-top-right-radius: 4px;
+ cursor: pointer;
+}
+.ant-input-number-handler {
+ position: relative;
+ display: block;
+ width: 100%;
+ height: 50%;
+ overflow: hidden;
+ color: rgba(0, 0, 0, 0.45);
+ font-weight: 700;
+ line-height: 0;
+ text-align: center;
+ -webkit-transition: all 0.1s linear;
+ transition: all 0.1s linear;
+}
+:root
+ .ant-input-number-handler-wrap
+ .ant-input-number-handler
+ .ant-input-number-handler-down-inner,
+:root
+ .ant-input-number-handler-wrap
+ .ant-input-number-handler
+ .ant-input-number-handler-up-inner {
+ font-size: 12px;
+}
+.ant-input-number-handler-wrap
+ .ant-input-number-handler
+ .ant-input-number-handler-down-inner,
+.ant-input-number-handler-wrap
+ .ant-input-number-handler
+ .ant-input-number-handler-up-inner {
+ display: inline-block;
+ font-size: 12px;
+ font-size: 7px \9;
+ -webkit-transform: scale(0.58333333) rotate(0deg);
+ -ms-transform: scale(0.58333333) rotate(0deg);
+ transform: scale(0.58333333) rotate(0deg);
+ min-width: auto;
+ margin-right: 0;
+}
+.ant-input-number-handler-up-inner {
+ top: 50%;
+ margin-top: -5px;
+ text-align: center;
+}
+.ant-input-number-handler-down-inner,
+.ant-input-number-handler-up-inner {
+ display: inline-block;
+ color: inherit;
+ font-style: normal;
+ line-height: 0;
+ text-align: center;
+ text-transform: none;
+ vertical-align: -0.125em;
+ text-rendering: optimizeLegibility;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ position: absolute;
+ right: 4px;
+ width: 12px;
+ height: 12px;
+ color: rgba(0, 0, 0, 0.45);
+ line-height: 12px;
+ -webkit-transition: all 0.1s linear;
+ transition: all 0.1s linear;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+.anticon {
+ display: inline-block;
+ color: inherit;
+ font-style: normal;
+ line-height: 0;
+ text-align: center;
+ text-transform: none;
+ vertical-align: -0.125em;
+ text-rendering: optimizeLegibility;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+}
+.ant-input-number-handler-down {
+ top: 0;
+ border-top: 1px solid #d9d9d9;
+ border-bottom-right-radius: 4px;
+ cursor: pointer;
+}
+.ant-input-number-handler {
+ position: relative;
+ display: block;
+ width: 100%;
+ height: 50%;
+ overflow: hidden;
+ color: rgba(0, 0, 0, 0.45);
+ font-weight: 700;
+ line-height: 0;
+ text-align: center;
+ -webkit-transition: all 0.1s linear;
+ transition: all 0.1s linear;
+}
+.ant-input-number-handler-wrap
+ .ant-input-number-handler
+ .ant-input-number-handler-down-inner,
+.ant-input-number-handler-wrap
+ .ant-input-number-handler
+ .ant-input-number-handler-up-inner {
+ display: inline-block;
+ font-size: 12px;
+ font-size: 7px \9;
+ -webkit-transform: scale(0.58333333) rotate(0deg);
+ -ms-transform: scale(0.58333333) rotate(0deg);
+ transform: scale(0.58333333) rotate(0deg);
+ min-width: auto;
+ margin-right: 0;
+}
+
+.ant-input-number-handler-down-inner {
+ top: 50%;
+ margin-top: -6px;
+ text-align: center;
+}
+.ant-input-number-handler-down-inner,
+.ant-input-number-handler-up-inner {
+ display: inline-block;
+ color: inherit;
+ font-style: normal;
+ line-height: 0;
+ text-align: center;
+ text-transform: none;
+ vertical-align: -0.125em;
+ text-rendering: optimizeLegibility;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ position: absolute;
+ right: 4px;
+ width: 12px;
+ height: 12px;
+ color: rgba(0, 0, 0, 0.45);
+ line-height: 12px;
+ -webkit-transition: all 0.1s linear;
+ transition: all 0.1s linear;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+.ant-input-number-input {
+ text-align: left !important;
+ height: 42px !important;
+}
+.ant-input-number-input {
+ width: 100%;
+ height: 30px;
+ padding: 0 11px;
+ text-align: left;
+ background-color: initial;
+ border: 0;
+ border-radius: 4px;
+ outline: 0;
+ -webkit-transition: all 0.3s linear;
+ transition: all 0.3s linear;
+ -moz-appearance: textfield !important;
+}
+.margin-right-10 {
+ margin-right: 10px;
+}

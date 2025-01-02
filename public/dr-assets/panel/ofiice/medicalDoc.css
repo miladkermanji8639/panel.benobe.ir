@@ -1,0 +1,40 @@
+.max-width-800 {
+ max-width: 800px;
+}
+.ml-auto,
+.mx-auto {
+ margin-left: auto !important;
+}
+.mr-auto,
+.mx-auto {
+ margin-right: auto !important;
+}
+.ml-1,
+.mx-1 {
+ margin-left: 0.25rem !important;
+}
+.anticon {
+ display: inline-block;
+ color: inherit;
+ font-style: normal;
+ line-height: 0;
+ text-align: center;
+ text-transform: none;
+ vertical-align: -0.125em;
+ text-rendering: optimizeLegibility;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+}
+.rounded {
+ border-radius: 0.25rem !important;
+}
+
+.border {
+ border: 1px solid #dee2e6 !important;
+}
+.bg-white {
+ background-color: #fff !important;
+}
+.rounded img {
+ height: 200px;
+}

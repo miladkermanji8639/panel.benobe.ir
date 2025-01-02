@@ -1,0 +1,2439 @@
+@import url('./../../fonts/benobe-font/stylesheet.css');
+
+* {
+ font-family: 'DISXV' !important;
+}
+main .top-main-telemedicine {
+ box-shadow: rgba(0, 0, 0, 0.05) 0 1px 2px 0;
+ background-color: #fff;
+}
+
+main .top-telemedicine {
+ min-height: 30vh;
+}
+
+main .top-telemedicine .top-right-telemedicine h1 {
+ color: #1aab49;
+ font-weight: bold;
+}
+header .login-input-text input {
+ width: 450px !important;
+}
+
+main .telemedicine-instant {
+ box-shadow: rgba(0, 0, 0, 0.05) 0 1px 2px 0;
+ background-color: #fff;
+ margin-top: 10px;
+ overflow-x: hidden;
+}
+
+main .telemedicine-instant .takhasos-card {
+ border: 1px solid #1aab49;
+ width: 170px;
+ height: 170px;
+ border-radius: 12px;
+ margin: 10px;
+}
+
+main .telemedicine-instant .takhasos-card svg {
+ fill: #1aab49;
+}
+
+main .all-takhasos-telemedicine {
+ background-color: #fff !important;
+ min-height: 50vh !important;
+}
+
+main #next-slide svg,
+main #prev-slide svg {
+ position: absolute;
+ top: 50px;
+ background-color: #fff;
+ border-radius: 50%;
+ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+main #next-slide {
+ position: absolute;
+ left: 140px;
+}
+
+main #prev-slide {
+ position: absolute;
+ right: 140px;
+}
+
+main .text-badge-container {
+ display: flex;
+ -webkit-box-pack: center;
+ justify-content: center;
+ -webkit-box-align: center;
+ align-items: center;
+ gap: 10px;
+}
+
+main .css-7l506x {
+ width: 12px;
+ height: 12px;
+ background-color: rgb(34, 221, 94);
+ border-radius: 50%;
+ position: relative;
+}
+
+main .css-7l506x::after {
+ width: 20px;
+ height: 20px;
+ top: -4px;
+ left: -4px;
+}
+
+main .css-y14sbn {
+ color: rgb(26, 171, 73);
+ margin: 0;
+ font-weight: 400;
+ font-size: 14px;
+ line-height: 20px;
+}
+
+main .css-7l506x::before {
+ display: block;
+ content: '';
+ width: 16px;
+ height: 16px;
+ background-color: transparent;
+ border: 1px solid rgb(122, 235, 158);
+ border-radius: 50%;
+ position: absolute;
+ top: -2px;
+ left: -2px;
+ animation: 800ms linear 0s infinite alternate none running pulse;
+ animation-duration: 800ms;
+ animation-timing-function: linear;
+ animation-delay: 0s;
+ animation-iteration-count: infinite;
+ animation-direction: alternate;
+ animation-fill-mode: none;
+ animation-play-state: running;
+ animation-name: pulse;
+}
+
+@keyframes pulse {
+ 100% {
+  border: 2px solid rgb(34, 221, 94);
+  transform: scale(1.1);
+ }
+}
+
+main .online-nurse-infinite-styles {
+ color: rgb(26, 171, 73);
+ margin: 0;
+ font-weight: 400;
+ font-size: 14px;
+ line-height: 20px;
+}
+
+main .text-visit-instant-content {
+ background-color: #fff;
+}
+
+main .telemedicine-banner {
+ display: flex;
+ gap: 30px;
+ background-color: #fff;
+ min-height: 20vh;
+}
+
+main .telemedicine-banner img {
+ width: 470px;
+ height: 130px;
+ border-radius: 5px;
+}
+
+main .nurse-slider-conversation {
+ background-color: #e8fbee;
+ display: flex;
+ justify-content: center;
+ min-height: 60vh;
+ align-items: center;
+}
+
+main .nurse-slider-conversation #myCarousel-2 {
+ width: 50%;
+}
+@media screen and (max-width: 994px) {
+ main {
+  position: relative !important;
+  top: 126px !important;
+  padding-bottom: 12px !important;
+ }
+}
+main .term-options {
+ background-color: #fff;
+ min-height: 20vh;
+}
+
+main .term-icon {
+ width: 64px;
+ height: 64px;
+ border-radius: 360px;
+ background-color: #e8fbee;
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-align-items: center;
+ -webkit-box-align: center;
+ -ms-flex-align: center;
+ align-items: center;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+}
+
+.faq {
+ background-color: #fff !important;
+ min-height: 50vh;
+}
+
+main .text-visit-slider-item-icon-wrapper {
+ width: 148px;
+ height: 148px;
+ border-radius: 360px;
+ background-color: rgb(230, 243, 255);
+ padding: 24px;
+}
+
+@media screen and (max-width: 1072px) {
+ main #next-slide svg,
+ main #prev-slide svg {
+  position: absolute;
+  top: 150px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+ }
+
+ main #next-slide {
+  position: absolute;
+  left: 140px;
+ }
+
+ main #prev-slide {
+  position: absolute;
+  right: 140px;
+ }
+}
+
+@media screen and (max-width: 993px) {
+ main .top-telemedicine {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+ }
+
+ main .top-right-telemedicine br {
+  display: none;
+ }
+
+ main .top-right-telemedicine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+ }
+
+ main .top-right-telemedicine .mt-5 {
+  margin-top: 3px !important;
+ }
+
+ main .top-left-telemedicine {
+  display: flex;
+  margin-top: 20px !important;
+  justify-content: center;
+  width: 80% !important;
+ }
+
+ main .telemedicine-banner img {
+  width: 100%;
+  height: 180px;
+ }
+
+ main .telemedicine-banner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ }
+
+ main .nurse-slider-conversation #myCarousel-2 {
+  width: 100%;
+ }
+
+ main .term-options .term-cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+ }
+
+ main .term-options .term-cards .term-card {
+  margin-top: 40px;
+ }
+}
+
+@media screen and (max-width: 700px) {
+ main .nurse-slider-conversation #myCarousel-2 {
+  width: 100%;
+ }
+
+ main .nurse-slider-conversation #myCarousel-2 p {
+  width: 100%;
+ }
+}
+
+@media screen and (max-width: 543px) {
+ main .nurse-slider-conversation #myCarousel-2 {
+  width: 100%;
+ }
+
+ main .nurse-slider-conversation #myCarousel-2 p {
+  width: 100%;
+ }
+
+ main .con-slider-543 {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse !important;
+ }
+
+ main .top-right-telemedicine h1 {
+  font-size: 18px;
+ }
+
+ main .top-right-telemedicine span {
+  font-size: 11px;
+  margin-top: 20px !important;
+ }
+
+ main .left-item-nurse-conversation-slide {
+  margin-top: 30px;
+ }
+}
+@media screen and (max-width: 348px) {
+ main .nurse-slider-conversation #myCarousel-2 {
+  width: 100%;
+ }
+
+ main .nurse-slider-conversation #myCarousel-2 p {
+  width: 100%;
+ }
+
+ main .con-slider-543 {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse !important;
+ }
+
+ main .top-right-telemedicine h1 {
+  font-size: 15px;
+  font-weight: bolder;
+ }
+
+ main .top-right-telemedicine span {
+  font-size: 10px;
+  margin-top: 20px !important;
+ }
+
+ main .left-item-nurse-conversation-slide {
+  margin-top: 30px;
+ }
+}
+
+/* faq css */
+@import url('./../../../fonts/IRANSans/style.css');
+@import url('./../../../fonts/yekan-bakh/stylesheet.css');
+@import url('./../../../css/home/my-styles.css');
+
+* {
+ font-family: 'Yekan Bakh';
+ font-weight: 600;
+}
+
+body {
+ font-family: 'Yekan Bakh' !important;
+ font-weight: 600;
+}
+
+header {
+ background-color: #fff !important;
+ width: 100%;
+}
+
+header .top-header {
+ width: 100%;
+ /* height: 108px !important; */
+ box-shadow:
+  0px 4px 6px -2px rgba(50, 50, 50, 0.03),
+  0px -3px 10px -4px rgba(50, 50, 50, 0.08);
+}
+
+header .nav-tog-show {
+ width: 0;
+ height: 100%;
+ overflow-y: scroll;
+ background-color: #fbfcfe;
+ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+ position: fixed;
+ top: 0;
+ right: 0;
+ z-index: 125;
+}
+
+header .nav-tog-show .nav-tog-show-items .nav-tog-list-content ul li a {
+ text-decoration: none;
+ color: #333;
+}
+main .telemedicine-content {
+ margin-top: 70px !important;
+}
+
+header .nav-tog-show .nav-tog-show-items .top-nav-tog {
+ height: 110px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+header .nav-tog-show .nav-tog-show-items .top-nav-tog .top-nav-tog-logo img {
+ width: 80px;
+}
+
+header
+ .nav-tog-show
+ .nav-tog-show-items
+ .top-nav-tog
+ .top-nav-tog-close-icon
+ img {
+ width: 35px;
+}
+
+header
+ .nav-tog-show
+ .nav-tog-show-items
+ .top-nav-tog
+ .top-nav-tog-close-icon:hover {
+ cursor: pointer;
+}
+
+header .nav-tog-show .nav-tog-show-items .nav-tog-poshtibani {
+ background-color: #fbfcfe;
+ border-bottom: 1px solid #ddd;
+ padding: 13px 2px;
+}
+
+header .nav-tog-show .nav-tog-show-items .nav-tog-list-items {
+ margin-top: 10px;
+}
+
+header
+ .nav-tog-show
+ .nav-tog-show-items
+ .nav-tog-list-items
+ .nav-tog-list-content
+ ul {
+ list-style-type: none !important;
+}
+
+header
+ .nav-tog-show
+ .nav-tog-show-items
+ .nav-tog-list-items
+ .nav-tog-list-content
+ ul
+ li {
+ border-bottom: 1px solid #ddd;
+ padding: 13px 2px;
+ background-color: #fbfcfe;
+}
+
+header
+ .nav-tog-show
+ .nav-tog-show-items
+ .nav-tog-list-items
+ .nav-tog-list-content
+ ul
+ li
+ a {
+ text-decoration: none;
+}
+
+header .tog-show-t-all {
+ margin-top: 0 !important;
+ height: 20vh;
+ overflow-y: scroll;
+}
+
+header .tog-show-t-all ul li {
+ background-color: #e6f3ff !important;
+}
+
+header .top-right-logo-header a img {
+ width: 85px;
+}
+
+header .btn-reg-log {
+ /* border: 1px solid #0067cd !important; */
+ color: rgb(71, 84, 103);
+}
+
+header .btn-reg-log:hover {
+ color: #0351a0;
+}
+
+header .top-nav-header nav a {
+ font-weight: bold;
+ font-size: 14px;
+ color: #000;
+}
+
+header .log-reg-modal {
+ min-width: 420px;
+ max-width: 100vw;
+ /* height: 395px; */
+ background-color: #fff;
+ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+ border-radius: 12px;
+ position: absolute;
+ z-index: 77;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, 40%);
+}
+
+header .log-reg-modal .close-modal:hover {
+ cursor: pointer;
+}
+
+header .log-reg-modal .content-log-reg-modal .modal-logo img {
+ width: 80px;
+}
+
+header
+ .log-reg-modal
+ .content-log-reg-modal
+ .regestration-modal
+ input::placeholder {
+ font-size: 17px !important;
+ font-weight: bold;
+ color: #ddd;
+}
+
+header .takhasos {
+ width: 1100px;
+ background-color: #fff;
+ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+ height: 80vh;
+ position: absolute;
+ border-radius: 12px;
+ right: 0;
+ top: 55px;
+}
+
+header .takhasos a {
+ text-decoration: none;
+}
+
+header .takhasos .prev-mega-menu {
+ position: absolute;
+ top: 89% !important;
+ transform: translate(-50%, 50%);
+}
+
+header .takhasos .next-mega-menu {
+ position: absolute;
+ top: 89% !important;
+ left: 5%;
+ transform: translate(-50%, 50%);
+}
+
+.poshtibany-icon img {
+ width: 60px;
+ left: 10px;
+ border-radius: 50%;
+ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ position: fixed;
+ top: 80% !important;
+ z-index: 888;
+ transform: translate(5%, 25%);
+}
+
+.poshtibany-icon img:hover {
+ cursor: pointer;
+}
+
+.bg-success-10 {
+ background-color: rgb(26, 171, 73);
+}
+
+.text-success-10 {
+ color: rgb(26, 171, 73);
+}
+
+.text-success-20 {
+ color: #148539;
+}
+
+.text-xs {
+ font-size: 13px;
+ font-weight: 400;
+}
+
+.text-primary-70 {
+ color: #0067cd !important;
+}
+
+.border-1-primary {
+ border: 1px solid #0067cd !important;
+}
+
+.rounded-full {
+ border-radius: 120px;
+}
+
+.text-gray-10 {
+ color: #b9b9b9;
+ font-weight: 300;
+}
+
+.bg-ddd {
+ background-color: rgba(221, 221, 221, 0.8666666667) !important;
+}
+
+.text-primary-80 {
+ color: #004e9c !important;
+}
+
+.bg-primary-70 {
+ background-color: #0067cd !important;
+}
+
+.bg-primary-40 {
+ background-color: #97cbff !important;
+}
+
+.bg-primary-30 {
+ background-color: #cce6ff;
+}
+
+.bg-primary-20 {
+ background-color: #daedff;
+}
+
+.bg-primary-10 {
+ background-color: #e6f3ff;
+}
+
+.bg-f4faff {
+ background-color: #f4faff !important;
+}
+
+::-webkit-scrollbar {
+ display: none;
+}
+
+main {
+ width: 100% !important;
+}
+
+main .s-tekrar-content {
+ display: flex;
+ flex-wrap: nowrap !important;
+ text-wrap: nowrap !important;
+ overflow-x: scroll !important;
+ flex-direction: row !important;
+}
+
+main .top-main-search form {
+ display: flex;
+ flex-direction: row;
+}
+
+main .top-h-main {
+ text-align: center;
+ line-height: 3.5rem;
+ font-weight: bold;
+}
+
+main .top-h-main .text-pr-f-iran {
+ font-family: IRANSans !important;
+ font-weight: 500;
+ padding: 0 2px;
+}
+
+main .my-input-search {
+ width: 550px;
+ height: 50px;
+ border-radius: 30px;
+ border: 1px solid rgb(26, 171, 73);
+ background-color: #fff;
+ outline: none;
+ padding-right: 10px;
+ border-top-left-radius: 0;
+ border-bottom-left-radius: 0;
+ border-left: none;
+}
+
+main .my-input-search::placeholder {
+ font-weight: 500;
+ font-size: 13px;
+ padding-right: 10px;
+}
+
+main .city-and-search-icon-in-input {
+ width: 120px;
+ height: 50px;
+ border-radius: 30px;
+ border: 1px solid rgb(26, 171, 73);
+ background-color: #fff;
+ outline: none;
+ padding-right: 10px;
+ display: flex;
+ align-items: center;
+ justify-content: start;
+ border-right: none;
+ border-top-right-radius: 0;
+ border-bottom-right-radius: 0;
+}
+
+main .btn-search {
+ display: flex;
+ overflow: hidden;
+ padding: 8px;
+ border-radius: 50%;
+ background: rgb(26, 171, 73);
+ -webkit-box-pack: center;
+ justify-content: center;
+ -webkit-box-align: center;
+ align-items: center;
+ border: none;
+ color: rgb(255, 255, 255);
+ width: 30px;
+ height: 30px;
+ align-items: center;
+}
+
+main .text-most-searches {
+ margin: 10px;
+}
+
+main .most-searches-item-styles {
+ border: 1px solid #ddd;
+ border-radius: 50px;
+ padding: 5px 7px;
+ margin-top: 12px;
+ font-weight: 400;
+}
+
+main .card-services-main-top .card-services {
+ display: flex;
+ justify-content: center;
+ gap: 10px 10px;
+}
+
+main .card-services-main-top .card-services .card-service {
+ width: 265px;
+ height: 275px;
+ border-radius: 12px;
+ box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+main .card-services-main-top .card-services .card-service .img-overlay img {
+ position: relative;
+ z-index: 2;
+ bottom: 20px;
+}
+
+main
+ .card-services-main-top
+ .card-services
+ .card-service
+ .content-card-service-description
+ p {
+ font-size: 14px;
+ width: 85%;
+}
+
+main .all-takhasos {
+ width: 100%;
+ min-height: 80vh;
+ background-color: #e6f3ff;
+ position: relative;
+}
+
+main .all-takhasos .takhasos-cards .takhasos-card {
+ margin: 10px;
+ width: 180px;
+ height: 180px;
+ background-color: #fff;
+ border-radius: 12px;
+ border: 1px solid #417cb6;
+}
+
+main .next-slide {
+ position: absolute;
+ left: 11%;
+ top: 54%;
+}
+
+main .prev-slide {
+ position: absolute;
+ right: 11%;
+ top: 54%;
+}
+
+main .overly-img {
+ border: 2px solid rgb(255, 179, 0);
+}
+
+main .heart-overly-nurse {
+ width: 16px;
+ height: 16px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ border-radius: 50%;
+ background-color: #fff !important;
+ position: relative;
+ z-index: 33;
+ top: 50px;
+ left: 22px;
+}
+
+main .mp-s div:hover {
+ cursor: pointer;
+}
+
+main .card-nurse {
+ height: 330px !important;
+}
+
+main .change-slide-nurse-card {
+ display: flex;
+ justify-content: center;
+ gap: 10px 10px;
+}
+
+main .change-slide-nurse-card div {
+ width: 12px;
+ height: 12px;
+ border-radius: 50%;
+ background-color: rgba(221, 221, 221, 0.8666666667);
+}
+
+main .k-image {
+ width: 100px !important;
+}
+
+main .clinic-details {
+ border: 1px solid #b9b9b9;
+ border-radius: 12px;
+ padding: 10px;
+ margin-top: 15px;
+}
+
+main .card-clinic {
+ height: 270px !important;
+ border: none !important;
+}
+
+main .guide-benobeh {
+ width: 100%;
+ background-color: #e6f3ff !important;
+}
+
+main .guide-benobeh .top-left-guide img {
+ width: 270px;
+ position: relative;
+ bottom: 80px;
+}
+
+main .downloads img {
+ width: 180px;
+}
+
+main .right-bottom-guide {
+ border-left: 1px solid #0067cd;
+}
+
+main .users-comment .card-comment {
+ width: 350px;
+ height: 190px;
+ border: 1px solid #004e9c;
+ border-radius: 12px;
+ padding: 15px;
+}
+
+main .comment-text-card-comment {
+ margin-top: 10px;
+}
+
+main .comment-text-card-comment p {
+ font-size: 12px;
+}
+
+main .takhasos-list {
+ width: 100%;
+ border: 1px solid #d5ebff;
+ padding: 15px;
+ border-radius: 12px;
+}
+
+main .takhasos-list .t-list-all ul li a {
+ text-decoration: none;
+ font-size: 14px;
+ color: #000;
+}
+
+main .show-all-toggler-takhasos-list span:hover {
+ cursor: pointer;
+}
+
+.h-50px {
+ height: 50px !important;
+}
+
+.bottom-menu-839 {
+ height: 62px;
+ width: 100vw;
+ position: fixed;
+ bottom: 0px;
+ right: 0px;
+ display: flex;
+ flex-direction: row;
+ -webkit-box-pack: justify;
+ justify-content: space-between;
+ padding: 0px 8px;
+ background-color: rgb(255, 255, 255);
+ box-shadow: rgba(96, 100, 106, 0.08) 0px -4px 16px 0px;
+ z-index: 100;
+}
+
+.bottom-menu-839 .content-bottom-menu-839 {
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+}
+
+.bottom-menu-839 .content-bottom-menu-839 .home-menu-item-div a,
+.bottom-menu-839 .content-bottom-menu-839 .nurses-menu-item-div a,
+.bottom-menu-839 .content-bottom-menu-839 .nobatha-menu-item-div a,
+.bottom-menu-839 .content-bottom-menu-839 .profile-menu-item-div a {
+ display: flex;
+ flex-direction: column;
+ text-decoration: none;
+ color: #333;
+ align-items: center;
+ padding: 5px 10px;
+}
+
+.bottom-menu-839 .content-bottom-menu-839 .home-menu-item-div a {
+ color: #0067cd;
+}
+
+.bottom-menu-839 .content-bottom-menu-839 .home-menu-item-div a svg {
+ fill: #0067cd;
+}
+
+@media screen and (min-width: 1400px) {
+ .next-slide {
+  position: absolute !important;
+  left: 50px !important;
+  top: 360px !important;
+ }
+
+ .prev-slide {
+  position: absolute !important;
+  right: 50px !important;
+  top: 360px !important;
+ }
+}
+
+@media screen and (max-width: 1400px) {
+ .next-slide {
+  position: absolute !important;
+  left: 130px !important;
+  top: 360px !important;
+ }
+
+ .prev-slide {
+  position: absolute !important;
+  right: 130px !important;
+  top: 360px !important;
+ }
+}
+
+@media screen and (max-width: 1316px) {
+ .next-slide {
+  position: absolute !important;
+  left: 80px !important;
+  top: 360px !important;
+ }
+
+ .prev-slide {
+  position: absolute !important;
+  right: 80px !important;
+  top: 360px !important;
+ }
+}
+
+@media screen and (max-width: 1220px) {
+ .next-slide {
+  position: absolute !important;
+  left: 40px !important;
+  top: 360px !important;
+ }
+
+ .prev-slide {
+  position: absolute !important;
+  right: 40px !important;
+  top: 360px !important;
+ }
+}
+
+@media screen and (max-width: 1200px) {
+ .all-takhasos .next-slide {
+  position: absolute !important;
+  left: 40px !important;
+  top: 450px !important;
+ }
+
+ .all-takhasos .prev-slide {
+  position: absolute !important;
+  right: 40px !important;
+  top: 450px !important;
+ }
+
+ .card-services {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px 10px;
+ }
+
+ .card-services .card-service {
+  width: 325px !important;
+  height: 275px !important;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+ }
+
+ .card-services .card-service h4 {
+  font-size: 16px;
+  font-weight: bold !important;
+ }
+
+ .card-services .card-service a {
+  font-size: 14px !important;
+ }
+
+ .card-services .card-service .h-m-1200 {
+  margin: 22px !important;
+ }
+
+ .card-services .card-service .img-overlay img {
+  position: relative;
+  z-index: 2;
+  bottom: 10px;
+  width: 50px;
+ }
+
+ .card-services .card-service .content-card-service-description p {
+  font-size: 14px;
+  width: 85%;
+ }
+
+ .right-top-visit-nurse h2 {
+  font-size: 25px;
+ }
+
+ .guide-benobeh {
+  height: 105vh !important;
+ }
+
+ .guide-benobeh .downlod-items img {
+  width: 160px !important;
+ }
+
+ .users-comment .card-comment {
+  width: 290px;
+  height: 220px;
+ }
+
+ .takhasos {
+  width: 1000px !important;
+  height: 85vh !important;
+ }
+}
+
+@media screen and (min-width: 1200px) {
+ .guide-benobeh {
+  height: 105vh !important;
+ }
+}
+
+@media screen and (max-width: 1069px) {
+ .card-services {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px 10px;
+ }
+
+ .card-services .card-service {
+  width: 325px !important;
+  height: 275px !important;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+ }
+
+ .card-services .card-service h4 {
+  font-size: 16px;
+  font-weight: bold !important;
+ }
+
+ .card-services .card-service a {
+  font-size: 14px !important;
+ }
+
+ .card-services .card-service .h-m-1200 {
+  margin: 22px !important;
+ }
+
+ .card-services .card-service .img-overlay img {
+  position: relative;
+  z-index: 2;
+  bottom: 10px;
+  width: 50px;
+ }
+
+ .card-services .card-service .content-card-service-description p {
+  font-size: 14px;
+  width: 85%;
+ }
+
+ .right-top-visit-nurse h2 {
+  font-size: 25px;
+ }
+
+ .guide-benobeh .downlod-items img {
+  width: 160px !important;
+ }
+
+ .users-comment .card-comment {
+  width: 290px;
+  height: 220px;
+ }
+
+ .takhasos {
+  width: 900px !important;
+  height: 85vh !important;
+ }
+
+ footer .namads-footer img {
+  width: 60px !important;
+  height: 60px !important;
+ }
+
+ footer .mid-footer-items a {
+  font-size: 13px;
+  font-weight: 400 !important;
+ }
+
+ footer .right-footer-items a {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+ }
+
+ footer .right-footer-items span {
+  font-size: 14px !important;
+ }
+}
+
+@media screen and (max-width: 992px) {
+ .change-main-container-js,
+ .most-searches-container,
+ .remove-container-all-takhasos-use-js,
+ .n-r-c,
+ .md-r-c,
+ .gb-r-c,
+ .us-r-c,
+ .tld-r-c {
+  max-width: 960px !important;
+ }
+
+ header {
+  align-items: center !important;
+  width: 100% !important;
+ }
+
+ /* header .d-none-top-header {
+        display: none;
+    } */
+
+ header .top-header-991 {
+  height: 60px !important;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center !important;
+ }
+
+ header .top-header-991 .nav-toggle-992 img {
+  width: 32px;
+  height: 32px;
+ }
+
+ header .top-header-991 .top-left-regestration-header .btn-reg-log {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+ header .top-header-991 .top-left-regestration-header .btn-reg-log svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 500px !important;
+ }
+
+ header .top-header-991 .top-center-logo-header img {
+  width: 75px;
+ }
+
+ header .top-header {
+  min-height: 40px !important;
+ }
+
+ header .top-header .top-header-container {
+  max-width: 960px !important;
+ }
+
+ header .text-login {
+  display: none;
+ }
+
+ header .for-nurses-top-header {
+  display: none;
+ }
+
+ header .top-right-logo-header img {
+  position: absolute !important;
+  right: 46.3%;
+  /* top: 37%; */
+  width: 70px !important;
+ }
+
+ header .top-regestration-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+ header .top-regestration-header a {
+  /* width: 40px; */
+  height: 35px;
+  /* position: absolute; */
+  bottom: 4%;
+  left: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+ main {
+  position: relative;
+  /* top: 10px !important; */
+  width: 100% !important;
+ }
+
+ main .top-main-header {
+  margin-top: 50px !important;
+ }
+
+ main .top-main-header h1 {
+  font-size: 22px;
+  line-height: 2rem;
+ }
+
+ main .top-main-search {
+  padding: 0 20px;
+  width: 100% !important;
+ }
+
+ main .top-main-search form {
+  width: 90% !important;
+  display: flex;
+  justify-content: center !important;
+  padding: 0 5px;
+ }
+
+ main .top-main-search form input {
+  width: 100% !important;
+  min-width: 100% !important;
+ }
+
+ main .top-main-search form .city-and-search-icon-in-input {
+  padding: 0 10px;
+ }
+
+ main .top-main-search form .city-and-search-icon-in-input .city-location {
+  width: 70px !important;
+ }
+
+ main .most-searches {
+  margin-top: 10px;
+  width: 100%;
+ }
+
+ main .most-searches .text-most-searches .jt {
+  text-align: center !important;
+  display: block !important;
+ }
+
+ main .most-searches .s-tekrar-content {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap !important;
+  text-wrap: nowrap !important;
+  overflow-x: scroll !important;
+  flex-direction: row !important;
+ }
+
+ main .card-services-main-top .nurses-list-div svg {
+  padding: 0 30px;
+ }
+
+ main .card-services-main-top .card-services {
+  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+ }
+
+ main .card-services-main-top .card-services .card-service {
+  width: 98% !important;
+  height: 100px !important;
+  display: flex;
+  align-items: center;
+ }
+
+ main
+  .card-services-main-top
+  .card-services
+  .card-service
+  .caret-left-in-services {
+  position: absolute;
+  right: 92%;
+ }
+
+ main
+  .card-services-main-top
+  .card-services
+  .card-service
+  .content-card-service-description
+  p {
+  display: none;
+ }
+
+ main .card-services-main-top .card-services .card-service .card-srvice-header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+ }
+
+ main
+  .card-services-main-top
+  .card-services
+  .card-service
+  .card-srvice-header
+  .csh-h-fix {
+  padding: 0 1px !important;
+ }
+
+ main .card-services-main-top .card-services .nurses-list-div a {
+  display: none !important;
+ }
+
+ main .visit-nurse {
+  padding-bottom: 30px !important;
+  width: 100% !important;
+ }
+
+ main .visit-nurse .right-top-visit-nurse h2 {
+  font-size: 19px;
+ }
+
+ main .visit-nurse .right-top-visit-nurse span {
+  font-size: 13px;
+ }
+
+ main .visit-nurse .show-all-visit-nurse {
+  display: none;
+ }
+
+ main .visit-nurse .show-all-visit-nurse a {
+  font-size: 14px;
+ }
+
+ main .visit-nurse .show-all-visit-nurse a svg {
+  width: 22px !important;
+  height: 22px !important;
+ }
+
+ main .visit-nurse .show-all-visit-nurse-992 {
+  display: grid !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+ }
+
+ main .visit-nurse .cards-online-nurses {
+  width: 100% !important;
+  display: flex;
+ }
+
+ main .all-takhasos {
+  display: flex !important;
+  padding-bottom: 50px !important;
+ }
+
+ main .all-takhasos .right-top-visit-nurse {
+  padding: 0 10px;
+ }
+
+ main .all-takhasos .right-top-visit-nurse h2 {
+  font-size: 22px;
+ }
+
+ main .all-takhasos .right-top-visit-nurse h2 br {
+  display: none;
+ }
+
+ main .all-takhasos .right-top-visit-nurse span {
+  font-size: 13px;
+ }
+
+ main .all-takhasos .show-all-visit-nurse {
+  display: none;
+ }
+
+ main .all-takhasos .show-all-visit-nurse a {
+  padding: 0 20px;
+  font-size: 14px;
+ }
+
+ main .all-takhasos .show-all-visit-nurse a svg {
+  width: 22px !important;
+  height: 22px !important;
+ }
+
+ main .all-takhasos .next-slide,
+ main .all-takhasos .prev-slide {
+  display: none;
+ }
+
+ main .all-takhasos .takhasos-cards-up-991 {
+  display: none !important;
+ }
+
+ main .all-takhasos .takhasos-cards-991 {
+  display: flex !important;
+  width: 100% !important;
+  padding-bottom: 8px !important;
+ }
+
+ main .all-takhasos .takhasos-cards-991 .takhasos-cards {
+  padding: 0 10px !important;
+  display: grid !important;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  overflow-x: scroll;
+  overflow-y: hidden;
+  gap: 5px;
+ }
+
+ main .all-takhasos .takhasos-cards .takhasos-card {
+  width: 140px;
+  height: 120px;
+  margin: 0px !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+ }
+
+ main .nobat-dehi .change-slide-nurse-card {
+  margin-top: 60px !important;
+ }
+
+ main .nobat-dehi .show-all-visit-nurse {
+  display: none;
+ }
+
+ main .nobat-dehi .n-r-c .right-top-visit-nurse {
+  padding: 0 10px;
+ }
+
+ main .nobat-dehi .n-r-c .right-top-visit-nurse h2 {
+  font-size: 19px;
+ }
+
+ main .nobat-dehi .n-r-c .right-top-visit-nurse span {
+  font-size: 13px;
+ }
+
+ main .nobat-dehi .n-r-c .show-all-visit-nurse a {
+  padding: 0 20px;
+  font-size: 14px;
+ }
+
+ main .nobat-dehi .n-r-c .show-all-visit-nurse a svg {
+  width: 22px !important;
+  height: 22px !important;
+ }
+
+ main .nobat-dehi .n-r-c .cards-online-nurses {
+  display: flex;
+ }
+
+ main .guide-benobeh {
+  margin-top: 150px !important;
+  min-height: 180vh !important;
+ }
+
+ main .guide-benobeh .top-guide {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+ }
+
+ main .guide-benobeh .top-guide .top-right-guide {
+  width: 100% !important;
+ }
+
+ main .guide-benobeh .top-guide .top-right-guide h3 {
+  width: 100%;
+  text-align: center;
+  margin-top: 5px !important;
+ }
+
+ main .guide-benobeh .top-guide .top-right-guide p {
+  width: 100% !important;
+ }
+
+ main .guide-benobeh .top-guide .top-right-guide .downlod-items {
+  margin-top: 50px !important;
+ }
+
+ main .guide-benobeh .top-guide .top-left-guide {
+  display: flex;
+  justify-content: center;
+ }
+
+ main .guide-benobeh .top-guide .top-left-guide img {
+  width: 270px !important;
+ }
+
+ main .guide-benobeh .buttom-guide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ }
+
+ main .guide-benobeh .buttom-guide .right-bottom-guide {
+  border-left: none !important;
+  border-bottom: 1px solid #0067cd;
+  padding-bottom: 20px;
+ }
+
+ main .guide-benobeh .buttom-guide .left-bottom-guide {
+  padding-bottom: 20px;
+  margin-top: 10px !important;
+ }
+
+ main .users-comment .card-comment {
+  height: 200px;
+ }
+
+ footer {
+  margin-top: 150px !important;
+ }
+
+ footer .container {
+  max-width: 960px !important;
+ }
+
+ footer .footer-items {
+  display: flex;
+  flex-direction: column;
+ }
+
+ footer .footer-items .right-footer-items span {
+  font-size: 17px !important;
+  font-weight: 400 !important;
+ }
+
+ footer .footer-items .right-footer-items .qavanin a {
+  font-size: 15px !important;
+ }
+
+ footer .footer-items .mid-footer-items {
+  width: 100% !important;
+  display: flex;
+  justify-content: start;
+  flex-direction: row !important;
+ }
+
+ footer .footer-items .mid-footer-items .h6-footer-up-991 {
+  display: none;
+ }
+
+ footer .footer-items .mid-footer-items h6 {
+  text-align: right !important;
+  padding-right: 10px;
+ }
+
+ footer .footer-items .mid-footer-items .ul-footer-up-991 {
+  display: none;
+ }
+
+ footer .footer-items .mid-footer-items a {
+  font-size: 15px;
+ }
+
+ .card-services {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px 10px;
+ }
+
+ .card-services .card-service {
+  width: 325px !important;
+  height: 275px !important;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+ }
+
+ .card-services .card-service h4 {
+  font-size: 16px;
+  font-weight: bold !important;
+ }
+
+ .card-services .card-service a {
+  font-size: 14px !important;
+ }
+
+ .card-services .card-service .h-m-1200 {
+  margin: 22px !important;
+ }
+
+ .card-services .card-service .img-overlay img {
+  position: relative;
+  z-index: 2;
+  bottom: 10px;
+  width: 50px;
+ }
+
+ .card-services .card-service .content-card-service-description p {
+  font-size: 14px;
+  width: 85%;
+ }
+
+ .right-top-visit-nurse h2 {
+  font-size: 25px;
+ }
+
+ .guide-benobeh .downlod-items img {
+  width: 160px !important;
+ }
+
+ .users-comment .card-comment {
+  width: 290px;
+  height: 230px !important;
+ }
+
+ .takhasos {
+  width: 900px !important;
+  height: 85vh !important;
+ }
+
+ footer .namads-footer img {
+  width: 60px !important;
+  height: 60px !important;
+ }
+
+ footer .mid-footer-items a {
+  font-size: 13px;
+  font-weight: 400 !important;
+ }
+
+ footer .right-footer-items a {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+ }
+
+ footer .right-footer-items span {
+  font-size: 14px !important;
+ }
+}
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+ bottom: 38px;
+ left: 0;
+ width: 100%;
+}
+@media screen and (max-width: 880px) {
+ .nobat-dehi {
+  width: 100%;
+ }
+}
+
+@media screen and (max-width: 960px) {
+ .all-takhasos .next-slide {
+  position: absolute !important;
+  left: 20px !important;
+  top: 450px !important;
+ }
+
+ .all-takhasos .prev-slide {
+  position: absolute !important;
+  right: 20px !important;
+  top: 450px !important;
+ }
+}
+
+@media screen and (max-width: 934px) {
+ .visit-nurse .cards-online-nurses {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: 100%;
+ }
+}
+
+@media screen and (max-width: 901px) {
+ .all-takhasos .next-slide {
+  position: absolute !important;
+  left: 0px !important;
+  top: 450px !important;
+ }
+
+ .all-takhasos .prev-slide {
+  position: absolute !important;
+  right: 0px !important;
+  top: 450px !important;
+ }
+}
+
+@media screen and (max-width: 858px) {
+ .all-takhasos .next-slide {
+  position: absolute !important;
+  left: 0px !important;
+  top: 750px !important;
+ }
+
+ .all-takhasos .prev-slide {
+  position: absolute !important;
+  right: 0px !important;
+  top: 750px !important;
+ }
+}
+
+@media screen and (min-width: 839px) {
+ .bottom-menu-839 {
+  display: none;
+ }
+}
+
+@media screen and (max-width: 817px) {
+ .users-comment {
+  width: 100%;
+ }
+
+ .users-comment .top-header-users-comment h3 {
+  font-size: 17px;
+ }
+
+ .users-comment .top-header-users-comment span {
+  font-size: 13px;
+ }
+
+ .users-comment .cards-comment {
+  width: 100% !important;
+  display: grid !important;
+  flex-wrap: nowrap !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  grid-template-rows: repeat(1, 1fr) !important;
+  overflow-y: hidden !important;
+  overflow-x: scroll !important;
+ }
+
+ .users-comment .cards-comment .card-comment {
+  width: 350px !important;
+ }
+
+ footer .footer-items .right-footer-items {
+  width: 100% !important;
+ }
+
+ footer .footer-items .right-footer-items span {
+  font-size: 13px !important;
+ }
+
+ footer .footer-items .right-footer-items a {
+  font-size: 13px !important;
+ }
+
+ footer .footer-items .mid-footer-items {
+  width: 100% !important;
+ }
+
+ footer .footer-items .left-footer-items {
+  width: 100% !important;
+ }
+}
+
+@media screen and (max-width: 541px) {
+ .top-main-search form {
+  padding: 0 13px !important;
+ }
+
+ .caret-left-in-services {
+  display: flex;
+  align-items: center;
+ }
+
+ .caret-left-in-services a {
+  position: absolute !important;
+  left: 5px !important;
+ }
+
+ .visit-nurse .top-visit-nurse {
+  display: flex;
+  flex-direction: column;
+ }
+
+ .visit-nurse .top-visit-nurse .show-all-visit-nurse {
+  margin-top: 50px;
+ }
+
+ .all-takhasos .top-visit-nurse {
+  display: flex;
+  flex-direction: column;
+ }
+
+ .all-takhasos .top-visit-nurse .show-all-visit-nurse {
+  margin-top: 50px;
+ }
+
+ .nobat-dehi .top-visit-nurse,
+ .marakez-darmani .top-visit-nurse {
+  display: flex;
+  flex-direction: column;
+ }
+
+ .nobat-dehi .top-visit-nurse .show-all-visit-nurse,
+ .marakez-darmani .top-visit-nurse .show-all-visit-nurse {
+  margin-top: 50px;
+ }
+
+ .guide-benobeh h3 {
+  font-size: 17px;
+ }
+
+ .guide-benobeh .downlod-items h3 {
+  text-align: center;
+ }
+
+ .guide-benobeh .downlod-items .downloads {
+  margin-top: 50px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+ }
+
+ .guide-benobeh .top-guide .top-left-guide img {
+  width: 200px;
+ }
+
+ .guide-benobeh .top-guide .top-right-guide {
+  width: 100% !important;
+ }
+
+ .guide-benobeh .top-guide .top-right-guide p {
+  text-align: justify;
+ }
+}
+
+@media screen and (max-width: 477px) {
+ .guide-benobeh {
+  height: 190vh !important;
+ }
+}
+
+@media screen and (max-width: 400px) {
+ .top-main-search form {
+  padding: 0 20px !important;
+ }
+}
+
+@media screen and (max-width: 477px) {
+ .guide-benobeh {
+  height: 210vh !important;
+ }
+
+ .guide-benobeh .top-left-guide {
+  display: flex;
+  justify-content: center;
+ }
+
+ .guide-benobeh .top-left-guide img {
+  width: 225px !important;
+ }
+}
+
+@media screen and (max-width: 430px) {
+ .log-reg-modal {
+  min-width: 400px !important;
+ }
+
+ .guide-benobeh .top-left-guide {
+  display: flex;
+  justify-content: center;
+ }
+
+ .guide-benobeh .top-left-guide img {
+  width: 225px !important;
+ }
+}
+
+@media screen and (max-width: 405px) {
+ .log-reg-modal {
+  min-width: 370px !important;
+ }
+
+ .guide-benobeh .top-left-guide {
+  display: flex;
+  justify-content: center;
+ }
+
+ .guide-benobeh .top-left-guide img {
+  width: 220px !important;
+ }
+}
+
+@media screen and (max-width: 386px) {
+ footer .mid-footer-items a {
+  font-size: 12px !important;
+ }
+
+ footer .javayez span {
+  font-size: 12px !important;
+ }
+
+ .guide-benobeh .top-left-guide {
+  display: flex;
+  justify-content: center;
+ }
+
+ .guide-benobeh .top-left-guide img {
+  width: 200px !important;
+ }
+}
+
+@media screen and (max-width: 372px) {
+ .log-reg-modal {
+  min-width: 350px !important;
+ }
+
+ .guide-benobeh .top-left-guide {
+  display: flex;
+  justify-content: center;
+ }
+
+ .guide-benobeh .top-left-guide img {
+  width: 180px !important;
+ }
+}
+
+header .top-faq-header {
+ height: 80px;
+}
+
+header .top-faq-header .right-top-faq-header .right-logo-top-faq img {
+ width: 90px;
+}
+
+header .top-faq-header .left-top-faq-header {
+ display: flex;
+ gap: 15px;
+}
+
+main {
+ background-color: #fff;
+}
+
+main .faq-for-users .faq-for-users-cards {
+ margin-top: 20px;
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ gap: 10px;
+ align-items: center;
+ flex-direction: column;
+}
+
+main .faq-for-users .faq-for-users-cards .faq-for-users-card {
+ width: 70%;
+ border: 1px solid #ddd;
+ border-radius: 12px;
+ padding: 15px;
+}
+
+main
+ .faq-for-users
+ .faq-for-users-cards
+ .faq-for-users-card
+ .faq-for-users-card-tab-content {
+ display: none;
+}
+
+main .faq-for-users .faq-for-users-cards .faq-for-users-card a {
+ text-decoration: none;
+}
+
+main .faq-for-users .faq-for-users-cards .faq-for-users-card :hover {
+ cursor: pointer;
+}
+
+main .faq-for-users .faq-for-users-cards .faq-for-users-card span {
+ font-weight: bold !important;
+}
+
+main
+ .faq-for-users
+ .faq-for-users-cards
+ .faq-for-users-card
+ .faq-for-users-card-toggle-icon
+ span {
+ font-size: 14px !important;
+}
+
+main
+ .faq-for-users
+ .faq-for-users-cards
+ .faq-for-users-card
+ .faq-for-users-card-tab-content
+ p {
+ font-size: 16px;
+ font-weight: 500;
+}
+
+main
+ .faq-for-users
+ .faq-for-users-cards
+ .faq-for-users-card
+ .faq-for-users-card-tab-content
+ ol
+ li {
+ font-size: 16px;
+ font-weight: 400;
+ line-height: 2rem;
+}
+
+main
+ .faq-for-users
+ .faq-for-users-cards
+ .faq-for-users-card
+ .faq-for-users-card-tab-title {
+ display: flex;
+ flex-direction: row-reverse;
+ justify-content: start;
+ align-items: center;
+}
+
+main .faq-for-nurses .faq-for-nurse-cards {
+ margin-top: 20px;
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ gap: 10px;
+ align-items: center;
+ flex-direction: column;
+}
+
+main .faq-for-nurses .faq-for-nurse-cards .faq-for-nurse-card {
+ width: 70%;
+ border: 1px solid #ddd;
+ border-radius: 12px;
+ padding: 15px;
+}
+
+main
+ .faq-for-nurses
+ .faq-for-nurse-cards
+ .faq-for-nurse-card
+ .faq-for-nurse-card-tab-content {
+ display: none;
+}
+
+main .faq-for-nurses .faq-for-nurse-cards .faq-for-nurse-card a {
+ text-decoration: none;
+}
+
+main .faq-for-nurses .faq-for-nurse-cards .faq-for-nurse-card :hover {
+ cursor: pointer;
+}
+
+main .faq-for-nurses .faq-for-nurse-cards .faq-for-nurse-card span {
+ font-weight: bold !important;
+}
+
+main
+ .faq-for-nurses
+ .faq-for-nurse-cards
+ .faq-for-nurse-card
+ .faq-for-nurse-card-toggle-icon
+ span {
+ font-size: 14px !important;
+}
+
+main
+ .faq-for-nurses
+ .faq-for-nurse-cards
+ .faq-for-nurse-card
+ .faq-for-nurse-card-tab-content
+ p {
+ font-size: 16px;
+ font-weight: 500;
+}
+
+main
+ .faq-for-nurses
+ .faq-for-nurse-cards
+ .faq-for-nurse-card
+ .faq-for-nurse-card-tab-content
+ ol
+ li {
+ font-size: 16px;
+ font-weight: 400;
+ line-height: 2rem;
+}
+
+main
+ .faq-for-nurses
+ .faq-for-nurse-cards
+ .faq-for-nurse-card
+ .faq-for-nurse-card-tab-title {
+ display: flex;
+ flex-direction: row-reverse;
+ justify-content: start;
+ align-items: center;
+}
+
+@media screen and (max-width: 1400px) {
+ header .container,
+ main .container,
+ footer .container {
+  max-width: 1320px;
+ }
+}
+
+@media screen and (max-width: 992px) {
+ main .faq-for-nurse-card,
+ main .faq-for-users-card {
+  width: 100% !important;
+ }
+}
+
+@media screen and (min-width: 839px) {
+ .right-logo-top-faq img {
+  display: flex;
+ }
+}
+
+@media screen and (max-width: 839px) {
+ header .right-logo-top-faq img {
+  display: none;
+ }
+
+ header .left-top-faq-header .text-primary {
+  display: none;
+ }
+
+ header .nav-toggle-992 {
+  display: flex !important;
+ }
+
+ header .nav-toggle-992 img {
+  width: 35px;
+ }
+}
+
+@media screen and (min-width: 787px) {
+ footer .logo-faq-footer-786 {
+  display: none;
+ }
+}
+
+@media screen and (max-width: 465px) {
+ main .faq-for-users-card .faq-for-users-card-title-text {
+  font-size: 14px !important;
+ }
+
+ main .faq-for-nurse-card .faq-for-nurse-card-title-text {
+  font-size: 14px !important;
+ }
+}
+
+@media screen and (max-width: 373px) {
+ main .faq-for-users .faq-for-users-cards {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  flex-direction: column;
+ }
+
+ main .faq-for-users .faq-for-users-cards .faq-for-users-card {
+  width: 70%;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+ }
+
+ main
+  .faq-for-users
+  .faq-for-users-cards
+  .faq-for-users-card
+  .faq-for-users-card-tab-content {
+  display: none;
+ }
+
+ main .faq-for-users .faq-for-users-cards .faq-for-users-card a {
+  text-decoration: none;
+ }
+
+ main .faq-for-users .faq-for-users-cards .faq-for-users-card :hover {
+  cursor: pointer;
+ }
+
+ main .faq-for-users .faq-for-users-cards .faq-for-users-card span {
+  font-weight: bold !important;
+ }
+
+ main
+  .faq-for-users
+  .faq-for-users-cards
+  .faq-for-users-card
+  .faq-for-users-card-toggle-icon
+  span {
+  font-size: 12px !important;
+ }
+
+ main
+  .faq-for-users
+  .faq-for-users-cards
+  .faq-for-users-card
+  .faq-for-users-card-tab-content
+  p {
+  font-size: 14px !important;
+  font-weight: 500;
+ }
+
+ main
+  .faq-for-users
+  .faq-for-users-cards
+  .faq-for-users-card
+  .faq-for-users-card-tab-content
+  ol
+  li {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2rem;
+ }
+
+ main
+  .faq-for-users
+  .faq-for-users-cards
+  .faq-for-users-card
+  .faq-for-users-card-tab-title {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  align-items: center;
+ }
+
+ main .faq-for-nurses .faq-for-nurse-cards {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  flex-direction: column;
+ }
+
+ main .faq-for-nurses .faq-for-nurse-cards .faq-for-nurse-card {
+  width: 70%;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+ }
+
+ main
+  .faq-for-nurses
+  .faq-for-nurse-cards
+  .faq-for-nurse-card
+  .faq-for-nurse-card-tab-content {
+  display: none;
+ }
+
+ main .faq-for-nurses .faq-for-nurse-cards .faq-for-nurse-card a {
+  text-decoration: none;
+ }
+
+ main .faq-for-nurses .faq-for-nurse-cards .faq-for-nurse-card :hover {
+  cursor: pointer;
+ }
+
+ main .faq-for-nurses .faq-for-nurse-cards .faq-for-nurse-card span {
+  font-weight: bold !important;
+ }
+
+ main
+  .faq-for-nurses
+  .faq-for-nurse-cards
+  .faq-for-nurse-card
+  .faq-for-nurse-card-toggle-icon
+  span {
+  font-size: 14px !important;
+ }
+
+ main
+  .faq-for-nurses
+  .faq-for-nurse-cards
+  .faq-for-nurse-card
+  .faq-for-nurse-card-tab-content
+  p {
+  font-size: 16px;
+  font-weight: 500;
+ }
+
+ main
+  .faq-for-nurses
+  .faq-for-nurse-cards
+  .faq-for-nurse-card
+  .faq-for-nurse-card-tab-content
+  ol
+  li {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 2rem;
+ }
+
+ main
+  .faq-for-nurses
+  .faq-for-nurse-cards
+  .faq-for-nurse-card
+  .faq-for-nurse-card-tab-title {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  align-items: center;
+ }
+}
+
+@media screen and (max-width: 343px) {
+ footer .footer-content {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-around !important;
+ }
+
+ footer .footer-content .right-faq-footer img {
+  width: 100px !important;
+  display: none;
+ }
+
+ footer .footer-content .right-faq-footer .bl {
+  margin-top: 10px;
+ }
+
+ footer .footer-content .right-faq-footer ul li {
+  padding: 0 3px !important;
+  font-size: 14px;
+ }
+
+ footer .footer-content .right-faq-footer .menu-faq-footer {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center !important;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 100% !important;
+ }
+
+ footer .footer-content .right-faq-footer .menu-faq-footer .li-center {
+  margin-top: 10px;
+ }
+
+ footer
+  .footer-content
+  .right-faq-footer
+  .menu-faq-footer
+  .logo-faq-footer-786 {
+  display: flex;
+  justify-content: center;
+ }
+
+ footer
+  .footer-content
+  .right-faq-footer
+  .menu-faq-footer
+  .logo-faq-footer-786
+  img {
+  display: flex;
+ }
+
+ footer .footer-content .right-faq-footer .menu-faq-footer .logo-faq-footer {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+ }
+
+ footer .footer-content .right-faq-footer .menu-faq-footer ul {
+  margin-top: 10px;
+ }
+
+ footer .footer-content .left-faq-footer ul li {
+  padding: 0 3px !important;
+ }
+
+ footer .footer-content .left-faq-footer ul .list-inline-item:not(:last-child) {
+  margin-right: 0rem;
+ }
+}
+
+/*# sourceMappingURL=faq.css.map */

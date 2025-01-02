@@ -1,0 +1,190 @@
+.max-width-800 {
+ max-width: 800px;
+}
+.ml-auto,
+.mx-auto {
+ margin-left: auto !important;
+}
+.mr-auto,
+.mx-auto {
+ margin-right: auto !important;
+}
+@media screen and (min-width: 700px) {
+ .onlinPaymentConfig_main__237SV {
+  width: 450px;
+  margin: 0 auto !important;
+ }
+}
+.onlinPaymentConfig_main__237SV,
+.onlinPaymentConfig_title_box__E3v6w {
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ width: 100%;
+}
+.onlinPaymentConfig_main__237SV {
+ height: 100vh;
+ flex-direction: column;
+ background: #fff;
+ padding: 0;
+ margin-top: 80px;
+}
+.onlinPaymentConfig_title_box__E3v6w {
+ background: #e8e8e8;
+ min-height: 50px;
+ margin-top: 20px;
+ padding: 0 15px;
+}
+.onlinPaymentConfig_main__237SV,
+.onlinPaymentConfig_title_box__E3v6w {
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ width: 100%;
+}
+.onlinPaymentConfig_check_active__GTDbB,
+.onlinPaymentConfig_pay_title_box__iB0b5 > svg {
+ color: #08c231;
+}
+.onlinPaymentConfig_title_box__E3v6w > span {
+ margin-right: 10px;
+}
+.onlinPaymentConfig_form_main__2leOp {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ margin-top: 20px;
+ width: 100%;
+ padding: 0 35px;
+}
+.onlinPaymentConfig_form_main_input_box__M8hPk {
+ display: flex;
+ align-items: flex-start;
+ justify-content: flex-start;
+ flex-direction: column;
+ margin-bottom: 10px;
+ width: 100%;
+}
+.onlinPaymentConfig_national_upload__3ApU1 {
+ cursor: pointer;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ width: 100%;
+ flex-direction: column;
+}
+.onlinPaymentConfig_national_upload__3ApU1 > i {
+ font-size: 120px;
+ color: #ccc;
+}
+.anticon {
+ display: inline-block;
+ color: inherit;
+ font-style: normal;
+ line-height: 0;
+ text-align: center;
+ text-transform: none;
+ vertical-align: -0.125em;
+ text-rendering: optimizeLegibility;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+}
+.onlinPaymentConfig_title_box__E3v6w {
+ background: #e8e8e8;
+ min-height: 50px;
+ margin-top: 20px;
+ padding: 0 15px;
+}
+.onlinPaymentConfig_main__237SV,
+.onlinPaymentConfig_title_box__E3v6w {
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ width: 100%;
+}
+.onlinPaymentConfig_title_box__E3v6w > span {
+ margin-right: 10px;
+}
+.onlinPaymentConfig_form_main__2leOp {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ margin-top: 20px;
+ width: 100%;
+ padding: 0 35px;
+}
+.onlinPaymentConfig_form_main_input_box__M8hPk {
+ display: flex;
+ align-items: flex-start;
+ justify-content: flex-start;
+ flex-direction: column;
+ margin-bottom: 10px;
+ width: 100%;
+}
+.onlinPaymentConfig_form_main_input_box__M8hPk > span {
+ margin-bottom: 10px;
+}
+.onlinPaymentConfig_form_main_input_box__M8hPk > input {
+ width: 100%;
+ height: 50px;
+ outline: 0;
+ border: 1px solid #02851f;
+ direction: ltr;
+ text-align: left !important;
+ padding: 0 10px;
+}
+.onlinPaymentConfig_form_main_button__2BMMN {
+ border-radius: 8px;
+ border: 1px solid #12612c;
+ background-color: #f7fff9;
+ height: 50px;
+ width: 180px;
+ margin-top: 30px;
+ text-align: center !important;
+ color: #256e3d;
+ font-size: 16px;
+}
+.onlinPaymentConfig_title_box__E3v6w {
+ background: #e8e8e8;
+ min-height: 50px;
+ margin-top: 20px;
+ padding: 0 15px;
+}
+
+.onlinPaymentConfig_main__237SV,
+.onlinPaymentConfig_title_box__E3v6w {
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ width: 100%;
+}
+.onlinPaymentConfig_title_box__E3v6w > span {
+ margin-right: 10px;
+}
+.onlinPaymentConfig_upload_box__3uP8l {
+ display: flex;
+ align-items: flex-start;
+ justify-content: space-between;
+ width: 100%;
+ padding: 0 55px;
+ min-height: 200px;
+}
+.onlinPaymentConfig_form_main_button__2BMMN {
+ border-radius: 8px;
+ border: 1px solid #12612c;
+ background-color: #f7fff9;
+ height: 50px;
+ width: 180px;
+ margin-top: 30px;
+ text-align: center !important;
+ color: #256e3d;
+ font-size: 16px;
+}
+.onlinPaymentConfig_upload_box__3uP8l > a {
+ margin-top: 40px;
+ color: #999;
+ cursor: pointer;
+ font-size: 18px;
+}

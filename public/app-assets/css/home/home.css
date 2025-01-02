@@ -1,0 +1,5296 @@
+@import url('./../../fonts/IRANSans/style.css');
+@import url('./../../fonts/yekan-bakh/stylesheet.css');
+@import url('./../../fonts/iransansx/stylesheet.css');
+@import url('./../../css/home/my-styles.css');
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600&display=swap');
+@import url('./../../fonts/vazir/font-face.css');
+@import url('./../../fonts/benobe-font/stylesheet.css');
+
+* {
+ /* font-family: "Yekan Bakh"; */
+ /* font-family: "Vazir"; */
+ font-family: 'DISXV';
+ /* font-family: "IRANSansXRegular"; */
+ /* font-family: "IRANSans"; */
+ font-weight: 600;
+}
+
+body {
+ background: linear-gradient(#fff, #f4faff) !important;
+}
+
+.pagination-font ul li a {
+ font-family: 'IRANSans' !important;
+}
+
+.my-drop-down-auth ul li {
+ list-style: none !important;
+}
+
+/* لودینگ */
+.my-top-loading {
+ position: fixed;
+ top: 0;
+ left: 0;
+ height: 5px;
+ background-color: #3498db;
+ /* رنگ بارگذاری */
+ width: 0;
+ /* شروع با عرض 0 */
+ transition: width 3s ease;
+ /* انیمیشن پر شدن عرض */
+ z-index: 9999;
+ /* قرار دادن در بالای تمامی المان‌ها */
+}
+
+/* لودینگ */
+.nav-tog-show a {
+ font-size: 13.5px;
+ font-weight: bold;
+}
+
+.my-fixed-top {
+ position: fixed;
+ top: 0;
+ right: 0;
+ left: 0;
+ z-index: 1051;
+}
+
+::-webkit-input-placeholder {
+ font-family: 'IRANSans' !important;
+ font-size: 13px !important;
+}
+
+::-moz-placeholder {
+ /* Firefox 19+ */
+ font-family: 'IRANSans' !important;
+ font-size: 13px !important;
+}
+
+:-ms-input-placeholder {
+ /* IE 10+ */
+ font-family: 'IRANSans' !important;
+ font-size: 13px !important;
+}
+
+::placeholder {
+ font-family: 'IRANSans' !important;
+ font-size: 13px !important;
+}
+
+.user-phone-number,
+.user-otp-code {
+ font-family: 'IRANSans' !important;
+ font-size: 16px !important;
+}
+
+input {
+ font-family: 'IRANSans' !important;
+ padding-right: 15px !important;
+ /* font-size: 10px !important; */
+}
+
+#timer {
+ font-family: 'IRANSans' !important;
+ font-size: 13px !important;
+}
+
+.modal-content {
+ padding: 24px;
+ border-radius: 12px;
+ display: flex;
+ flex-direction: column;
+ /* min-width: 420px; */
+ max-width: 100vw;
+ background-color: rgb(251, 252, 254);
+ gap: 0px;
+}
+
+/* .modal-backdrop {
+  position: static !important;
+} */
+.top-star-nurse {
+ display: flex !important;
+ width: 100% !important;
+ justify-content: end !important;
+}
+
+/* loading animation */
+/* HTML: <div class="loader"></div> */
+#loader {
+ position: fixed;
+ left: 0;
+ top: 0;
+ width: 100%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, 0.8);
+ z-index: 9999;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.loader1 {
+ /* opacity: .5; */
+ width: 50px;
+ aspect-ratio: 1;
+ --_c: no-repeat radial-gradient(farthest-side, #25b09b 92%, #0000);
+ background:
+  var(--_c) top,
+  var(--_c) left,
+  var(--_c) right,
+  var(--_c) bottom;
+ background-size: 12px 12px;
+ animation: l7 1s infinite;
+}
+
+@keyframes l7 {
+ to {
+  transform: rotate(0.5turn);
+ }
+}
+
+/* HTML: <div class="loader"></div> */
+.loader2 {
+ --d: 22px;
+ width: 4px;
+ height: 4px;
+ border-radius: 50%;
+ color: #25b09b;
+ box-shadow:
+  calc(1 * var(--d)) calc(0 * var(--d)) 0 0,
+  calc(0.707 * var(--d)) calc(0.707 * var(--d)) 0 1px,
+  calc(0 * var(--d)) calc(1 * var(--d)) 0 2px,
+  calc(-0.707 * var(--d)) calc(0.707 * var(--d)) 0 3px,
+  calc(-1 * var(--d)) calc(0 * var(--d)) 0 4px,
+  calc(-0.707 * var(--d)) calc(-0.707 * var(--d)) 0 5px,
+  calc(0 * var(--d)) calc(-1 * var(--d)) 0 6px;
+ animation: l27 1s infinite steps(8);
+}
+
+@keyframes l27 {
+ 100% {
+  transform: rotate(1turn);
+ }
+}
+
+/* loading animation */
+.t-container-grid {
+ display: grid !important;
+ grid-template-columns: repeat(3, 1fr) !important;
+ grid-template-rows: repeat(1, 1fr) !important;
+ grid-gap: 0 55px !important;
+ align-content: center !important;
+}
+
+.t-container {
+ display: flex !important;
+ gap: 20px !important;
+}
+
+header {
+ background-color: #fff !important;
+ width: 100%;
+ box-shadow:
+  rgba(13, 34, 70, 0.02) 0px 20px 12px -2px,
+  rgba(13, 34, 70, 0.04) 0px 29px 62px -4px;
+ /* height: 90px; */
+}
+
+.logo-and-log-reg-top-header {
+ height: 70px;
+}
+
+header .top-header {
+ width: 100%;
+ /* height: 108px !important; */
+ /* box-shadow: 0px 4px 6px -2px rgba(50, 50, 50, 0.03),
+        0px -3px 10px -4px rgba(50, 50, 50, 0.08); */
+ padding-top: 1rem !important;
+}
+
+header .nav-tog-show {
+ width: 0;
+ /* right: 0; */
+ height: 100%;
+ overflow-y: scroll;
+ background-color: #fbfcfe;
+ /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+ box-shadow:
+  rgba(0, 0, 0, 0.25) 0px 54px 55px,
+  rgba(0, 0, 0, 0.12) 0px -12px 30px,
+  rgba(0, 0, 0, 0.12) 0px 4px 6px,
+  rgba(0, 0, 0, 0.17) 0px 12px 13px,
+  rgba(0, 0, 0, 0.09) 0px -3px 5px;
+ position: fixed;
+ top: 0;
+ right: 0;
+ z-index: 125;
+}
+
+header .nav-tog-show .nav-tog-show-items .nav-tog-list-content ul li a {
+ text-decoration: none;
+ color: #333;
+}
+
+header .nav-tog-show .nav-tog-show-items .top-nav-tog {
+ height: 80px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+header .nav-tog-show .nav-tog-show-items .top-nav-tog .top-nav-tog-logo img {
+ width: 80px;
+}
+
+header
+ .nav-tog-show
+ .nav-tog-show-items
+ .top-nav-tog
+ .top-nav-tog-close-icon
+ img {
+ width: 35px;
+}
+
+header
+ .nav-tog-show
+ .nav-tog-show-items
+ .top-nav-tog
+ .top-nav-tog-close-icon:hover {
+ cursor: pointer;
+}
+
+header .nav-tog-show .nav-tog-show-items .nav-tog-poshtibani {
+ background-color: #fbfcfe;
+ border-bottom: 1px solid #ddd;
+ padding: 13px 2px;
+}
+
+header .nav-tog-show .nav-tog-show-items .nav-tog-list-items {
+ margin-top: 10px;
+}
+
+header
+ .nav-tog-show
+ .nav-tog-show-items
+ .nav-tog-list-items
+ .nav-tog-list-content
+ ul {
+ list-style-type: none !important;
+}
+
+header
+ .nav-tog-show
+ .nav-tog-show-items
+ .nav-tog-list-items
+ .nav-tog-list-content
+ ul
+ li {
+ border-bottom: 1px solid #ddd;
+ padding: 13px 2px;
+ background-color: #fbfcfe;
+}
+
+header
+ .nav-tog-show
+ .nav-tog-show-items
+ .nav-tog-list-items
+ .nav-tog-list-content
+ ul
+ li
+ a {
+ text-decoration: none;
+}
+
+header .tog-show-t-all {
+ margin-top: 0 !important;
+ height: 20vh;
+ overflow-y: scroll;
+}
+
+header .tog-show-t-all ul li {
+ background-color: #e6f3ff !important;
+}
+
+header .top-right-logo-header a img {
+ width: 85px;
+}
+
+.rounded-circle-user-icon {
+ background-color: #e9f4fe;
+ width: 150px;
+ height: 150px;
+ border-radius: 50%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.rounded-circle-user-icon-search-page {
+ background-color: #e9f4fe;
+ width: 60px;
+ height: 60px;
+ border-radius: 50%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+header .btn-reg-log {
+ border: 1px solid rgb(208, 213, 221) !important;
+ /* font-weight: lighter !important; */
+ height: 40px !important;
+ border-color: rgb(208, 213, 221);
+ color: rgb(71, 84, 103);
+ padding: 8px 27px;
+}
+
+header .btn-reg-log:hover {
+ color: #0351a0;
+}
+
+header .top-nav-header nav a {
+ font-weight: bold;
+ font-size: 14px;
+ color: #000;
+}
+
+header .top-nav-header nav a:hover {
+ color: #457cd6 !important;
+ transition: 0.5s color ease-in-out;
+}
+
+header .log-reg-modal {
+ top: 50%;
+ left: 50%;
+ border-radius: 8px !important;
+ position: absolute;
+ transform: translate(-50%, 35%);
+ /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+}
+
+header .log-reg-modal .close-modal:hover {
+ cursor: pointer;
+}
+
+#resend-otp {
+ font-size: 1rem;
+}
+
+header .modal-logo img {
+ width: 100px;
+}
+
+.login-input-text input {
+ border: 1px solid #cbd5e1 !important;
+}
+
+header
+ .log-reg-modal
+ .content-log-reg-modal
+ .regestration-modal
+ input::placeholder {
+ font-size: 17px !important;
+ /* font-weight: bold; */
+ color: #ddd;
+}
+
+header .takhasos {
+ width: 1100px;
+ background-color: #fff;
+ /* background: url('./../../images/beams-home@95.jpg'); */
+ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+ min-height: 66vh;
+ position: absolute;
+ border-radius: 12px;
+ right: 0;
+ top: 55px;
+ opacity: 0;
+ transition: opacity 2s;
+}
+
+.user-circle-profile {
+ background-color: rgb(236, 243, 255);
+ border-radius: 50%;
+ margin-left: 5px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 32px;
+ height: 32px;
+}
+
+#registredBtn {
+ padding: 8px !important;
+}
+
+#registredBtn:hover {
+ background-color: #f0f0f0;
+}
+
+#registredBtn .text-login {
+ font-family: 'IRANSans' !important;
+ font-size: 13px;
+ color: #41a7ff;
+}
+
+.default-hover:hover {
+ background-color: #dbdbdb;
+ border: none !important;
+ transition: ease-in background-color 0.5s;
+ color: rgb(71, 84, 103) !important;
+}
+
+/* .takhasos.d-none {
+    opacity: 0;
+}
+.takhasos:not(.d-none) {
+    opacity: 1;
+} */
+header .takhasos a {
+ text-decoration: none;
+}
+
+header .takhasos .prev-mega-menu {
+ position: absolute;
+ top: 89% !important;
+ transform: translate(-50%, 50%);
+}
+
+header .takhasos .next-mega-menu {
+ position: absolute;
+ top: 89% !important;
+ left: 5%;
+ transform: translate(-50%, 50%);
+}
+
+#LoginRegisterModal input::placeholder {
+ font-family: 'IRANSans' !important;
+ color: #c9d3d8;
+ font-size: 15px;
+}
+
+.user-otp-code::placeholder {
+ font-family: 'IRANSans' !important;
+ color: #c9d3d8;
+ font-size: 15px;
+}
+
+.fs-15 {
+ font-size: 15px;
+}
+
+.most-cities-search-cards {
+ display: flex;
+ justify-content: start;
+ gap: 10px;
+ flex-wrap: wrap;
+}
+
+.most-cities-search-card {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ /* width: 70px; */
+ height: 40px;
+ border: 1px solid #ddd;
+ padding: 5px;
+ border-radius: 8px;
+}
+
+.most-cities-search-card:hover {
+ background-color: #ddd;
+}
+
+.all-cities-group,
+#province-list {
+ height: 35vh;
+ overflow-y: scroll;
+}
+
+.all-cities-group .town-card,
+#province-list .town-card {
+ border-bottom: 1px solid #ddd;
+ padding-bottom: 10px;
+ cursor: pointer;
+ padding: 8px;
+}
+
+.all-cities-group .town-card:hover,
+#province-list .town-card:hover {
+ background-color: #f3f3f3;
+}
+
+#my-txt-search-input {
+ font-size: 12px;
+}
+
+.all-cities-group .city-card {
+ border-bottom: 1px solid #ddd;
+ padding-bottom: 10px;
+ cursor: pointer;
+ padding: 8px;
+}
+
+.all-cities-group .city-card:hover {
+ background-color: #f3f3f3;
+}
+
+/* search modal asset */
+/* end search modal asset */
+/*=============== GOOGLE FONTS ===============*/
+/*=============== VARIABLES CSS ===============*/
+:root {
+ /*========== Colors ==========*/
+ /*Color mode HSL(hue, saturation, lightness)*/
+ --first-color: hsl(38, 92%, 58%);
+ --first-color-light: hsl(38, 100%, 78%);
+ --first-color-alt: hsl(32, 75%, 50%);
+ --second-color: hsl(195, 75%, 52%);
+ --dark-color: hsl(212, 40%, 12%);
+ --white-color: hsl(212, 4%, 95%);
+ --body-color: hsl(212, 42%, 15%);
+ --container-color: hsl(212, 42%, 20%);
+ /*========== Font and typography ==========*/
+ /*.5rem = 8px | 1rem = 16px ...*/
+ --body-font: 'Bai Jamjuree', sans-serif;
+ --h2-font-size: 1.25rem;
+ --normal-font-size: 1rem;
+}
+
+/*=============== BASE ===============*/
+a {
+ text-decoration: none;
+}
+
+img {
+ display: block;
+ /* max-width: 100%; */
+ height: auto;
+}
+
+/*=============== CARD ===============*/
+main .nobat-dehi {
+ width: 100%;
+}
+
+main .nobat-dehi .card-online-nurse {
+ height: 303px;
+}
+
+main .nobat-dehi .cards-online-nurses .container {
+ display: flex;
+ justify-content: center;
+ align-items: start;
+ min-height: 46vh;
+}
+
+.card__container {
+ padding-block: 1rem;
+ min-height: 370px;
+}
+
+.card__content {
+ /* border-radius: 1.25rem; */
+ overflow: hidden;
+}
+
+.card__content .card__div .card-online-nurse {
+ width: 290px;
+ height: 276px;
+ border-color: rgb(210, 248, 222);
+}
+
+.visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a {
+ width: 260px !important;
+ height: 40px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 15px;
+}
+
+main .users-comment .cards-online-nurses .container {
+ max-width: 1400px !important;
+}
+
+/* .users-comment .card__content .card__div .card-online-nurse {
+    width: 290px;
+} */
+.nobat-dehi .btn-online-nurse a {
+ width: 200px;
+}
+
+/*.swiper-horizontal{*/
+/*    display:flex !important;*/
+/*    gap:5px !important;*/
+/*}*/
+.card__article {
+ width: 400px !important;
+ /* Remove after adding swiper js */
+ border-radius: 1.25rem;
+ overflow: hidden;
+}
+
+.card__image {
+ position: relative;
+ padding-top: 1.5rem;
+ margin-bottom: -0.75rem;
+}
+
+.card__data {
+ padding: 1.5rem 2rem;
+ border-radius: 1rem;
+ text-align: center;
+ position: relative;
+ z-index: 10;
+}
+
+.card__img {
+ width: 70px;
+ margin: 0 auto;
+ border-radius: 50%;
+ position: relative;
+ z-index: 5;
+}
+
+.card__shadow {
+ width: 200px;
+ height: 200px;
+ background-color: #fff;
+ border-radius: 50%;
+ position: absolute;
+ top: 3.75rem;
+ left: 0;
+ right: 0;
+ margin-inline: auto;
+ filter: blur(45px);
+}
+
+.card__name {
+ font-size: var(--h2-font-size);
+ color: var(--second-color);
+ margin-bottom: 0.75rem;
+}
+
+.card__description {
+ font-weight: 500;
+ margin-bottom: 1.75rem;
+}
+
+.card__button {
+ display: inline-block;
+ background-color: var(--first-color);
+ padding: 0.75rem 1.5rem;
+ border-radius: 0.25rem;
+ color: var(--dark-color);
+ font-weight: 600;
+}
+
+/* Swiper class */
+.swiper-button-prev:after,
+.swiper-button-next:after {
+ content: '';
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+ width: initial;
+ height: initial;
+ font-size: 3rem;
+ color: var(--second-color);
+ display: none;
+}
+
+.swiper-pagination {
+ display: flex;
+ justify-content: center;
+ z-index: 999999999 !important;
+}
+
+.swiper-pagination-1 {
+ position: absolute;
+ left: 50%;
+}
+
+.swiper-pagination-2 {
+ position: absolute;
+ left: 50%;
+}
+
+.swiper-pagination-3 {
+ position: absolute;
+ left: 50%;
+}
+
+.swiper-pagination-4 {
+ position: absolute;
+ left: 50%;
+}
+
+.swiper-button-prev {
+ left: 0;
+}
+
+.swiper-button-next {
+ right: 0;
+}
+
+.swiper-pagination-bullet {
+ background-color: #0067cd;
+ opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+ background-color: var(--second-color);
+}
+
+/* topsearch ui styles */
+/* topsearch ui styles */
+main .top-new-ui-main .top-main-khadamt {
+ width: 100vw;
+ background-color: red;
+}
+
+.top-main-khadamt .section {
+ padding: 24px 0;
+ display: grid;
+ -webkit-box-pack: justify;
+ -webkit-justify-content: space-between;
+ justify-content: space-between;
+ grid-template-columns: repeat(8, max-content);
+}
+
+.top-main-khadamt .section {
+ -webkit-flex: 1;
+ -ms-flex: 1;
+ flex: 1;
+ margin: auto;
+ max-width: 1160px;
+}
+
+.t-khadamt-icon-1 a {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-flex-direction: column;
+ -ms-flex-direction: column;
+ flex-direction: column;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+ -webkit-align-items: center;
+ -webkit-box-align: center;
+ -ms-flex-align: center;
+ align-items: center;
+ gap: 8px;
+ width: 125px;
+}
+
+.t-khadamt-icon-1 .service-icon-wrapper {
+ background-color: #e6f3ff;
+ border-radius: 12px;
+ padding: 12px;
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ position: relative;
+}
+
+.t-khadamt-icon-1 a .service-title {
+ text-align: center;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+
+.mui-3w0ym9 {
+ color: #323232;
+ margin: 0px;
+ font-weight: 400;
+ font-size: 14px;
+ line-height: 20px;
+}
+
+.t-khadamt-icon-2 a {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-flex-direction: column;
+ -ms-flex-direction: column;
+ flex-direction: column;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+ -webkit-align-items: center;
+ -webkit-box-align: center;
+ -ms-flex-align: center;
+ align-items: center;
+ gap: 8px;
+ width: 125px;
+}
+
+.t-khadamt-icon-2 .service-icon-wrapper {
+ background-color: #e8fbee;
+ border-radius: 12px;
+ padding: 12px;
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ position: relative;
+}
+
+.t-khadamt-icon-2 a .service-title {
+ text-align: center;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+
+.mui-3w0ym9 {
+ color: #323232;
+ margin: 0px;
+ font-weight: 400;
+ font-size: 14px;
+ line-height: 20px;
+}
+
+.t-khadamt-icon-3 a {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-flex-direction: column;
+ -ms-flex-direction: column;
+ flex-direction: column;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+ -webkit-align-items: center;
+ -webkit-box-align: center;
+ -ms-flex-align: center;
+ align-items: center;
+ gap: 8px;
+ width: 125px;
+}
+
+.t-khadamt-icon-3 .service-icon-wrapper {
+ background-color: #e8fbee;
+ border-radius: 12px;
+ padding: 12px;
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ position: relative;
+}
+
+.t-khadamt-icon-3 a .service-title {
+ text-align: center;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+
+.t-khadamt-icon-3 .service-label {
+ position: absolute;
+ top: -8px;
+ left: -12.5px;
+}
+
+.mui-pbjw51 {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ gap: 2px;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+ -webkit-align-items: center;
+ -webkit-box-align: center;
+ -ms-flex-align: center;
+ align-items: center;
+ height: 24px;
+ padding: 2px 6px;
+ border-radius: 360px;
+ color: #be2013;
+ background: #fce4e2;
+ border: 1px solid #fce4e2;
+}
+
+.mui-1l1y5fg {
+ margin: 0px;
+ font-weight: 400;
+ font-size: 14px;
+ line-height: 20px;
+}
+
+.t-khadamt-icon-3 a .service-title {
+ text-align: center;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+
+.t-khadamt-icon-4 a {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-flex-direction: column;
+ -ms-flex-direction: column;
+ flex-direction: column;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+ -webkit-align-items: center;
+ -webkit-box-align: center;
+ -ms-flex-align: center;
+ align-items: center;
+ gap: 8px;
+ width: 125px;
+}
+
+.t-khadamt-icon-4 .service-icon-wrapper {
+ background-color: #ffe5ee;
+ border-radius: 12px;
+ padding: 12px;
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ position: relative;
+}
+
+.t-khadamt-icon-4 a .service-title {
+ text-align: center;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+
+.mui-3w0ym9 {
+ color: #323232;
+ margin: 0px;
+ font-weight: 400;
+ font-size: 14px;
+ line-height: 20px;
+}
+
+.t-khadamt-icon-5 a {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-flex-direction: column;
+ -ms-flex-direction: column;
+ flex-direction: column;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+ -webkit-align-items: center;
+ -webkit-box-align: center;
+ -ms-flex-align: center;
+ align-items: center;
+ gap: 8px;
+ width: 125px;
+}
+
+.t-khadamt-icon-5 .service-icon-wrapper {
+ background-color: #dffff4;
+ border-radius: 12px;
+ padding: 12px;
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ position: relative;
+}
+
+.t-khadamt-icon-5 a .service-title {
+ text-align: center;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+
+.mui-3w0ym9 {
+ color: #323232;
+ margin: 0px;
+ font-weight: 400;
+ font-size: 14px;
+ line-height: 20px;
+}
+
+.t-khadamt-icon-5 .service-label {
+ position: absolute;
+ top: -8px;
+ left: -12.5px;
+}
+
+.mui-pbjw51 {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ gap: 2px;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+ -webkit-align-items: center;
+ -webkit-box-align: center;
+ -ms-flex-align: center;
+ align-items: center;
+ height: 24px;
+ padding: 2px 6px;
+ border-radius: 360px;
+ color: #be2013;
+ background: #fce4e2;
+ border: 1px solid #fce4e2;
+}
+
+.mui-1l1y5fg {
+ margin: 0px;
+ font-weight: 400;
+ font-size: 14px;
+ line-height: 20px;
+}
+
+.t-khadamt-icon-6 a {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-flex-direction: column;
+ -ms-flex-direction: column;
+ flex-direction: column;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+ -webkit-align-items: center;
+ -webkit-box-align: center;
+ -ms-flex-align: center;
+ align-items: center;
+ gap: 8px;
+ width: 125px;
+}
+
+.t-khadamt-icon-6 .service-icon-wrapper {
+ background-color: #e6f3ff;
+ border-radius: 12px;
+ padding: 12px;
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ position: relative;
+}
+
+.t-khadamt-icon-6 a .service-title {
+ text-align: center;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+
+.mui-3w0ym9 {
+ color: #323232;
+ margin: 0px;
+ font-weight: 400;
+ font-size: 14px;
+ line-height: 20px;
+}
+
+.t-khadamt-icon-7 a {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-flex-direction: column;
+ -ms-flex-direction: column;
+ flex-direction: column;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+ -webkit-align-items: center;
+ -webkit-box-align: center;
+ -ms-flex-align: center;
+ align-items: center;
+ gap: 8px;
+ width: 125px;
+}
+
+.t-khadamt-icon-7 .service-icon-wrapper {
+ background-color: #f0f2f4;
+ border-radius: 12px;
+ padding: 12px;
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ position: relative;
+}
+
+.t-khadamt-icon-7 a .service-title {
+ text-align: center;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+
+.mui-3w0ym9 {
+ color: #323232;
+ margin: 0px;
+ font-weight: 400;
+ font-size: 14px;
+ line-height: 20px;
+}
+
+.t-khadamt-icon-8 a {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-flex-direction: column;
+ -ms-flex-direction: column;
+ flex-direction: column;
+ -webkit-box-pack: center;
+ -ms-flex-pack: center;
+ -webkit-justify-content: center;
+ justify-content: center;
+ -webkit-align-items: center;
+ -webkit-box-align: center;
+ -ms-flex-align: center;
+ align-items: center;
+ gap: 8px;
+ width: 125px;
+}
+
+.t-khadamt-icon-8 .service-icon-wrapper {
+ background-color: #fde9ea;
+ border-radius: 12px;
+ padding: 12px;
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ position: relative;
+}
+
+.gWoCda {
+ width: 18px;
+ min-width: 18px;
+ max-width: 18px;
+ height: 18px;
+ min-height: 18px;
+ max-height: 18px;
+ margin-right: 2px;
+}
+
+/* -- */
+.top-main-khadamat-container {
+ /* background-color: red; */
+ overflow-x: hidden;
+}
+
+/* -- */
+.mt-60 {
+ margin-top: 60px !important;
+}
+
+.visit-nurse .swiper-pagination-bullets.swiper-pagination-horizontal {
+ position: absolute;
+ bottom: 30px;
+}
+
+.takhasos-cards-new .card__container {
+ padding-block: 1rem;
+ min-height: 221px;
+}
+
+.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+ background-color: rgb(65, 135, 255) !important;
+ width: 18px !important;
+}
+
+.nobat-dehi .swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+ bottom: 10px;
+}
+
+.swiper-button-prev-7,
+.swiper-button-next-7 {
+ display: none !important;
+}
+
+/* marakezdarmani new styles */
+.centers-list {
+ display: flex;
+ justify-content: stretch;
+ overflow-x: auto;
+}
+
+@media (min-width: 36em) {
+ .center-item:not(:last-child) {
+  margin-left: 24px;
+ }
+}
+
+.center-item.active {
+ background-color: rgb(65, 135, 255);
+ color: rgb(255, 255, 255);
+}
+
+.center-item:not(:last-child) {
+ margin-left: 8px;
+}
+
+@media (min-width: 36em) {
+ .center-item {
+  box-shadow: rgba(224, 224, 224, 0.2) 0px 1px 10px 1px;
+  min-width: 128px;
+  padding: 16px 8px;
+  border-radius: 12px;
+ }
+}
+
+.center-item {
+ background-color: rgb(255, 255, 255);
+ border: 1px solid rgb(234, 236, 240);
+ border-radius: 8px;
+ padding: 8px 0px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ flex: 1 1 0%;
+ text-align: center;
+ cursor: pointer;
+ min-width: 70px;
+ min-height: 185px;
+ justify-content: center;
+}
+
+@media (min-width: 36em) {
+ .icon-wrapper {
+  border: 8px solid rgb(245, 250, 255);
+  width: 72px;
+  height: 72px;
+ }
+}
+
+.icon-wrapper {
+ border-radius: 50%;
+ width: 68px;
+ height: 68px;
+ background-color: rgb(236, 243, 255);
+ border: 4px solid rgb(245, 250, 255);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 8px;
+}
+
+@media (min-width: 36em) {
+ .icon-background {
+  width: 28px;
+  height: 28px;
+ }
+}
+
+.icon-background {
+ position: relative;
+ width: 20px;
+ height: 20px;
+}
+
+.center-item.active .center-title,
+.center-item.active .item-count {
+ color: rgb(255, 255, 255);
+}
+
+@media (min-width: 36em) {
+ .center-title {
+  font-size: 18px !important;
+  line-height: 28px;
+ }
+}
+
+.center-title {
+ font-size: 12px;
+ font-weight: 600;
+ line-height: 22px;
+ color: rgb(29, 41, 57);
+}
+
+@media (min-width: 36em) {
+ .item-count {
+  margin: 8px 0px;
+  font-size: 12px !important;
+  line-height: 22px;
+ }
+}
+
+.item-count {
+ font-size: 10px;
+ font-weight: 500;
+ line-height: 20px;
+ color: rgb(102, 112, 133);
+ margin: 4px 0px;
+}
+
+.center-item.active .icon-arrow {
+ fill: rgb(255, 255, 255);
+}
+
+.icon-arrow {
+ fill: rgb(152, 162, 179);
+ width: 11px;
+ height: 11px;
+}
+
+.swiper-pagination-3 {
+ bottom: 56px !important;
+}
+
+.swiper-pagination-6 {
+ bottom: 10px !important;
+ left: 47% !important;
+}
+
+/* marakez darmani secont row */
+@media (min-width: 36em) {
+ .details-curren-content {
+  padding: 20px;
+  margin-top: 16px;
+  min-height: 28vh;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+ }
+}
+
+.details-curren-content {
+ background-color: rgb(255, 255, 255);
+ border-radius: 12px;
+ padding: 12px 12px 16px;
+ margin-top: 12px;
+ min-height: 28vh;
+ position: relative;
+}
+
+@media (min-width: 36em) {
+ .top-header-curren-content {
+  margin-bottom: 20px;
+ }
+}
+
+.top-header-curren-content {
+ margin-bottom: 12px;
+ display: flex;
+ -webkit-box-align: center;
+ align-items: center;
+ -webkit-box-pack: justify;
+ justify-content: space-between;
+}
+
+@media (min-width: 36em) {
+ .top-header-curren-content-txt {
+  font-size: 18px;
+  line-height: 28px;
+ }
+}
+
+.top-header-curren-content-txt {
+ font-size: 14px;
+ font-weight: 600;
+ line-height: 24px;
+}
+
+@media (min-width: 36em) {
+ .top-header-current-text-fw {
+  font-size: 14px;
+  line-height: 24px;
+ }
+}
+
+.top-header-current-text-fw {
+ color: rgb(65, 135, 255);
+ font-size: 12px;
+ font-weight: 500;
+ line-height: 22px;
+ display: flex;
+ -webkit-box-align: center;
+ align-items: center;
+}
+
+.top-header-curren-content-color-styles,
+.top-header-curren-content-color-styles:active,
+.top-header-curren-content-color-styles:focus,
+.top-header-curren-content-color-styles:hover,
+.top-header-curren-content-color-styles:visited {
+ color: rgb(65, 135, 255);
+}
+
+.top-header-curren-content-color-styles,
+.top-header-curren-content-color-styles:active,
+.top-header-curren-content-color-styles:focus,
+.top-header-curren-content-color-styles:hover,
+.top-header-curren-content-color-styles:visited {
+ text-decoration: none;
+ outline: none;
+}
+
+.top-header-curren-content-color-styles {
+ transition-duration: 0.3s;
+ text-decoration: none;
+ user-select: none;
+ white-space: nowrap;
+ box-sizing: border-box;
+ line-height: 1.5;
+ font-weight: bold;
+ display: inline-flex;
+ -webkit-box-pack: center;
+ justify-content: center;
+ -webkit-box-align: center;
+ align-items: center;
+ cursor: pointer;
+ position: static;
+ padding: 0px;
+ font-size: 1rem;
+ background-color: transparent;
+ border: 0px;
+}
+
+.top-header-curren-content-txt-styles,
+.top-header-curren-content-txt-styles:active,
+.top-header-curren-content-txt-styles:hover,
+.top-header-curren-content-txt-styles:focus {
+ text-decoration: none;
+ cursor: pointer;
+}
+
+top-header-current-text-fw svg {
+ margin-right: 5px;
+}
+
+.top-header-curren-content-color-styles > svg {
+ color: inherit;
+ fill: currentcolor;
+}
+
+.my-clinic-titlec-wrapper-style {
+ width: 18px;
+ min-width: 18px;
+ max-width: 18px;
+ height: 18px;
+ min-height: 18px;
+ max-height: 18px;
+}
+
+@media (min-width: 48em) {
+ .nav-btn-clinic-titlec-style {
+  width: 100%;
+ }
+}
+
+@media (min-width: 48em) {
+ .nav-btn-clinic-titlec-style {
+  margin-left: 0px;
+  margin-right: 0px;
+ }
+}
+
+.nav-btn-clinic-titlec-style {
+ position: relative;
+ width: calc(100% + 30px);
+ margin-left: -15px;
+ margin-right: -15px;
+}
+
+.details-curren-content .nav-button.next {
+ left: -40px;
+}
+
+@media (min-width: 48em) {
+ .clinic-titlec-svg-style {
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  color: rgb(65, 134, 255);
+  position: absolute;
+  left: -21px;
+  top: calc(50% - 25px);
+  transform: translateY(-50%);
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  z-index: 3;
+  cursor: pointer;
+ }
+}
+
+.clinic-titlec-svg-style {
+ display: none;
+}
+
+.clinic-titlec-top-h-color {
+ display: block;
+ border: 0px;
+ background-color: transparent;
+ outline: none;
+ box-shadow: none;
+ cursor: default;
+ padding: 0px;
+ -webkit-tap-highlight-color: transparent;
+}
+
+.bYEVIJ {
+ fill: currentcolor;
+ width: 24px;
+ min-width: 24px;
+ max-width: 24px;
+ height: 24px;
+ min-height: 24px;
+ max-height: 24px;
+}
+
+.details-curren-content .nav-button.prev {
+ right: -40px;
+}
+
+@media (min-width: 48em) {
+ .clinic-titlec-svg-style:disabled {
+  display: none;
+ }
+}
+
+.clinic-titlec-svg-style-right {
+ left: initial;
+ right: -21px;
+}
+
+@media (min-width: 48em) {
+ .clinic-titlec-svg-style {
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  color: rgb(65, 134, 255);
+  position: absolute;
+  left: -21px;
+  top: calc(50% - 25px);
+  transform: translateY(-50%);
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  z-index: 3;
+  cursor: pointer;
+ }
+}
+
+.clinic-titlec-svg-style {
+ display: none;
+}
+
+.clinic-titlec-top-h-color {
+ display: block;
+ border: 0px;
+ background-color: transparent;
+ outline: none;
+ box-shadow: none;
+ cursor: default;
+ padding: 0px;
+ -webkit-tap-highlight-color: transparent;
+}
+
+.bYEVIJ {
+ fill: currentcolor;
+ width: 24px;
+ min-width: 24px;
+ max-width: 24px;
+ height: 24px;
+ min-height: 24px;
+ max-height: 24px;
+}
+
+.mt-110 {
+ margin-top: 110px !important;
+}
+
+@media (min-width: 36em) {
+ .bRIsuX {
+  margin-bottom: -52px;
+ }
+}
+
+.fvGknU .swiper-slide {
+ height: initial;
+ width: 146px;
+ display: flex;
+}
+
+@media (min-width: 36em) {
+ .gyagvr {
+  border-radius: 12px;
+  box-shadow: none;
+ }
+}
+
+.gyagvr {
+ background-color: rgb(255, 255, 255);
+ border: 1px solid rgb(242, 244, 247);
+ border-radius: 8px;
+ padding: 8px;
+ flex: 1 1 0%;
+ text-align: center;
+ width: 100%;
+}
+
+.top-header-curren-content-txt-styles,
+.top-header-curren-content-txt-styles:active,
+.top-header-curren-content-txt-styles:hover,
+.top-header-curren-content-txt-styles:focus {
+ text-decoration: none;
+ cursor: pointer;
+}
+
+@media (min-width: 36em) {
+ .gJOvRi {
+  border-radius: 8px;
+ }
+}
+
+.gJOvRi {
+ position: relative;
+ border-radius: 4px;
+ overflow: hidden;
+ height: 61px;
+ width: 100%;
+}
+
+.iwngrb {
+ overflow: hidden;
+ background-color: rgb(236, 243, 255);
+ border: 2px solid rgb(255, 255, 255);
+ position: relative;
+ border-radius: 50%;
+ height: 40px;
+ width: 40px;
+ margin: -20px auto 8px;
+}
+
+.clinic-title-txt {
+ font-size: 11px;
+ font-weight: 600;
+ line-height: 22px;
+ white-space: nowrap;
+ overflow: hidden;
+ color: #333 !important;
+}
+
+.details-curren-content .nav-button.next,
+.details-curren-content .nav-button.prev {
+ display: none;
+}
+
+.HhAuJ {
+ font-size: 10px;
+ font-weight: 400;
+ line-height: 20px;
+ color: rgb(152, 162, 179);
+ display: flex;
+ -webkit-box-align: center;
+ align-items: center;
+ -webkit-box-pack: center;
+ justify-content: center;
+}
+
+.HhAuJ svg {
+ margin-left: 4px;
+}
+
+.ckUXdO {
+ width: 14px;
+ min-width: 14px;
+ max-width: 14px;
+ height: 14px;
+ min-height: 14px;
+ max-height: 14px;
+}
+
+/* marakez darmani secont row */
+/* marakezdarmani new styles */
+/* main .top-main-khadamt #section-t-wrapper{
+  display: flex !important;
+  justify-content: center !important;
+  gap: 20px !important;
+} */
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 320px) {
+ .card__data {
+  padding: 1rem;
+ }
+}
+
+/* For medium devices */
+@media screen and (min-width: 768px) {
+ .swiper-button-next,
+ .swiper-button-prev {
+  display: block;
+ }
+}
+
+/* For large devices */
+/* @media screen and (min-width: 1120px) {
+    .swiper-button-prev {
+        left: -1rem;
+    }
+    .swiper-button-next {
+        right: -1rem;
+    }
+} */
+.poshtibany-icon img {
+ width: 60px;
+ left: 10px;
+ border-radius: 50%;
+ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ position: fixed;
+ top: 80% !important;
+ z-index: 888;
+ transform: translate(5%, 25%);
+}
+
+.poshtibany-icon img:hover {
+ cursor: pointer;
+}
+
+.bg-success-10 {
+ background-color: rgb(26, 171, 73);
+}
+
+.text-success-10 {
+ color: rgb(26, 171, 73);
+}
+
+.text-success-20 {
+ color: #148539;
+}
+
+.text-xs {
+ font-size: 13px;
+ font-weight: 400;
+}
+
+.text-primary-70 {
+ color: #0067cd !important;
+}
+
+.border-1-primary {
+ border: 1px solid #0067cd !important;
+}
+
+.rounded-full {
+ border-radius: 120px;
+}
+
+.text-gray-10 {
+ color: #b9b9b9;
+ font-weight: 300;
+}
+
+.bg-ddd {
+ background-color: rgba(221, 221, 221, 0.8666666667) !important;
+}
+
+.text-primary-80 {
+ color: #004e9c !important;
+}
+
+.bg-primary-70 {
+ background-color: #0067cd !important;
+}
+
+.bg-primary-40 {
+ background-color: #97cbff !important;
+}
+
+.bg-primary-30 {
+ background-color: #cce6ff;
+}
+
+.bg-primary-20 {
+ background-color: #daedff;
+}
+
+.bg-primary-10 {
+ background-color: #e6f3ff;
+}
+
+.bg-f4faff {
+ background-color: #f4faff !important;
+}
+
+::-webkit-scrollbar {
+ display: none;
+}
+
+main {
+ width: 100% !important;
+ background: #f4faff !important;
+ /* background: url('./../../images/beams-home@95.jpg'); */
+ position: relative;
+ top: 63px;
+ padding-bottom: 20px;
+ min-height: 80vh;
+}
+
+main .s-tekrar-content {
+ display: flex;
+ flex-wrap: nowrap !important;
+ text-wrap: nowrap !important;
+ overflow-x: scroll !important;
+ flex-direction: row !important;
+}
+
+.h-290 {
+ height: 290px !important;
+}
+
+.h-275 {
+ height: 275px !important;
+}
+
+.cursor-pointer {
+ cursor: pointer !important;
+}
+
+.top-main-search form {
+ display: flex;
+ flex-direction: row;
+ position: relative;
+}
+
+.top-main-search .drop-search {
+ position: absolute;
+ width: 685px;
+ overflow-y: scroll;
+ height: 400px;
+ background-color: #fff;
+ z-index: 123335588;
+ border-radius: 20px;
+ border-top-right-radius: 0;
+ border-top-left-radius: 0;
+ box-shadow:
+  rgba(17, 17, 26, 0.1) 0px 8px 24px,
+  rgba(17, 17, 26, 0.1) 0px 16px 56px,
+  rgba(17, 17, 26, 0.1) 0px 24px 80px;
+ top: 240px;
+ opacity: 0.95;
+}
+
+.top-main-search .drop-search .s-tekrar-content-drop-search {
+ display: flex !important;
+ flex-wrap: wrap !important;
+ max-width: 1200px;
+}
+
+main .top-h-main {
+ text-align: center;
+ line-height: 3.5rem;
+ font-weight: bold;
+}
+
+main .top-h-main .text-pr-f-iran {
+ font-family: IRANSans !important;
+ font-weight: 500;
+ padding: 0 2px;
+}
+
+.oms-text {
+ font-family: 'IRANSans' !important;
+}
+
+.my-input-search {
+ width: 560px;
+ height: 50px;
+ border-radius: 30px;
+ border: 1px solid rgb(26, 171, 73);
+ background-color: #fff;
+ outline: none;
+ padding-right: 10px;
+ border-top-left-radius: 0;
+ border-bottom-left-radius: 0;
+ border-left: none;
+}
+
+.my-input-search::placeholder {
+ font-weight: 500;
+ font-size: 13px;
+ padding-right: 10px;
+}
+
+.city-and-search-icon-in-input {
+ /* min-width: 125px; */
+ height: 50px;
+ border-radius: 30px;
+ border: 1px solid rgb(26, 171, 73);
+ background-color: #fff;
+ outline: none;
+ padding-right: 10px;
+ display: flex;
+ align-items: center;
+ justify-content: start;
+ border-right: none;
+ border-top-right-radius: 0;
+ border-bottom-right-radius: 0;
+ padding-left: 10px;
+}
+
+.btn-search {
+ display: flex;
+ overflow: hidden;
+ padding: 8px;
+ border-radius: 50%;
+ background: rgb(26, 171, 73);
+ -webkit-box-pack: center;
+ justify-content: center;
+ -webkit-box-align: center;
+ align-items: center;
+ border: none;
+ color: rgb(255, 255, 255);
+ width: 30px;
+ height: 30px;
+ align-items: center;
+}
+
+.text-most-searches {
+ margin: 9px 5px;
+ font-size: 11px;
+}
+
+.most-searches-item-styles {
+ border: 1px solid #ddd;
+ border-radius: 50px;
+ padding: 5px 7px;
+ margin-top: 12px;
+ font-weight: 400;
+}
+
+#specialtyAndDoctorSearchResault ul li,
+#specialtyAndDoctorSearchResault-h ul li {
+ list-style-type: none !important;
+}
+
+#specialtyAndDoctorSearchResault,
+#specialtyAndDoctorSearchResault-h {
+ padding: 8px;
+}
+
+.search-user-img {
+ width: 50px;
+}
+
+.fs-11 {
+ font-size: 11px !important;
+}
+
+.fs-13 {
+ font-size: 13px !important;
+}
+
+main .card-services-main-top .card-services {
+ display: flex;
+ justify-content: center;
+ gap: 10px 10px;
+}
+
+main .card-services-main-top .card-services .card-service {
+ width: 265px;
+ height: 275px;
+ border-radius: 12px;
+ box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+main .card-services-main-top .card-services .card-service .img-overlay img {
+ position: relative;
+ z-index: 2;
+ bottom: 20px;
+}
+
+main
+ .card-services-main-top
+ .card-services
+ .card-service
+ .content-card-service-description
+ p {
+ font-size: 14px;
+ width: 85%;
+}
+
+main .cards-online-nurses {
+ width: 100% !important;
+ display: flex;
+ justify-content: space-between;
+}
+
+main .cards-online-nurses .online-status-overlay {
+ width: 14px;
+ height: 14px;
+ border-radius: 50%;
+ background-color: #22dd5e;
+ position: relative;
+ top: 12px;
+ left: 17px;
+}
+
+.my-border-in-modal {
+ border-radius: 50px;
+ background-color: #f5f5f5;
+ height: 45px;
+ display: flex;
+ align-items: center;
+}
+
+.my-green {
+ background-color: #1aab49 !important;
+}
+
+.bg-success-price {
+ font-size: 12px;
+ font-weight: 400;
+ color: rgb(0, 127, 83);
+ background-color: #e8fbee;
+ padding: 5px;
+ width: 100px;
+ border-radius: 50px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ height: 30px;
+}
+
+.my-h-modal-card {
+ height: 280px !important;
+}
+
+.fs-11 {
+ font-size: 11px !important;
+}
+
+.status-icon-container {
+ padding: 24px;
+ display: flex;
+ -webkit-box-pack: center;
+ justify-content: center;
+ -webkit-box-align: center;
+ align-items: center;
+ background-color: rgb(232, 251, 238);
+ border-radius: 360px;
+ width: 104px;
+}
+
+main .cards-online-nurses .card-online-nurse {
+ width: 300px;
+ height: 300px;
+ border: 1px solid #e5fbec;
+ border-radius: 12px;
+ box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+main .visit-nurse .cards-online-nurses .card-online-nurse {
+ background-color: rgb(224, 248, 235) !important;
+}
+
+main .cards-online-nurses .card-online-nurse .top-star-nurse {
+ text-align: left !important;
+}
+
+main .cards-online-nurses .card-online-nurse .top-star-nurse span {
+ font-family: IranSans !important;
+ font-size: 13px;
+ font-weight: 400;
+}
+
+main .cards-online-nurses .card-online-nurse .img-online-nurse-prof {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+}
+
+main .cards-online-nurses .card-online-nurse .img-online-nurse-prof img {
+ width: 55px;
+ border-radius: 50%;
+ border: 2px solid rgb(245, 211, 58);
+}
+
+main .cards-online-nurses .card-online-nurse .img-online-nurse-prof .text-xs {
+ /* font-size: 13px; */
+ font-weight: 400;
+}
+
+main .cards-online-nurses .card-online-nurse .btn-online-nurse a {
+ width: 260px;
+ height: 40px;
+ border: 1px solid #67bf84;
+ color: #fff;
+ font-weight: bold;
+ background-color: #1abb49;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.marakez-darmani .card-online-nurse .btn-online-nurse a {
+ width: 205px;
+ color: #1d78d3 !important;
+ background-color: #fff !important;
+ font-size: 15px;
+}
+
+/* body{
+  overflow-x: hidden;
+} */
+main .all-takhasos {
+ width: 100%;
+ min-height: 20vh !important;
+ background: url('./../../images/bg.png');
+ background-repeat: no-repeat;
+ background-position-x: center;
+ background-size: cover;
+ background-color: #edf7ff !important;
+ position: relative;
+ overflow-x: hidden;
+}
+
+.swiper-navBtn {
+ color: #000;
+ height: 40px;
+ width: 40px;
+ background: #fff;
+ border-radius: 50%;
+ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.slide-container {
+ margin: 0 30px;
+ overflow: hidden;
+}
+
+.card {
+ background: #fff;
+ border-radius: 8px;
+}
+
+.card .image-box {
+ height: 200px;
+}
+
+.card .image-box img {
+ width: 100%;
+ height: 100%;
+ border-radius: 8px 8px 0 0;
+}
+
+.card .profile-details {
+ display: flex;
+ align-items: center;
+ column-gap: 12px;
+ padding: 15px;
+}
+
+.card .profile-details img {
+ height: 40px;
+ width: 40px;
+ border-radius: 50%;
+}
+
+.profile-details .name {
+ font-size: 15px;
+ font-weight: 500;
+}
+
+.profile-details .job {
+ font-size: 12px;
+ font-weight: 500;
+ color: #4d4d4d;
+}
+
+.swiper-navBtn {
+ height: 48px;
+ width: 48px;
+ background: #fff;
+ border-radius: 50%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ position: absolute;
+ top: 170px;
+ box-shadow: rgba(224, 224, 224, 0.8) 0px 2px 30px 8px;
+}
+
+.swiper-navBtn:hover {
+ box-shadow:
+  rgba(17, 17, 26, 0.1) 0px 4px 16px,
+  rgba(17, 17, 26, 0.1) 0px 8px 24px,
+  rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+.swiper-navBtn::before,
+.swiper-navBtn::after {
+ font-size: 18px;
+}
+
+/* .swiper-pagination-5{ */
+/* background-color: red !important; */
+/* transform: translateX(-39%) !important; */
+/* } */
+/* .swiper-pagination-bullet {
+  background-color: #000;
+} */
+/* .takhasos-cards-new .card__div {
+    width: 190px !important;
+} */
+.takhasos-cards-new .card__container {
+ margin-top: -1.8rem !important;
+}
+
+.takhasos-icon img {
+ width: 72px;
+}
+
+.takhasos-cards-new .card__div .text-takhasos {
+ font-size: 14px;
+ color: #333;
+}
+
+.takhasos-cards-new .card__div .text-count-nurse-takhasos {
+ font-size: 11px;
+ color: #727272;
+ font-weight: light;
+}
+
+.takhasos-cards-new .takhasos-icon {
+ box-shadow:
+  rgba(13, 34, 70, 0.02) 0px 1px 6px 0px,
+  rgba(13, 34, 70, 0.02) 0px 4px 18px 0px;
+ padding: 16px 8px;
+ border-radius: 12px;
+ /* width: 208px; */
+ height: 180px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: #fff;
+ border: 1px solid #e9e9e9;
+}
+
+.takhasos ul li a {
+ line-height: 1.7;
+ font-size: 15px !important;
+ font-weight: bold;
+}
+
+.loading-city-overlay {
+ height: inherit;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 100%;
+ background-color: #fff;
+ z-index: 123333;
+}
+
+.drop-content-loading-overlay {
+ height: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: inherit;
+ background-color: #fff;
+ z-index: 123433;
+ top: 0;
+ right: 0;
+ left: 0;
+ border-radius: 12px;
+}
+
+main .all-takhasos .takhasos-cards .takhasos-card {
+ margin: 2px;
+ width: 180px;
+ height: 180px;
+ background-color: #fff;
+ border-radius: 12px;
+ border: 1px solid #417cb6;
+}
+
+main .overly-img {
+ border: 2px solid rgb(255, 179, 0);
+}
+
+main .heart-overly-nurse {
+ width: 16px;
+ height: 16px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ border-radius: 50%;
+ background-color: #fff !important;
+ position: relative;
+ z-index: 33;
+ top: 50px;
+ left: 22px;
+}
+
+main .mp-s div:hover {
+ cursor: pointer;
+}
+
+main .card-nurse {
+ height: 330px;
+}
+
+main .change-slide-nurse-card {
+ display: flex;
+ justify-content: center;
+ gap: 10px 10px;
+}
+
+main .change-slide-nurse-card div {
+ width: 12px;
+ height: 12px;
+ border-radius: 50%;
+ background-color: rgba(221, 221, 221, 0.8666666667);
+}
+
+main .k-image {
+ width: 100px !important;
+}
+
+main .clinic-titlec-details {
+ border: 1px solid #ddd;
+ border-radius: 12px;
+ padding: 10px;
+ margin-top: 15px;
+}
+
+main .card-clinic-titlec {
+ height: 270px !important;
+ border: none !important;
+}
+
+main .guide-benobeh {
+ width: 100%;
+ min-height: 79vh;
+ background-color: #e6f3ff !important;
+ /* background: url('./../../images/beams-home@95.jpg'); */
+ background: url('./../../images/bg.png');
+ background-repeat: no-repeat;
+ background-position-x: center;
+ background-size: cover;
+ display: flex;
+ align-items: center;
+}
+
+main .guide-benobeh .top-left-guide img {
+ width: 270px;
+ position: relative;
+ bottom: 80px;
+}
+
+main .downloads img {
+ width: 180px;
+}
+
+main .right-bottom-guide {
+ border-left: 1px solid #0067cd;
+}
+
+main {
+ overflow: hidden !important;
+}
+
+main .users-comment .card-comment {
+ width: 264px;
+ height: 190px;
+ border: 1px solid #eaecf0;
+ border-radius: 12px;
+ padding: 15px;
+ box-shadow:
+  rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+ min-height: 250px;
+}
+
+main .users-comment .card-comment .text-xs {
+ font-family: 'IranSans';
+}
+
+main .users-comment .card-comment .text-decoration-none {
+ color: #333 !important;
+ font-weight: 600;
+}
+
+main .users-comment .card-comment .footer-card-comment {
+ border-top: 2px dashed #dfdfdf;
+}
+
+.comment-content {
+ max-width: 1900px !important;
+}
+
+.comment-content .swiper-slide {
+ transition: transform 0.5s ease;
+}
+
+main .date-publish-comment span {
+ font-weight: light !important;
+}
+
+main .comment-text-card-comment {
+ margin-top: 10px;
+}
+
+main .comment-text-card-comment p {
+ font-size: 12px;
+ color: #838e97;
+ font-weight: light !important;
+}
+
+main .takhasos-list {
+ width: 100%;
+ border: 1px solid #d5ebff;
+ padding: 15px;
+ border-radius: 12px;
+}
+
+main .takhasos-list .t-list-all ul li a {
+ text-decoration: none;
+ font-size: 14px;
+ color: #000;
+}
+
+main .show-all-toggler-takhasos-list span:hover {
+ cursor: pointer;
+}
+
+.h-50px {
+ height: 50px !important;
+}
+
+.majaleh-salamat-benobe
+ .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+ left: 50%;
+ transform: translateX(0%);
+ white-space: nowrap;
+}
+
+.majaleh-salamat-benobe .card__div {
+ border: 1px solid #eaecf0;
+ width: 290px !important;
+ height: 100%;
+ box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+ border-radius: 12px;
+}
+
+.majaleh-salamat-benobe .card__div .top-img-majaleh {
+ display: flex;
+ justify-content: center;
+}
+
+.majaleh-salamat-benobe .card__div .top-img-majaleh img {
+ width: 100%;
+ border-radius: 12px;
+}
+
+.majaleh-salamat-benobe .card__div:hover {
+ /* cursor: pointer; */
+ box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.majaleh-salamat-benobe .card__div .top-majale-header h4 {
+ font-size: 15px;
+}
+
+.majaleh-salamat-benobe .card__div .footer-majaleh-card {
+ border-top: 1.8px dashed #ddd;
+}
+
+.text-calender {
+ color: #b3b4b6;
+ font-weight: light !important;
+ font-size: 14px;
+}
+
+.home-footer a {
+ font-family: 'IRANSansXRegular' !important;
+}
+
+.home-footer span {
+ font-family: 'IRANSansXRegular' !important;
+}
+
+.home-footer h4 {
+ font-family: 'IRANSansXRegular' !important;
+}
+
+.home-footer h5 {
+ font-family: 'IRANSansXRegular' !important;
+}
+
+.home-footer h6 {
+ font-family: 'IRANSansXRegular' !important;
+}
+
+.home-footer p {
+ font-family: 'IRANSansXRegular' !important;
+}
+
+.home-footer {
+ /* background-color: #f9fafb; */
+ /* background: url('./../../images/beams-home@95.jpg'); */
+ background: url('./../../images/bg-pattern.webp');
+ /* background-color: rgb(52, 110, 209); */
+ /* background-color: #f9fafb; */
+ width: 100%;
+ min-height: 55vh !important;
+ position: relative;
+ /* border-top: 1px solid #4b4b4b; */
+ box-shadow:
+  rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+  rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+footer .top-footer-content ul li a {
+ text-decoration: none;
+ color: #272727;
+ font-weight: lighter;
+ line-height: 2.5rem;
+}
+
+footer .top-footer-content ul {
+ list-style: none;
+}
+
+footer .logo-benobe-footer img {
+ width: 90px;
+}
+
+footer .btn-footer {
+ min-width: 100px;
+ height: 45px;
+ /* padding: 8px 15px; */
+ border-radius: 8px;
+ background-color: #fff;
+ border: 1px solid #ddd;
+ color: #333;
+ font-size: 13px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+footer .fav-logo {
+ width: 16px;
+ margin-left: 5px;
+}
+
+footer .middle-footer-content {
+ border-top: 1px solid #ddd;
+}
+
+footer .middle-footer-content .namads-footer img {
+ width: 100px;
+ border: 1px solid #3333;
+ border-radius: 8px;
+ padding: 2px 5px;
+}
+
+footer .middle-footer-content .namads-footer {
+ display: flex;
+ gap: 10px;
+}
+
+footer .middle-footer-content .text-footer {
+ text-align: justify;
+ width: 90%;
+}
+
+footer .bottom-footer-content div {
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 40px;
+ /* background-color: #eef1f5; */
+}
+
+.bottom-menu-839 {
+ height: 62px;
+ width: 100vw;
+ position: fixed;
+ bottom: 0px;
+ right: 0px;
+ display: flex;
+ flex-direction: row;
+ -webkit-box-pack: justify;
+ justify-content: space-between;
+ padding: 0px 8px;
+ background-color: rgb(255, 255, 255);
+ box-shadow: rgba(96, 100, 106, 0.08) 0px -4px 16px 0px;
+ z-index: 100;
+}
+
+.bottom-menu-839 .content-bottom-menu-839 {
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+}
+
+.bottom-menu-839 .content-bottom-menu-839 .home-menu-item-div a,
+.bottom-menu-839 .content-bottom-menu-839 .nurses-menu-item-div a,
+.bottom-menu-839 .content-bottom-menu-839 .nobatha-menu-item-div a,
+.bottom-menu-839 .content-bottom-menu-839 .profile-menu-item-div a {
+ display: flex;
+ flex-direction: column;
+ text-decoration: none;
+ color: #333;
+ align-items: center;
+ padding: 5px 10px;
+}
+
+.bottom-menu-839 .content-bottom-menu-839 .home-menu-item-div a {
+ color: #0067cd;
+}
+
+.bottom-menu-839 .content-bottom-menu-839 .home-menu-item-div a svg {
+ fill: #0067cd;
+}
+
+.my-drop-down-auth ul li a {
+ text-align: right;
+ direction: rtl;
+}
+
+.users-comment .card__container {
+ min-height: 310px;
+}
+
+@media screen and (min-width: 1400px) {
+ .next-slide {
+  position: absolute !important;
+  left: 50px !important;
+  top: 360px !important;
+ }
+
+ main .guide-benobeh {
+  width: 100%;
+  min-height: 82vh;
+  /* background-color: #e6f3ff !important; */
+  background: url('./../../images/bg.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+ }
+
+ .prev-slide {
+  position: absolute !important;
+  right: 50px !important;
+  top: 360px !important;
+ }
+}
+
+@media screen and (max-width: 1400px) {
+ .cards-online-nurses .container {
+  max-width: 1300px !important;
+ }
+
+ footer .container {
+  max-width: 1300px !important;
+ }
+
+ .change-main-container-js,
+ .most-searches-container,
+ .remove-container-all-takhasos-use-js,
+ .n-r-c,
+ .md-r-c,
+ .gb-r-c,
+ .us-r-c,
+ .medical-centers-container,
+ .medical-centers-container,
+ .medical-second-div-container,
+ .top-header-container,
+ .tld-r-c {
+  max-width: 1350px !important;
+ }
+
+ .next-slide {
+  position: absolute !important;
+  left: 30px !important;
+  top: 360px !important;
+ }
+
+ .prev-slide {
+  position: absolute !important;
+  right: 30px !important;
+  top: 360px !important;
+ }
+}
+
+@media screen and (max-width: 1316px) {
+ .next-slide {
+  position: absolute !important;
+  left: 0px !important;
+  top: 360px !important;
+ }
+
+ .prev-slide {
+  position: absolute !important;
+  right: 0px !important;
+  top: 360px !important;
+ }
+
+ .users-comment .card-comment {
+  width: 270px;
+ }
+}
+
+@media screen and (max-width: 1285px) {
+ .users-comment .card-comment {
+  width: 250px !important;
+ }
+}
+
+@media screen and (max-width: 1257px) {
+ .cards-online-nurses .container {
+  max-width: 1350px !important;
+ }
+
+ .change-main-container-js,
+ .most-searches-container,
+ .remove-container-all-takhasos-use-js,
+ .n-r-c,
+ .md-r-c,
+ .gb-r-c,
+ .us-r-c,
+ .top-header-container,
+ .tld-r-c {
+  max-width: 1350px !important;
+ }
+
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 280px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 250px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+}
+
+@media screen and (max-width: 1220px) {
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 280px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 250px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+
+ .next-slide {
+  position: absolute !important;
+  left: 0px !important;
+  top: 360px !important;
+ }
+
+ .prev-slide {
+  position: absolute !important;
+  right: 0px !important;
+  top: 360px !important;
+ }
+
+ .visit-nurse .cards-online-nurses {
+  gap: 15px !important;
+ }
+}
+
+@media screen and (max-width: 1200px) {
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 270px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 240px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+
+ .all-takhasos .next-slide {
+  position: absolute !important;
+  left: 0px !important;
+  top: 360px !important;
+ }
+
+ .all-takhasos .prev-slide {
+  position: absolute !important;
+  right: 0px !important;
+  top: 360px !important;
+ }
+
+ .visit-nurse .cards-online-nurses .card-online-nurse .btn-online-nurse a {
+  width: 200px;
+ }
+
+ .nobat-dehi .cards-online-nurses .card-online-nurse {
+  width: 280px;
+  text-wrap: nowrap;
+ }
+
+ .nobat-dehi .cards-online-nurses .card-online-nurse .btn-online-nurse a {
+  width: 200px;
+ }
+
+ .card-services {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px 10px;
+ }
+
+ .card-services .card-service {
+  width: 325px !important;
+  height: 275px !important;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+ }
+
+ .card-services .card-service h4 {
+  font-size: 16px;
+  font-weight: bold !important;
+ }
+
+ .card-services .card-service a {
+  font-size: 14px !important;
+ }
+
+ .card-services .card-service .h-m-1200 {
+  margin: 22px !important;
+ }
+
+ .card-services .card-service .img-overlay img {
+  position: relative;
+  z-index: 2;
+  bottom: 10px;
+  width: 50px;
+ }
+
+ .card-services .card-service .content-card-service-description p {
+  font-size: 14px;
+  width: 85%;
+ }
+
+ .right-top-visit-nurse h2 {
+  font-size: 25px;
+ }
+
+ .guide-benobeh .downlod-items img {
+  width: 160px !important;
+ }
+
+ .users-comment .card-comment {
+  width: 290px;
+  height: 220px;
+ }
+
+ .takhasos {
+  width: 1000px !important;
+  /* height: 85vh !important; */
+ }
+
+ .moarefi-pezeshk .card-online-nurse {
+  width: 290px;
+ }
+
+ .moarefi-pezeshk .online-nurse-time-response-div span {
+  font-size: 12px !important;
+ }
+
+ .marakez-darmani .cards-online-nurses {
+  display: flex;
+  gap: 10px 10px;
+ }
+}
+
+@media screen and (max-width: 1162px) {
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 260px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 230px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+}
+
+@media screen and (max-width: 1107px) {
+ .takhasos-cards-new .takhasos-icon {
+  box-shadow:
+   rgba(13, 34, 70, 0.02) 0px 1px 6px 0px,
+   rgba(13, 34, 70, 0.02) 0px 4px 18px 0px;
+  padding: 16px 8px;
+  border-radius: 12px;
+  width: 190px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  /* border: 1px solid #b1b1b1; */
+ }
+
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 250px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 220px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+
+ .next-slide {
+  position: absolute !important;
+  left: 0px !important;
+  top: 360px !important;
+ }
+
+ .prev-slide {
+  position: absolute !important;
+  right: 0px !important;
+  top: 360px !important;
+ }
+
+ .users-comment .cards-online-nurses .card-comment {
+  width: 340px;
+ }
+}
+
+@media screen and (max-width: 1069px) {
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 240px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 210px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+
+ .visit-nurse .cards-online-nurses .card-online-nurse {
+  min-width: 208px;
+ }
+
+ .visit-nurse .cards-online-nurses .card-online-nurse .btn-online-nurse a {
+  width: 200px;
+ }
+
+ .nobat-dehi .cards-online-nurses .card-online-nurse {
+  text-wrap: nowrap;
+ }
+
+ .card-services {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px 10px;
+ }
+
+ .card-services .card-service {
+  width: 325px !important;
+  height: 275px !important;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+ }
+
+ .card-services .card-service h4 {
+  font-size: 16px;
+  font-weight: bold !important;
+ }
+
+ .card-services .card-service a {
+  font-size: 14px !important;
+ }
+
+ .card-services .card-service .h-m-1200 {
+  margin: 22px !important;
+ }
+
+ .card-services .card-service .img-overlay img {
+  position: relative;
+  z-index: 2;
+  bottom: 10px;
+  width: 50px;
+ }
+
+ .card-services .card-service .content-card-service-description p {
+  font-size: 14px;
+  width: 85%;
+ }
+
+ .right-top-visit-nurse h2 {
+  font-size: 25px;
+ }
+
+ .guide-benobeh .downlod-items img {
+  width: 160px !important;
+ }
+
+ .users-comment .cards-online-nurses .card-comment {
+  width: 330px;
+ }
+
+ /* .takhasos {
+    width: 900px !important;
+    height: 85vh !important;
+  } */
+ .moarefi-pezeshk .card-online-nurse {
+  width: 400px;
+ }
+
+ .moarefi-pezeshk .online-nurse-time-response-div span {
+  font-size: 12px !important;
+ }
+
+ .visit-nurse .cards-online-nurses {
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ .visit-nurse .card-online-nurse {
+  width: 280px;
+ }
+
+ .visit-nurse .btn-online-nurse a {
+  width: 225px;
+  margin: 0 5px;
+ }
+
+ .nobat-dehi .cards-online-nurses {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px !important;
+ }
+
+ .nobat-dehi .cards-online-nurses .card-online-nurse {
+  width: 400px;
+ }
+
+ .nobat-dehi .change-slide-nurse-card {
+  margin-top: 40px !important;
+ }
+
+ .nobat-dehi .btn-online-nurse a {
+  width: 225px;
+  margin: 0 5px;
+ }
+
+ footer .namads-footer img {
+  width: 75px !important;
+  height: 75px !important;
+ }
+
+ footer .mid-footer-items a {
+  font-size: 13px;
+  font-weight: 550 !important;
+ }
+
+ footer .right-footer-items a {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+ }
+
+ footer .right-footer-items span {
+  font-size: 14px !important;
+ }
+
+ footer .socials-i a span {
+  font-size: 25px !important;
+ }
+}
+
+@media screen and (max-width: 1049px) {
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 240px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 210px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+
+ .users-comment .cards-online-nurses .card-comment {
+  width: 320px;
+ }
+}
+
+@media screen and (max-width: 1029px) {
+ .visit-nurse .cards-online-nurses .card-online-nurse {
+  width: 220px;
+ }
+
+ .users-comment .cards-online-nurses .card-comment {
+  width: 310px;
+ }
+
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 230px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 200px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+}
+
+@media screen and (max-width: 1009px) {
+ .takhasos-cards-new .takhasos-icon {
+  box-shadow:
+   rgba(13, 34, 70, 0.02) 0px 1px 6px 0px,
+   rgba(13, 34, 70, 0.02) 0px 4px 18px 0px;
+  padding: 16px 8px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  /* border: 1px solid #b1b1b1; */
+ }
+
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 230px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 200px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+}
+
+@media only screen and (max-width: 994px) {
+ /* for topsearch header */
+ /* for topsearch header */
+ footer .footer-benobe-city {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+ }
+
+ #my-txt-search-input {
+  text-wrap: nowrap;
+ }
+
+ .city-and-search-icon-in-input {
+  min-width: 120px;
+ }
+
+ footer .footer-contact {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+ }
+
+ footer .footer-download-option {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+ }
+
+ footer .middle-footer-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+ }
+
+ footer .about-benobe-footer {
+  width: 100%;
+  display: none;
+ }
+
+ footer .footer-namads {
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+ }
+
+ header {
+  display: flex !important;
+  align-items: center !important;
+ }
+
+ header .top-nav-header {
+  display: none;
+ }
+
+ .nav-toggle-992 img {
+  width: 40px;
+  position: absolute;
+  top: 26%;
+  right: 2%;
+ }
+
+ header {
+  min-height: 48px !important;
+ }
+
+ header .top-header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+ }
+
+ .users-comment .card-comment {
+  width: 270px !important;
+ }
+
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 300px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 270px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+
+ #drop-search-content-header {
+  width: 100vw;
+ }
+
+ .top-main-search .drop-search {
+  position: absolute;
+  width: 92vw;
+  min-height: 400px !important;
+  background-color: #fff;
+  z-index: 123335588;
+  border-radius: 20px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  top: 209px;
+  /* left: 50px; */
+  opacity: 0.95;
+ }
+
+ .top-main-search form {
+  width: 100vw;
+  display: flex;
+  justify-content: center !important;
+  padding: 0 5px;
+ }
+
+ .top-main-search form input {
+  width: 80vw;
+ }
+
+ .my-input-search {
+  flex: 1 0 0;
+ }
+
+ .caret-left-in-services {
+  display: flex;
+ }
+
+ .users-comment .cards-online-nurses .card-comment {
+  width: 300px;
+ }
+
+ .all-takhasos .show-all-visit-nurse {
+  display: none !important;
+ }
+
+ .change-main-container-js,
+ .most-searches-container,
+ .remove-container-all-takhasos-use-js,
+ .n-r-c,
+ .md-r-c,
+ .gb-r-c,
+ .us-r-c,
+ .tld-r-c {
+  max-width: 960px !important;
+ }
+
+ header {
+  align-items: center !important;
+  width: 100% !important;
+ }
+
+ /*header .d-none-top-header {*/
+ /*  display: none;*/
+ /*}*/
+ header .top-header-991 {
+  height: 60px !important;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center !important;
+ }
+
+ footer .footer-download-option {
+  margin-top: 38px;
+ }
+
+ header .top-header-991 .nav-toggle-992 img {
+  width: 32px;
+  height: 32px;
+ }
+
+ header .top-header-991 .top-left-regestration-header .btn-reg-log {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+ header .top-header-991 .top-left-regestration-header .btn-reg-log svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 500px !important;
+ }
+
+ header .top-header-991 .top-center-logo-header img {
+  width: 75px;
+ }
+
+ /* header .top-header {
+        min-height: 40px !important;
+    } */
+ header .top-header .top-header-container {
+  max-width: 960px !important;
+ }
+
+ header .text-login {
+  display: none;
+ }
+
+ header .for-nurses-top-header {
+  display: none;
+ }
+
+ header .top-right-logo-header img {
+  position: absolute !important;
+  right: 46.3%;
+  top: 26%;
+  width: 80px !important;
+ }
+
+ header .top-regestration-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+ main .top-h-main {
+  text-align: center;
+  line-height: 3.5rem;
+  font-weight: bold;
+  margin-top: 1.25rem !important;
+ }
+
+ header .top-regestration-header {
+  width: 39px;
+  height: 35px;
+  position: absolute;
+  top: 26%;
+  left: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+ main {
+  position: relative;
+  top: 20px !important;
+  width: 100% !important;
+ }
+
+ main .top-main-header {
+  margin-top: 50px !important;
+ }
+
+ main .top-main-header h1 {
+  font-size: 22px;
+  line-height: 2rem;
+ }
+
+ .top-main-search {
+  /* padding: 0 20px; */
+  width: 100% !important;
+ }
+
+ .top-main-search form .city-and-search-icon-in-input .city-location button {
+  display: flex;
+ }
+
+ .most-searches {
+  margin-top: 10px;
+  width: 100%;
+ }
+
+ .most-searches .text-most-searches .jt {
+  text-align: center !important;
+  display: block !important;
+ }
+
+ .most-searches .s-tekrar-content {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap !important;
+  text-wrap: nowrap !important;
+  overflow-x: scroll !important;
+  flex-direction: row !important;
+ }
+
+ main .card-services-main-top .nurses-list-div svg {
+  padding: 0 30px;
+ }
+
+ main .card-services-main-top .card-services {
+  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+ }
+
+ main .card-services-main-top .card-services .card-service {
+  width: 98% !important;
+  height: 100px !important;
+  display: flex;
+  align-items: center;
+ }
+
+ main
+  .card-services-main-top
+  .card-services
+  .card-service
+  .caret-left-in-services {
+  position: absolute;
+  right: 92%;
+ }
+
+ main
+  .card-services-main-top
+  .card-services
+  .card-service
+  .content-card-service-description
+  p {
+  display: none;
+ }
+
+ main .card-services-main-top .card-services .card-service .card-srvice-header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+ }
+
+ main
+  .card-services-main-top
+  .card-services
+  .card-service
+  .card-srvice-header
+  .csh-h-fix {
+  padding: 0 1px !important;
+ }
+
+ main .card-services-main-top .card-services .nurses-list-div a {
+  display: none !important;
+ }
+
+ main .all-takhasos {
+  display: flex !important;
+ }
+
+ main .all-takhasos .right-top-visit-nurse h2 {
+  font-size: 22px;
+ }
+
+ main .all-takhasos .right-top-visit-nurse h2 br {
+  display: none;
+ }
+
+ main .all-takhasos .right-top-visit-nurse span {
+  font-size: 13px;
+ }
+
+ main .all-takhasos .next-slide,
+ main .all-takhasos .prev-slide {
+  display: none;
+ }
+
+ main .all-takhasos .takhasos-cards-up-991 {
+  display: none !important;
+ }
+
+ main .all-takhasos .takhasos-cards-991 {
+  display: flex !important;
+  width: 100% !important;
+  padding-bottom: 8px !important;
+ }
+
+ main .all-takhasos .takhasos-cards-991 .takhasos-cards {
+  padding: 0 10px !important;
+  display: grid !important;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  overflow-x: scroll;
+  overflow-y: hidden;
+  gap: 5px;
+ }
+
+ main .all-takhasos .takhasos-cards .takhasos-card {
+  width: 140px;
+  height: 120px;
+  margin: 0px !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+ }
+
+ main .guide-benobeh {
+  margin-top: 90px !important;
+ }
+
+ /* لودینک دکمه ها */
+ .loading-svg-container {
+  --uib-size: 45px;
+  --uib-color: black;
+  --uib-speed: 1.75s;
+  --uib-bg-opacity: 0.1;
+  height: 31.25px;
+  width: 50px;
+  transform-origin: center;
+  overflow: visible;
+  display: inline-block;
+  /* اضافه شده */
+  vertical-align: middle;
+  /* برای هم تراز شدن با متن */
+ }
+
+ .loading-car {
+  stroke: var(--uib-color);
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation:
+   travel var(--uib-speed) ease-in-out infinite,
+   fade var(--uib-speed) ease-out infinite;
+  will-change: stroke-dasharray, stroke-dashoffset;
+  transition: stroke 0.5s ease;
+ }
+
+ .loading-track {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: var(--uib-color);
+  opacity: var(--uib-bg-opacity);
+ }
+
+ @keyframes travel {
+  0% {
+   stroke-dashoffset: 100;
+  }
+
+  75% {
+   stroke-dashoffset: 0;
+  }
+ }
+
+ @keyframes fade {
+  0% {
+   opacity: 0;
+  }
+
+  20%,
+  55% {
+   opacity: 1;
+  }
+
+  100% {
+   opacity: 0;
+  }
+ }
+
+ /* لودینک دکمه ها */
+ main .guide-benobeh .top-guide {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+ }
+
+ main .guide-benobeh .top-guide .top-right-guide {
+  width: 100% !important;
+ }
+
+ main .guide-benobeh .top-guide .top-right-guide h3 {
+  width: 100%;
+  text-align: center;
+ }
+
+ main .guide-benobeh .top-guide .top-right-guide p {
+  width: 100% !important;
+ }
+
+ main .guide-benobeh .top-guide .top-right-guide .downlod-items {
+  margin-top: 28px !important;
+ }
+
+ main .guide-benobeh .top-guide .top-left-guide {
+  display: flex;
+  justify-content: center;
+ }
+
+ main .guide-benobeh .top-guide .top-left-guide img {
+  width: 270px;
+ }
+
+ main .guide-benobeh .buttom-guide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ }
+
+ main .guide-benobeh .buttom-guide .right-bottom-guide {
+  border-left: none !important;
+  border-bottom: 1px solid #0067cd;
+  padding-bottom: 20px;
+ }
+
+ main .guide-benobeh .buttom-guide .left-bottom-guide {
+  padding-bottom: 20px;
+  margin-top: 10px !important;
+ }
+
+ main .users-comment .card-comment {
+  height: 200px;
+ }
+
+ /*footer {*/
+ /*    margin-top: 150px !important;*/
+ /*}*/
+ footer .container {
+  max-width: 960px !important;
+ }
+
+ footer .footer-items {
+  display: flex;
+  flex-direction: column;
+  /* align-items: space-around; */
+ }
+
+ footer .footer-items .right-footer-items span {
+  font-size: 17px;
+  font-weight: 400 !important;
+ }
+
+ footer .footer-items .right-footer-items .qavanin a {
+  font-size: 15px !important;
+ }
+
+ footer .footer-items .mid-footer-items {
+  width: 100% !important;
+  display: grid;
+  /*justify-content: center !important;*/
+  flex-direction: row !important;
+  /*justify-items: center;*/
+  /*grid-column-gap:50px;*/
+ }
+
+ footer .footer-items .mid-footer-items h6 {
+  text-align: right !important;
+  padding-right: 10px;
+ }
+
+ footer .footer-items .mid-footer-items .ul-footer-up-991 {
+  /*display: none;*/
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 50px;
+ }
+
+ footer .footer-items .mid-footer-items .ul-footer-991 {
+  display: none;
+ }
+
+ footer .footer-items .mid-footer-items a {
+  font-size: 15px;
+ }
+
+ .card-services {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px 10px;
+ }
+
+ .card-services .card-service {
+  width: 325px !important;
+  height: 275px !important;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+ }
+
+ .card-services .card-service h4 {
+  font-size: 16px;
+  font-weight: bold !important;
+ }
+
+ .card-services .card-service a {
+  font-size: 14px !important;
+ }
+
+ .card-services .card-service .h-m-1200 {
+  margin: 22px !important;
+ }
+
+ .card-services .card-service .img-overlay img {
+  position: relative;
+  z-index: 2;
+  bottom: 10px;
+  width: 50px;
+ }
+
+ .card-services .card-service .content-card-service-description p {
+  font-size: 14px;
+  width: 85%;
+ }
+
+ .right-top-visit-nurse h2 {
+  font-size: 25px;
+ }
+
+ .guide-benobeh .downlod-items img {
+  width: 160px !important;
+ }
+
+ .users-comment .card-comment {
+  width: 290px;
+  height: 230px !important;
+ }
+
+ .takhasos {
+  width: 900px !important;
+  height: 85vh !important;
+ }
+
+ .moarefi-pezeshk .card-online-nurse {
+  width: 400px;
+ }
+
+ .moarefi-pezeshk .card-online-nurse .btn-online-nurse a {
+  width: 330px;
+ }
+
+ .moarefi-pezeshk .online-nurse-time-response-div span {
+  font-size: 12px !important;
+ }
+
+ .marakez-darmani .cards-online-nurses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 10px;
+  margin-bottom: 20px !important;
+ }
+
+ .visit-nurse {
+  width: 100%;
+ }
+
+ .visit-nurse .cards-online-nurses {
+  width: 100%;
+  display: flex !important;
+  gap: 10px !important;
+ }
+
+ .visit-nurse .cards-online-nurses .card-online-nurse .responseed span {
+  font-size: 13px !important;
+ }
+
+ .visit-nurse .btn-online-nurse a {
+  width: 225px;
+  margin: 0 5px;
+ }
+
+ .nobat-dehi .cards-online-nurses {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px !important;
+ }
+
+ .nobat-dehi .change-slide-nurse-card {
+  margin-top: 40px !important;
+ }
+
+ .nobat-dehi .btn-online-nurse a {
+  width: 330px;
+  margin: 0 5px;
+ }
+
+ footer .namads-footer img {
+  width: 60px !important;
+  height: 60px !important;
+ }
+
+ footer .mid-footer-items a {
+  font-size: 13px;
+  font-weight: 400 !important;
+ }
+
+ footer .right-footer-items a {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+ }
+
+ footer .right-footer-items span {
+  font-size: 14px !important;
+ }
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+ bottom: 17px;
+ left: 0;
+ width: 100%;
+}
+
+@media screen and (max-width: 954px) {
+ .top-main-search .drop-search {
+  position: absolute;
+  width: 95vw;
+  min-height: 400px !important;
+  background-color: #fff;
+  z-index: 123335588;
+  border-radius: 12px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  top: 209px;
+  /* left: 50px; */
+  opacity: 0.95;
+ }
+
+ .top-main-search form {
+  width: 100vw;
+  display: flex;
+  justify-content: center !important;
+  padding: 0 10px;
+ }
+
+ .top-main-search form input {
+  width: 80vw;
+ }
+}
+
+@media screen and (max-width: 970px) {
+ .cards-online-nurses .card__div {
+  display: flex;
+  justify-content: center;
+ }
+
+ .majaleh-salamat-benobe .cards-online-nurses .card__div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* align-items: center; */
+ }
+}
+
+@media screen and (max-width: 900px) {
+ .users-comment .card-comment {
+  width: 330px !important;
+ }
+}
+
+@media screen and (max-width: 880px) {
+ .nobat-dehi {
+  width: 100%;
+ }
+
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 260px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 230px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+}
+
+@media screen and (max-width: 994px) {
+ .city-and-search-icon-in-input {
+  /* min-width: 166px; */
+  height: 50px;
+  border-radius: 30px;
+  border: 1px solid rgb(26, 171, 73);
+  background-color: #fff;
+  outline: none;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-left: 10px;
+ }
+}
+
+@media screen and (max-width: 994px) {
+ .city-and-search-icon-in-input {
+  /* min-width: 166px; */
+  height: 50px;
+  border-radius: 30px;
+  border: 1px solid rgb(26, 171, 73);
+  background-color: #fff;
+  outline: none;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+ }
+
+ .medical-centers .centers-list {
+  display: grid !important;
+  flex-wrap: nowrap !important;
+  overflow-x: scroll !important;
+  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  overflow-y: hidden !important;
+  width: 100% !important;
+ }
+
+ .medical-centers .center-item {
+  width: 180px;
+  height: 150px;
+ }
+}
+
+@media screen and (min-width: 994px) {
+ .nav-toggle-992 {
+  display: none;
+ }
+}
+
+@media screen and (max-width: 991px) {
+ .majaleh-salamat-benobe .container {
+  max-width: 991px !important;
+ }
+}
+
+@media screen and (min-width: 992px) {
+ .users-comment .card-comment {
+  width: 290px;
+  height: 230px !important;
+ }
+
+ .takhasos-cards-up-991 {
+  display: inline-block !important;
+ }
+
+ .takhasos-cards-991 {
+  display: none !important;
+ }
+
+ .top-header-991 {
+  display: none;
+ }
+
+ .mid-footer-items h6 {
+  text-align: right !important;
+  direction: ltr !important;
+  width: 100%;
+ }
+
+ .ul-footer-right {
+  text-align: right !important;
+  direction: rtl !important;
+  width: 100% !important;
+ }
+
+ .ul-footer-right a {
+  font-size: 15px !important;
+ }
+
+ /* .top-header {
+      display: inline-block !important;
+    } */
+ .show-all-visit-nurse-992 {
+  display: none;
+ }
+
+ .h6-footer-up-991 {
+  display: inline-block;
+ }
+
+ .h6-footer-991 {
+  display: none;
+ }
+
+ .ul-footer-up-991 {
+  display: inline-block;
+ }
+
+ .ul-footer-991 {
+  display: none;
+ }
+
+ .caret-left-in-services {
+  display: none;
+ }
+}
+
+@media screen and (max-width: 960px) {
+ .all-takhasos .next-slide {
+  position: absolute !important;
+  left: 20px !important;
+  top: 450px !important;
+ }
+
+ .all-takhasos .prev-slide {
+  position: absolute !important;
+  right: 20px !important;
+  top: 450px !important;
+ }
+}
+
+@media screen and (max-width: 934px) {
+ .visit-nurse .cards-online-nurses {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: 100%;
+ }
+
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 280px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 250px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+
+ .nobat-dehi .cards-online-nurses {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: 100%;
+ }
+}
+
+@media screen and (max-width: 901px) {
+ .all-takhasos .next-slide {
+  position: absolute !important;
+  left: 0px !important;
+  top: 450px !important;
+ }
+
+ .all-takhasos .prev-slide {
+  position: absolute !important;
+  right: 0px !important;
+  top: 450px !important;
+ }
+
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 270px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 240px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+}
+
+@media screen and (max-width: 858px) {
+ .all-takhasos .next-slide {
+  position: absolute !important;
+  left: 0px !important;
+  top: 750px !important;
+ }
+
+ .all-takhasos .prev-slide {
+  position: absolute !important;
+  right: 0px !important;
+  top: 750px !important;
+ }
+
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 260px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 230px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+}
+
+@media screen and (min-width: 839px) {
+ .bottom-menu-839 {
+  display: none;
+ }
+}
+
+@media screen and (max-width: 839px) {
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 250px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 220px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+
+ .top-main-search .drop-search {
+  position: absolute;
+  width: 100vw;
+  min-height: 400px !important;
+  background-color: #fff;
+  z-index: 123335588;
+  border-radius: 12px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  top: 209px;
+  /* left: 50px; */
+  opacity: 0.95;
+ }
+
+ .top-main-search form {
+  width: 100vw;
+  display: flex;
+  justify-content: center !important;
+  padding: 0 10px;
+ }
+
+ .top-main-search form input {
+  width: 100vw;
+ }
+}
+
+@media screen and (max-width: 834px) {
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 250px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 220px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+
+ .nobat-dehi .cards-online-nurses {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: 100%;
+ }
+}
+
+@media screen and (max-width: 817px) {
+ /* .my-online-bg .card__content .card__div .card-online-nurse,
+  .nobat-dehi .card__content .card__div .card-online-nurse,
+  .marakez-darmani .card__content .card__div .card-online-nurse,
+  .users-comment .card-comment {
+    width: 240px;
+  }
+  .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+  .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+  .marakez-darmani .btn-online-nurse a {
+    width: 210px !important;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+  } */
+ .users-comment {
+  width: 100%;
+ }
+
+ .users-comment .top-header-users-comment h3 {
+  font-size: 17px;
+ }
+
+ .users-comment .top-header-users-comment span {
+  font-size: 13px;
+ }
+
+ .users-comment .cards-comment {
+  width: 100% !important;
+  display: grid !important;
+  flex-wrap: nowrap !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  grid-template-rows: repeat(1, 1fr) !important;
+  overflow-y: hidden !important;
+  overflow-x: scroll !important;
+ }
+
+ .users-comment .cards-comment .card-comment {
+  width: 350px !important;
+ }
+
+ footer .footer-items .right-footer-items {
+  width: 100% !important;
+ }
+
+ footer .footer-items .right-footer-items span {
+  font-size: 13px;
+ }
+
+ footer .footer-items .right-footer-items a {
+  font-size: 13px !important;
+ }
+
+ footer .footer-items .mid-footer-items {
+  width: 100% !important;
+ }
+
+ footer .footer-items .left-footer-items {
+  width: 100% !important;
+ }
+}
+
+@media screen and (max-width: 780px) {
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 230px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 200px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+}
+
+@media screen and (max-width: 750px) {
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 320px;
+ }
+
+ .majaleh-salamat-benobe
+  .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+  display: none !important;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 280px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+}
+
+@media screen and (max-width: 733px) {
+ .visit-nurse .cards-online-nurses {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: 100%;
+ }
+
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 320px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 280px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+}
+
+@media screen and (max-width: 722px) {
+ .top-main-search .drop-search {
+  position: absolute;
+  width: 100vw;
+  min-height: 400px !important;
+  background-color: #fff;
+  z-index: 123335588;
+  border-radius: 12px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  top: 209px;
+  /* left: 50px; */
+  opacity: 0.95;
+ }
+
+ .top-main-search form {
+  width: 100vw;
+  display: flex;
+  justify-content: center !important;
+  padding: 0 10px;
+ }
+
+ .top-main-search form input {
+  width: 100vw;
+ }
+}
+
+@media screen and (max-width: 667px) {
+ .users-comment .card-comment {
+  width: 280px !important;
+ }
+
+ header .top-right-logo-header img {
+  position: absolute !important;
+  right: 44.3%;
+  top: 26%;
+  width: 80px !important;
+ }
+
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 300px;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 270px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+
+ .top-main-search .drop-search {
+  position: absolute;
+  width: 100vw;
+  min-height: 400px !important;
+  background-color: #fff;
+  z-index: 123335588;
+  border-radius: 12px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  top: 209px;
+  /* left: 50px; */
+  opacity: 0.95;
+ }
+
+ .top-main-search form {
+  width: 100vw;
+  display: flex;
+  justify-content: center !important;
+  padding: 0 10px;
+ }
+
+ .top-main-search form input {
+  width: 80vw;
+ }
+}
+
+@media screen and (max-width: 645px) {
+ footer .top-footer-content span {
+  font-size: 16px !important;
+ }
+
+ footer .top-footer-content ul li a {
+  font-size: 13px;
+ }
+
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 280px;
+ }
+
+ header .top-right-logo-header img {
+  position: absolute !important;
+  right: 43.3%;
+  top: 26%;
+  width: 80px !important;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 250px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+}
+
+@media screen and (max-width: 609px) {
+ .my-online-bg .card__content .card__div .card-online-nurse,
+ .nobat-dehi .card__content .card__div .card-online-nurse,
+ .marakez-darmani .card__content .card__div .card-online-nurse,
+ .users-comment .card-comment {
+  width: 270px;
+ }
+
+ header .top-right-logo-header img {
+  position: absolute !important;
+  right: 42.6%;
+  top: 26%;
+  width: 80px !important;
+ }
+
+ .visit-nurse .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .nobat-dehi .card__content .card__div .card-online-nurse .btn-online-nurse a,
+ .marakez-darmani .btn-online-nurse a {
+  width: 220px !important;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+ }
+
+ .top-main-search .drop-search {
+  position: absolute;
+  width: 100vw;
+  min-height: 400px !important;
+  background-color: #fff;
+  z-index: 123335588;
+  border-radius: 12px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  top: 209px;
+  /* left: 50px; */
+  opacity: 0.95;
+ }
+
+ .top-main-search form {
+  width: 100vw;
+  display: flex;
+  justify-content: center !important;
+  padding: 0 10px;
+ }
+
+ .top-main-search form input {
+  width: 100vw;
+ }
+}
+
+@media screen and (min-width: 667px) {
+ .show-all-visit-nurse-992 {
+  display: none;
+ }
+}
+
+@media screen and (max-width: 667px) {
+ .show-all-visit-nurse {
+  display: none;
+ }
+
+ .show-all-visit-nurse-992 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 0 !important;
+  padding-bottom: 1rem !important;
+  margin-top: -1.02rem !important;
+  font-weight: bold;
+ }
+}
+
+@media screen and (max-width: 558px) {
+ footer .top-footer-content span {
+  font-size: 14px !important;
+ }
+
+ footer .top-footer-content ul li a {
+  font-size: 12px;
+  font-weight: bold !important;
+ }
+
+ .top-main-search .drop-search {
+  position: absolute;
+  width: 100vw;
+  min-height: 400px !important;
+  background-color: #fff;
+  z-index: 123335588;
+  border-radius: 12px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  top: 209px;
+  /* left: 50px; */
+  opacity: 0.95;
+ }
+
+ .top-main-search form {
+  width: 100vw;
+  display: flex;
+  justify-content: center !important;
+  padding: 0 10px;
+ }
+
+ .top-main-search form input {
+  width: 100vw;
+ }
+}
+
+@media screen and (max-width: 541px) {
+ .top-main-search form {
+  width: 100vw;
+ }
+
+ .top-main-search .drop-search {
+  width: 100vw;
+ }
+
+ .top-main-search form input {
+  width: 100vw;
+ }
+
+ .caret-left-in-services {
+  display: flex;
+  align-items: center;
+ }
+
+ .caret-left-in-services a {
+  position: absolute !important;
+  left: 5px !important;
+ }
+
+ .visit-nurse .top-visit-nurse {
+  display: flex;
+  flex-direction: column;
+  align-items: start !important;
+ }
+
+ .visit-nurse .top-visit-nurse .show-all-visit-nurse {
+  margin-top: 50px;
+ }
+
+ .all-takhasos .top-visit-nurse {
+  display: flex;
+  flex-direction: column;
+  align-items: start !important;
+ }
+
+ .all-takhasos .top-visit-nurse .show-all-visit-nurse {
+  margin-top: 50px;
+ }
+
+ .nobat-dehi .top-visit-nurse,
+ .marakez-darmani .top-visit-nurse {
+  display: flex;
+  flex-direction: column;
+  align-items: start !important;
+ }
+
+ .nobat-dehi .top-visit-nurse .show-all-visit-nurse,
+ .marakez-darmani .top-visit-nurse .show-all-visit-nurse {
+  margin-top: 50px;
+ }
+
+ .guide-benobeh {
+  min-height: 130vh !important;
+ }
+
+ .guide-benobeh h3 {
+  font-size: 16px;
+ }
+
+ .guide-benobeh .downlod-items h3 {
+  text-align: center;
+ }
+
+ .guide-benobeh .downlod-items .downloads {
+  margin-top: 0px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+ }
+
+ .guide-benobeh .top-guide .top-left-guide img {
+  width: 200px;
+ }
+
+ .guide-benobeh .top-guide .top-right-guide {
+  width: 100% !important;
+ }
+
+ .guide-benobeh .top-guide .top-right-guide p {
+  text-align: justify;
+ }
+}
+
+@media screen and (max-width: 533px) {
+ footer .top-footer-content span {
+  font-size: 13px !important;
+ }
+
+ footer .top-footer-content ul li a {
+  font-size: 11px;
+ }
+
+ .visit-nurse .card-online-nurse {
+  height: 400px;
+ }
+
+ .visit-nurse .show-all-visit-nurse-992 {
+  margin-top: 25px;
+ }
+
+ .nobat-dehi .cards-online-nurses .card__div .card-online-nurse {
+  height: 306px;
+ }
+
+ footer .right-footer-items {
+  display: flex !important;
+  justify-content: center !important;
+  flex-direction: column;
+  align-items: center;
+ }
+
+ footer .socials-i a span {
+  font-size: 30px !important;
+ }
+}
+
+@media screen and (max-width: 530px) {
+ header .top-right-logo-header img {
+  position: absolute !important;
+  right: 42%;
+  top: 26%;
+  width: 80px !important;
+ }
+
+ .swiper-horizontal > .swiper-pagination-bullets,
+ .swiper-pagination-bullets.swiper-pagination-horizontal,
+ .swiper-pagination-custom,
+ .swiper-pagination-fraction {
+  bottom: 18px;
+  left: 0;
+  width: 100%;
+ }
+
+ .marakez-darmani {
+  overflow-y: hidden;
+ }
+}
+
+.nobat-dehi {
+ min-height: 55vh;
+}
+
+.nobat-dehi .show-all-visit-nurse-992 {
+ margin-top: 50px;
+}
+
+.nobat-dehi .cards-online-nurses .card__div .card-online-nurse {
+ height: 306px;
+}
+
+.visit-nurse .cards-online-nurses {
+ display: flex;
+ /* height: 60vh;*/
+ flex-direction: row;
+ overflow-x: auto;
+}
+
+.visit-nurse .cards-online-nurses .card-online-nurse {
+ text-wrap: nowrap;
+}
+
+.visit-nurse .cards-online-nurses .card-online-nurse span {
+ font-size: 12px;
+}
+
+.visit-nurse .cards-online-nurses .card-online-nurse .btn-online-nurse a {
+ font-size: 12px;
+}
+
+.nobat-dehi .cards-online-nurses {
+ display: flex;
+ /* height: 50vh;*/
+ flex-direction: row;
+ overflow-x: auto;
+}
+
+.nobat-dehi .cards-online-nurses .card-online-nurse {
+ text-wrap: nowrap;
+}
+
+.nobat-dehi .cards-online-nurses .card-online-nurse span {
+ font-size: 12px;
+}
+
+.nobat-dehi .cards-online-nurses .card-online-nurse .btn-online-nurse a {
+ font-size: 15px;
+}
+
+.marakez-darmani .cards-online-nurses {
+ display: flex;
+ min-height: 50vh;
+ flex-direction: row;
+ overflow-x: auto;
+}
+
+.marakez-darmani .cards-online-nurses .card-online-nurse {
+ text-wrap: nowrap;
+}
+
+.marakez-darmani .cards-online-nurses .card-online-nurse span {
+ font-size: 12px;
+}
+
+.marakez-darmani .cards-online-nurses .card-online-nurse .btn-online-nurse a {
+ font-size: 15px;
+}
+
+.guide-benobeh .top-guide {
+ padding: 12px !important;
+}
+
+.guide-benobeh .top-guide .top-right-guide p {
+ text-align: justify !important;
+ text-align: center !important;
+}
+
+@media screen and (max-width: 508px) {
+ footer .with-us-up-508 {
+  display: none;
+ }
+
+ .top-main-search .drop-search {
+  position: absolute;
+  width: 100vw;
+  min-height: 400px !important;
+  background-color: #fff;
+  z-index: 123335588;
+  border-radius: 12px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  top: 209px;
+  /* left: 50px; */
+  opacity: 0.95;
+ }
+
+ .top-main-search form {
+  width: 100vw;
+  display: flex;
+  justify-content: center !important;
+  padding: 0 10px;
+ }
+
+ .top-main-search form input {
+  width: 100vw;
+ }
+}
+
+@media screen and (max-width: 454px) {
+ .top-main-search .drop-search {
+  position: absolute;
+  width: 100vw;
+  min-height: 400px !important;
+  background-color: #fff;
+  z-index: 123335588;
+  border-radius: 12px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  top: 209px;
+  /* left: 50px; */
+  opacity: 0.95;
+ }
+
+ .top-main-search form {
+  width: 100vw;
+  display: flex;
+  justify-content: center !important;
+  padding: 0 10px;
+ }
+
+ .top-main-search form input {
+  width: 100vw;
+ }
+}
+
+@media screen and (max-width: 407px) {
+ .right-top-visit-nurse span {
+  font-size: 14px;
+ }
+}
+
+@media screen and (max-width: 406px) {
+ .right-top-visit-nurse span {
+  font-size: 12px;
+ }
+
+ .top-main-search .drop-search {
+  position: absolute;
+  width: 100vw;
+  min-height: 400px !important;
+  background-color: #fff;
+  z-index: 123335588;
+  border-radius: 12px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  top: 209px;
+  /* left: 50px; */
+  opacity: 0.95;
+ }
+
+ .top-main-search form {
+  width: 100vw;
+  display: flex;
+  justify-content: center !important;
+  padding: 0 10px;
+ }
+
+ .top-main-search form input {
+  width: 100vw;
+ }
+}
+
+@media screen and (max-width: 400px) {
+ .top-main-search form {
+  /* padding: 0 20px !important; */
+  width: 101vw;
+ }
+
+ .top-main-search .drop-search {
+  width: 100vw;
+ }
+
+ .top-main-search form input {
+  width: 109vw;
+ }
+
+ .top-main-search form input::placeholder {
+  font-size: 12px !important;
+ }
+
+ header .top-right-logo-header img {
+  position: absolute !important;
+  right: 40%;
+  top: 26%;
+  width: 80px !important;
+ }
+}
+
+@media screen and (max-width: 477px) {
+ .guide-benobeh {
+  min-height: 130vh !important;
+ }
+
+ .guide-benobeh .top-left-guide {
+  display: flex;
+  justify-content: center;
+ }
+
+ .guide-benobeh .top-left-guide img {
+  width: 225px !important;
+ }
+}
+
+@media screen and (max-width: 430px) {
+ .log-reg-modal {
+  min-width: 400px !important;
+ }
+
+ .guide-benobeh .top-left-guide {
+  display: flex;
+  justify-content: center;
+ }
+
+ .guide-benobeh .top-left-guide img {
+  width: 225px !important;
+ }
+}
+
+@media screen and (max-width: 405px) {
+ .log-reg-modal {
+  min-width: 370px !important;
+ }
+
+ .guide-benobeh .top-left-guide {
+  display: flex;
+  justify-content: center;
+ }
+
+ .guide-benobeh .top-left-guide img {
+  width: 220px !important;
+ }
+}
+
+@media screen and (max-width: 386px) {
+ footer .mid-footer-items a {
+  font-size: 12px !important;
+ }
+
+ header .top-right-logo-header img {
+  position: absolute !important;
+  right: 40%;
+  top: 26%;
+  width: 80px !important;
+ }
+
+ footer .javayez span {
+  font-size: 12px !important;
+ }
+
+ .guide-benobeh .top-left-guide {
+  display: flex;
+  justify-content: center;
+ }
+
+ .guide-benobeh .top-left-guide img {
+  width: 200px !important;
+ }
+}
+
+@media screen and (max-width: 372px) {
+ .log-reg-modal {
+  min-width: 350px !important;
+ }
+
+ .main-form {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  position: relative;
+ }
+
+ header .top-right-logo-header img {
+  position: absolute !important;
+  right: 39.6%;
+  top: 26%;
+  width: 80px !important;
+ }
+
+ .guide-benobeh {
+  min-height: 130vh !important;
+ }
+
+ .guide-benobeh .top-left-guide {
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+ }
+
+ .guide-benobeh .top-left-guide img {
+  width: 170px !important;
+ }
+
+ .guide-benobeh .top-right-guide h3 {
+  font-size: 17px !important;
+  font-weight: bold;
+ }
+
+ .guide-benobeh .top-right-guide p {
+  font-size: 14px;
+  width: 100% !important;
+ }
+
+ .guide-benobeh .buttom-guide .right-bottom-guide {
+  width: 100% !important;
+ }
+
+ .guide-benobeh .buttom-guide .left-bottom-guide {
+  width: 100% !important;
+ }
+}
+
+@media screen and (max-width: 355px) {
+ footer .top-footer-content span {
+  font-size: 12px !important;
+  font-weight: bolder !important;
+ }
+
+ #my-txt-search-input-header {
+  font-size: 11px !important;
+ }
+
+ footer .top-footer-content ul li a {
+  font-size: 11px;
+  font-weight: bold !important;
+ }
+
+ footer .container {
+  padding: 5px !important;
+ }
+
+ footer .namads-footer {
+  display: flex;
+  justify-content: center !important;
+ }
+
+ footer .top-footer-content ul li a {
+  line-height: 1rem;
+ }
+
+ header .login-wrapper {
+  width: 20rem;
+ }
+
+ header .top-right-logo-header img {
+  position: absolute !important;
+  right: 38.5%;
+  top: 26%;
+  width: 80px !important;
+ }
+
+ .top-main-search .drop-search {
+  position: absolute;
+  width: 100vw;
+  min-height: 400px !important;
+  background-color: #fff;
+  z-index: 123335588;
+  border-radius: 12px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  top: 209px;
+  /* left: 50px; */
+  opacity: 0.95;
+ }
+
+ .top-main-search form {
+  width: 98vw;
+  display: flex;
+  justify-content: center !important;
+  padding: 0 10px;
+ }
+
+ .top-main-search form input {
+  width: 62vw;
+ }
+}
+
+@media screen and (max-width: 335px) {
+ header .login-wrapper {
+  width: 19rem;
+ }
+
+ header .top-right-logo-header img {
+  position: absolute !important;
+  right: 37.8%;
+  top: 26%;
+  width: 80px !important;
+ }
+
+ footer .footer-items .mid-footer-items .ul-footer-up-991 {
+  /*display: none;*/
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  /*grid-column-gap: 50px;*/
+  margin-top: 50px;
+  width: 100%;
+ }
+
+ footer .footer-items .mid-footer-items h6 {
+  width: 100%;
+ }
+
+ .mid-footer-items {
+  display: grid !important;
+  /*flex-direction:column !important;*/
+  /*align-items:center !important;*/
+  justify-items: center;
+ }
+
+ /*# sourceMappingURL=home.css.map */
+}

@@ -1,0 +1,935 @@
+main {
+ .morafi-content-div {
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+ }
+ .title {
+  margin-top: 50px !important;
+ }
+
+ padding-bottom: 100px !important;
+
+ .btn-primary-600 {
+  background-color: #047ad8;
+  color: #fff;
+ }
+
+ .btn-success-400 {
+  background-color: #1aab49;
+  color: #fff;
+ }
+
+ .text-primary-600 {
+  color: #047ad8;
+  font-size: 18px;
+ }
+
+ .text-success-400 {
+  color: #1aab49;
+ }
+
+ .collaps-bottom {
+  transform: rotate(180deg);
+ }
+
+ // max-height: 734vh !important;
+ // max-height: 670vh !important;
+ .my-text {
+  color: #505050;
+  font-weight: 400;
+  text-align: justify;
+ }
+
+ .left-top-similar-nurse {
+  :hover {
+   cursor: pointer;
+  }
+ }
+
+ .plus-minues {
+  color: rgb(0, 103, 205);
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgb(229, 242, 255);
+  border-radius: 51px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  font-size: 17px;
+ }
+
+ .rounded-star {
+  background-color: #eceff1;
+  width: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+
+  span {
+   font-family: 'IranSans';
+   font-size: 12px;
+   color: #555555;
+  }
+ }
+
+ .dr-content-all {
+  .left-right-wrapper-dr {
+   display: flex;
+   gap: 20px;
+   min-height: 405vh;
+   // min-height: 465vh;
+   // max-height: 670vh;
+   // max-height: 450vh;
+
+   .right-dr {
+    width: 893px;
+    background-color: #fff;
+    border-radius: 12px;
+    min-height: 418vh;
+
+    //
+
+    .collaps-bottom {
+     transform: rotate(180deg);
+    }
+
+    .btn-and-tags-moarefi-content {
+     // width: 100%;
+     box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 4px;
+     // width: 893px;
+
+     min-height: 17vh;
+
+     z-index: 90000000;
+
+     .tags-container {
+      padding: 12px 16px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-flex-wrap: wrap;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      gap: 6px;
+      width: 100%;
+
+      display: flex;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      -webkit-justify-content: flex-start;
+      justify-content: flex-start;
+
+      span {
+       background-color: #efefef;
+       color: black;
+       border-radius: 12px;
+       font-size: 12px;
+       padding: 3px 12px;
+       max-width: 95px;
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       text-align: right;
+       cursor: pointer;
+      }
+
+      .tags-style {
+       a {
+        text-decoration: none;
+        background-color: #efefef;
+        border-radius: 50px;
+        padding: 4px 8px;
+        color: #505050;
+        font-size: 13px;
+        font-weight: 400;
+       }
+      }
+     }
+    }
+
+    .nurse-nazarat {
+     border-top: 1px solid#ddd;
+
+     .show-more-comment {
+      :hover {
+       cursor: pointer;
+       color: #0067cd;
+       transition: 1s ease-in;
+      }
+     }
+
+     background-color: #fff;
+     min-height: 40vh;
+     border-bottom-left-radius: 12px;
+     border-bottom-right-radius: 12px;
+
+     .rating-component {
+      span {
+       font-family: 'IranSans';
+       color: #505050;
+       font-size: 15px;
+       font-weight: 400;
+      }
+     }
+
+     .cards-nazarat-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+
+      .card-nazar {
+       width: 100%;
+       border: 1px solid #ddd;
+       min-height: 120px;
+       border-radius: 12px;
+
+       .text-comment-style {
+        color: #505050;
+        font-weight: 600;
+        font-size: 14px;
+       }
+
+       .rounded-star {
+        background-color: #eceff1;
+        width: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3px;
+       }
+
+       .star-text {
+        font-family: 'IranSans';
+        font-weight: 400;
+        font-size: 14px;
+        color: #505050;
+       }
+      }
+     }
+    }
+
+    .my-list {
+     color: #707070;
+
+     li {
+      font-family: 'IranSans' !important;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 2rem;
+     }
+    }
+
+    .top-right-content-dr {
+     min-height: 40vh;
+
+     .top-right-card-dr {
+      padding: 25px;
+
+      img {
+       width: 130px;
+       border-radius: 50%;
+      }
+
+      .s-takasos-span {
+       color: #707070;
+       font-weight: 500;
+      }
+
+      .share {
+       :hover {
+        cursor: pointer;
+       }
+      }
+
+      .view-count-dr {
+       span {
+        font-family: 'IranSans';
+        color: #555555;
+        font-weight: 400;
+        font-size: 12px;
+       }
+      }
+     }
+    }
+
+    .my-text {
+     color: #505050;
+     font-weight: 400;
+     text-align: justify;
+    }
+
+    .bg-gray {
+     background-color: #eceff1;
+     font-family: 'IranSans';
+     font-size: 12px;
+    }
+
+    .btnContent {
+     :hover {
+      cursor: pointer;
+     }
+    }
+
+    .locdiv-and-comment-star {
+     display: -webkit-box;
+     display: -webkit-flex;
+     display: -ms-flexbox;
+     display: flex;
+     -webkit-flex-direction: row;
+     -ms-flex-direction: row;
+     flex-direction: row;
+     -webkit-align-items: flex-start;
+     -webkit-box-align: flex-start;
+     -ms-flex-align: flex-start;
+     align-items: flex-start;
+     -webkit-box-pack: center;
+     -ms-flex-pack: center;
+     -webkit-justify-content: center;
+     justify-content: center;
+     width: 100%;
+     gap: 4px;
+
+     .location-div {
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-align-items: flex-start;
+      -webkit-box-align: flex-start;
+      -ms-flex-align: flex-start;
+      align-items: flex-start;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      gap: 4px;
+     }
+
+     .divider {
+      width: 0;
+      height: 20px;
+      border-right: 1px solid #c4ced4;
+     }
+
+     .comment-and-star {
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-align-items: flex-start;
+      -webkit-box-align: flex-start;
+      -ms-flex-align: flex-start;
+      align-items: flex-start;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      gap: 4px;
+     }
+    }
+
+    .border-bottom-primary {
+     border-bottom: 5px solid #0067cd;
+    }
+
+    .div-bottom-menu-wrapper {
+     width: 90%;
+    }
+
+    .comment-and-star,
+    .location-div {
+     span {
+      font-family: 'IranSans';
+      font-size: 13px;
+      color: #707070;
+      font-weight: 400;
+     }
+    }
+
+    .morafi-content-div {
+     border-top: 1px solid #ddd;
+     background-color: #fff;
+     border-radius: 12px;
+     width: 100%;
+     min-height: 55vh;
+     //  margin-top: 5px !important;
+    }
+
+    .etelate-tamas-morefi {
+     border-top: 1px solid#ddd;
+
+     background-color: #fff;
+     // min-height: 30vh;
+     margin-top: 47px !important;
+
+     width: 100%;
+
+     .my-address-n {
+      line-height: 2.9rem;
+
+      span {
+       color: #505050;
+       font-weight: 550;
+      }
+     }
+    }
+   }
+
+   .left-dr {
+    width: 30%;
+
+    .nobat-visit-hozory {
+     background-color: #fff;
+     border-radius: 12px;
+     min-height: 22vh;
+    }
+
+    .nothing-nobat {
+     height: 17vh;
+
+     span {
+      font-size: 14px;
+      font-weight: 500;
+     }
+    }
+
+    .text-success-400 {
+     color: #1aab49;
+    }
+
+    .btn-success-400 {
+     background-color: #1aab49;
+     color: #fff;
+    }
+
+    .price-rounded {
+     width: 55px;
+
+     background-color: #e3effd;
+     border-radius: 50px;
+     padding: 3px 10px;
+     color: #4589d1;
+     font-family: 'IranSans';
+     font-size: 12px;
+    }
+
+    .text-primary-600 {
+     color: #047ad8;
+     font-size: 18px;
+    }
+
+    .btn-primary-600 {
+     background-color: #047ad8;
+     color: #fff;
+    }
+
+    .single-container {
+     span {
+      color: #555555;
+      font-size: 13px;
+      font-weight: 400;
+     }
+    }
+
+    .first-empty-div {
+     span {
+      color: #555555;
+      font-size: 14px;
+      font-weight: 400;
+     }
+    }
+
+    .time-and-day {
+     span {
+      color: #555555;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'IranSans';
+     }
+    }
+   }
+  }
+
+  .similar-nurse {
+   // border-top: 1px solid #ddd;
+
+   border: 1px solid #ddd;
+
+   background-color: #fff;
+   // height: 30vh;
+   border-radius: 12px;
+   margin-top: 10px !important;
+   width: calc(100%);
+
+   .cards-similar-nurse {
+    padding: 5px;
+    // width: 100%;
+    margin-top: 30px;
+    display: grid;
+    gap: 10px;
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+
+    .card-similar-nurse {
+     width: 200px;
+     height: 200px;
+     background-color: #fff;
+     border-radius: 12px;
+     border: 1px solid #ddd;
+
+     .top-card-similar-img {
+      .name {
+       span {
+        font-size: 13px;
+       }
+      }
+
+      .takhasos-z,
+      .address {
+       span {
+        color: #555555;
+        font-weight: 400;
+        font-size: 12px;
+       }
+      }
+
+      display: flex;
+      justify-content: center;
+
+      img {
+       width: 40px;
+       border-radius: 50%;
+      }
+     }
+    }
+   }
+  }
+
+  .question-nurse {
+   .question-cards {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    .question-card {
+     :hover {
+      cursor: pointer;
+     }
+
+     padding: 0 10px;
+     border: 2px solid #e0edf9;
+     border-radius: 12px;
+     background-color: #fff;
+     width: 100%;
+     height: 130px;
+     display: flex;
+     align-items: center;
+
+     .answer-style {
+      padding-right: 26px;
+      margin-top: 15px;
+
+      span {
+       color: #505050;
+       font-weight: 400;
+      }
+     }
+    }
+   }
+  }
+
+  .takhasos-city-ostan {
+   width: 100%;
+   min-height: 25vh;
+   background-color: #fff;
+   border-radius: 12px;
+
+   .takhasos-cards {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    .takhasos-card {
+     :hover {
+      cursor: pointer;
+     }
+
+     width: 100%;
+     border: 1px solid #ddd;
+     border-radius: 12px;
+     min-height: 80px;
+
+     .city-takhasos {
+      a {
+       text-decoration: none;
+       font-weight: 400;
+       font-size: 14px;
+      }
+
+      span {
+       color: #1579dc;
+      }
+
+      .city-takhasos-content-all {
+       margin-top: 20px;
+
+       .expanded {
+        display: grid;
+        -webkit-transition: max-height 0.3s ease-in;
+        transition: max-height 0.3s ease-in;
+
+        padding: 0 16px 0;
+        grid-template-columns: repeat(4, auto);
+
+        color: #0067cd;
+       }
+      }
+
+      .ostan-takhasos-content-all {
+       margin-top: 20px;
+
+       .expanded {
+        display: grid;
+        -webkit-transition: max-height 0.3s ease-in;
+        transition: max-height 0.3s ease-in;
+
+        padding: 0 16px 0;
+        grid-template-columns: repeat(4, auto);
+
+        color: #0067cd;
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 1400px) {
+ .top-header-container {
+  max-width: 1330px !important;
+ }
+
+ main {
+  .container {
+   max-width: 1330px !important;
+  }
+ }
+}
+
+@media screen and (max-width: 1223px) {
+ main {
+  .left-right-wrapper-dr {
+   display: flex !important;
+   gap: 10px !important;
+
+   .left-dr {
+    width: 25%;
+
+    .card-nobat {
+     width: 330px;
+    }
+   }
+
+   .right-dr {
+    width: 75% !important;
+   }
+
+   .btn-and-tags-moarefi-content {
+    width: 100%;
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 1098px) {
+ main {
+  .left-right-wrapper-dr {
+   display: flex !important;
+   gap: 10px !important;
+
+   .left-dr {
+    width: 35%;
+
+    .card-nobat {
+     width: 330px;
+    }
+   }
+
+   .right-dr {
+    width: 65% !important;
+   }
+  }
+ }
+}
+
+@media screen and (min-width: 992px) {
+ .left-dr-991 {
+  display: none !important;
+ }
+}
+
+@media screen and (max-width: 992px) {
+ main {
+  .city-takhasos {
+   a {
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 14px;
+   }
+
+   span {
+    color: #1579dc;
+   }
+
+   .city-takhasos-content-all {
+    margin-top: 20px;
+
+    .expanded {
+     display: grid;
+     -webkit-transition: max-height 0.3s ease-in;
+     transition: max-height 0.3s ease-in;
+
+     padding: 0 16px 0;
+     grid-template-columns: repeat(2, 1fr) !important;
+
+     color: #0067cd;
+    }
+   }
+
+   .ostan-takhasos-content-all {
+    margin-top: 20px;
+
+    .expanded {
+     display: grid !important;
+     -webkit-transition: max-height 0.3s ease-in;
+     transition: max-height 0.3s ease-in;
+
+     padding: 0 16px 0;
+     grid-template-columns: repeat(2, auto) !important;
+
+     color: #0067cd;
+    }
+   }
+  }
+
+  .morefi-wrapper {
+   min-height: 95vh;
+  }
+
+  .left-right-wrapper-dr {
+   // .morefi-991 {
+   //     border-top: 1px solid #ddd;
+   // }
+
+   display: flex !important;
+   gap: 15px !important;
+   flex-wrap: wrap !important;
+   flex-direction: column-reverse;
+
+   .left-dr-991 {
+    display: grid;
+    flex-direction: column !important;
+    gap: 15px !important;
+    flex-wrap: wrap !important;
+    grid-template-columns: repeat(1, 1fr);
+
+    .card-nobat {
+     span {
+      color: #505050 !important;
+      font-size: 15px;
+      font-weight: 400;
+     }
+    }
+
+    .card-nobat {
+     border: 1px solid #ddd;
+     border-radius: 12px;
+     width: 100% !important;
+     height: 200px !important;
+    }
+   }
+
+   .left-dr {
+    display: none;
+
+    top: 500px;
+    width: 100% !important;
+
+    .card-nobat {
+     width: 100% !important;
+    }
+   }
+
+   .right-dr {
+    width: 100% !important;
+
+    .nobat-dehi {
+     display: flex !important;
+    }
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 646px) {
+ .top-expertise-breadcrumb {
+  width: 100% !important;
+
+  .bread-crumb-expertise {
+   overflow-x: scroll !important;
+   overflow-y: hidden !important;
+
+   .list-inline {
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    text-wrap: nowrap;
+   }
+  }
+ }
+
+ .top-right-content-dr {
+  .pic-dr {
+   img {
+    width: 120px !important;
+   }
+  }
+
+  .center-card-loc-and-comment-star {
+   width: 95% !important;
+  }
+ }
+}
+
+@media screen and (max-width: 632px) {
+ .btn-and-tags-moarefi-content {
+  width: 100% !important;
+ }
+
+ main {
+  .city-takhasos {
+   a {
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 14px;
+   }
+
+   span {
+    color: #1579dc;
+   }
+
+   .city-takhasos-content-all {
+    margin-top: 20px;
+
+    .expanded {
+     display: grid !important;
+     -webkit-transition: max-height 0.3s ease-in;
+     transition: max-height 0.3s ease-in;
+
+     padding: 0 16px 0;
+     grid-template-columns: repeat(1, auto) !important;
+
+     color: #0067cd;
+    }
+   }
+
+   .ostan-takhasos-content-all {
+    margin-top: 20px;
+
+    .expanded {
+     display: grid !important;
+     -webkit-transition: max-height 0.3s ease-in;
+     transition: max-height 0.3s ease-in;
+
+     padding: 0 16px 0;
+     grid-template-columns: repeat(1, auto) !important;
+
+     color: #0067cd;
+    }
+   }
+  }
+ }
+}
+@media screen and (max-width: 425px) {
+ main {
+  .morafi-content-div {
+   padding: 5px !important;
+  }
+  .left-dr-991 {
+   .nobat-visit-hozory {
+    padding: 5px 10px !important;
+   }
+  }
+  .takhasos-city-ostan {
+   padding: 5px !important;
+   .takhasos-card {
+    padding: 30px 10px !important;
+   }
+  }
+  .etelate-tamas,
+  .nazarat,
+  .moarefi {
+   span {
+    font-size: 14px;
+   }
+  }
+  .city-takhasos {
+   span {
+    font-size: 13px;
+   }
+  }
+  .faq-question {
+   font-size: 13px;
+  }
+  .question-card {
+   .faq-answer {
+    span {
+     font-size: 12px;
+    }
+   }
+  }
+ }
+}
+@media screen and (max-width: 343px) {
+ header {
+  .search-top-expertise-header {
+   form {
+    input {
+     width: 70% !important;
+    }
+   }
+  }
+ }
+ main {
+  .etelate-tamas,
+  .moarefi,
+  .nazarat {
+   span {
+    font-size: 12px !important;
+   }
+  }
+ }
+}

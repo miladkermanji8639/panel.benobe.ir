@@ -1,0 +1,25 @@
+p {
+ line-height: 2.1rem !important;
+ text-align: start;
+ text-justify: auto;
+}
+@media only screen and (max-width: 768px) {
+ h5,
+ strong {
+  font-size: 15px !important;
+ }
+ strong span {
+  font-size: 25px !important;
+ }
+ div {
+  font-size: 14px !important;
+ }
+}
+@media only screen and (max-width: 425px) {
+ .text-dark {
+  font-size: 12px !important;
+ }
+ a.font-weight-bold {
+  font-size: 12px !important;
+ }
+}
