@@ -21,10 +21,15 @@ class Kernel extends HttpKernel
     \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
     \App\Http\Middleware\TrimStrings::class,
     \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-    \App\Http\Middleware\CorsMiddleware::class
-    
+    \App\Http\Middleware\CorsMiddleware::class,
+    'complete-profile' => \App\Http\Middleware\Dr\CheckCompleteProfile::class,
+
   ];
- 
+  protected $routeMiddleware = [
+    // سایر middleware ها
+    'complete-profile' => \App\Http\Middleware\Dr\CheckCompleteProfile::class,
+    // سایر middleware ها
+  ];
 
   /**
    * The application's route middleware groups.
@@ -41,12 +46,12 @@ class Kernel extends HttpKernel
       \Illuminate\Routing\Middleware\SubstituteBindings::class,
       \App\Http\Middleware\LocaleMiddleware::class,
       // \App\Http\Middleware\user::class,
-       
+
     ],
 
     'api' => [
-       \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class, 
-      \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+      \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+      \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
       \Illuminate\Routing\Middleware\SubstituteBindings::class,
     ],
   ];
@@ -70,10 +75,10 @@ class Kernel extends HttpKernel
     'signed' => \App\Http\Middleware\ValidateSignature::class,
     'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-     'user' => \App\Http\Middleware\user::class,
-     'manager' => \App\Http\Middleware\manager::class,
-     'doctor' => \App\Http\Middleware\doctor::class,
+    'user' => \App\Http\Middleware\user::class,
+    'manager' => \App\Http\Middleware\manager::class,
+    'doctor' => \App\Http\Middleware\doctor::class,
     //  'secretary' => \App\Http\Middleware\secretary::class,
-    
+
   ];
 }

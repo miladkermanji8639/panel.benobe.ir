@@ -8,8 +8,14 @@
 @endsection
 @section('content')
 @section('bread-crumb-title', ' ویرایش پروفایل ')
-
 <div class="main-content mb-5">
+@if (session()->has('complete-profile'))
+  <div class="alert alert-warning  text-center">
+   <span class="font-weight-bold">
+    {{ session()->get('complete-profile') }}
+   </span>
+  </div>
+@endif
  <div class="d-flex justify-content-center align-items-center flex-column col-12">
   <div class="top-profile-info p-2 col-xs-12 col-sm-12  col-md-12 col-lg-8 d-flex">
    <div class="d-flex justify-content-between w-100 font-size-13">
@@ -80,8 +86,8 @@
       <div class="d-flex justify-content-between mt-3 gap-4 position-relative">
        <label for="name" class="label-top-input-special-takhasos">شماره موبایل</label>
 
-       <input class="my-form-control h-50 col-lg-11 col-xs-10 col-md-11 col-sm-11 text-right disabled " placeholder="شماره موبایل"
-        value="09182718639" readonly disabled>
+       <input class="my-form-control h-50 col-lg-11 col-xs-10 col-md-11 col-sm-11 text-right disabled "
+        placeholder="شماره موبایل" value="09182718639" readonly disabled>
        <button
         class="btn btn-dark h-50 col-lg-1 col-xs-2 col-md-1 col-sm-1 d-flex justify-content-center align-items-center fs-6 add-form-item"
         type="button" id="editButton" data-toggle="modal" data-target="#exampleModalCenterAddSick">
@@ -123,7 +129,8 @@
       </div>
       <div class="mt-3">
        <label for="name" class="font-weight-bold font-size-13"> بیوگرافی و توضیحات</label>
-       <textarea class="ckeditor form-control h-50 w-100 h-80" name="description" class="form-control h-50" id="description"></textarea>
+       <textarea class="ckeditor form-control h-50 w-100 h-80" name="description" class="form-control h-50"
+        id="description"></textarea>
 
       </div>
       <div class="w-100">
@@ -345,7 +352,8 @@
       <div class="mt-2">
        <h6 class="text-left font-weight-bold d-block font-size-13"> تماس امن</h6>
       </div>
-      <div class="d-flex gap-4 justify-content-between align-items-center p-3 border border-solid rounded-lg border-slate-200 ">
+      <div
+       class="d-flex gap-4 justify-content-between align-items-center p-3 border border-solid rounded-lg border-slate-200 ">
        <div>
         <span class="text-responsive font-size-13 font-weight-bold">تماس امن به عنوان راه ارتباط جانبی در کنار هر یک از
          پیام‌رسان‌ها قرار می‌گیرد.</span>
@@ -354,15 +362,16 @@
          <path
           d="M8.00006 9.9198V9.70984C8.00006 9.02984 8.42009 8.66982 8.84009 8.37982C9.25009 8.09982 9.66003 7.73983 9.66003 7.07983C9.66003 6.15983 8.92006 5.4198 8.00006 5.4198C7.08006 5.4198 6.34009 6.15983 6.34009 7.07983"
           stroke="#3f4079" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-         <path d="M7.9955 12.0692H8.0045" stroke="#3f4079" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+         <path d="M7.9955 12.0692H8.0045" stroke="#3f4079" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round">
          </path>
          <circle cx="8" cy="8.99445" r="7.25" stroke="#3f4079" stroke-width="1.5"></circle>
         </svg>
        </div>
        <div class="flex flex-col gap-2">
         <div class="flex items-center rounded-lg elative MuiBox-root muirtl-0">
-         <div class="password_toggle__AXK9v"><input type="checkbox" id="switch" name="secureCall" checked=""><label
-           for="switch">Toggle</label></div>
+         <div class="password_toggle__AXK9v"><input type="checkbox" id="switch" name="secureCall"
+           checked=""><label for="switch">Toggle</label></div>
         </div>
        </div>
       </div>

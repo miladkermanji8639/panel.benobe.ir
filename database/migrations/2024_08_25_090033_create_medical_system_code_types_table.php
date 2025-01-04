@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_medical_system_code_type', function (Blueprint $table) {
+        Schema::create('medical_system_code_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->tinyInteger('status')->default(0);
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_medical_system_code_type');
+        Schema::dropIfExists('medical_system_code_types');
     }
 };

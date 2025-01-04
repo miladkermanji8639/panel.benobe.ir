@@ -5,20 +5,26 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
-        Schema::create('doctor_holidays', function (Blueprint $table) {
+        Schema::create('disabled_days', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('doctor_id');
-            $table->date('holiday_date'); // تاریخ تعطیل
+            $table->json('disabled_dates')->nullable();// تاریخ غیر فعال
             $table->timestamps();
 
             $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
-        Schema::dropIfExists('doctor_holidays');
+        Schema::dropIfExists('disabled_days');
     }
 };

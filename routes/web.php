@@ -419,7 +419,7 @@ Route::prefix('dr')
       Route::post('resend-otp/{token}', [SecretaryController::class, 'loginResendOtp'])->name('secretary.resend-otp');
     });
     Route::prefix('panel')
-      ->middleware('doctor')
+      ->middleware(['doctor', 'complete-profile'])
       ->group(function () {
         Route::get('/', [DrPanelController::class, 'index'])->name('dr-panel');
         Route::get('/patient-records', [PatientRecordsController::class, 'index'])->name('dr-patient-records');

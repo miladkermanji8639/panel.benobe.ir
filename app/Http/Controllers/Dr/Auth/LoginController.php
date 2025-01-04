@@ -66,7 +66,7 @@ class LoginController
       ], 422);
     }
 
-    if ($doctor->status !== 1 || $doctor->user_type !== 0) {
+    if ($doctor->status !== 1 || $doctor->user_type !== 'doctor') {
       return response()->json([
         'success' => false,
         'errors' => ['mobile' => ['حساب کاربری فعال نیست.']]
@@ -112,7 +112,7 @@ class LoginController
       ->where('used', 0)
       ->where('created_at', '>=', Carbon::now()->subMinutes(2))
       ->first();
-    if (!$otp) {
+    if (!$otp || $otp->otp_code !== $otpCode ) {
       return response()->json([
         'success' => false,
         'errors' => ['otp-code' => ['کد وارد شده صحیح نمی‌باشد']]

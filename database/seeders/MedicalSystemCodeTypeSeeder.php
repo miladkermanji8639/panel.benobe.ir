@@ -18,7 +18,7 @@ class MedicalSystemCodeTypeSeeder extends Seeder
         // بررسی اینکه آیا داده‌ها به درستی بارگذاری شده‌اند
         if (isset($data['msct']) && is_array($data['msct'])) {
             foreach ($data['msct'] as $specialty) {
-                DB::table('table_medical_system_code_type')->insert([
+                DB::table('medical_system_code_types')->insert([
                     'name' => $specialty['name'], //ص (اختیاری)
                     'created_at' => now(), // زمان ایجاد رکورد
                     'updated_at' => now()  // زمان به روز رسانی رکورد

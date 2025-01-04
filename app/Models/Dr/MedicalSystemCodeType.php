@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class MedicalSystemCodeType extends Model
 {
     use HasFactory;
-    protected $table = "table_medical_system_code_type";
+    protected $table = "medical_system_code_types";
 }
