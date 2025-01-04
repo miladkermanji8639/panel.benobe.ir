@@ -388,36 +388,29 @@ Route::prefix('dr')
   ->namespace('Dr')
   ->group(function () {
     Route::get('login', [LoginController::class, 'loginRegisterForm'])->name('dr.auth.login-register-form');
+
     Route::get('login-user-pass', [LoginController::class, 'loginUserPassForm'])->name('dr.auth.login-user-pass-form');
+
     Route::get('dr-two-factor', [LoginController::class, 'twoFactorForm'])->name('dr-two-factor');
-    Route::post('dr-two-factor-store', [LoginController::class, 'twoFactorFormCheck'])->name('dr-two-factor-store');
-    Route::post('dr-login-with-mobile-pass', [LoginController::class, 'loginWithMobilePass'])->name('dr-login-with-mobile-pass');
-    Route::middleware('throttle:dr-login-register-limiter')
+
+    Route::middleware(['throttle:dr-login-two-factor-limiter', 'rate.limit:dr-login-two-factor-limiter'])->post('dr-two-factor-store', [LoginController::class, 'twoFactorFormCheck'])->name('dr-two-factor-store');
+
+    Route::middleware(['throttle:dr-login-mobile-pass-limiter', 'rate.limit:dr-login-mobile-pass-limiter'])->post('dr-login-with-mobile-pass', [LoginController::class, 'loginWithMobilePass'])->name('dr-login-with-mobile-pass');
+
+    Route::middleware(['throttle:dr-login-register-limiter', 'rate.limit:dr-login-register-limiter'])
       ->post('/login-register', [LoginController::class, 'loginRegister'])
       ->name('dr.auth.login-register');
+
     Route::get('login-confirm/{token}', [LoginController::class, 'loginConfirmForm'])->name('dr.auth.login-confirm-form');
-    Route::middleware('throttle:dr-login-confirm-limiter')
+
+    Route::middleware(['throttle:dr-login-confirm-limiter', 'rate.limit:dr-login-confirm-limiter'])
       ->post('/login-confirm/{token}', [LoginController::class, 'loginConfirm'])
       ->name('dr.auth.login-confirm');
-    Route::middleware('throttle:dr-login-resend-otp-limiter')
+
+    Route::middleware(['throttle:dr-login-resend-otp-limiter', 'rate.limit:dr-login-resend-otp-limiter'])
       ->get('/login-resend-otp/{token}', [LoginController::class, 'loginResendOtp'])
       ->name('dr.auth.login-resend-otp');
     Route::get('/logout', [LoginController::class, 'logout'])->name('dr.auth.logout');
-    Route::prefix('secretary')->group(function () {
-      Route::get('login', [SecretaryController::class, 'index'])->name('login-secretary');
-      Route::get('login-with-mobile-form', [SecretaryController::class, 'loginWithMobileForm'])->name('login-with-mobile-form');
-      Route::get('secretary-two-factor', [SecretaryController::class, 'twoFactorForm'])->name('secretary-two-factor');
-      Route::post('secretary-two-factor-store', [SecretaryController::class, 'twoFactorFormCheck'])->name('secretary-two-factor-store');
-      Route::post('login-with-mobile-pass', [SecretaryController::class, 'loginWithMobilePass'])->name('login-with-mobile-pass');
-      Route::get('/', [SecretaryController::class, 'index'])->name('secretary.index');
-      Route::post('register', [SecretaryController::class, 'register'])->name('register-secretary');
-      Route::get('getMonshis', [SecretaryController::class, 'getMonshis'])->name('getMonshis');
-      Route::delete('destroyMonshi/{id}', [SecretaryController::class, 'destroy'])->name('destroyMonshi');
-      Route::post('login-with-mobile', [SecretaryController::class, 'loginWithMobile'])->name('login-with-mobile');
-      Route::get('login-confirm/{token}', [SecretaryController::class, 'loginConfirmForm'])->name('secretary.login-confirm-form');
-      Route::post('login-confirm/{token}', [SecretaryController::class, 'loginConfirm'])->name('secretary.login-confirm');
-      Route::post('resend-otp/{token}', [SecretaryController::class, 'loginResendOtp'])->name('secretary.resend-otp');
-    });
     Route::prefix('panel')
       ->middleware(['doctor', 'complete-profile'])
       ->group(function () {

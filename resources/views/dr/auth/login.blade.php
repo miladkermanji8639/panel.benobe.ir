@@ -21,8 +21,8 @@
      <div class="col-md-6 login-container position-relative">
       <div class="login-card custom-rounded custom-shadow p-7">
        <div class="logo-wrapper w-100 d-flex justify-content-center">
-        <img class="position-absolute mt-3 cursor-pointer" onclick="location.href='/'" width="85px" src="{{ asset('app-assets/logos/benobe.svg') }}"
-         alt="">
+        <img class="position-absolute mt-3 cursor-pointer" onclick="location.href='/'" width="85px"
+         src="{{ asset('app-assets/logos/benobe.svg') }}" alt="">
        </div>
        <div class="d-flex justify-content-between align-items- mb-3 mt-4">
         <div class="d-flex align-items-center">
@@ -383,6 +383,20 @@
         $(`[name="${key}"]`).after(`<div class="error-message">${errors[key][0]}</div>`);
        });
       }
+      if (xhr.status === 429) {
+       const response = xhr.responseJSON; // کل پاسخ JSON
+       console.log(response); // برای دیباگ کردن پاسخ سرور
+
+       const message = response.message || 'شما بیش از حد تلاش کرده‌اید.';
+       const remainingTime = response.remaining_time; // زمان باقی‌مانده از پاسخ سرور
+
+       if (remainingTime !== undefined) {
+        showToast(`تلاش بیش از حد لطفاً ${remainingTime} ثانیه دیگر مجدد تلاش کنید.`, 'error');
+       } else {
+        showToast(`تلاش بیش از حد لطفاً بعد از چند دقیقه مجدد تلاش کنید.`, 'error');
+       }
+      }
+
      }
     });
    });
@@ -442,6 +456,12 @@
      error: function(xhr) {
       resetButton(submitButton, 'ادامه');
       $('#otp-error').text('کد وارد شده نادرست است.').show();
+      if (xhr.status === 429) {
+       const message = xhr.responseJSON.message;
+       showToast(message, 'error'); // نمایش پیام هشدار
+      } else {
+       // سایر خطاها
+      }
      }
     });
    });

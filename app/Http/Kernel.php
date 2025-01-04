@@ -28,6 +28,7 @@ class Kernel extends HttpKernel
   protected $routeMiddleware = [
     // سایر middleware ها
     'complete-profile' => \App\Http\Middleware\Dr\CheckCompleteProfile::class,
+    'rate.limit' => \App\Http\Middleware\RateLimitMiddleware::class,
     // سایر middleware ها
   ];
 

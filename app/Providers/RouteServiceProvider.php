@@ -26,33 +26,25 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-    // for user
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
-        RateLimiter::for('users-login-register-limiter', function (Request $request) {
-            return Limit::perMinute(5)->by($request->ip());
-        });
-        RateLimiter::for('users-login-register-confirm-limiter', function (Request $request) {
-            return Limit::perMinute(5)->by(url()->current() . $request->ip());
-        });
-        RateLimiter::for('users-login-register-resend-otp-limiter', function (Request $request) {
-            return Limit::perMinute(5)->by(url()->current() . $request->ip());
-        });
-
-
-
         // for doctor
         RateLimiter::for('dr-login-register-limiter', function (Request $request) {
-            return Limit::perMinute(5)->by($request->ip());
+            return Limit::perMinute(2)->by($request->ip());
         });
 
         RateLimiter::for('dr-login-confirm-limiter', function (Request $request) {
-            return Limit::perMinute(5)->by(url()->current() . $request->ip());
+            return Limit::perMinute(2)->by(url()->current() . $request->ip());
+        });
+
+        RateLimiter::for('dr-login-two-factor-limiter', function (Request $request) {
+            return Limit::perMinute(2)->by($request->ip());
+        });
+
+        RateLimiter::for('dr-login-mobile-pass-limiter', function (Request $request) {
+            return Limit::perMinute(2)->by($request->ip());
         });
 
         RateLimiter::for('dr-login-resend-otp-limiter', function (Request $request) {
-            return Limit::perMinute(5)->by(url()->current() . $request->ip());
+            return Limit::perMinute(2)->by(url()->current() . $request->ip());
         });
 
         $this->routes(function () {

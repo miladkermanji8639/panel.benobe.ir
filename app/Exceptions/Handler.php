@@ -2,8 +2,9 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -26,5 +27,19 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+    public function render($request, $exception)
+    {
+        if ($exception instanceof ThrottleRequestsException) {
+            $retryAfter = $exception->getHeaders()['Retry-After'] ?? null;
+
+            return response()->json([
+                'success' => false,
+                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $retryAfter . ' ثانیه دیگر صبر کنید.',
+                'remaining_time' => $retryAfter // زمان باقی‌مانده به ثانیه
+            ], Response::HTTP_TOO_MANY_REQUESTS);
+        }
+
+        return parent::render($request, $exception);
     }
 }
