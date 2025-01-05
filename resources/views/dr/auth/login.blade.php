@@ -288,6 +288,34 @@
     }, 1000);
    }
 
+   function showRateLimitAlert(remainingTime) {
+    const swalWithProgress = Swal.mixin({
+     customClass: {
+      confirmButton: 'btn btn-primary',
+      cancelButton: 'btn btn-danger'
+     },
+     buttonsStyling: false
+    });
+
+    let timerInterval;
+    swalWithProgress.fire({
+     icon: 'error',
+     title: 'تلاش بیش از حد برای ورود به سایت',
+     html: `لطفاً <b id="remaining-time">${formatTime(remainingTime)}</b> دیگر صبر کنید.`,
+     timer: remainingTime * 1000,
+     timerProgressBar: true,
+     didOpen: () => {
+      const remainingTimeElement = document.getElementById('remaining-time');
+      timerInterval = setInterval(() => {
+       remainingTime--;
+       remainingTimeElement.innerHTML = formatTime(remainingTime);
+      }, 1000);
+     },
+     willClose: () => {
+      clearInterval(timerInterval);
+     }
+    });
+   }
    // ارسال مجدد OTP
    // ارسال مجدد OTP
    $('#resend-otp').on('click', function(e) {
@@ -316,27 +344,25 @@
       showToast("کد تأیید جدید با موفقیت ارسال شد", 'success');
      },
      error: function(xhr) {
-      const errorMessage = xhr.responseJSON?.message || 'خطا در ارسال مجدد کد';
-      showToast(errorMessage, 'error');
+
+      if (xhr.status === 429) {
+       let remainingTime = xhr.responseJSON.remaining_time || 0;
+       showRateLimitAlert(remainingTime);
+      } else if (xhr.status === 422) {
+       const errorMessage = xhr.responseJSON?.message || 'خطا در ارسال مجدد کد';
+       showToast(errorMessage, 'error');
+      }
      }
     });
    });
-
-
    // شروع تایمر اولیه
    startTimer({{ $remainingTime }});
-  });
-
-  $(document).ready(function() {
    $('.go-back').on('click', function() {
     const currentStep = parseInt($(this).data('step'));
     if (currentStep > 1) { // ریست کردن تایمر
      window.location.href = "{{ route('dr.auth.login-register-form') }}?step=" + (currentStep - 1);
     }
    });
-   // ...
-  });
-  $(document).ready(function() {
    // متغیرهای عمومی
    // تابع نمایش لودینگ در دکمه
    function showButtonLoading(button) {
@@ -348,90 +374,58 @@
     button.prop('disabled', false);
     button.html(text);
    }
+   $('#login-form-step1').on('submit', function(e) {
+    e.preventDefault();
+    const form = $(this);
+    const submitButton = form.find('button[type="submit"]');
+    const termsCheckbox = form.find('input[name="terms_accepted"]');
 
-   // بررسی پذیرش قوانین در مرحله اول
-   $(document).ready(function() {
-    $('#login-form-step1').on('submit', function(e) {
-     e.preventDefault();
-     const form = $(this);
-     const submitButton = form.find('button[type="submit"]');
-     const termsCheckbox = form.find('input[name="terms_accepted"]');
-
-     if (!termsCheckbox.is(':checked')) {
-      Swal.fire({
-       icon: 'warning',
-       text: 'لطفا قوانین و شرایط را مطالعه و تایید کنید',
-       confirmButtonText: 'تایید'
-      });
-      return;
-     }
-
-     showButtonLoading(submitButton);
-     $('.error-message').remove();
-
-     $.ajax({
-      url: "{{ route('dr.auth.login-register') }}",
-      method: 'POST',
-      data: form.serialize(),
-      success: function(response) {
-       showToast("کد تایید با موفقیت ارسال شد", 'success');
-       window.location.href = "{{ route('dr.auth.login-confirm-form', ['token' => ':token']) }}".replace(
-        ':token', response.token);
-      },
-      error: function(xhr) {
-       resetButton(submitButton, 'ادامه');
-       if (xhr.status === 429) {
-        let errorMessage = 'شما بیش از حد تلاش کرده‌اید';
-        let remainingTime = xhr.responseJSON.remaining_time || 0; // مقدار پیش‌فرض 0
-
-        // نمایش SweetAlert با نوار پیشرفت
-        const swalWithProgress = Swal.mixin({
-         customClass: {
-          confirmButton: 'btn btn-primary',
-          cancelButton: 'btn btn-danger'
-         },
-         buttonsStyling: false
-        });
-
-        let timerInterval;
-        swalWithProgress.fire({
-         icon: 'error',
-         title: 'تلاش بیش از حد برای ورود',
-         html: `لطفاً <b id="remaining-time">${formatTime(remainingTime)}</b> دیگر صبر کنید.`,
-         timer: remainingTime * 1000, // زمان باقی‌مانده به میلی‌ثانیه
-         timerProgressBar: true, // نمایش نوار پیشرفت
-         didOpen: () => {
-          const remainingTimeElement = document.getElementById('remaining-time');
-          timerInterval = setInterval(() => {
-           remainingTime--;
-           remainingTimeElement.innerHTML = formatTime(remainingTime);
-          }, 1000);
-         },
-         willClose: () => {
-          clearInterval(timerInterval);
-         }
-        });
-       } else if (xhr.status === 422) {
-        const errors = xhr.responseJSON.errors;
-        Object.keys(errors).forEach(function(key) {
-         $(`[name="${key}"]`).addClass('is-invalid');
-         $(`[name="${key}"]`).after(`<div class="error-message">${errors[key][0]}</div>`);
-        });
-       }
-      }
+    if (!termsCheckbox.is(':checked')) {
+     Swal.fire({
+      icon: 'warning',
+      text: 'لطفا قوانین و شرایط را مطالعه و تایید کنید',
+      confirmButtonText: 'تایید'
      });
-    });
-
-    // تابع برای تبدیل ثانیه به فرمت دقیقه و ثانیه
-    function formatTime(seconds) {
-     if (isNaN(seconds) || seconds < 0) {
-      return '0 دقیقه و 0 ثانیه'; // مقدار پیش‌فرض برای مقادیر نامعتبر
-     }
-     const minutes = Math.floor(seconds / 60); // دقیقه‌ها
-     const remainingSeconds = Math.floor(seconds % 60); // ثانیه‌ها (بدون اعشار)
-     return `${minutes} دقیقه و ${remainingSeconds} ثانیه`;
+     return;
     }
+
+    showButtonLoading(submitButton);
+    $('.error-message').remove();
+
+    $.ajax({
+     url: "{{ route('dr.auth.login-register') }}",
+     method: 'POST',
+     data: form.serialize(),
+     success: function(response) {
+      showToast("کد تایید با موفقیت ارسال شد", 'success');
+      window.location.href = "{{ route('dr.auth.login-confirm-form', ['token' => ':token']) }}".replace(
+       ':token', response.token);
+     },
+     error: function(xhr) {
+      resetButton(submitButton, 'ادامه');
+      if (xhr.status === 429) {
+       let remainingTime = xhr.responseJSON.remaining_time || 0;
+       showRateLimitAlert(remainingTime);
+      } else if (xhr.status === 422) {
+       const errors = xhr.responseJSON.errors;
+       Object.keys(errors).forEach(function(key) {
+        $(`[name="${key}"]`).addClass('is-invalid');
+        $(`[name="${key}"]`).after(`<div class="error-message">${errors[key][0]}</div>`);
+       });
+      }
+     }
+    });
    });
+
+   // تابع برای تبدیل ثانیه به فرمت دقیقه و ثانیه
+   function formatTime(seconds) {
+    if (isNaN(seconds) || seconds < 0) {
+     return '0 دقیقه و 0 ثانیه'; // مقدار پیش‌فرض برای مقادیر نامعتبر
+    }
+    const minutes = Math.floor(seconds / 60); // دقیقه‌ها
+    const remainingSeconds = Math.floor(seconds % 60); // ثانیه‌ها (بدون اعشار)
+    return `${minutes} دقیقه و ${remainingSeconds} ثانیه`;
+   }
 
    $('.otp-input').eq(3).focus();
    $('.otp-input').on('input', function() {
@@ -459,7 +453,6 @@
      }
     }
    });
-   // ارسال کد OTP
    $('#otp-form').on('submit', function(e) {
     e.preventDefault();
     const form = $(this);
@@ -489,43 +482,15 @@
       resetButton(submitButton, 'ادامه');
       $('#otp-error').text('کد وارد شده نادرست است.').show();
       if (xhr.status === 429) {
-       let errorMessage = 'شما بیش از حد تلاش کرده‌اید';
-       let remainingTime = xhr.responseJSON.remaining_time; // زمان باقی‌مانده از سرور
-
-       // نمایش SweetAlert با نوار پیشرفت
-       const swalWithProgress = Swal.mixin({
-        customClass: {
-         confirmButton: 'btn btn-primary',
-         cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-       });
-
-       let timerInterval;
-       swalWithProgress.fire({
-        icon: 'error',
-        title: 'تلاش بیش از حد برای ورود به سایت',
-        html: `لطفاً <b id="remaining-time">${formatTime(remainingTime)}</b> دیگر صبر کنید.`,
-        timer: remainingTime * 1000, // زمان باقی‌مانده به میلی‌ثانیه
-        timerProgressBar: true, // نمایش نوار پیشرفت
-        didOpen: () => {
-         const remainingTimeElement = document.getElementById('remaining-time');
-         timerInterval = setInterval(() => {
-          remainingTime--;
-          remainingTimeElement.innerHTML = formatTime(remainingTime);
-         }, 1000);
-        },
-        willClose: () => {
-         clearInterval(timerInterval);
-        }
-       });
+       let remainingTime = xhr.responseJSON.remaining_time || 0;
+       showRateLimitAlert(remainingTime);
       } else {
        // سایر خطاها
       }
      }
     });
    });
-   // مدیریت ریست صفحه
+
    $('#login-with-pass-form').on('submit', function(e) {
     e.preventDefault();
     const form = $(this);
@@ -551,36 +516,8 @@
       }
 
       if (xhr.status === 429) {
-       let errorMessage = 'شما بیش از حد تلاش کرده‌اید';
-       let remainingTime = xhr.responseJSON.remaining_time; // زمان باقی‌مانده از سرور
-
-       // نمایش SweetAlert با نوار پیشرفت
-       const swalWithProgress = Swal.mixin({
-        customClass: {
-         confirmButton: 'btn btn-primary',
-         cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-       });
-
-       let timerInterval;
-       swalWithProgress.fire({
-        icon: 'error',
-        title: 'تلاش بیش از حد برای ورود به سایت',
-        html: `لطفاً <b id="remaining-time">${formatTime(remainingTime)}</b> دیگر صبر کنید.`,
-        timer: remainingTime * 1000, // زمان باقی‌مانده به میلی‌ثانیه
-        timerProgressBar: true, // نمایش نوار پیشرفت
-        didOpen: () => {
-         const remainingTimeElement = document.getElementById('remaining-time');
-         timerInterval = setInterval(() => {
-          remainingTime--;
-          remainingTimeElement.innerHTML = formatTime(remainingTime);
-         }, 1000);
-        },
-        willClose: () => {
-         clearInterval(timerInterval);
-        }
-       });
+       let remainingTime = xhr.responseJSON.remaining_time || 0;
+       showRateLimitAlert(remainingTime);
       }
      }
     });
@@ -606,36 +543,8 @@
        $('.two-factor-error').text(errors['two_factor_secret'] || 'خطا در ورود').show();
       }
       if (xhr.status === 429) {
-       let errorMessage = 'شما بیش از حد تلاش کرده‌اید';
-       let remainingTime = xhr.responseJSON.remaining_time; // زمان باقی‌مانده از سرور
-
-       // نمایش SweetAlert با نوار پیشرفت
-       const swalWithProgress = Swal.mixin({
-        customClass: {
-         confirmButton: 'btn btn-primary',
-         cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-       });
-
-       let timerInterval;
-       swalWithProgress.fire({
-        icon: 'error',
-        title: 'تلاش بیش از حد برای ورود به سایت',
-        html: `لطفاً <b id="remaining-time">${formatTime(remainingTime)}</b> دیگر صبر کنید.`,
-        timer: remainingTime * 1000, // زمان باقی‌مانده به میلی‌ثانیه
-        timerProgressBar: true, // نمایش نوار پیشرفت
-        didOpen: () => {
-         const remainingTimeElement = document.getElementById('remaining-time');
-         timerInterval = setInterval(() => {
-          remainingTime--;
-          remainingTimeElement.innerHTML = formatTime(remainingTime);
-         }, 1000);
-        },
-        willClose: () => {
-         clearInterval(timerInterval);
-        }
-       });
+       let remainingTime = xhr.responseJSON.remaining_time || 0;
+       showRateLimitAlert(remainingTime);
       }
      }
     });

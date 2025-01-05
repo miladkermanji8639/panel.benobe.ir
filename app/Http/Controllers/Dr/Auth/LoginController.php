@@ -18,7 +18,17 @@ class LoginController
   {
     return view('dr.auth.login');
   }
+  private function handleRateLimitError($mobile)
+  {
+    $loginAttempts = new LoginAttemptsService();
+    $remainingTime = $loginAttempts->getRemainingLockTime($mobile);
 
+    return response()->json([
+      'success' => false,
+      'message' => 'شما بیش از حد تلاش کرده‌اید',
+      'remaining_time' => $remainingTime
+    ], 429);
+  }
   public function loginUserPassForm()
   {
     return view('dr.auth.login', ['step' => 3]);
@@ -79,13 +89,8 @@ class LoginController
         'errors' => ['mobile' => ['حساب کاربری فعال نیست.']]
       ], 422);
     }
-    if ($loginAttempts->isLocked('0' . $mobile)) {
-      $remainingTime = $loginAttempts->getRemainingLockTime('0' . $mobile);
-      return response()->json([
-        'success' => false,
-        'errors' => ['mobile' => ['شما بیش از حد تلاش کرده‌اید.']],
-        'remaining_time' => $remainingTime // ارسال زمان باقی‌مانده به ویو
-      ], 429);
+    if ($loginAttempts->isLocked($mobile)) {
+      return $this->handleRateLimitError($mobile);
     }
     $loginAttempts->incrementLoginAttempt($doctor->id ?? null, '0' . $mobile);
 
@@ -134,7 +139,9 @@ class LoginController
     $mobile = $currentDoctor->mobile;
 
     $loginAttempts = new LoginAttemptsService();
-
+    if ($loginAttempts->isLocked($mobile)) {
+      return $this->handleRateLimitError($mobile);
+    }
     if (!$otp || $otp->otp_code !== $otpCode) {
       $loginAttempts->incrementLoginAttempt($doctorId ?? null, $mobile);
 
@@ -173,7 +180,9 @@ class LoginController
 
     $doctor = Doctor::where('mobile', $request->mobile)->first();
     $loginAttempts = new LoginAttemptsService();
-
+    if ($loginAttempts->isLocked($doctor->mobile)) {
+      return $this->handleRateLimitError($doctor->mobile);
+    }
     if ($doctor && password_verify($request->password, $doctor->password)) {
       $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
 
@@ -203,7 +212,9 @@ class LoginController
       ->first();
 
     $loginAttempts = new LoginAttemptsService();
-
+    if ($loginAttempts->isLocked($doctor->mobile)) {
+      return $this->handleRateLimitError($doctor->mobile);
+    }
     // بررسی زمان قفل (lockout_until)
     if ($loginAttemptMobileCheckLogin && $loginAttemptMobileCheckLogin->lockout_until > now()) {
       return response()->json([
@@ -254,11 +265,17 @@ class LoginController
 
   public function loginResendOtp($token)
   {
+    $loginAttempts = new LoginAttemptsService();
+
     $otp = Otp::where('token', $token)->first();
+    $ccurrentDoctor = Doctor::where('id', $otp->doctor_id)->first();
     if (empty($otp) || $otp->used) {
+      $loginAttempts->incrementLoginAttempt($ccurrentDoctor->id, $ccurrentDoctor->mobile);
+
       return response()->json(['error' => 'آدرس وارد شده نامعتبر است'], 422);
     }
     $doctor = $otp->doctor()->first();
+    $loginAttempts->resetLoginAttempts($ccurrentDoctor->mobile);
 
     // ایجاد توکن جدید و ارسال OTP با آن
     return $this->sendOtp($doctor); // این تابع کد جدید و توکن جدید را برمی‌گرداند

@@ -27,7 +27,7 @@ class Kernel extends HttpKernel
   ];
   protected $routeMiddleware = [
     'complete-profile' => \App\Http\Middleware\Dr\CheckCompleteProfile::class,
-    'rate.limit' => \App\Http\Middleware\RateLimitMiddleware::class,
+    /* 'rate.limit' => \App\Http\Middleware\RateLimitMiddleware::class, */
   ];
 
   /**

@@ -393,22 +393,20 @@ Route::prefix('dr')
 
     Route::get('dr-two-factor', [LoginController::class, 'twoFactorForm'])->name('dr-two-factor');
 
-    Route::middleware(['throttle:dr-login-two-factor-limiter', 'rate.limit:dr-login-two-factor-limiter'])->post('dr-two-factor-store', [LoginController::class, 'twoFactorFormCheck'])->name('dr-two-factor-store');
+    Route::post('dr-two-factor-store', [LoginController::class, 'twoFactorFormCheck'])->name('dr-two-factor-store');
 
-    Route::middleware(['throttle:dr-login-mobile-pass-limiter', 'rate.limit:dr-login-mobile-pass-limiter'])->post('dr-login-with-mobile-pass', [LoginController::class, 'loginWithMobilePass'])->name('dr-login-with-mobile-pass');
+    Route::post('dr-login-with-mobile-pass', [LoginController::class, 'loginWithMobilePass'])->name('dr-login-with-mobile-pass');
 
-    Route::middleware(['throttle:dr-login-register-limiter', 'rate.limit:dr-login-register-limiter'])
-      ->post('/login-register', [LoginController::class, 'loginRegister'])
+    Route
+      ::post('/login-register', [LoginController::class, 'loginRegister'])
       ->name('dr.auth.login-register');
 
     Route::get('login-confirm/{token}', [LoginController::class, 'loginConfirmForm'])->name('dr.auth.login-confirm-form');
 
-    Route::middleware(['throttle:dr-login-confirm-limiter', 'rate.limit:dr-login-confirm-limiter'])
-      ->post('/login-confirm/{token}', [LoginController::class, 'loginConfirm'])
+    Route::post('/login-confirm/{token}', [LoginController::class, 'loginConfirm'])
       ->name('dr.auth.login-confirm');
 
-    Route::middleware(['throttle:dr-login-resend-otp-limiter', 'rate.limit:dr-login-resend-otp-limiter'])
-      ->get('/login-resend-otp/{token}', [LoginController::class, 'loginResendOtp'])
+    Route::get('/login-resend-otp/{token}', [LoginController::class, 'loginResendOtp'])
       ->name('dr.auth.login-resend-otp');
     Route::get('/logout', [LoginController::class, 'logout'])->name('dr.auth.logout');
     Route::prefix('panel')
