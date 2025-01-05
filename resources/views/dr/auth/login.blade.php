@@ -183,7 +183,7 @@
           <label class="text-custom-gray">رمز دوعاملی</label>
          </div>
          <input dir="ltr" class="form-control custom-rounded custom-shadow h-50" type="password"
-          name="two_factor_password" placeholder="رمز عبور خود را وارد کنید">
+          name="two_factor_secret" placeholder="رمز عبور خود را وارد کنید">
          <div class="invalid-feedback two-factor-error"></div>
         </div>
         <button type="submit"
@@ -250,9 +250,11 @@
     text: message,
     duration: 5000,
     close: true,
-    gravity: "top", // top or bottom
-    position: 'right', // left, center or right
-    backgroundColor: type === 'success' ? 'green' : 'red',
+    gravity: "top",
+    position: 'right',
+    style: {
+     background: type === 'success' ? 'green' : 'red'
+    }
    }).showToast();
   }
   $(document).ready(function() {
@@ -348,57 +350,87 @@
    }
 
    // بررسی پذیرش قوانین در مرحله اول
-   $('#login-form-step1').on('submit', function(e) {
-    e.preventDefault();
-    const form = $(this);
-    const submitButton = form.find('button[type="submit"]');
-    const termsCheckbox = form.find('input[name="terms_accepted"]');
-    if (!termsCheckbox.is(':checked')) {
-     Swal.fire({
-      icon: 'warning',
-      text: 'لطفا قوانین و شرایط را مطالعه و تایید کنید',
-      confirmButtonText: 'تایید'
-     });
-     return;
-    }
-    showButtonLoading(submitButton);
-    // پاک کردن ارورهای قبلی قبل از ارسال درخواست
-    $('.error-message').remove();
-    $.ajax({
-     url: "{{ route('dr.auth.login-register') }}",
-     method: 'POST',
-     data: form.serialize(),
-     success: function(response) {
-      // انتقال به مرحله دوم (OTP)
-      showToast("کد تایید با موفقیت به شماره شما ارسال شد", 'success');
-      window.location.href = "{{ route('dr.auth.login-confirm-form', ['token' => ':token']) }}".replace(':token',
-       response.token);
-     },
-     error: function(xhr) {
-      resetButton(submitButton, 'ادامه');
-      if (xhr.status === 422) {
-       const errors = xhr.responseJSON.errors;
-       Object.keys(errors).forEach(function(key) {
-        $(`[name="${key}"]`).addClass('is-invalid');
-        $(`[name="${key}"]`).after(`<div class="error-message">${errors[key][0]}</div>`);
-       });
-      }
-      if (xhr.status === 429) {
-       const response = xhr.responseJSON; // کل پاسخ JSON
-       console.log(response); // برای دیباگ کردن پاسخ سرور
+   $(document).ready(function() {
+    $('#login-form-step1').on('submit', function(e) {
+     e.preventDefault();
+     const form = $(this);
+     const submitButton = form.find('button[type="submit"]');
+     const termsCheckbox = form.find('input[name="terms_accepted"]');
 
-       const message = response.message || 'شما بیش از حد تلاش کرده‌اید.';
-       const remainingTime = response.remaining_time; // زمان باقی‌مانده از پاسخ سرور
+     if (!termsCheckbox.is(':checked')) {
+      Swal.fire({
+       icon: 'warning',
+       text: 'لطفا قوانین و شرایط را مطالعه و تایید کنید',
+       confirmButtonText: 'تایید'
+      });
+      return;
+     }
 
-       if (remainingTime !== undefined) {
-        showToast(`تلاش بیش از حد لطفاً ${remainingTime} ثانیه دیگر مجدد تلاش کنید.`, 'error');
-       } else {
-        showToast(`تلاش بیش از حد لطفاً بعد از چند دقیقه مجدد تلاش کنید.`, 'error');
+     showButtonLoading(submitButton);
+     $('.error-message').remove();
+
+     $.ajax({
+      url: "{{ route('dr.auth.login-register') }}",
+      method: 'POST',
+      data: form.serialize(),
+      success: function(response) {
+       showToast("کد تایید با موفقیت ارسال شد", 'success');
+       window.location.href = "{{ route('dr.auth.login-confirm-form', ['token' => ':token']) }}".replace(
+        ':token', response.token);
+      },
+      error: function(xhr) {
+       resetButton(submitButton, 'ادامه');
+       if (xhr.status === 429) {
+        let errorMessage = 'شما بیش از حد تلاش کرده‌اید';
+        let remainingTime = xhr.responseJSON.remaining_time || 0; // مقدار پیش‌فرض 0
+
+        // نمایش SweetAlert با نوار پیشرفت
+        const swalWithProgress = Swal.mixin({
+         customClass: {
+          confirmButton: 'btn btn-primary',
+          cancelButton: 'btn btn-danger'
+         },
+         buttonsStyling: false
+        });
+
+        let timerInterval;
+        swalWithProgress.fire({
+         icon: 'error',
+         title: 'تلاش بیش از حد برای ورود',
+         html: `لطفاً <b id="remaining-time">${formatTime(remainingTime)}</b> دیگر صبر کنید.`,
+         timer: remainingTime * 1000, // زمان باقی‌مانده به میلی‌ثانیه
+         timerProgressBar: true, // نمایش نوار پیشرفت
+         didOpen: () => {
+          const remainingTimeElement = document.getElementById('remaining-time');
+          timerInterval = setInterval(() => {
+           remainingTime--;
+           remainingTimeElement.innerHTML = formatTime(remainingTime);
+          }, 1000);
+         },
+         willClose: () => {
+          clearInterval(timerInterval);
+         }
+        });
+       } else if (xhr.status === 422) {
+        const errors = xhr.responseJSON.errors;
+        Object.keys(errors).forEach(function(key) {
+         $(`[name="${key}"]`).addClass('is-invalid');
+         $(`[name="${key}"]`).after(`<div class="error-message">${errors[key][0]}</div>`);
+        });
        }
       }
-
-     }
+     });
     });
+
+    // تابع برای تبدیل ثانیه به فرمت دقیقه و ثانیه
+    function formatTime(seconds) {
+     if (isNaN(seconds) || seconds < 0) {
+      return '0 دقیقه و 0 ثانیه'; // مقدار پیش‌فرض برای مقادیر نامعتبر
+     }
+     const minutes = Math.floor(seconds / 60); // دقیقه‌ها
+     const remainingSeconds = Math.floor(seconds % 60); // ثانیه‌ها (بدون اعشار)
+     return `${minutes} دقیقه و ${remainingSeconds} ثانیه`;
+    }
    });
 
    $('.otp-input').eq(3).focus();
@@ -457,8 +489,36 @@
       resetButton(submitButton, 'ادامه');
       $('#otp-error').text('کد وارد شده نادرست است.').show();
       if (xhr.status === 429) {
-       const message = xhr.responseJSON.message;
-       showToast(message, 'error'); // نمایش پیام هشدار
+       let errorMessage = 'شما بیش از حد تلاش کرده‌اید';
+       let remainingTime = xhr.responseJSON.remaining_time; // زمان باقی‌مانده از سرور
+
+       // نمایش SweetAlert با نوار پیشرفت
+       const swalWithProgress = Swal.mixin({
+        customClass: {
+         confirmButton: 'btn btn-primary',
+         cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+       });
+
+       let timerInterval;
+       swalWithProgress.fire({
+        icon: 'error',
+        title: 'تلاش بیش از حد برای ورود به سایت',
+        html: `لطفاً <b id="remaining-time">${formatTime(remainingTime)}</b> دیگر صبر کنید.`,
+        timer: remainingTime * 1000, // زمان باقی‌مانده به میلی‌ثانیه
+        timerProgressBar: true, // نمایش نوار پیشرفت
+        didOpen: () => {
+         const remainingTimeElement = document.getElementById('remaining-time');
+         timerInterval = setInterval(() => {
+          remainingTime--;
+          remainingTimeElement.innerHTML = formatTime(remainingTime);
+         }, 1000);
+        },
+        willClose: () => {
+         clearInterval(timerInterval);
+        }
+       });
       } else {
        // سایر خطاها
       }
@@ -482,9 +542,46 @@
      },
      error: function(xhr) {
       resetButton(submitButton, 'ادامه');
-      const errors = xhr.responseJSON.errors;
-      $('.password-error').text(errors['mobile-pass-errors'] || 'لطفا اطلاعات خواسته شده را به درستی وارد کنید')
-       .show();
+      if (xhr.status === 422) {
+       const errors = xhr.responseJSON.errors;
+
+
+       $('.password-error').text(errors['mobile-pass-errors'] || 'لطفا اطلاعات خواسته شده را به درستی وارد کنید')
+        .show();
+      }
+
+      if (xhr.status === 429) {
+       let errorMessage = 'شما بیش از حد تلاش کرده‌اید';
+       let remainingTime = xhr.responseJSON.remaining_time; // زمان باقی‌مانده از سرور
+
+       // نمایش SweetAlert با نوار پیشرفت
+       const swalWithProgress = Swal.mixin({
+        customClass: {
+         confirmButton: 'btn btn-primary',
+         cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+       });
+
+       let timerInterval;
+       swalWithProgress.fire({
+        icon: 'error',
+        title: 'تلاش بیش از حد برای ورود به سایت',
+        html: `لطفاً <b id="remaining-time">${formatTime(remainingTime)}</b> دیگر صبر کنید.`,
+        timer: remainingTime * 1000, // زمان باقی‌مانده به میلی‌ثانیه
+        timerProgressBar: true, // نمایش نوار پیشرفت
+        didOpen: () => {
+         const remainingTimeElement = document.getElementById('remaining-time');
+         timerInterval = setInterval(() => {
+          remainingTime--;
+          remainingTimeElement.innerHTML = formatTime(remainingTime);
+         }, 1000);
+        },
+        willClose: () => {
+         clearInterval(timerInterval);
+        }
+       });
+      }
      }
     });
    });
@@ -504,8 +601,42 @@
      },
      error: function(xhr) {
       resetButton(submitButton, 'ادامه');
-      const errors = xhr.responseJSON.errors;
-      $('.two-factor-error').text(errors['two_factor_password'] || 'خطا در ورود').show();
+      if (xhr.status === 422) {
+       const errors = xhr.responseJSON.errors;
+       $('.two-factor-error').text(errors['two_factor_secret'] || 'خطا در ورود').show();
+      }
+      if (xhr.status === 429) {
+       let errorMessage = 'شما بیش از حد تلاش کرده‌اید';
+       let remainingTime = xhr.responseJSON.remaining_time; // زمان باقی‌مانده از سرور
+
+       // نمایش SweetAlert با نوار پیشرفت
+       const swalWithProgress = Swal.mixin({
+        customClass: {
+         confirmButton: 'btn btn-primary',
+         cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+       });
+
+       let timerInterval;
+       swalWithProgress.fire({
+        icon: 'error',
+        title: 'تلاش بیش از حد برای ورود به سایت',
+        html: `لطفاً <b id="remaining-time">${formatTime(remainingTime)}</b> دیگر صبر کنید.`,
+        timer: remainingTime * 1000, // زمان باقی‌مانده به میلی‌ثانیه
+        timerProgressBar: true, // نمایش نوار پیشرفت
+        didOpen: () => {
+         const remainingTimeElement = document.getElementById('remaining-time');
+         timerInterval = setInterval(() => {
+          remainingTime--;
+          remainingTimeElement.innerHTML = formatTime(remainingTime);
+         }, 1000);
+        },
+        willClose: () => {
+         clearInterval(timerInterval);
+        }
+       });
+      }
      }
     });
    });

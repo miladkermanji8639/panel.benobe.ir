@@ -28,16 +28,18 @@ class Handler extends ExceptionHandler
             //
         });
     }
-    public function render($request, $exception)
+    public function render($request, Throwable $exception)
     {
         if ($exception instanceof ThrottleRequestsException) {
-            $retryAfter = $exception->getHeaders()['Retry-After'] ?? null;
+            $retryAfter = $exception->getHeaders()['Retry-After'] ?? 180;
 
             return response()->json([
+                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً کمی بعد مجدداً تلاش کنید.',
                 'success' => false,
-                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $retryAfter . ' ثانیه دیگر صبر کنید.',
-                'remaining_time' => $retryAfter // زمان باقی‌مانده به ثانیه
-            ], Response::HTTP_TOO_MANY_REQUESTS);
+                'retry_after' => $retryAfter
+            ], 429, [
+                'Retry-After' => $retryAfter
+            ]);
         }
 
         return parent::render($request, $exception);

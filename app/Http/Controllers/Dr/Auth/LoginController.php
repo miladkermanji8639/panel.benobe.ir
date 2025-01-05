@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers\Dr\Auth;
 
+use App\Http\Services\LoginAttemptsService\LoginAttemptsService;
 use App\Models\Dr\Doctor;
+use App\Models\Dr\LoginAttempt;
 use App\Models\Dr\Otp;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -58,8 +60,10 @@ class LoginController
 
     $mobile = preg_replace('/^(\+98|98|0)/', '', $request->mobile);
     $doctor = Doctor::where('mobile', "0" . $mobile)->first();
+    $loginAttempts = new LoginAttemptsService();
 
     if (!$doctor) {
+      $loginAttempts->incrementLoginAttempt($doctor->id ?? null, '0' . $mobile);
       return response()->json([
         'success' => false,
         'errors' => ['mobile' => ['کاربری با این شماره تلفن وجود ندارد.']]
@@ -67,11 +71,24 @@ class LoginController
     }
 
     if ($doctor->status !== 1 || $doctor->user_type !== 'doctor') {
+      $loginAttempts->incrementLoginAttempt($doctor->id ?? null, '0' . $mobile);
+
+
       return response()->json([
         'success' => false,
         'errors' => ['mobile' => ['حساب کاربری فعال نیست.']]
       ], 422);
     }
+    if ($loginAttempts->isLocked('0' . $mobile)) {
+      $remainingTime = $loginAttempts->getRemainingLockTime('0' . $mobile);
+      return response()->json([
+        'success' => false,
+        'errors' => ['mobile' => ['شما بیش از حد تلاش کرده‌اید.']],
+        'remaining_time' => $remainingTime // ارسال زمان باقی‌مانده به ویو
+      ], 429);
+    }
+    $loginAttempts->incrementLoginAttempt($doctor->id ?? null, '0' . $mobile);
+
     return $this->sendOtp($doctor);
   }
 
@@ -112,7 +129,15 @@ class LoginController
       ->where('used', 0)
       ->where('created_at', '>=', Carbon::now()->subMinutes(2))
       ->first();
+    $doctorId = $otp->doctor_id;
+    $currentDoctor = Doctor::where('id', $doctorId)->first();
+    $mobile = $currentDoctor->mobile;
+
+    $loginAttempts = new LoginAttemptsService();
+
     if (!$otp || $otp->otp_code !== $otpCode) {
+      $loginAttempts->incrementLoginAttempt($doctorId ?? null, $mobile);
+
       return response()->json([
         'success' => false,
         'errors' => ['otp-code' => ['کد وارد شده صحیح نمی‌باشد']]
@@ -127,7 +152,7 @@ class LoginController
     }
 
     Auth::guard('doctor')->login($doctor);
-
+    $loginAttempts->resetLoginAttempts($mobile);
     return response()->json([
       'success' => true,
       'redirect' => route('dr-panel')
@@ -147,14 +172,18 @@ class LoginController
     ]);
 
     $doctor = Doctor::where('mobile', $request->mobile)->first();
+    $loginAttempts = new LoginAttemptsService();
 
     if ($doctor && password_verify($request->password, $doctor->password)) {
+      $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
+
       Auth::guard('doctor')->login($doctor);
       return response()->json([
         'success' => true,
         'redirect' => route('dr-two-factor')
       ]);
     }
+    $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
 
     return response()->json([
       'success' => false,
@@ -165,35 +194,61 @@ class LoginController
   public function twoFactorFormCheck(Request $request)
   {
     $request->validate([
-      'two_factor_password' => 'nullable|string'
+      'two_factor_secret' => 'nullable|string'
     ]);
 
-    $doctor = Auth::guard('doctor')->user();
+    $doctor = Doctor::findOrFail(Auth::guard('doctor')->id());
+    $loginAttemptMobileCheckLogin = LoginAttempt::where('doctor_id', $doctor->id)
+      ->where('mobile', $doctor->mobile)
+      ->first();
 
-    if (empty($doctor->two_factor_password)) {
-      if (empty($request->two_factor_password)) {
+    $loginAttempts = new LoginAttemptsService();
+
+    // بررسی زمان قفل (lockout_until)
+    if ($loginAttemptMobileCheckLogin && $loginAttemptMobileCheckLogin->lockout_until > now()) {
+      return response()->json([
+        'success' => false,
+        'errors' => ['two_factor_secret' => 'به علت تلاش‌های بیش از حد، شما فعلاً نمی‌توانید وارد شوید. لطفاً پس از اتمام زمان مورد نظر مجدداً تلاش کنید.']
+      ], 422);
+    }
+
+    // اگر کد دو مرحله‌ای تنظیم نشده باشد
+    if (empty($doctor->two_factor_secret)) {
+      if (empty($request->two_factor_secret)) {
+        $loginAttempts->resetLoginAttempts($doctor->mobile);
+        $doctor->two_factor_confirmed_at = now();
+        $doctor->save();
+
         return response()->json([
           'success' => true,
           'redirect' => route('dr-panel')
         ]);
       }
 
+      $loginAttempts->incrementLoginAttempt($doctor->id, $doctor->mobile);
       return response()->json([
         'success' => false,
-        'errors' => ['two_factor_password' => 'کد دو عاملی وارد شده صحیح نمی‌باشد']
+        'errors' => ['two_factor_secret' => 'کد دو عاملی وارد شده صحیح نمی‌باشد']
       ], 422);
     }
 
-    if ($request->two_factor_password === $doctor->two_factor_password) {
+    // اگر کد دو مرحله‌ای تنظیم شده باشد
+    if ($request->two_factor_secret === $doctor->two_factor_secret) {
+      $loginAttempts->resetLoginAttempts($doctor->mobile);
+      $doctor->two_factor_confirmed_at = now();
+      $doctor->save();
+
       return response()->json([
         'success' => true,
         'redirect' => route('dr-panel')
       ]);
     }
 
+    // اگر کد دو مرحله‌ای اشتباه باشد
+    $loginAttempts->incrementLoginAttempt($doctor->id, $doctor->mobile);
     return response()->json([
       'success' => false,
-      'errors' => ['two_factor_password' => 'کد دو عاملی وارد شده صحیح نمی‌باشد']
+      'errors' => ['two_factor_secret' => 'کد دو عاملی وارد شده صحیح نمی‌باشد']
     ], 422);
   }
 

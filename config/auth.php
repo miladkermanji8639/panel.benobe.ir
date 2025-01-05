@@ -83,6 +83,8 @@ return [
         'doctors' => [
             'driver' => 'database',
             'table' => 'doctors',
+            'model' => App\Models\Dr\Doctor::class,
+
         ],
     ],
 
