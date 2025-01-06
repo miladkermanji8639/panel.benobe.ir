@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dr_specialties', function (Blueprint $table) {
+        Schema::create('sub_specialties', function (Blueprint $table) {
             $table->id(); // شناسه یکتا
             $table->string('name'); // نام تخصص
             $table->text('description')->nullable(); // توضیحات تخصص (اختیاری)
@@ -22,7 +22,7 @@ return new class extends Migration
         });
          // اجرای Seeder به صورت خودکار
          Artisan::call('db:seed', [
-            '--class' => 'DrSpecialtySeeder',
+            '--class' => 'SubSpecialtiesSeeder',
         ]);
     }
 
@@ -31,7 +31,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dr_specialties');
+        Schema::dropIfExists('sub_specialties');
         
     }
 };

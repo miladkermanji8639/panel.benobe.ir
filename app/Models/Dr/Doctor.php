@@ -2,17 +2,17 @@
 namespace App\Models\Dr;
 
 use App\Models\User;
+use App\Models\Dr\Specialty;
 use App\Models\Dr\DrSpecialty;
 use App\Models\Dr\SubSpecialty;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
+use Cviebrock\EloquentSluggable\Sluggable;
 use App\Models\Admin\Dashboard\Cities\Zone;
 use Laravel\Fortify\TwoFactorAuthenticatable;
-use App\Models\Admin\Dashboard\Specialty\Specialty;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Cviebrock\EloquentSluggable\Sluggable;
 
 class Doctor extends Authenticatable
 {
@@ -100,14 +100,9 @@ class Doctor extends Authenticatable
     {
         return $this->belongsTo(Zone::class, 'city_id'); // ارتباط با شهر
     }
-
     public function specialties()
     {
         return $this->belongsToMany(Specialty::class, 'doctor_specialty', 'doctor_id', 'specialty_id');
     }
-
-    public function specialty()
-    {
-        return $this->belongsTo(DrSpecialty::class, 'specialty_oms_id');
-    }
+   
 }

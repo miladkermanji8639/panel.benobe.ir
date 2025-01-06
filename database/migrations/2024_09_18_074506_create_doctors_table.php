@@ -48,7 +48,7 @@ return new class extends Migration {
 
             $table->foreign('province_id')->references('id')->on('zone')->onDelete('set null');
             $table->foreign('city_id')->references('id')->on('zone')->onDelete('set null');
-            $table->foreign('specialty_id')->references('id')->on('specialty')->onDelete('set null');
+            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('set null');
             $table->foreign('medical_system_code_type_id')->references('id')->on('medical_system_code_types')->onDelete('set null');
         });
         DB::statement('

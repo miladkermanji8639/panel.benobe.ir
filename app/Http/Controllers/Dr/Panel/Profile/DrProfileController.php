@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers\Dr\Panel\Profile;
 
+use App\Models\Dr\Doctor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DrProfileController
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() {}
-    public function subuser(){
+    public function index()
+    {
+    }
+    public function subuser()
+    {
         return view('dr.panel.profile.subuser');
     }
     /**
@@ -44,7 +49,11 @@ class DrProfileController
     // public function edit(string $id)
     public function edit()
     {
-        return view("dr.panel.profile.edit-profile");
+        $doctor = Auth::guard('doctor')->user();
+        $specialty = Doctor::with('specialties')->find($doctor->id);
+        $specialtyName = $specialty->specialties->first()->name ?? 'No specialty assigned';
+
+        return view("dr.panel.profile.edit-profile", compact('specialtyName'));
     }
     public function niceId()
     {
@@ -65,7 +74,7 @@ class DrProfileController
      */
     public function update(Request $request, string $id)
     {
-        //
+        dd($request);
     }
 
     /**

@@ -7,22 +7,25 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
-class DrSpecialtySeeder extends Seeder
+class SpecialtiesSeeder extends Seeder
 {
     public function run(): void
     {
         // خواندن محتوای فایل JSON
-        $json = File::get(storage_path('app/floships_and_specialties.json'));
+        $json = File::get(storage_path('app/takhsos-mini-list.json'));
         $data = json_decode($json, true);
 
         // بررسی اینکه آیا داده‌ها به درستی بارگذاری شده‌اند
-        if (isset($data['specialties']) && is_array($data['specialties'])) {
-            foreach ($data['specialties'] as $specialty) {
-                DB::table('dr_specialties')->insert([
+        if (is_array($data)) {
+            foreach ($data as $specialty) {
+                DB::table('specialties')->insert([
                     'name' => $specialty['name'], // نام تخصص
-                    'description' => $specialty['description'] ?? null, // توضیحات تخصص (اختیاری)
-                    'created_at' => now(), // زمان ایجاد رکورد
-                    'updated_at' => now()  // زمان به روز رسانی رکورد
+                    'slug' => $specialty['slug'], // استفاده از slug موجود در JSON
+                    'level' => $specialty['level'], // سطح تخصص
+                    'parent_id' => $specialty['parent_id'], // شناسه والد تخصص
+                    'status' => $specialty['status'], // وضعیت (تعداد 1 برای فعال)
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ]);
             }
         } else {

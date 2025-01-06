@@ -11,7 +11,7 @@
   <span
    class="profile__name">{{ Auth::guard('doctor')->user()->first_name . ' ' . Auth::guard('doctor')->user()->last_name }}</span>
   <!-- نام کاربری فعلی -->
-  <span class="fs-11 fw-bold" id="takhasos-txt">کارشناس فیزیوتراپی</span>
+  <span class="fs-11 fw-bold" id="takhasos-txt"> {{ $specialtyName }}</span>
  </div>
  <ul class="mt-65" id="mt-65">
   <li class="item-li i-dashboard {{ Request::routeIs('dr-panel') ? 'is-active' : '' }}">

@@ -35,7 +35,7 @@ class CreateHealthcareCentersTable extends Migration
             $table->softDeletes();  
             $table->foreign('city_id')->references('id')->on('zone')->onDelete('set null');  
             $table->foreign('province_id')->references('id')->on('zone')->onDelete('set null');
-            $table->foreign('specialty_id')->references('id')->on('dr_specialties')->onDelete('set null');
+            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('set null');
             // زمان‌های ایجاد و به‌روزرسانی  
         });     // آدرس مرکز   
     }  

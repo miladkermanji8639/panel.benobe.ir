@@ -386,6 +386,7 @@ Route::prefix('admin')
 // dr routes
 Route::prefix('dr')
   ->namespace('Dr')
+
   ->group(function () {
     Route::get('login', [LoginController::class, 'loginRegisterForm'])->name('dr.auth.login-register-form');
 
@@ -397,8 +398,7 @@ Route::prefix('dr')
 
     Route::post('dr-login-with-mobile-pass', [LoginController::class, 'loginWithMobilePass'])->name('dr-login-with-mobile-pass');
 
-    Route
-      ::post('/login-register', [LoginController::class, 'loginRegister'])
+    Route::post('/login-register', [LoginController::class, 'loginRegister'])
       ->name('dr.auth.login-register');
 
     Route::get('login-confirm/{token}', [LoginController::class, 'loginConfirmForm'])->name('dr.auth.login-confirm-form');
@@ -473,6 +473,7 @@ Route::prefix('dr')
         Route::get('payment/setting', [DrPaymentSettingController::class, 'index'])->name('dr-payment-setting');
         Route::prefix('profile')->group(function () {
           Route::get('edit-profile', [DrProfileController::class, 'edit'])->name('dr-edit-profile');
+          Route::post('update-profile', [DrProfileController::class, 'update'])->name('dr-update-profile');
           Route::get('niceId', [DrProfileController::class, 'niceId'])->name('dr-edit-profile-niceId');
           Route::get('security', [DrProfileController::class, 'security'])->name('dr-edit-profile-security');
           Route::get('upgrade', [DrProfileController::class, 'upgrade'])->name('dr-edit-profile-upgrade');

@@ -9,13 +9,13 @@
 @section('content')
 @section('bread-crumb-title', ' ویرایش پروفایل ')
 <div class="main-content mb-5">
-@if (session()->has('complete-profile'))
+ @if (session()->has('complete-profile'))
   <div class="alert alert-warning  text-center">
    <span class="font-weight-bold">
     {{ session()->get('complete-profile') }}
    </span>
   </div>
-@endif
+ @endif
  <div class="d-flex justify-content-center align-items-center flex-column col-12">
   <div class="top-profile-info p-2 col-xs-12 col-sm-12  col-md-12 col-lg-8 d-flex">
    <div class="d-flex justify-content-between w-100 font-size-13">
@@ -24,9 +24,11 @@
       <img src="{{ asset('dr-assets/panel/img/pro.jpg') }}" class="avatar___img-main">
      </div>
      <div class="mx-2 mt-3">
-      <span class="d-block font-weight-bold font-size-15">یاسر محمدی</span>
-      <span class="badge badge-light p-2 border-radius-8 mt-3 mx-3 font-size-13 cursor-pointer"> کارشناس فیزیو
-       تراپی</span>
+      <span class="d-block font-weight-bold font-size-15">
+       {{ Auth::guard('doctor')->user()->first_name . ' ' . Auth::guard('doctor')->user()->last_name }}</span>
+      <span class="badge badge-light p-2 border-radius-8 mt-3 mx-3 font-size-13 cursor-pointer">
+       {{ $specialtyName }}
+      </span>
      </div>
     </div>
     <div class="show-profile-badge">
@@ -66,28 +68,33 @@
    <div class="drop-toggle-styles personal-data-drop-toggle">
     <div class="loading-spinner d-none"></div>
     <div class="">
-     <form action="" method="post">
+     <form action="{{ route('dr-update-profile') }}" method="post">
+      @csrf
       <div>
        <label for="name" class="label-top-input">نام</label>
-       <input type="text" class="my-form-control w-100 border-radius-6 mt-3" value="یاسر" readonly>
+       <input type="text" class="my-form-control w-100 border-radius-6 mt-3"
+        value="{{ Auth::guard('doctor')->user()->first_name }}" name="first_name">
       </div>
       <div>
        <label for="name" class="label-top-input">نام خانوادگی</label>
-       <input type="text" class="my-form-control w-100 border-radius-6 mt-3" value="محمدی" readonly>
+       <input type="text" class="my-form-control w-100 border-radius-6 mt-3"
+        value="{{ Auth::guard('doctor')->user()->last_name }}" name="last_name">
       </div>
       <div>
        <label for="name" class="label-top-input">کدملی</label>
-       <input type="text" class="my-form-control-light h-50 w-100 border-radius-6 mt-3 text-right">
+       <input type="text" value="{{ Auth::guard('doctor')->user()->national_code ?? '' }}"
+        class="my-form-control-light h-50 w-100 border-radius-6 mt-3 text-right" name="national_code">
       </div>
       <div>
        <label for="name" class="label-top-input">شماره نظام پزشکی</label>
-       <input type="text" class="my-form-control-light h-50 w-100 border-radius-6 mt-3 text-right">
+       <input type="text" value="{{ Auth::guard('doctor')->user()->license_number ?? '' }}"
+        class="my-form-control-light h-50 w-100 border-radius-6 mt-3 text-right" name="license_number">
       </div>
       <div class="d-flex justify-content-between mt-3 gap-4 position-relative">
        <label for="name" class="label-top-input-special-takhasos">شماره موبایل</label>
 
        <input class="my-form-control h-50 col-lg-11 col-xs-10 col-md-11 col-sm-11 text-right disabled "
-        placeholder="شماره موبایل" value="09182718639" readonly disabled>
+        placeholder="شماره موبایل" value="{{ Auth::guard('doctor')->user()->mobile ?? '' }}" readonly disabled>
        <button
         class="btn btn-dark h-50 col-lg-1 col-xs-2 col-md-1 col-sm-1 d-flex justify-content-center align-items-center fs-6 add-form-item"
         type="button" id="editButton" data-toggle="modal" data-target="#exampleModalCenterAddSick">
@@ -115,7 +122,8 @@
            <form action="" method="post">
             <label for="name" class="label-top-input">شماره موبایل جدید</label>
 
-            <input type="text" class="form-control w-100 h-50  position-relative text-right" placeholder="">
+            <input type="text" class="form-control w-100 h-50  position-relative text-right" placeholder=""
+             name="mobile">
 
             <div class="d-flex mt-2">
 
@@ -130,11 +138,13 @@
       <div class="mt-3">
        <label for="name" class="font-weight-bold font-size-13"> بیوگرافی و توضیحات</label>
        <textarea class="ckeditor form-control h-50 w-100 h-80" name="description" class="form-control h-50"
-        id="description"></textarea>
+        id="description">
+            {{ Auth::guard('doctor')->user()->bio ?? '' }}
+        </textarea>
 
       </div>
       <div class="w-100">
-       <button class="w-100 btn btn-primary h-50 border-radius-4">ذخیره تغیرات</button>
+       <button type="submit" class="w-100 btn btn-primary h-50 border-radius-4">ذخیره تغیرات</button>
       </div>
      </form>
     </div>

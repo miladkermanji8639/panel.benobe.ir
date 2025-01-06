@@ -36,10 +36,20 @@ class LoginController
 
   public function twoFactorForm()
   {
+    // بررسی اینکه آیا کاربر از استپ 3 آمده است یا خیر
+    if (!session()->has('step3_completed')) {
+
+      return redirect()->route('dr.auth.login-user-pass-form');
+    }
+
     return view('dr.auth.login', ['step' => 4]);
   }
   public function loginConfirmForm($token)
   {
+    // بررسی اینکه آیا کاربر از استپ 1 آمده است یا خیر
+    if (!session()->has('step1_completed')) {
+      return redirect()->route('dr.auth.login-register-form');
+    }
     $otp = Otp::where('token', $token)->first();
 
     // Check if OTP exists before calculating remaining time
@@ -93,7 +103,8 @@ class LoginController
       return $this->handleRateLimitError($mobile);
     }
     $loginAttempts->incrementLoginAttempt($doctor->id ?? null, '0' . $mobile);
-
+    // تنظیم session برای استپ 1
+    session(['step1_completed' => true]);
     return $this->sendOtp($doctor);
   }
 
@@ -160,6 +171,7 @@ class LoginController
 
     Auth::guard('doctor')->login($doctor);
     $loginAttempts->resetLoginAttempts($mobile);
+    session()->forget('step1_completed');
     return response()->json([
       'success' => true,
       'redirect' => route('dr-panel')
@@ -183,8 +195,11 @@ class LoginController
     if ($loginAttempts->isLocked($doctor->mobile)) {
       return $this->handleRateLimitError($doctor->mobile);
     }
-    if ($doctor && password_verify($request->password, $doctor->password)) {
+    if ($doctor && password_verify($request->password, $doctor->password) && $doctor->status === 1 && $doctor->user_type === 'doctor') {
       $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
+
+      // تنظیم session برای استپ 3
+      session(['step3_completed' => true]);
 
       Auth::guard('doctor')->login($doctor);
       return response()->json([
@@ -215,7 +230,7 @@ class LoginController
     if ($loginAttempts->isLocked($doctor->mobile)) {
       return $this->handleRateLimitError($doctor->mobile);
     }
-    // بررسی زمان قفل (lockout_until)
+
     if ($loginAttemptMobileCheckLogin && $loginAttemptMobileCheckLogin->lockout_until > now()) {
       return response()->json([
         'success' => false,
@@ -223,12 +238,14 @@ class LoginController
       ], 422);
     }
 
-    // اگر کد دو مرحله‌ای تنظیم نشده باشد
     if (empty($doctor->two_factor_secret)) {
       if (empty($request->two_factor_secret)) {
         $loginAttempts->resetLoginAttempts($doctor->mobile);
         $doctor->two_factor_confirmed_at = now();
         $doctor->save();
+
+        // پاک کردن session مربوط به استپ 3
+        session()->forget('step3_completed');
 
         return response()->json([
           'success' => true,
@@ -243,11 +260,13 @@ class LoginController
       ], 422);
     }
 
-    // اگر کد دو مرحله‌ای تنظیم شده باشد
     if ($request->two_factor_secret === $doctor->two_factor_secret) {
       $loginAttempts->resetLoginAttempts($doctor->mobile);
       $doctor->two_factor_confirmed_at = now();
       $doctor->save();
+
+      // پاک کردن session مربوط به استپ 3
+      session()->forget('step3_completed');
 
       return response()->json([
         'success' => true,
@@ -255,7 +274,6 @@ class LoginController
       ]);
     }
 
-    // اگر کد دو مرحله‌ای اشتباه باشد
     $loginAttempts->incrementLoginAttempt($doctor->id, $doctor->mobile);
     return response()->json([
       'success' => false,

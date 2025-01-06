@@ -12,19 +12,19 @@ class doctor
 {
     protected $table = "doctors";
 
-    public function handle(Request $request, Closure $next): Response
-    {
-        if (!Auth::guard('doctor')->check()) {
-            return redirect()->to('http://localhost:3000/auth');
-        }
-
-        $doctor = Auth::guard('doctor')->user();
-        
-        // // بررسی وضعیت کاربر
-        if ($doctor->status === 0) {
-            return redirect()->to('http://localhost:3000/auth');
-        }
-
-        return $next($request);
+   public function handle(Request $request, Closure $next): Response
+{
+    if (!Auth::guard('doctor')->check()) {
+       
+        return redirect()->to(route('dr.auth.login-register-form'));
     }
+
+    $doctor = Auth::guard('doctor')->user();
+
+    if ($doctor->status === 0) {
+        return redirect()->to(route('dr.auth.login-register-form'));
+    }
+
+    return $next($request);
+}
 }

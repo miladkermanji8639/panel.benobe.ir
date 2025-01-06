@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Specialty extends Model
 {
     use HasFactory;
-    protected $table = "specialty";
+    protected $table = "specialties";
     protected $fillable = [
         'sort',
         'level',

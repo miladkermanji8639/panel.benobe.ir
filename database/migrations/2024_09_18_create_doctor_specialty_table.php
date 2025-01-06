@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();  
         
             $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');  
-            $table->foreign('specialty_id')->references('id')->on('specialty')->onDelete('cascade');  
+            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');  
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_doctor_specialty');
+        Schema::dropIfExists('doctor_specialty');
     }
 };

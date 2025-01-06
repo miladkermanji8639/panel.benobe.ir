@@ -44,7 +44,7 @@ class Kernel extends HttpKernel
       \App\Http\Middleware\VerifyCsrfToken::class,
       \Illuminate\Routing\Middleware\SubstituteBindings::class,
       \App\Http\Middleware\LocaleMiddleware::class,
-      
+
       // \App\Http\Middleware\user::class,
 
     ],
@@ -54,9 +54,11 @@ class Kernel extends HttpKernel
       \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
       \Illuminate\Routing\Middleware\SubstituteBindings::class,
     ],
-    'doctor'=>[
+    'doctor' => [
       'complete-profile' => \App\Http\Middleware\Dr\CheckCompleteProfile::class,
       'rate.limit' => \App\Http\Middleware\RateLimitMiddleware::class,
+      'doctor' => \App\Http\Middleware\doctor::class,
+
     ]
   ];
 
