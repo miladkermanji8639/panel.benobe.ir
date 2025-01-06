@@ -108,7 +108,6 @@ class DrProfileController
                 'license_number' => 'nullable|string|max:20',
                 'description' => 'nullable|string',
             ]);
-
             // اگر اعتبارسنجی شکست خورد
             if ($validator->fails()) {
                 return response()->json([

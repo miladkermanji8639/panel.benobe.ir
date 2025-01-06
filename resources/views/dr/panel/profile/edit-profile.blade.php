@@ -24,7 +24,7 @@
       <img src="{{ asset('dr-assets/panel/img/pro.jpg') }}" class="avatar___img-main">
      </div>
      <div class="mx-2 mt-3">
-      <span class="d-block font-weight-bold font-size-15">
+      <span class="d-block font-weight-bold font-size-15 profile-header-name">
        {{ Auth::guard('doctor')->user()->first_name . ' ' . Auth::guard('doctor')->user()->last_name }}</span>
       <span class="badge badge-light p-2 border-radius-8 mt-3 mx-3 font-size-13 cursor-pointer">
        {{ $specialtyName }}
@@ -70,27 +70,30 @@
     <div class="">
      <form action="{{ route('dr-update-profile') }}" method="POST" id="profileEdit">
       @csrf
-      <div>
+      <div class="mt-2">
        <label for="name" class="label-top-input">نام</label>
        <input type="text" class="my-form-control w-100 border-radius-6 mt-3"
-        value="{{ Auth::guard('doctor')->user()->first_name }}" name="first_name">
+        value="{{ Auth::guard('doctor')->user()->first_name }}" name="first_name" readonly>
+       @error('first_name')
+        <span class="text-danger font-weight-bold mt-2">{{ $message }}</span>
+       @enderror
       </div>
-      <div>
+      <div class="mt-2">
        <label for="name" class="label-top-input">نام خانوادگی</label>
        <input type="text" class="my-form-control w-100 border-radius-6 mt-3"
-        value="{{ Auth::guard('doctor')->user()->last_name }}" name="last_name">
+        value="{{ Auth::guard('doctor')->user()->last_name }}" name="last_name" readonly>
       </div>
-      <div>
+      <div class="mt-2">
        <label for="name" class="label-top-input">کدملی</label>
        <input type="text" value="{{ Auth::guard('doctor')->user()->national_code ?? '' }}"
         class="my-form-control-light h-50 w-100 border-radius-6 mt-3 text-right" name="national_code">
       </div>
-      <div>
+      <div class="mt-2">
        <label for="name" class="label-top-input">شماره نظام پزشکی</label>
        <input type="text" value="{{ Auth::guard('doctor')->user()->license_number ?? '' }}"
         class="my-form-control-light h-50 w-100 border-radius-6 mt-3 text-right" name="license_number">
       </div>
-      <div class="d-flex justify-content-between mt-3 gap-4 position-relative">
+      <div class="d-flex justify-content-between mt-4 gap-4 position-relative">
        <label for="name" class="label-top-input-special-takhasos">شماره موبایل</label>
 
        <input class="my-form-control h-50 col-lg-11 col-xs-10 col-md-11 col-sm-11 text-right disabled "
@@ -116,7 +119,11 @@
 
       </div>
       <div class="w-100">
-       <button type="submit" class="w-100 btn btn-primary h-50 border-radius-4">ذخیره تغیرات</button>
+       <button type="submit"
+        class="w-100 btn btn-primary h-50 border-radius-4 d-flex justify-content-center align-items-center">
+        <span class="button_text">ذخیره تغیرات</span>
+        <div class="loader"></div>
+       </button>
       </div>
      </form>
 
@@ -139,7 +146,11 @@
        <input type="text" id="newMobileNumber" maxlength="11" class="form-control w-100 h-50 text-right"
         name="mobile">
        <div class="d-flex mt-2">
-        <button onclick="sendOtpCode()" class="btn btn-primary w-100 h-50">ارسال کد تایید</button>
+        <button onclick="sendOtpCode()"
+         class="btn btn-primary w-100 h-50 d-flex justify-content-center align-items-center">
+         <span class="button_text">ارسال کد تایید</span>
+         <div class="loader"></div>
+        </button>
        </div>
       </div>
 
@@ -156,7 +167,11 @@
          style="width:70px;height:60px">
        </div>
        <div class="d-flex mt-3">
-        <button onclick="verifyOtpCode()" class="btn btn-primary w-100 h-50">تایید کد</button>
+        <button onclick="verifyOtpCode()"
+         class="btn btn-primary w-100 h-50 d-flex justify-content-center align-items-center">
+         <span class="button_text">تایید کد</span>
+         <div class="loader"></div>
+        </button>
        </div>
        <div class="text-center mt-2">
         <small id="resendOtpTimer"></small>
@@ -550,11 +565,12 @@
 
   const form = this;
   const submitButton = form.querySelector('button[type="submit"]');
+  const loader = submitButton.querySelector('.loader');
+  const buttonText = submitButton.querySelector('.button_text');
 
-  submitButton.disabled = true;
-  submitButton.innerHTML = 'در حال بارگذاری...';
-
-  localStorage.setItem('lastRequestTime', new Date().getTime());
+  // مخفی کردن متن دکمه و نمایش لودینگ
+  buttonText.style.display = 'none';
+  loader.style.display = 'block';
 
   fetch(form.action, {
     method: form.method,
@@ -566,7 +582,10 @@
     }
    })
    .then(response => {
-    // بررسی وضعیت پاسخ
+    // بازگردانی دکمه به حالت اولیه
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
+
     if (!response.ok) {
      return response.json().then(errorData => {
       throw new Error(errorData.message || 'خطای نامشخص');
@@ -575,10 +594,12 @@
     return response.json();
    })
    .then(data => {
-    submitButton.disabled = false;
-    submitButton.innerHTML = 'ذخیره تغییرات';
+    // بازگردانی دکمه به حالت اولیه
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
 
     if (data.success) {
+     // نمایش توست موفقیت
      Toastify({
       text: data.message || "پروفایل با موفقیت به‌روز شد",
       duration: 3000,
@@ -589,42 +610,28 @@
        background: "green"
       }
      }).showToast();
-
-     // اگر نیاز به رفرش صفحه دارید
-     // window.location.reload();
     } else {
-     // بررسی نوع خطا
-     if (data.error_type === 'rate_limit') {
-      Toastify({
-       text: data.message,
-       duration: 3000,
-       close: true,
-       gravity: "top",
-       position: 'right',
-       style: {
-        background: "red"
-       }
-      }).showToast();
-     } else {
-      Toastify({
-       text: data.message || "خطا در به‌روزرسانی پروفایل",
-       duration: 3000,
-       close: true,
-       gravity: "top",
-       position: 'right',
-       style: {
-        background: "red"
-       }
-      }).showToast();
-     }
+     // نمایش توست خطا
+     Toastify({
+      text: data.message || "خطا در به‌روزرسانی پروفایل",
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "red"
+      }
+     }).showToast();
     }
    })
    .catch(error => {
-    submitButton.disabled = false;
-    submitButton.innerHTML = 'ذخیره تغییرات';
+    // بازگردانی دکمه به حالت اولیه
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
 
+    // نمایش توست خطا
     Toastify({
-     text: error.message || 'خطا در برقراری ارتباط با سرور',
+     text: 'خطا در برقراری ارتباط با سرور',
      duration: 3000,
      close: true,
      gravity: "top",
@@ -638,6 +645,74 @@
    });
  });
 
+ // تابع نمایش خطاهای اعتبارسنجی
+ function handleValidationErrors(errors) {
+  // پاک کردن خطاهای قبلی
+  clearPreviousErrors();
+
+  // نمایش خطاها
+  Object.keys(errors).forEach(field => {
+   const inputElement = document.querySelector(`[name="${field}"]`);
+   if (inputElement) {
+    // ایجاد المان خطا
+    const errorElement = document.createElement('div');
+    errorElement.className = 'text-danger validation-error mt-1 font-size-13';
+
+    // نمایش تمام خطاهای مربوط به فیلد
+    errorElement.textContent = errors[field][0];
+
+    // اضافه کردن کلاس خطا به اینپوت
+    inputElement.classList.add('is-invalid');
+
+    // قرار دادن المان خطا بعد از اینپوت
+    inputElement.parentNode.insertBefore(errorElement, inputElement.nextSibling);
+   }
+  });
+
+  // نمایش توست خطا
+  Toastify({
+   text: "لطفاً خطاهای فرم را بررسی کنید",
+   duration: 3000,
+   close: true,
+   gravity: "top",
+   position: 'right',
+   style: {
+    background: "red"
+   }
+  }).showToast();
+ }
+
+ // تابع پاک کردن خطاهای قبلی
+ function clearPreviousErrors() {
+  // حذف خطاهای قبلی
+  document.querySelectorAll('.validation-error').forEach(el => el.remove());
+  document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+ }
+
+ // تابع به‌روزرسانی نام در المان‌های مختلف
+ function updateNameElements(firstName, lastName) {
+  const fullName = `${firstName} ${lastName}`;
+
+  // به‌روزرسانی نام در سایدبار
+  const sidebarNameElements = document.querySelectorAll('.sidebar-full-name');
+  sidebarNameElements.forEach(element => {
+   element.textContent = fullName;
+  });
+
+  // به‌روزرسانی نام در هدر پروفایل
+  const headerNameElements = document.querySelectorAll('.profile-header-name');
+  headerNameElements.forEach(element => {
+   element.textContent = fullName;
+  });
+
+  // به‌روزرسانی نام در بخش‌های دیگر در صورت نیاز
+  // مثال:
+  const welcomeNameElement = document.getElementById('welcome-name');
+  if (welcomeNameElement) {
+   welcomeNameElement.textContent = firstName;
+  }
+ }
+
 
  /*  edit mobile */
  // متغیرهای سراسری
@@ -648,6 +723,13 @@
  // تابع ارسال کد OTP
  function sendOtpCode() {
   const newMobile = document.getElementById('newMobileNumber').value;
+  const sendButton = document.querySelector('#mobileInputStep1 button');
+  const loader = sendButton.querySelector('.loader');
+  const buttonText = sendButton.querySelector('.button_text');
+
+  // مخفی کردن متن دکمه و نمایش لودینگ
+  buttonText.style.display = 'none';
+  loader.style.display = 'block';
 
   // اعتبارسنجی شماره موبایل با Regex دقیق
   const mobileRegex =
@@ -663,6 +745,9 @@
      background: "red"
     }
    }).showToast();
+   // بازگردانی دکمه به حالت اولیه
+   buttonText.style.display = 'block';
+   loader.style.display = 'none';
    return;
   }
 
@@ -709,6 +794,11 @@
       background: "red"
      }
     }).showToast();
+   },
+   complete: function() {
+    // بازگردانی دکمه به حالت اولیه
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
    }
   });
  }
@@ -718,6 +808,9 @@
   const otpInputs = document.querySelectorAll('.otp-input');
   const otpCode = Array.from(otpInputs).map(input => input.value).join('');
   const newMobile = $('#newMobileNumber').val();
+  const verifyButton = document.querySelector('#otpInputStep button');
+  const loader = verifyButton.querySelector('.loader');
+  const buttonText = verifyButton.querySelector('.button_text');
 
   // بررسی کامل بودن کد
   if (otpCode.length !== 4) {
@@ -732,6 +825,10 @@
    }).showToast();
    return;
   }
+
+  // مخفی کردن متن دکمه و نمایش لودینگ
+  buttonText.style.display = 'none';
+  loader.style.display = 'block';
 
   // ادامه عملیات تایید کد
   $.ajax({
@@ -796,12 +893,14 @@
       background: "red"
      }
     }).showToast();
-
-    console.error('Error:', xhr.responseJSON);
+   },
+   complete: function() {
+    // بازگردانی دکمه به حالت اولیه
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
    }
   });
  }
-
  // تابع شروع تایمر ارسال مجدد
  function startResendTimer() {
   let seconds = 120;

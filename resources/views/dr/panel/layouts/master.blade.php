@@ -9,6 +9,7 @@
    پنل {{ Auth::guard('doctor')->user()->user_type === 'doctor' ? 'منشی' : 'دکتر' }} | به نوبه
   @endif
  </title>
+ @include("dr.panel.my-tools.loader-btn")
 </head>
 
 <body>

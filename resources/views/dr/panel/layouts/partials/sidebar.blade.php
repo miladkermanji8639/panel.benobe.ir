@@ -9,7 +9,7 @@
    <div class="box__camera default__avatar"></div>
   </div>
   <span
-   class="profile__name">{{ Auth::guard('doctor')->user()->first_name . ' ' . Auth::guard('doctor')->user()->last_name }}</span>
+   class="profile__name sidebar-full-name">{{ Auth::guard('doctor')->user()->first_name . ' ' . Auth::guard('doctor')->user()->last_name }}</span>
   <!-- نام کاربری فعلی -->
   <span class="fs-11 fw-bold" id="takhasos-txt"> {{ $specialtyName }}</span>
  </div>
