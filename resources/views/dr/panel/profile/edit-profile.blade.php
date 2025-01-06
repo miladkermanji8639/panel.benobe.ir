@@ -94,7 +94,7 @@
        <label for="name" class="label-top-input-special-takhasos">شماره موبایل</label>
 
        <input class="my-form-control h-50 col-lg-11 col-xs-10 col-md-11 col-sm-11 text-right disabled "
-        placeholder="شماره موبایل" name="mobile" value="{{ Auth::guard('doctor')->user()->mobile ?? '' }}">
+        placeholder="شماره موبایل" name="mobile" value="{{ Auth::guard('doctor')->user()->mobile ?? '' }}" disabled>
        <button
         class="btn btn-dark h-50 col-lg-1 col-xs-2 col-md-1 col-sm-1 d-flex justify-content-center align-items-center fs-6 add-form-item"
         type="button" id="editButton" data-toggle="modal" data-target="#mobileEditModal">
