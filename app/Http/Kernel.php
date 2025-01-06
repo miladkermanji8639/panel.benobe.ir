@@ -56,7 +56,7 @@ class Kernel extends HttpKernel
     ],
     'doctor' => [
       'complete-profile' => \App\Http\Middleware\Dr\CheckCompleteProfile::class,
-      'rate.limit' => \App\Http\Middleware\RateLimitMiddleware::class,
+      /* 'rate.limit' => \App\Http\Middleware\RateLimitMiddleware::class, */
       'doctor' => \App\Http\Middleware\doctor::class,
 
     ]

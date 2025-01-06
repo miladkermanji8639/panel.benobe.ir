@@ -25,4 +25,5 @@
  <link type="text/css" href="{{ asset('dr-assets/css/select2/select2.min.css') }}" rel="stylesheet" />
 @include('dr.panel.alerts.toast.success')
 @include('dr.panel.alerts.toast.error')
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js"></script>

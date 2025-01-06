@@ -2,9 +2,17 @@
 
 namespace App\Http\Controllers\Dr\Panel\Profile;
 
+use Carbon\Carbon;
+use App\Models\Dr\Otp;
 use App\Models\Dr\Doctor;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\RateLimiter;
+use Modules\SendOtp\App\Http\Services\MessageService;
+use Modules\SendOtp\App\Http\Services\SMS\SmsService;
 
 class DrProfileController
 {
@@ -72,11 +80,208 @@ class DrProfileController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update_profile(Request $request)
     {
-        dd($request);
+        // Rate Limiting
+        // Rate Limiting
+        $key = 'update_profile_' . $request->ip();
+        $maxAttempts = 5;
+        $decayMinutes = 1;
+
+        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
+            $seconds = RateLimiter::availableIn($key);
+            return response()->json([
+                'success' => false,
+                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $seconds . ' ثانیه دیگر صبر کنید.',
+                'error_type' => 'rate_limit'
+            ], 429);
+        }
+
+        RateLimiter::hit($key, $decayMinutes * 60);
+
+        try {
+            // اعتبارسنجی داده‌ها
+            $validator = Validator::make($request->all(), [
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
+                'national_code' => 'nullable|string|max:10',
+                'license_number' => 'nullable|string|max:20',
+                'description' => 'nullable|string',
+            ]);
+
+            // اگر اعتبارسنجی شکست خورد
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => $validator->errors()
+                ], 422);
+            }
+
+            // دریافت کاربر احراز هویت شده
+            $doctor = Auth::guard('doctor')->user();
+
+            // به‌روزرسانی اطلاعات
+            $doctor->update([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'national_code' => $request->national_code,
+                'license_number' => $request->license_number,
+                'bio' => $request->description,
+            ]);
+
+            // بازگرداندن پاسخ موفقیت
+            return response()->json([
+                'success' => true,
+                'message' => 'پروفایل با موفقیت به‌روزرسانی شد.'
+            ]);
+
+        } catch (\Exception $e) {
+            // ثبت خطا در لاگ
+            Log::error('Profile Update Error: ' . $e->getMessage());
+
+            // بازگرداندن خطای سرور
+            return response()->json([
+                'success' => false,
+                'message' => 'خطای سرور در به‌روزرسانی پروفایل',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+    public function sendMobileOtp(Request $request)
+    {
+        $request->validate([
+            'mobile' => [
+                'required',
+                'regex:/^(?!09{1}(\d)\1{8}$)09(?:01|02|03|12|13|14|15|16|18|19|20|21|22|30|33|35|36|38|39|90|91|92|93|94)\d{7}$/',
+                function ($attribute, $value, $fail) {
+                    // بررسی تکراری نبودن موبایل
+                    $existingDoctor = Doctor::where('mobile', $value)->first();
+                    if ($existingDoctor) {
+                        $fail('این شماره موبایل قبلاً ثبت شده است');
+                    }
+                }
+            ]
+        ], [
+            'mobile.required' => 'شماره موبایل الزامی است',
+            'mobile.regex' => 'شماره موبایل نامعتبر است'
+        ]);
+
+        $doctor = Auth::guard('doctor')->user();
+        return $this->sendOtp($doctor, $request->mobile);
     }
 
+    private function sendOtp($doctor, $newMobile)
+    {
+        $otpCode = rand(1000, 9999); // تولید کد ۴ رقمی عددی
+        $token = Str::random(60);
+        Otp::create([
+            'token' => $token,
+            'doctor_id' => $doctor->id,
+            'otp_code' => $otpCode,
+            'login_id' => $newMobile,
+            'type' => 0, // فقط موبایل
+        ]);
+
+        // ارسال SMS
+        $smsService = new SmsService();
+        $smsService->setSenderNumber(env('SMS_SENDER_NUMBER'));
+        $smsService->setOtpId(env('SMS_OTP_ID'));
+        $smsService->setParameters([$otpCode]);
+        $smsService->setRecipientNumbers([$newMobile]);
+        $messagesService = new MessageService($smsService);
+        $messagesService->send();
+
+        return response()->json(['token' => $token, 'otp_code' => $otpCode]); // توکن و کد جدید را برمی‌گرداند
+    }
+
+    // متد تایید کد OTP
+    public function mobileConfirm(Request $request, $token)
+    {
+        // اعتبارسنجی درخواست
+        $validator = Validator::make($request->all(), [
+            'otp' => 'required|array',
+            'otp.*' => 'required|numeric|digits:1',
+            'mobile' => [
+                'required',
+                'regex:/^(?!09{1}(\d)\1{8}$)09(?:01|02|03|12|13|14|15|16|18|19|20|21|22|30|33|35|36|38|39|90|91|92|93|94)\d{7}$/',
+                function ($attribute, $value, $fail) {
+                    // بررسی تکراری نبودن موبایل
+                    $existingDoctor = Doctor::where('mobile', $value)
+                        ->where('id', '!=', Auth::guard('doctor')->id())
+                        ->first();
+
+                    if ($existingDoctor) {
+                        $fail('این شماره موبایل قبلاً توسط پزشک دیگری ثبت شده است');
+                    }
+                }
+            ]
+        ]);
+
+        // بررسی خطاهای اعتبارسنجی
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors()->first(),
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // بررسی وجود OTP با توکن جدید
+        $otp = Otp::where('token', $token)
+            ->where('used', 0)
+            ->where('created_at', '>=', Carbon::now()->subMinutes(2))
+            ->first();
+
+        // بررسی اعتبار OTP
+        if (!$otp) {
+            return response()->json([
+                'success' => false,
+                'message' => 'کد تایید منقضی شده است'
+            ], 422);
+        }
+
+        // بررسی کد OTP
+        $otpCode = implode('', $request->otp);
+
+        if ($otp->otp_code !== $otpCode) {
+            return response()->json([
+                'success' => false,
+                'message' => 'کد تایید صحیح نمی‌باشد'
+            ], 422);
+        }
+
+        // دریافت کاربر جاری
+        $currentDoctor = Auth::guard('doctor')->user();
+
+        // به‌روزرسانی شماره موبایل
+        $updateResult = $currentDoctor->update([
+            'mobile' => $request->mobile
+        ]);
+
+        // بررسی نتیجه به‌روزرسانی
+        if (!$updateResult) {
+            return response()->json([
+                'success' => false,
+                'message' => 'خطا در به‌روزرسانی شماره موبایل'
+            ], 500);
+        }
+
+        // مارک کردن OTP به عنوان استفاده شده
+        $otp->update(['used' => 1]);
+
+        // لاگ برای بررسی
+        Log::info('Mobile updated for doctor', [
+            'doctor_id' => $currentDoctor->id,
+            'old_mobile' => $currentDoctor->getOriginal('mobile'),
+            'new_mobile' => $request->mobile
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'شماره موبایل با موفقیت تغییر یافت',
+            'mobile' => $request->mobile
+        ]);
+    }
     /**
      * Remove the specified resource from storage.
      */

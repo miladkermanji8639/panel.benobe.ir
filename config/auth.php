@@ -81,7 +81,7 @@ return [
         ],
 
         'doctors' => [
-            'driver' => 'database',
+            'driver' => 'eloquent',
             'table' => 'doctors',
             'model' => App\Models\Dr\Doctor::class,
 

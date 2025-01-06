@@ -68,7 +68,7 @@
    <div class="drop-toggle-styles personal-data-drop-toggle">
     <div class="loading-spinner d-none"></div>
     <div class="">
-     <form action="{{ route('dr-update-profile') }}" method="post">
+     <form action="{{ route('dr-update-profile') }}" method="POST" id="profileEdit">
       @csrf
       <div>
        <label for="name" class="label-top-input">نام</label>
@@ -94,10 +94,10 @@
        <label for="name" class="label-top-input-special-takhasos">شماره موبایل</label>
 
        <input class="my-form-control h-50 col-lg-11 col-xs-10 col-md-11 col-sm-11 text-right disabled "
-        placeholder="شماره موبایل" value="{{ Auth::guard('doctor')->user()->mobile ?? '' }}" readonly disabled>
+        placeholder="شماره موبایل" name="mobile" value="{{ Auth::guard('doctor')->user()->mobile ?? '' }}">
        <button
         class="btn btn-dark h-50 col-lg-1 col-xs-2 col-md-1 col-sm-1 d-flex justify-content-center align-items-center fs-6 add-form-item"
-        type="button" id="editButton" data-toggle="modal" data-target="#exampleModalCenterAddSick">
+        type="button" id="editButton" data-toggle="modal" data-target="#mobileEditModal">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#fff">
          <path d="M4 22H20" stroke="#fff" stroke-width="1.5" stroke-linecap="round" />
          <path
@@ -107,38 +107,10 @@
        </button>
 
       </div>
-      <div class="modal fade " id="exampleModalCenterAddSick" tabindex="-1" role="dialog"
-       aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-       <div class="modal-dialog modal-dialog-centered " role="document">
-        <div class="modal-content border-radius-8">
-         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle"> ویرایش شماره موبایل </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-          </button>
-         </div>
-         <div class="modal-body position-relative">
-          <div>
-           <form action="" method="post">
-            <label for="name" class="label-top-input">شماره موبایل جدید</label>
 
-            <input type="text" class="form-control w-100 h-50  position-relative text-right" placeholder=""
-             name="mobile">
-
-            <div class="d-flex mt-2">
-
-             <button class="btn btn-primary w-100 h-50"> ارسال کد تایید</button>
-            </div>
-           </form>
-          </div>
-         </div>
-        </div>
-       </div>
-      </div>
       <div class="mt-3">
        <label for="name" class="font-weight-bold font-size-13"> بیوگرافی و توضیحات</label>
-       <textarea class="ckeditor form-control h-50 w-100 h-80" name="description" class="form-control h-50"
-        id="description">
+       <textarea class="ckeditor form-control" name="description" class="form-control h-50" id="description">
             {{ Auth::guard('doctor')->user()->bio ?? '' }}
         </textarea>
 
@@ -147,10 +119,54 @@
        <button type="submit" class="w-100 btn btn-primary h-50 border-radius-4">ذخیره تغیرات</button>
       </div>
      </form>
+
     </div>
    </div>
   </div>
+  {{-- mobileedit modal --}}
+  <div class="modal fade" id="mobileEditModal" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content border-radius-8">
+     <div class="modal-header">
+      <h5 class="modal-title">ویرایش شماره موبایل</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+      </button>
+     </div>
+     <div class="modal-body position-relative">
+      <div id="mobileInputStep1">
+       <label class="label-top-input">شماره موبایل جدید</label>
+       <input type="text" id="newMobileNumber" maxlength="11" class="form-control w-100 h-50 text-right"
+        name="mobile">
+       <div class="d-flex mt-2">
+        <button onclick="sendOtpCode()" class="btn btn-primary w-100 h-50">ارسال کد تایید</button>
+       </div>
+      </div>
 
+      <div id="otpInputStep" style="display:none;">
+       <label class="label-top font-weight-bold">کد تایید 4 رقمی را وارد کنید</label>
+       <div class="d-flex justify-content-center gap-10 mt-2" dir="ltr">
+        <input type="text" maxlength="1" class="form-control otp-input text-center"
+         style="width:70px;height:60px">
+        <input type="text" maxlength="1" class="form-control otp-input text-center"
+         style="width:70px;height:60px">
+        <input type="text" maxlength="1" class="form-control otp-input text-center"
+         style="width:70px;height:60px">
+        <input type="text" maxlength="1" class="form-control otp-input text-center"
+         style="width:70px;height:60px">
+       </div>
+       <div class="d-flex mt-3">
+        <button onclick="verifyOtpCode()" class="btn btn-primary w-100 h-50">تایید کد</button>
+       </div>
+       <div class="text-center mt-2">
+        <small id="resendOtpTimer"></small>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  {{-- mobileedit modal --}}
   <div class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8">
    <div class="d-flex justify-content-between align-items-center">
     <div>
@@ -527,5 +543,311 @@
   });
  });
 </script>
-<script></script>
+<script>
+ // بررسی زمان آخرین درخواست
+ document.getElementById("profileEdit").addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const form = this;
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  submitButton.disabled = true;
+  submitButton.innerHTML = 'در حال بارگذاری...';
+
+  localStorage.setItem('lastRequestTime', new Date().getTime());
+
+  fetch(form.action, {
+    method: form.method,
+    body: new FormData(form),
+    headers: {
+     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+     'Accept': 'application/json',
+     'X-Requested-With': 'XMLHttpRequest'
+    }
+   })
+   .then(response => {
+    // بررسی وضعیت پاسخ
+    if (!response.ok) {
+     return response.json().then(errorData => {
+      throw new Error(errorData.message || 'خطای نامشخص');
+     });
+    }
+    return response.json();
+   })
+   .then(data => {
+    submitButton.disabled = false;
+    submitButton.innerHTML = 'ذخیره تغییرات';
+
+    if (data.success) {
+     Toastify({
+      text: data.message || "پروفایل با موفقیت به‌روز شد",
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "green"
+      }
+     }).showToast();
+
+     // اگر نیاز به رفرش صفحه دارید
+     // window.location.reload();
+    } else {
+     // بررسی نوع خطا
+     if (data.error_type === 'rate_limit') {
+      Toastify({
+       text: data.message,
+       duration: 3000,
+       close: true,
+       gravity: "top",
+       position: 'right',
+       style: {
+        background: "red"
+       }
+      }).showToast();
+     } else {
+      Toastify({
+       text: data.message || "خطا در به‌روزرسانی پروفایل",
+       duration: 3000,
+       close: true,
+       gravity: "top",
+       position: 'right',
+       style: {
+        background: "red"
+       }
+      }).showToast();
+     }
+    }
+   })
+   .catch(error => {
+    submitButton.disabled = false;
+    submitButton.innerHTML = 'ذخیره تغییرات';
+
+    Toastify({
+     text: error.message || 'خطا در برقراری ارتباط با سرور',
+     duration: 3000,
+     close: true,
+     gravity: "top",
+     position: 'right',
+     style: {
+      background: "red"
+     }
+    }).showToast();
+
+    console.error('Error:', error);
+   });
+ });
+
+
+ /*  edit mobile */
+ // متغیرهای سراسری
+ // متغیرهای سراسری
+ let otpToken = null;
+ let resendTimer = null;
+
+ // تابع ارسال کد OTP
+ function sendOtpCode() {
+  const newMobile = document.getElementById('newMobileNumber').value;
+
+  // اعتبارسنجی شماره موبایل با Regex دقیق
+  const mobileRegex =
+   /^(?!09{1}(\d)\1{8}$)09(?:01|02|03|12|13|14|15|16|18|19|20|21|22|30|33|35|36|38|39|90|91|92|93|94)\d{7}$/;
+
+  if (!mobileRegex.test(newMobile)) {
+   Toastify({
+    text: "شماره موبایل نامعتبر است",
+    duration: 3000,
+    gravity: "top",
+    position: "right",
+    style: {
+     background: "red"
+    }
+   }).showToast();
+   return;
+  }
+
+  $.ajax({
+   url: "{{ route('dr-send-mobile-otp') }}",
+   method: 'POST',
+   data: {
+    mobile: newMobile
+   },
+   headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+   },
+   success: function(response) {
+    otpToken = response.token;
+
+    $('#mobileInputStep1').hide();
+    $('#otpInputStep').show();
+
+    // ریست کردن اینپوت‌های OTP
+    document.querySelectorAll('.otp-input').forEach(input => input.value = '');
+
+    // فوکوس روی اولین اینپوت
+    document.querySelector('.otp-input').focus();
+
+    startResendTimer();
+
+    Toastify({
+     text: "کد تایید ارسال شد",
+     duration: 3000,
+     gravity: "top",
+     position: "right",
+     style: {
+      background: "green"
+     }
+    }).showToast();
+   },
+   error: function(xhr) {
+    Toastify({
+     text: xhr.responseJSON.message || "خطا در ارسال کد",
+     duration: 5000,
+     gravity: "top",
+     position: "right",
+     style: {
+      background: "red"
+     }
+    }).showToast();
+   }
+  });
+ }
+
+ // تابع تایید کد OTP
+ function verifyOtpCode() {
+  const otpInputs = document.querySelectorAll('.otp-input');
+  const otpCode = Array.from(otpInputs).map(input => input.value).join('');
+  const newMobile = $('#newMobileNumber').val();
+
+  // بررسی کامل بودن کد
+  if (otpCode.length !== 4) {
+   Toastify({
+    text: "لطفاً تمام ارقام کد را وارد کنید",
+    duration: 3000,
+    gravity: "top",
+    position: "right",
+    style: {
+     background: "red"
+    }
+   }).showToast();
+   return;
+  }
+
+  // ادامه عملیات تایید کد
+  $.ajax({
+   url: `{{ route('dr-mobile-confirm', '') }}/${otpToken}`,
+   method: 'POST',
+   data: {
+    otp: otpCode.split('').map(Number),
+    mobile: newMobile
+   },
+   headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+   },
+   success: function(response) {
+    // بررسی دقیق پاسخ موفقیت
+    if (response.success) {
+     Toastify({
+      text: response.message,
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      style: {
+       background: "green"
+      }
+     }).showToast();
+
+     // به‌روزرسانی المان‌های موبایل در صفحه
+     $('input[name="mobile"]').val(response.mobile);
+
+     // بستن مودال
+     $('#mobileEditModal').modal('hide');
+
+     // رفرش صفحه برای اطمینان
+     setTimeout(() => {
+      location.reload();
+     }, 1000);
+    } else {
+     Toastify({
+      text: response.message || "خطا در تغییر شماره موبایل",
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      style: {
+       background: "red"
+      }
+     }).showToast();
+    }
+   },
+   error: function(xhr) {
+    // مدیریت خطاهای سرور
+    let errorMessage = "خطا در تایید کد";
+
+    if (xhr.responseJSON && xhr.responseJSON.message) {
+     errorMessage = xhr.responseJSON.message;
+    }
+
+    Toastify({
+     text: errorMessage,
+     duration: 3000,
+     gravity: "top",
+     position: "right",
+     style: {
+      background: "red"
+     }
+    }).showToast();
+
+    console.error('Error:', xhr.responseJSON);
+   }
+  });
+ }
+
+ // تابع شروع تایمر ارسال مجدد
+ function startResendTimer() {
+  let seconds = 120;
+  const timerElement = document.getElementById('resendOtpTimer');
+
+  clearInterval(resendTimer);
+
+  resendTimer = setInterval(() => {
+   if (seconds > 0) {
+    timerElement.innerHTML = `ارسال مجدد کد تا ${seconds} ثانیه دیگر`;
+    seconds--;
+   } else {
+    clearInterval(resendTimer);
+    timerElement.innerHTML = '<a href="#" onclick="sendOtpCode()">ارسال مجدد کد</a>';
+   }
+  }, 1000);
+ }
+
+ // اجرای اسکریپت پس از بارگذاری کامل DOM
+ document.addEventListener('DOMContentLoaded', function() {
+  const otpInputs = document.querySelectorAll('.otp-input');
+
+  // فوکوس روی اولین اینپوت از سمت چپ در مرحله OTP
+  $('#mobileEditModal').on('shown.bs.modal', function() {
+   otpInputs[0].focus();
+  });
+
+  otpInputs.forEach((input, index) => {
+   input.addEventListener('input', function() {
+    // محدود کردن به یک کاراکتر عددی
+    this.value = this.value.replace(/[^0-9]/g, '');
+
+    // حرکت از چپ به راست برای RTL
+    if (this.value.length === 1 && index < otpInputs.length - 1) {
+     otpInputs[index + 1].focus();
+    }
+   });
+
+   input.addEventListener('keydown', function(e) {
+    if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
+     otpInputs[index - 1].focus();
+    }
+   });
+  });
+ });
+
+ /*  edit mobile */
+</script>
 @endsection

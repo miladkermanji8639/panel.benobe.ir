@@ -6,22 +6,22 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckCompleteProfile
 {
- public function handle($request, Closure $next)
- {
-  $doctor = Auth::guard('doctor')->user();
+  public function handle($request, Closure $next)
+  {
+    $doctor = Auth::guard('doctor')->user();
 
-  // Check if the user is authenticated and if the profile is not completed
-  if (Auth::guard('doctor')->check() && !$doctor->profile_completed) {
-   // Allow access to the edit profile route
-   if ($request->routeIs('dr-edit-profile')) {
+    // Check if the user is authenticated and if the profile is not completed
+    if (Auth::guard('doctor')->check() && !$doctor->profile_completed) {
+      // Allow access to the edit profile and update profile routes
+      if ($request->routeIs('dr-edit-profile') || $request->routeIs('dr-update-profile') || $request->routeIs('dr-send-mobile-otp') || $request->routeIs('dr-mobile-confirm')) {
+        return $next($request);
+      }
+
+      // Redirect to the edit profile route
+      return redirect()->route('dr-edit-profile')
+        ->with('complete-profile', 'برای دسترسی به امکانات سایت لطفا ابتدا پروفایل خود را تکمیل کنید');
+    }
+
     return $next($request);
-   }
-
-   // Redirect to the edit profile route
-   return redirect()->route('dr-edit-profile')
-    ->with('complete-profile', 'برای دسترسی به امکانات سایت لطفا ابتدا پروفایل خود را تکمیل کنید');
   }
-
-  return $next($request);
- }
 }

@@ -473,7 +473,11 @@ Route::prefix('dr')
         Route::get('payment/setting', [DrPaymentSettingController::class, 'index'])->name('dr-payment-setting');
         Route::prefix('profile')->group(function () {
           Route::get('edit-profile', [DrProfileController::class, 'edit'])->name('dr-edit-profile');
-          Route::post('update-profile', [DrProfileController::class, 'update'])->name('dr-update-profile');
+          Route::post('update-profile', [DrProfileController::class, 'update_profile'])->name('dr-update-profile');
+          Route::post('/send-mobile-otp', [DrProfileController::class, 'sendMobileOtp'])
+            ->name('dr-send-mobile-otp');
+          Route::post('/mobile-confirm/{token}', [DrProfileController::class, 'mobileConfirm'])
+            ->name('dr-mobile-confirm');
           Route::get('niceId', [DrProfileController::class, 'niceId'])->name('dr-edit-profile-niceId');
           Route::get('security', [DrProfileController::class, 'security'])->name('dr-edit-profile-security');
           Route::get('upgrade', [DrProfileController::class, 'upgrade'])->name('dr-edit-profile-upgrade');
