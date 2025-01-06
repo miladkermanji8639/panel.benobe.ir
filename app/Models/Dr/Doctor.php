@@ -35,6 +35,7 @@ class Doctor extends Authenticatable
         'password',
         'national_code',
         'sex',
+        'bio',
         'specialty_id',
         'specialty_oms_id',
         'medical_system_code_type_id',
@@ -43,7 +44,7 @@ class Doctor extends Authenticatable
         'license_number',
         'two_factor_confirmed_at',
         'two_factor_secret',
-        'user_type' => 0,
+        'user_type', // اصلاح شده: بدون مقدار پیش‌فرض
     ];
 
     /** 
