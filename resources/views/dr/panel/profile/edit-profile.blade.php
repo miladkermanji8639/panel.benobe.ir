@@ -243,7 +243,6 @@
         <!-- تخصص‌های اضافه شده از دیتابیس -->
         @foreach ($specialties as $index => $specialty)
          @if ($index > 0)
-          <!-- از تخصص دوم به بعد -->
           <div class="w-100 mt-3">
            <div class="text-left mt-3 remove-form-item" onclick="removeInput(this)">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -660,59 +659,48 @@
     newInputGroup.classList.add('w-100', 'mt-3');
 
     newInputGroup.innerHTML = `
-                <div>
-                    <div class="text-left mt-3 remove-form-item" onclick="removeInput(this)">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.46967 4.46967C4.76256 4.17678 5.23744 4.17678 5.53033 4.46967L10 8.93934L14.4697 4.46967C14.7626 4.17678 15.2374 4.17678 15.5303 4.46967C15.8232 4.76256 15.8232 5.23744 15.5303 5.53033L11.0607 10L15.5303 14.4697C15.8232 14.7626 15.8232 15.2374 15.5303 15.5303C15.2374 15.8232 14.7626 15.8232 14.4697 15.5303L10 11.0607L5.53033 15.5303C5.23744 15.8232 4.76256 15.8232 4.46967 15.5303C4.17678 15.2374 4.17678 14.7626 4.46967 14.4697L8.93934 10L4.46967 5.53033C4.17678 5.23744 4.17678 4.76256 4.46967 4.46967Z" fill="#000"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <div class="mt-2">
-                            <div class="d-flex justify-content-between gap-4">
-                                <div class="w-100">
-                                    <label for="degree${inputCount}" class="label-top-input">درجه علمی</label>
-                                    <select name="degrees[${inputCount}]" id="degree${inputCount}" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative daraje">
-                                        @foreach ($academic_degrees as $academic_degree)
-                                            <option value="{{ $academic_degree->id }}">{{ $academic_degree->title }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="w-100">
-                                    <label for="specialty${inputCount}" class="label-top-input">تخصص</label>
-                                    <select name="specialties[${inputCount}]" id="specialty${inputCount}" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative takhasos-input">
-                                        @foreach ($sub_specialties as $specialtyOption)
-                                            <option value="{{ $specialtyOption->id }}">{{ $specialtyOption->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div>
-                                <label for="title${inputCount}" class="label-top-input-special-takhasos-elem-create">عنوان تخصص</label>
-                                <input type="text" name="titles[${inputCount}]" id="title${inputCount}" class="form-control h-50 w-100 border-radius-6 mt-3">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
+       <div>
+         <div class="text-left mt-3 remove-form-item" onclick="removeInput(this)">
+           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path fill-rule="evenodd" clip-rule="evenodd" d="M4.46967 4.46967C4.76256 4.17678 5.23744 4.17678 5.53033 4.46967L10 8.93934L14.4697 4.46967C14.7626 4.17678 15.2374 4.17678 15.5303 4.46967C15.8232 4.76256 15.8232 5.23744 15.5303 5.53033L11.0607 10L15.5303 14.4697C15.8232 14.7626 15.8232 15.2374 15.5303 15.5303C15.2374 15.8232 14.7626 15.8232 14.4697 15.5303L10 11.0607L5.53033 15.5303C5.23744 15.8232 4.76256 15.8232 4.46967 15.5303C4.17678 15.2374 4.17678 14.7626 4.46967 14.4697L8.93934 10L4.46967 5.53033C4.17678 5.23744 4.17678 4.76256 4.46967 4.46967Z" fill="#000"></path>
+           </svg>
+         </div>
+         <div>
+           <div class="mt-2">
+             <div class="d-flex justify-content-between gap-4">
+               <div class="w-100">
+                 <label for="degree${inputCount}" class="label-top-input">درجه علمی</label>
+                 <select name="degrees[${inputCount}]" id="degree${inputCount}" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative daraje">
+                   @foreach ($academic_degrees as $academic_degree)
+                     <option value="{{ $academic_degree->id }}">{{ $academic_degree->title }}</option>
+                   @endforeach
+                 </select>
+               </div>
+               <div class="w-100">
+                 <label for="specialty${inputCount}" class="label-top-input">تخصص</label>
+                 <select name="specialties[${inputCount}]" id="specialty${inputCount}" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative takhasos-input">
+                   @foreach ($sub_specialties as $specialtyOption)
+                     <option value="{{ $specialtyOption->id }}">{{ $specialtyOption->name }}</option>
+                   @endforeach
+                 </select>
+               </div>
+             </div>
+             <div>
+               <label for="title${inputCount}" class="label-top-input-special-takhasos-elem-create">عنوان تخصص</label>
+               <input type="text" name="titles[${inputCount}]" id="title${inputCount}" class="form-control h-50 w-100 border-radius-6 mt-3">
+             </div>
+           </div>
+         </div>
+       </div>
+     `;
 
     additionalInputs.appendChild(newInputGroup);
 
-    // اعمال TomSelect روی المان‌های جدید
     new TomSelect(`#degree${inputCount}`, {
      plugins: ['clear_button'],
      placeholder: 'انتخاب درجه علمی',
      searchField: ['text'],
      noResultsText: 'نتیجه‌ای یافت نشد',
-     render: {
-      option: function(data, escape) {
-       return '<div class="d-flex justify-content-between">' +
-        '<span>' + escape(data.text) + '</span>' +
-        '</div>';
-      },
-      item: function(data, escape) {
-       return '<div>' + escape(data.text) + '</div>';
-      }
-     },
      locale: 'fa',
      maxItems: 1,
      sortField: {
@@ -742,13 +730,12 @@
      render: {
       option: function(item, escape) {
        return `<div>
-                            ${escape(item.name)}
-                            ${item.category ? `<small class="text-muted">(${escape(item.category)})</small>` : ''}
-                        </div>`;
+             ${escape(item.name)}
+             ${item.category ? `<small class="text-muted">(${escape(item.category)})</small>` : ''}
+           </div>`;
       }
      }
     });
-
    } else {
     Swal.fire({
      title: 'حداکثر تخصص برای هر دکتر 3 تخصص میباشد',
@@ -808,6 +795,10 @@
 
  // تابع اجرای اولیه
  // تابع اجرای اولیه
+ document.addEventListener('DOMContentLoaded', function() {
+  initAllTomSelects();
+ });
+
  function initAllTomSelects() {
   // درجه علمی
   initTomSelect('#academic_degree_id', {
@@ -865,11 +856,6 @@
    }
   });
  }
-
- // اجرا در زمان بارگذاری
- document.addEventListener('DOMContentLoaded', function() {
-  initAllTomSelects();
- });
 
  // اصلاح تابع اضافه کردن ورودی جدید
  function addNewSpecialtyInput() {

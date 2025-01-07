@@ -101,8 +101,6 @@ class DrProfileController
             ], 422);
         }
 
-       
-
         try {
             DB::beginTransaction();
 
