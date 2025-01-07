@@ -239,7 +239,60 @@
         <input type="text" value="{{ $specialtyName }}" name="specialty_title"
          class="form-control h-50 w-100 border-radius-6 mt-3  ">
        </div>
-       <div id="additionalInputs"></div>
+       <div id="additionalInputs">
+        <!-- تخصص‌های اضافه شده از دیتابیس -->
+        @foreach ($specialties as $index => $specialty)
+         @if ($index > 0)
+          <!-- از تخصص دوم به بعد -->
+          <div class="w-100 mt-3">
+           <div class="text-left mt-3 remove-form-item" onclick="removeInput(this)">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+             <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M4.46967 4.46967C4.76256 4.17678 5.23744 4.17678 5.53033 4.46967L10 8.93934L14.4697 4.46967C14.7626 4.17678 15.2374 4.17678 15.5303 4.46967C15.8232 4.76256 15.8232 5.23744 15.5303 5.53033L11.0607 10L15.5303 14.4697C15.8232 14.7626 15.8232 15.2374 15.5303 15.5303C15.2374 15.8232 14.7626 15.8232 14.4697 15.5303L10 11.0607L5.53033 15.5303C5.23744 15.8232 4.76256 15.8232 4.46967 15.5303C4.17678 15.2374 4.17678 14.7626 4.46967 14.4697L8.93934 10L4.46967 5.53033C4.17678 5.23744 4.17678 4.76256 4.46967 4.46967Z"
+              fill="#000"></path>
+            </svg>
+           </div>
+           <div>
+            <div class="mt-2">
+             <div class="d-flex justify-content-between gap-4">
+              <div class="w-100">
+               <label for="degree{{ $index + 1 }}" class="label-top-input">درجه علمی</label>
+               <select name="degrees[{{ $index }}]" id="degree{{ $index + 1 }}"
+                class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative daraje">
+                @foreach ($academic_degrees as $academic_degree)
+                 <option value="{{ $academic_degree->id }}"
+                  {{ $specialty->academic_degree_id == $academic_degree->id ? 'selected' : '' }}>
+                  {{ $academic_degree->title }}
+                 </option>
+                @endforeach
+               </select>
+              </div>
+              <div class="w-100">
+               <label for="specialty{{ $index + 1 }}" class="label-top-input">تخصص</label>
+               <select name="specialties[{{ $index }}]" id="specialty{{ $index + 1 }}"
+                class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative takhasos-input">
+                @foreach ($sub_specialties as $specialtyOption)
+                 <option value="{{ $specialtyOption->id }}"
+                  {{ $specialty->specialty_id == $specialtyOption->id ? 'selected' : '' }}>
+                  {{ $specialtyOption->name }}
+                 </option>
+                @endforeach
+               </select>
+              </div>
+             </div>
+             <div>
+              <label for="title{{ $index + 1 }}" class="label-top-input-special-takhasos-elem-create">عنوان
+               تخصص</label>
+              <input type="text" name="titles[{{ $index }}]" id="title{{ $index + 1 }}"
+               class="form-control h-50 w-100 border-radius-6 mt-3" value="{{ $specialty->specialty_title }}">
+             </div>
+            </div>
+           </div>
+          </div>
+         @endif
+        @endforeach
+       </div>
        <div class="d-flex justify-content-between mt-2 gap-4">
         <button type="submit" id="saveChangesButton"
          class="btn btn-primary h-50 col-lg-11 col-xs-10 col-md-11 col-sm-11 d-flex justify-content-center align-items-center">
@@ -593,6 +646,293 @@
     }
    }
   });
+
+ });
+ document.addEventListener('DOMContentLoaded', function() {
+  const addButton = document.getElementById('addButton');
+  const additionalInputs = document.getElementById('additionalInputs');
+  let inputCount = 0; // شمارش ورودی‌های اضافی
+
+  addButton.addEventListener('click', () => {
+   if (inputCount < 3) {
+    inputCount++;
+    const newInputGroup = document.createElement('div');
+    newInputGroup.classList.add('w-100', 'mt-3');
+
+    newInputGroup.innerHTML = `
+                <div>
+                    <div class="text-left mt-3 remove-form-item" onclick="removeInput(this)">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.46967 4.46967C4.76256 4.17678 5.23744 4.17678 5.53033 4.46967L10 8.93934L14.4697 4.46967C14.7626 4.17678 15.2374 4.17678 15.5303 4.46967C15.8232 4.76256 15.8232 5.23744 15.5303 5.53033L11.0607 10L15.5303 14.4697C15.8232 14.7626 15.8232 15.2374 15.5303 15.5303C15.2374 15.8232 14.7626 15.8232 14.4697 15.5303L10 11.0607L5.53033 15.5303C5.23744 15.8232 4.76256 15.8232 4.46967 15.5303C4.17678 15.2374 4.17678 14.7626 4.46967 14.4697L8.93934 10L4.46967 5.53033C4.17678 5.23744 4.17678 4.76256 4.46967 4.46967Z" fill="#000"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="mt-2">
+                            <div class="d-flex justify-content-between gap-4">
+                                <div class="w-100">
+                                    <label for="degree${inputCount}" class="label-top-input">درجه علمی</label>
+                                    <select name="degrees[${inputCount}]" id="degree${inputCount}" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative daraje">
+                                        @foreach ($academic_degrees as $academic_degree)
+                                            <option value="{{ $academic_degree->id }}">{{ $academic_degree->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="w-100">
+                                    <label for="specialty${inputCount}" class="label-top-input">تخصص</label>
+                                    <select name="specialties[${inputCount}]" id="specialty${inputCount}" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative takhasos-input">
+                                        @foreach ($sub_specialties as $specialtyOption)
+                                            <option value="{{ $specialtyOption->id }}">{{ $specialtyOption->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="title${inputCount}" class="label-top-input-special-takhasos-elem-create">عنوان تخصص</label>
+                                <input type="text" name="titles[${inputCount}]" id="title${inputCount}" class="form-control h-50 w-100 border-radius-6 mt-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+    additionalInputs.appendChild(newInputGroup);
+
+    // اعمال TomSelect روی المان‌های جدید
+    new TomSelect(`#degree${inputCount}`, {
+     plugins: ['clear_button'],
+     placeholder: 'انتخاب درجه علمی',
+     searchField: ['text'],
+     noResultsText: 'نتیجه‌ای یافت نشد',
+     render: {
+      option: function(data, escape) {
+       return '<div class="d-flex justify-content-between">' +
+        '<span>' + escape(data.text) + '</span>' +
+        '</div>';
+      },
+      item: function(data, escape) {
+       return '<div>' + escape(data.text) + '</div>';
+      }
+     },
+     locale: 'fa',
+     maxItems: 1,
+     sortField: {
+      field: 'text'
+     }
+    });
+
+    new TomSelect(`#specialty${inputCount}`, {
+     valueField: 'id',
+     plugins: ['clear_button'],
+     noResultsText: 'نتیجه‌ای یافت نشد',
+     labelField: 'name',
+     searchField: ['name'],
+     load: function(query, callback) {
+      var url = '/api/specialties?search=' + encodeURIComponent(query);
+      fetch(url)
+       .then(response => response.json())
+       .then(data => {
+        callback(data.data);
+       })
+       .catch(() => {
+        callback();
+       });
+     },
+     placeholder: 'انتخاب تخصص...',
+     maxItems: 1,
+     render: {
+      option: function(item, escape) {
+       return `<div>
+                            ${escape(item.name)}
+                            ${item.category ? `<small class="text-muted">(${escape(item.category)})</small>` : ''}
+                        </div>`;
+      }
+     }
+    });
+
+   } else {
+    Swal.fire({
+     title: 'حداکثر تخصص برای هر دکتر 3 تخصص میباشد',
+     icon: 'error',
+    });
+   }
+  });
+
+  window.removeInput = function(button) {
+   const inputGroup = button.parentElement.parentElement;
+
+   Swal.fire({
+     title: 'آیا مطمئن هستید؟',
+     text: 'این عمل قابل بازگشت نیست!',
+     icon: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'بله، حذف کن!',
+     cancelButtonText: 'خیر، انصراف',
+    })
+    .then((result) => {
+     if (result.isConfirmed) {
+      additionalInputs.removeChild(inputGroup);
+      inputCount--; // کاهش شمارش ورودی‌های اضافی
+      Swal.fire('حذف شد!', 'عنصر با موفقیت حذف شد.', 'success');
+     }
+    })
+    .catch((error) => {
+     console.error('خطایی در نمایش SweetAlert رخ داد:', error);
+    });
+  };
+ });
+
+
+ // تابع اولیه برای تام سلکت
+ function initTomSelect(selector, options = {}) {
+  return new TomSelect(selector, {
+   plugins: ['clear_button'],
+   searchField: ['text', 'name'],
+   placeholder: options.placeholder || 'انتخاب کنید',
+   maxItems: options.maxItems || 1,
+   render: {
+    option: function(data, escape) {
+     return '<div class="d-flex justify-content-between">' +
+      '<span>' + escape(data.text || data.name) + '</span>' +
+      '</div>';
+    },
+    item: function(data, escape) {
+     return '<div>' + escape(data.text || data.name) + '</div>';
+    }
+   },
+   locale: 'fa',
+   ...options
+  });
+ }
+
+ // تابع اجرای اولیه
+ // تابع اجرای اولیه
+ function initAllTomSelects() {
+  // درجه علمی
+  initTomSelect('#academic_degree_id', {
+   placeholder: 'انتخاب درجه علمی'
+  });
+
+  // تخصص اصلی
+  initTomSelect('#specialties_list', {
+   placeholder: 'انتخاب تخصص',
+   valueField: 'id',
+   labelField: 'name',
+   searchField: ['name'],
+   load: function(query, callback) {
+    var url = '/api/specialties?search=' + encodeURIComponent(query);
+    fetch(url)
+     .then(response => response.json())
+     .then(data => {
+      callback(data.data);
+     })
+     .catch(() => {
+      callback();
+     });
+   }
+  });
+
+  // درجه علمی برای تخصص‌های اضافی از دیتابیس
+  document.querySelectorAll('[id^="degree"]').forEach(el => {
+   if (el.id !== 'academic_degree_id') {
+    initTomSelect(`#${el.id}`, {
+     placeholder: 'انتخاب درجه علمی'
+    });
+   }
+  });
+
+  // تخصص‌های اضافی از دیتابیس
+  document.querySelectorAll('[id^="specialty"]').forEach(el => {
+   if (el.id !== 'specialties_list') {
+    initTomSelect(`#${el.id}`, {
+     placeholder: 'انتخاب تخصص',
+     valueField: 'id',
+     labelField: 'name',
+     searchField: ['name'],
+     load: function(query, callback) {
+      var url = '/api/specialties?search=' + encodeURIComponent(query);
+      fetch(url)
+       .then(response => response.json())
+       .then(data => {
+        callback(data.data);
+       })
+       .catch(() => {
+        callback();
+       });
+     }
+    });
+   }
+  });
+ }
+
+ // اجرا در زمان بارگذاری
+ document.addEventListener('DOMContentLoaded', function() {
+  initAllTomSelects();
+ });
+
+ // اصلاح تابع اضافه کردن ورودی جدید
+ function addNewSpecialtyInput() {
+  const additionalInputs = document.getElementById('additionalInputs');
+  const inputCount = additionalInputs.children.length; // شمارش ورودی‌های اضافی
+
+  if (inputCount < 2) { // حداکثر 2 ورودی اضافی
+   const newInputGroup = document.createElement('div');
+   newInputGroup.classList.add('w-100', 'mt-3');
+
+   newInputGroup.innerHTML = `
+            <div>
+                <div class="text-left mt-3 remove-form-item" onclick="removeInput(this)">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.46967 4.46967C4.76256 4.17678 5.23744 4.17678 5.53033 4.46967L10 8.93934L14.4697 4.46967C14.7626 4.17678 15.2374 4.17678 15.5303 4.46967C15.8232 4.76256 15.8232 5.23744 15.5303 5.53033L11.0607 10L15.5303 14.4697C15.8232 14.7626 15.8232 15.2374 15.5303 15.5303C15.2374 15.8232 14.7626 15.8232 14.4697 15.5303L10 11.0607L5.53033 15.5303C5.23744 15.8232 4.76256 15.8232 4.46967 15.5303C4.17678 15.2374 4.17678 14.7626 4.46967 14.4697L8.93934 10L4.46967 5.53033C4.17678 5.23744 4.17678 4.76256 4.46967 4.46967Z" fill="#000"></path>
+                    </svg>
+                </div>
+                <div>
+                    <div class="mt-2">
+                        <div class="d-flex justify-content-between gap-4">
+                            <div class="w-100">
+                                <label for="degree${inputCount + 1}" class="label-top-input">درجه علمی</label>
+                                <select name="degrees[${inputCount}]" id="degree${inputCount + 1}" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative daraje">
+                                    @foreach ($academic_degrees as $academic_degree)
+                                        <option value="{{ $academic_degree->id }}">{{ $academic_degree->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="w-100">
+                                <label for="specialty${inputCount + 1}" class="label-top-input">تخصص</label>
+                                <select name="specialties[${inputCount}]" id="specialty${inputCount + 1}" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative takhasos-input">
+                                    @foreach ($sub_specialties as $specialtyOption)
+                                        <option value="{{ $specialtyOption->id }}">{{ $specialtyOption->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="title${inputCount + 1}" class="label-top-input-special-takhasos-elem-create">عنوان تخصص</label>
+                            <input type="text" name="titles[${inputCount}]" id="title${inputCount + 1}" class="form-control h-50 w-100 border-radius-6 mt-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+   additionalInputs.appendChild(newInputGroup);
+   initTomSelect(`#degree${inputCount + 1}`, {
+    placeholder: 'انتخاب درجه علمی'
+   });
+   initTomSelect(`#specialty${inputCount + 1}`, {
+    placeholder: 'انتخاب تخصص'
+   });
+  } else {
+   Swal.fire({
+    title: 'حداکثر تخصص برای هر دکتر 3 تخصص میباشد',
+    icon: 'error',
+   });
+  }
+ }
+ // اجرا در زمان بارگذاری
+ $(document).ready(function() {
+  initAllTomSelects();
  });
 </script>
 <script>

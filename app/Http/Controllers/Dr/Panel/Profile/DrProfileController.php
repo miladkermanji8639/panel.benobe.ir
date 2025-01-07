@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Dr\Panel\Profile;
 
-use App\Models\Dr\AcademicDegree;
-use App\Models\Dr\DoctorSpecialty;
-use App\Models\Dr\SubSpecialty;
 use Carbon\Carbon;
 use App\Models\Dr\Otp;
 use App\Models\Dr\Doctor;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Dr\SubSpecialty;
+use App\Models\Dr\AcademicDegree;
+use App\Models\Dr\DoctorSpecialty;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -53,17 +54,14 @@ class DrProfileController
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    // public function edit(string $id)
     public function edit()
     {
         $doctor = Auth::guard('doctor')->user();
         $currentSpecialty = DoctorSpecialty::where('doctor_id', $doctor->id)->first();
         $specialtyName = $currentSpecialty->specialty_title ?? 'نامشخص';
-        $specialties = $doctor->specialties;
+        $specialties = DoctorSpecialty::where('doctor_id', $doctor->id)->get();
+        $doctorSpecialties = DoctorSpecialty::where('doctor_id', $doctor->id)->get();
+        /*  dd($doctorSpecialties); */
         $doctorSpecialtyId = DoctorSpecialty::where('doctor_id', $doctor->id)->first();
         $academic_degrees = AcademicDegree::active()
             ->orderBy('sort_order')
@@ -76,26 +74,24 @@ class DrProfileController
     }
     public function DrSpecialtyUpdate(Request $request)
     {
-        // Rate Limiting
-        $key = 'update_specialty_' . $request->ip();
-        $maxAttempts = 5;
-        $decayMinutes = 1;
+        $doctor = Auth::guard('doctor')->user();
 
-        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
-            $seconds = RateLimiter::availableIn($key);
+        // بررسی تعداد تخصص‌ها
+        $existingSpecialtiesCount = DoctorSpecialty::where('doctor_id', $doctor->id)->count();
+        if ($existingSpecialtiesCount >= 3 && !$request->has('is_edit')) {
             return response()->json([
                 'success' => false,
-                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $seconds . ' ثانیه دیگر صبر کنید.',
-                'error_type' => 'rate_limit'
-            ], 429);
+                'message' => 'حداکثر 3 تخصص مجاز است'
+            ], 400);
         }
-
-        RateLimiter::hit($key, $decayMinutes * 60);
 
         $validator = Validator::make($request->all(), [
             'academic_degree_id' => 'required|exists:academic_degrees,id',
             'specialty_id' => 'required|exists:sub_specialties,id',
             'specialty_title' => 'required|string',
+            'degrees.*' => 'sometimes|exists:academic_degrees,id',
+            'specialties.*' => 'sometimes|exists:sub_specialties,id',
+            'titles.*' => 'sometimes|string'
         ]);
 
         if ($validator->fails()) {
@@ -105,31 +101,74 @@ class DrProfileController
             ], 422);
         }
 
-        $doctor = Auth::guard('doctor')->user();
-        $doctorSpecialty = DoctorSpecialty::where('doctor_id', $doctor->id)->first();
+       
 
-        if (!$doctorSpecialty) {
-            $doctorSpecialty = new DoctorSpecialty();
-            $doctorSpecialty->doctor_id = $doctor->id;
-        }
+        try {
+            DB::beginTransaction();
 
-        $doctorSpecialty->academic_degree_id = $request->academic_degree_id;
-        $doctorSpecialty->specialty_id = $request->specialty_id;
-        $doctorSpecialty->specialty_title = $request->specialty_title;
+            // به‌روزرسانی یا ایجاد تخصص اصلی
+            $mainSpecialty = DoctorSpecialty::updateOrCreate(
+                ['doctor_id' => $doctor->id, 'is_main' => true],
+                [
+                    'academic_degree_id' => $request->academic_degree_id,
+                    'specialty_id' => $request->specialty_id,
+                    'specialty_title' => $request->specialty_title
+                ]
+            );
 
-        if ($doctorSpecialty->save()) {
+            // حذف تخصص‌های قبلی غیر اصلی
+            DoctorSpecialty::where('doctor_id', $doctor->id)
+                ->where('is_main', false)
+                ->delete();
+
+            // اضافه کردن تخصص‌های جدید
+            if ($request->has('degrees') && $request->has('specialties')) {
+                $additionalSpecialtiesCount = 0;
+                foreach ($request->degrees as $index => $degreeId) {
+                    if (!empty($degreeId) && !empty($request->specialties[$index])) {
+                        // بررسی تکراری نبودن
+                        $duplicateSpecialty = DoctorSpecialty::where('doctor_id', $doctor->id)
+                            ->where('specialty_id', $request->specialties[$index])
+                            ->exists();
+
+                        if ($duplicateSpecialty) {
+                            continue; // از اضافه کردن تکراری جلوگیری می‌کند
+                        }
+
+                        $additionalSpecialtiesCount++;
+                        if ($additionalSpecialtiesCount > 2) {
+                            break; // محدود کردن به 2 تخصص اضافی
+                        }
+
+                        DoctorSpecialty::create([
+                            'doctor_id' => $doctor->id,
+                            'academic_degree_id' => $degreeId,
+                            'specialty_id' => $request->specialties[$index],
+                            'specialty_title' => $request->titles[$index] ?? null,
+                            'is_main' => false
+                        ]);
+                    }
+                }
+            }
+
+            DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'اطلاعات تخصص با موفقیت به‌روزرسانی شد.'
             ]);
-        } else {
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Specialty Update Error: ' . $e->getMessage());
+
             return response()->json([
                 'success' => false,
-                'message' => 'خطایی در به‌روزرسانی اطلاعات تخصص رخ داد.'
+                'message' => 'خطایی در به‌روزرسانی اطلاعات تخصص رخ داد.',
+                'error' => $e->getMessage()
             ], 500);
         }
     }
-    
+
     public function niceId()
     {
         return view("dr.panel.profile.edit-niceId");
