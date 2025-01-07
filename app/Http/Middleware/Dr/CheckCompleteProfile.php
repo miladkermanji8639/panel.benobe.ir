@@ -13,7 +13,7 @@ class CheckCompleteProfile
     // Check if the user is authenticated and if the profile is not completed
     if (Auth::guard('doctor')->check() && !$doctor->profile_completed) {
       // Allow access to the edit profile and update profile routes
-      if ($request->routeIs('dr-edit-profile') || $request->routeIs('dr-update-profile') || $request->routeIs('dr-send-mobile-otp') || $request->routeIs('dr-mobile-confirm')) {
+      if ($request->routeIs('dr-edit-profile') || $request->routeIs('dr-update-profile') || $request->routeIs('dr-send-mobile-otp') || $request->routeIs('dr-mobile-confirm') || $request->routeIs('dr-specialty-update')) {
         return $next($request);
       }
 

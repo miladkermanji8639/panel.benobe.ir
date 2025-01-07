@@ -95,7 +95,6 @@
       </div>
       <div class="d-flex justify-content-between mt-4 gap-4 position-relative">
        <label for="name" class="label-top-input-special-takhasos">شماره موبایل</label>
-
        <input class="my-form-control h-50 col-lg-11 col-xs-10 col-md-11 col-sm-11 text-right disabled "
         placeholder="شماره موبایل" name="mobile" value="{{ Auth::guard('doctor')->user()->mobile ?? '' }}" disabled>
        <button
@@ -108,15 +107,12 @@
           stroke="#fff" stroke-width="1.5" />
         </svg>
        </button>
-
       </div>
-
       <div class="mt-3">
        <label for="name" class="font-weight-bold font-size-13"> بیوگرافی و توضیحات</label>
-       <textarea class="ckeditor form-control" name="description" class="form-control h-50" id="description">
-            {{ Auth::guard('doctor')->user()->bio ?? '' }}
+       <textarea class="ckeditor form-control" name="description" class="form-control" id="description">
+            {{ trim(Auth::guard('doctor')->user()->bio ?? '') }}
         </textarea>
-
       </div>
       <div class="w-100">
        <button type="submit"
@@ -126,7 +122,6 @@
        </button>
       </div>
      </form>
-
     </div>
    </div>
   </div>
@@ -153,7 +148,6 @@
         </button>
        </div>
       </div>
-
       <div id="otpInputStep" style="display:none;">
        <label class="label-top font-weight-bold">کد تایید 4 رقمی را وارد کنید</label>
        <div class="d-flex justify-content-center gap-10 mt-2" dir="ltr">
@@ -212,40 +206,46 @@
       </svg>
      </div>
      <div class="mt-2">
-      <form action="" method="post">
+      <form action="{{ route('dr-specialty-update') }}" method="POST" id="specialtyEdit">
+       @csrf
        <div class="d-flex justify-content-between gap-4 flex-xs-wrap flex-xs-column">
-        <div class="w-100">
+        <div class="mt-2 w-100">
          <label for="name" class="label-top-input">درجه علمی</label>
-
-         <select name="" id=""
-          class="form-control h-50  border-radius-6 mt-3 col-12 position-relative daraje ">
-          <option value="">کاردان</option>
-          <option value="">کارشناس</option>
-          <option value="">کارشناسی ارشد</option>
-          <option value="">دانشجوی دکترا</option>
-          <option value="">دکترای</option>
+         <select name="academic_degree_id" id="academic_degree_id"
+          class="form-control h-50  border-radius-6 mt-3 col-12 position-relative daraje">
+          @foreach ($academic_degrees as $academic_degree)
+           <option value="{{ $academic_degree->id }}"
+            {{ (Auth::guard('doctor')->user()->academic_degree_id ?? '') == ($academic_degree->id ?? '') ? 'selected' : '' }}>
+            {{ $academic_degree->title ?? '' }}
+           </option>
+          @endforeach
          </select>
         </div>
-        <div class="w-100">
+        <div class="mt-2 w-100">
          <label for="name" class="label-top-input">تخصص</label>
-         <select name="" id=""
-          class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative takhasos-input">
-          <option value="">فلوشیپ</option>
-          <option value="">اتاق عملی</option>
-          <option value=""> بینایی سنجی</option>
-          <option value=""> بهداشت عمومی</option>
-          <option value="">پرستاری</option>
+         <select name="specialty_id" id="specialties_list"
+          class="form-control h-50 border-radius-6 mt-3 col-12 position-relative takhasos-input">
+          @foreach ($sub_specialties as $specialtyOption)
+           <option value="{{ $specialtyOption->id }}"
+            {{ $specialtyOption->id == ($currentSpecialty->specialty_id ?? '') ? 'selected' : '' }}>
+            {{ $specialtyOption->name }}
+           </option>
+          @endforeach
          </select>
         </div>
-
        </div>
        <div class="position-relative">
         <label for="name" class="label-top-input-special-takhasos">عنوان تخصص</label>
-        <input type="text" class="form-control h-50 w-100 border-radius-6 mt-3  ">
+        <input type="text" value="{{ $specialtyName }}" name="specialty_title"
+         class="form-control h-50 w-100 border-radius-6 mt-3  ">
        </div>
        <div id="additionalInputs"></div>
        <div class="d-flex justify-content-between mt-2 gap-4">
-        <button class="btn btn-primary h-50 col-lg-11 col-xs-10 col-md-11 col-sm-11 ">ذخیره تغیرات</button>
+        <button type="submit" id="saveChangesButton"
+         class="btn btn-primary h-50 col-lg-11 col-xs-10 col-md-11 col-sm-11 d-flex justify-content-center align-items-center">
+         <span class="button_text">ذخیره تغیرات</span>
+         <div class="loader"></div>
+        </button>
         <button
          class="btn btn-dark h-50 col-lg-1 col-xs-2 col-md-1 col-sm-1 d-flex justify-content-center align-items-center fs-6 add-form-item"
          type="button" id="addButton">
@@ -380,15 +380,10 @@
         <span class="text-sm mx-1 font-size-13">واتساپ</span>
        </div>
        <div class="w-100">
-
         <div class="w-100">
          <input type="text" class="form-control h-50  border-radius-4 col-12" placeholder="شماره موبایل">
         </div>
-
-
-
        </div>
-
       </div>
       <div class="mt-2">
        <h6 class="text-left font-weight-bold d-block font-size-13"> تماس امن</h6>
@@ -420,9 +415,7 @@
        <button class="btn btn-primary w-100 h-50 border-radius-4">ثبت تغیرات</button>
       </div>
      </form>
-
      <div>
-
      </div>
     </div>
    </div>
@@ -484,7 +477,6 @@
            fill="#22282F"></path>
          </svg>
         </div>
-
        </div>
        <div class="w-100 mt-3">
         <button class="btn btn-primary w-100 h-50" type="submit">
@@ -544,17 +536,62 @@
 <script src="{{ asset('dr-assets/panel/jalali-datepicker/run-jalali.js') }}"></script>
 <script src="{{ asset('dr-assets/panel/js/dr-panel.js') }}"></script>
 <script src="{{ asset('dr-assets/panel/js/sweetalert2/sweetalert2.js') }}"></script>
-
 <script src="{{ asset('dr-assets/panel/js/profile/edit-profile.js') }}"></script>
-<script src="{{ asset('dr-assets/js/select2/select2.js') }}"></script>
-
-
 <script>
  var appointmentsSearchUrl = "{{ route('search.appointments') }}";
- $(document).ready(function() {
-  $('.select2').select2({
-   placeholder: "انتخاب کنید",
-   allowClear: true
+</script>
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+  new TomSelect('#academic_degree_id', {
+   plugins: ['clear_button'],
+   placeholder: 'انتخاب درجه علمی',
+   searchField: ['text'],
+   noResultsText: 'نتیجه‌ای یافت نشد',
+   render: {
+    option: function(data, escape) {
+     return '<div class="d-flex justify-content-between">' +
+      '<span>' + escape(data.text) + '</span>' +
+      '</div>';
+    },
+    item: function(data, escape) {
+     return '<div>' + escape(data.text) + '</div>';
+    }
+   },
+   // برای فارسی
+   locale: 'fa',
+   // تنظیمات بیشتر
+   maxItems: 1,
+   sortField: {
+    field: 'text'
+   }
+  });
+  new TomSelect('#specialties_list', {
+   valueField: 'id',
+   plugins: ['clear_button'],
+   noResultsText: 'نتیجه‌ای یافت نشد',
+   labelField: 'name',
+   searchField: ['name'],
+   load: function(query, callback) {
+    var url = '/api/specialties?search=' + encodeURIComponent(query);
+    fetch(url)
+     .then(response => response.json())
+     .then(data => {
+      callback(data.data);
+     })
+     .catch(() => {
+      callback();
+     });
+   },
+   placeholder: 'انتخاب تخصص...',
+   maxItems: 1,
+   render: {
+    option: function(item, escape) {
+     return `<div>
+        ${escape(item.name)}
+        ${item.category ? `<small class="text-muted">(${escape(item.category)})</small>` : ''}
+     </div>`;
+    }
+   }
   });
  });
 </script>
@@ -562,16 +599,13 @@
  // بررسی زمان آخرین درخواست
  document.getElementById("profileEdit").addEventListener('submit', function(e) {
   e.preventDefault();
-
   const form = this;
   const submitButton = form.querySelector('button[type="submit"]');
   const loader = submitButton.querySelector('.loader');
   const buttonText = submitButton.querySelector('.button_text');
-
   // مخفی کردن متن دکمه و نمایش لودینگ
   buttonText.style.display = 'none';
   loader.style.display = 'block';
-
   fetch(form.action, {
     method: form.method,
     body: new FormData(form),
@@ -585,7 +619,6 @@
     // بازگردانی دکمه به حالت اولیه
     buttonText.style.display = 'block';
     loader.style.display = 'none';
-
     if (!response.ok) {
      return response.json().then(errorData => {
       throw new Error(errorData.message || 'خطای نامشخص');
@@ -597,11 +630,10 @@
     // بازگردانی دکمه به حالت اولیه
     buttonText.style.display = 'block';
     loader.style.display = 'none';
-
     if (data.success) {
      // نمایش توست موفقیت
      Toastify({
-      text: data.message || "پروفایل با موفقیت به‌روز شد",
+      text: data.message || "تخصص با موفقیت به‌روز شد",
       duration: 3000,
       close: true,
       gravity: "top",
@@ -613,7 +645,7 @@
     } else {
      // نمایش توست خطا
      Toastify({
-      text: data.message || "خطا در به‌روزرسانی پروفایل",
+      text: data.message || "خطا در به‌روزرسانی تخصص",
       duration: 3000,
       close: true,
       gravity: "top",
@@ -628,10 +660,9 @@
     // بازگردانی دکمه به حالت اولیه
     buttonText.style.display = 'block';
     loader.style.display = 'none';
-
     // نمایش توست خطا
     Toastify({
-     text: 'خطا در برقراری ارتباط با سرور',
+     text: error.message || 'خطا در برقراری ارتباط با سرور',
      duration: 3000,
      close: true,
      gravity: "top",
@@ -640,16 +671,88 @@
       background: "red"
      }
     }).showToast();
-
-    console.error('Error:', error);
    });
  });
-
+ document.getElementById("specialtyEdit").addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = this;
+  const submitButton = form.querySelector('button[type="submit"]');
+  const loader = submitButton.querySelector('.loader');
+  const buttonText = submitButton.querySelector('.button_text');
+  // مخفی کردن متن دکمه و نمایش لودینگ
+  buttonText.style.display = 'none';
+  loader.style.display = 'block';
+  fetch(form.action, {
+    method: form.method,
+    body: new FormData(form),
+    headers: {
+     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+     'Accept': 'application/json',
+     'X-Requested-With': 'XMLHttpRequest'
+    }
+   })
+   .then(response => {
+    // بازگردانی دکمه به حالت اولیه
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
+    if (!response.ok) {
+     return response.json().then(errorData => {
+      throw new Error(errorData.message || 'خطای نامشخص');
+     });
+    }
+    return response.json();
+   })
+   .then(data => {
+    // بازگردانی دکمه به حالت اولیه
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
+    if (data.success) {
+     // نمایش توست موفقیت
+     Toastify({
+      text: data.message || "تخصص با موفقیت به‌روز شد",
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "green"
+      }
+     }).showToast();
+    } else {
+     // نمایش توست خطا
+     Toastify({
+      text: data.message || "خطا در به‌روزرسانی تخصص",
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "red"
+      }
+     }).showToast();
+    }
+   })
+   .catch(error => {
+    // بازگردانی دکمه به حالت اولیه
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
+    // نمایش توست خطا
+    Toastify({
+     text: error.message || 'خطا در برقراری ارتباط با سرور',
+     duration: 3000,
+     close: true,
+     gravity: "top",
+     position: 'right',
+     style: {
+      background: "red"
+     }
+    }).showToast();
+   });
+ });
  // تابع نمایش خطاهای اعتبارسنجی
  function handleValidationErrors(errors) {
   // پاک کردن خطاهای قبلی
   clearPreviousErrors();
-
   // نمایش خطاها
   Object.keys(errors).forEach(field => {
    const inputElement = document.querySelector(`[name="${field}"]`);
@@ -657,18 +760,14 @@
     // ایجاد المان خطا
     const errorElement = document.createElement('div');
     errorElement.className = 'text-danger validation-error mt-1 font-size-13';
-
     // نمایش تمام خطاهای مربوط به فیلد
     errorElement.textContent = errors[field][0];
-
     // اضافه کردن کلاس خطا به اینپوت
     inputElement.classList.add('is-invalid');
-
     // قرار دادن المان خطا بعد از اینپوت
     inputElement.parentNode.insertBefore(errorElement, inputElement.nextSibling);
    }
   });
-
   // نمایش توست خطا
   Toastify({
    text: "لطفاً خطاهای فرم را بررسی کنید",
@@ -681,30 +780,25 @@
    }
   }).showToast();
  }
-
  // تابع پاک کردن خطاهای قبلی
  function clearPreviousErrors() {
   // حذف خطاهای قبلی
   document.querySelectorAll('.validation-error').forEach(el => el.remove());
   document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
  }
-
  // تابع به‌روزرسانی نام در المان‌های مختلف
  function updateNameElements(firstName, lastName) {
   const fullName = `${firstName} ${lastName}`;
-
   // به‌روزرسانی نام در سایدبار
   const sidebarNameElements = document.querySelectorAll('.sidebar-full-name');
   sidebarNameElements.forEach(element => {
    element.textContent = fullName;
   });
-
   // به‌روزرسانی نام در هدر پروفایل
   const headerNameElements = document.querySelectorAll('.profile-header-name');
   headerNameElements.forEach(element => {
    element.textContent = fullName;
   });
-
   // به‌روزرسانی نام در بخش‌های دیگر در صورت نیاز
   // مثال:
   const welcomeNameElement = document.getElementById('welcome-name');
@@ -712,29 +806,23 @@
    welcomeNameElement.textContent = firstName;
   }
  }
-
-
  /*  edit mobile */
  // متغیرهای سراسری
  // متغیرهای سراسری
  let otpToken = null;
  let resendTimer = null;
-
  // تابع ارسال کد OTP
  function sendOtpCode() {
   const newMobile = document.getElementById('newMobileNumber').value;
   const sendButton = document.querySelector('#mobileInputStep1 button');
   const loader = sendButton.querySelector('.loader');
   const buttonText = sendButton.querySelector('.button_text');
-
   // مخفی کردن متن دکمه و نمایش لودینگ
   buttonText.style.display = 'none';
   loader.style.display = 'block';
-
   // اعتبارسنجی شماره موبایل با Regex دقیق
   const mobileRegex =
    /^(?!09{1}(\d)\1{8}$)09(?:01|02|03|12|13|14|15|16|18|19|20|21|22|30|33|35|36|38|39|90|91|92|93|94)\d{7}$/;
-
   if (!mobileRegex.test(newMobile)) {
    Toastify({
     text: "شماره موبایل نامعتبر است",
@@ -750,7 +838,6 @@
    loader.style.display = 'none';
    return;
   }
-
   $.ajax({
    url: "{{ route('dr-send-mobile-otp') }}",
    method: 'POST',
@@ -762,18 +849,13 @@
    },
    success: function(response) {
     otpToken = response.token;
-
     $('#mobileInputStep1').hide();
     $('#otpInputStep').show();
-
     // ریست کردن اینپوت‌های OTP
     document.querySelectorAll('.otp-input').forEach(input => input.value = '');
-
     // فوکوس روی اولین اینپوت
     document.querySelector('.otp-input').focus();
-
     startResendTimer();
-
     Toastify({
      text: "کد تایید ارسال شد",
      duration: 3000,
@@ -802,7 +884,6 @@
    }
   });
  }
-
  // تابع تایید کد OTP
  function verifyOtpCode() {
   const otpInputs = document.querySelectorAll('.otp-input');
@@ -811,7 +892,6 @@
   const verifyButton = document.querySelector('#otpInputStep button');
   const loader = verifyButton.querySelector('.loader');
   const buttonText = verifyButton.querySelector('.button_text');
-
   // بررسی کامل بودن کد
   if (otpCode.length !== 4) {
    Toastify({
@@ -825,11 +905,9 @@
    }).showToast();
    return;
   }
-
   // مخفی کردن متن دکمه و نمایش لودینگ
   buttonText.style.display = 'none';
   loader.style.display = 'block';
-
   // ادامه عملیات تایید کد
   $.ajax({
    url: `{{ route('dr-mobile-confirm', '') }}/${otpToken}`,
@@ -853,13 +931,10 @@
        background: "green"
       }
      }).showToast();
-
      // به‌روزرسانی المان‌های موبایل در صفحه
      $('input[name="mobile"]').val(response.mobile);
-
      // بستن مودال
      $('#mobileEditModal').modal('hide');
-
      // رفرش صفحه برای اطمینان
      setTimeout(() => {
       location.reload();
@@ -879,11 +954,9 @@
    error: function(xhr) {
     // مدیریت خطاهای سرور
     let errorMessage = "خطا در تایید کد";
-
     if (xhr.responseJSON && xhr.responseJSON.message) {
      errorMessage = xhr.responseJSON.message;
     }
-
     Toastify({
      text: errorMessage,
      duration: 3000,
@@ -905,9 +978,7 @@
  function startResendTimer() {
   let seconds = 120;
   const timerElement = document.getElementById('resendOtpTimer');
-
   clearInterval(resendTimer);
-
   resendTimer = setInterval(() => {
    if (seconds > 0) {
     timerElement.innerHTML = `ارسال مجدد کد تا ${seconds} ثانیه دیگر`;
@@ -918,27 +989,22 @@
    }
   }, 1000);
  }
-
  // اجرای اسکریپت پس از بارگذاری کامل DOM
  document.addEventListener('DOMContentLoaded', function() {
   const otpInputs = document.querySelectorAll('.otp-input');
-
   // فوکوس روی اولین اینپوت از سمت چپ در مرحله OTP
   $('#mobileEditModal').on('shown.bs.modal', function() {
    otpInputs[0].focus();
   });
-
   otpInputs.forEach((input, index) => {
    input.addEventListener('input', function() {
     // محدود کردن به یک کاراکتر عددی
     this.value = this.value.replace(/[^0-9]/g, '');
-
     // حرکت از چپ به راست برای RTL
     if (this.value.length === 1 && index < otpInputs.length - 1) {
      otpInputs[index + 1].focus();
     }
    });
-
    input.addEventListener('keydown', function(e) {
     if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
      otpInputs[index - 1].focus();
@@ -946,7 +1012,6 @@
    });
   });
  });
-
  /*  edit mobile */
 </script>
 @endsection

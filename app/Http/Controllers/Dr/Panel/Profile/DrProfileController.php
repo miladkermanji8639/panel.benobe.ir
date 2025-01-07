@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Dr\Panel\Profile;
 
+use App\Models\Dr\AcademicDegree;
+use App\Models\Dr\DoctorSpecialty;
+use App\Models\Dr\SubSpecialty;
 use Carbon\Carbon;
 use App\Models\Dr\Otp;
 use App\Models\Dr\Doctor;
@@ -58,10 +61,73 @@ class DrProfileController
     public function edit()
     {
         $doctor = Auth::guard('doctor')->user();
-        $specialty = Doctor::with('specialties')->find($doctor->id);
-        $specialtyName = $specialty->specialties->first()->name ?? 'No specialty assigned';
+        $currentSpecialty = DoctorSpecialty::where('doctor_id', $doctor->id)->first();
+        $specialtyName = $currentSpecialty->specialty_title ?? 'نامشخص';
+        $specialties = $doctor->specialties;
+        $doctorSpecialtyId = DoctorSpecialty::where('doctor_id', $doctor->id)->first();
+        $academic_degrees = AcademicDegree::active()
+            ->orderBy('sort_order')
+            ->get();
 
-        return view("dr.panel.profile.edit-profile", compact('specialtyName'));
+
+        $sub_specialties = SubSpecialty::getOptimizedList();
+
+        return view("dr.panel.profile.edit-profile", compact(['specialtyName', 'academic_degrees', 'sub_specialties', 'currentSpecialty', 'specialties', 'doctorSpecialtyId']));
+    }
+    public function DrSpecialtyUpdate(Request $request)
+    {
+        // Rate Limiting
+        $key = 'update_specialty_' . $request->ip();
+        $maxAttempts = 5;
+        $decayMinutes = 1;
+
+        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
+            $seconds = RateLimiter::availableIn($key);
+            return response()->json([
+                'success' => false,
+                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $seconds . ' ثانیه دیگر صبر کنید.',
+                'error_type' => 'rate_limit'
+            ], 429);
+        }
+
+        RateLimiter::hit($key, $decayMinutes * 60);
+
+        $validator = Validator::make($request->all(), [
+            'academic_degree_id' => 'required|exists:academic_degrees,id',
+            'specialty_id' => 'required|exists:sub_specialties,id',
+            'specialty_title' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $doctor = Auth::guard('doctor')->user();
+        $doctorSpecialty = DoctorSpecialty::where('doctor_id', $doctor->id)->first();
+
+        if (!$doctorSpecialty) {
+            $doctorSpecialty = new DoctorSpecialty();
+            $doctorSpecialty->doctor_id = $doctor->id;
+        }
+
+        $doctorSpecialty->academic_degree_id = $request->academic_degree_id;
+        $doctorSpecialty->specialty_id = $request->specialty_id;
+        $doctorSpecialty->specialty_title = $request->specialty_title;
+
+        if ($doctorSpecialty->save()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'اطلاعات تخصص با موفقیت به‌روزرسانی شد.'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'خطایی در به‌روزرسانی اطلاعات تخصص رخ داد.'
+            ], 500);
+        }
     }
     public function niceId()
     {
@@ -86,7 +152,7 @@ class DrProfileController
         // Rate Limiting
         $key = 'update_profile_' . $request->ip();
         $maxAttempts = 5;
-        $decayMinutes = 1;
+        $decayMinutes = 2;
 
         if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
             $seconds = RateLimiter::availableIn($key);

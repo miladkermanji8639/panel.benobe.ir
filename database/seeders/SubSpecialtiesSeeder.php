@@ -20,7 +20,8 @@ class SubSpecialtiesSeeder extends Seeder
             foreach ($data['specialties'] as $specialty) {
                 DB::table('sub_specialties')->insert([
                     'name' => $specialty['name'], // نام تخصص
-                    'description' => $specialty['description'] ?? null, // توضیحات تخصص (اختیاری)
+                    'description' => $specialty['description'] ?? null,
+                    'status' => 1, // توضیحات تخصص (اختیاری)
                     'created_at' => now(), // زمان ایجاد رکورد
                     'updated_at' => now()  // زمان به روز رسانی رکورد
                 ]);

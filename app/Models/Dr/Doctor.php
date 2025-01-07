@@ -24,49 +24,54 @@ class Doctor extends Authenticatable
      * @var array 
      */
     protected $table = "doctors";
-    protected $slugable='slug';
+    protected $slugable = 'slug';
     protected $fillable = [
+        'uuid',
         'first_name',
         'last_name',
-        'city_id',
-        'province_id',
-        'mobile',
-        'slug',
-        'password',
-        'national_code',
+        'display_name',
+        'date_of_birth',
         'sex',
-        'bio',
-        'specialty_id',
-        'specialty_oms_id',
-        'medical_system_code_type_id',
-        'address',
-        'description',
+        'mobile',
+        'email',
+        'alternative_mobile',
+        'national_code',
+        'password',
         'license_number',
-        'two_factor_confirmed_at',
-        'two_factor_secret',
-        'user_type', // اصلاح شده: بدون مقدار پیش‌فرض
+        'academic_degree_id',
+        'specialty_id',
+        'medical_system_code_type_id',
+        'province_id',
+        'city_id',
+        'address',
+        'postal_code',
+        'slug',
+        'profile_photo_path',
+        'bio',
+        'description',
+        'is_active',
+        'is_verified',
+        'profile_completed',
+        'status',
+        'user_type',
+        'api_token'
     ];
 
-    /** 
-     * The attributes that should be hidden for arrays.
-     * 
-     * @var array 
-     */
     protected $hidden = [
         'password',
-        'remember_token',
         'two_factor_secret',
-        'two_factor_confirmed_at',
+        'remember_token',
+        'api_token'
     ];
 
-    /** 
-     * The attributes that should be cast to native types.
-     * 
-     * @var array 
-     */
     protected $casts = [
+        'date_of_birth' => 'date',
+        'is_active' => 'boolean',
+        'is_verified' => 'boolean',
+        'profile_completed' => 'boolean',
+        'mobile_verified_at' => 'datetime',
         'email_verified_at' => 'datetime',
-        'two_factor_confirmed_at' => 'datetime',
+        'last_login_at' => 'datetime'
     ];
 
     /** 
@@ -101,9 +106,47 @@ class Doctor extends Authenticatable
     {
         return $this->belongsTo(Zone::class, 'city_id'); // ارتباط با شهر
     }
+    public function academicDegree()
+    {
+        return $this->belongsTo(AcademicDegree::class, 'academic_degree_id');
+    }
     public function specialties()
     {
-        return $this->belongsToMany(Specialty::class, 'doctor_specialty', 'doctor_id', 'specialty_id');
+        return $this->belongsToMany(SubSpecialty::class, 'doctor_specialty', 'doctor_id', 'specialty_id')
+            ->withPivot('academic_degree_id', 'specialty_title'); // اضافه کردن فیلدهای اضافی
     }
+
    
+
+
+
+    public function subSpecialty()
+    {
+        return $this->belongsTo(SubSpecialty::class, 'sub_specialty_id');
+    }
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    public function scopeVerified($query)
+    {
+        return $query->where('is_verified', true);
+    }
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    // UUID Generation
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (empty($model->uuid)) {
+                $model->uuid = 'DR-' . str_pad(static::max('id') + 1, 6, '0', STR_PAD_LEFT);
+            }
+        });
+    }
 }

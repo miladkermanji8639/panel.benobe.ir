@@ -23,6 +23,7 @@ return new class extends Migration {
             $table->string('two_factor_secret')->nullable();
             $table->timestamp('two_factor_confirmed_at')->nullable();
             $table->string('license_number')->unique()->nullable();
+            $table->unsignedBigInteger('academic_degree_id')->nullable();
             $table->unsignedBigInteger('specialty_id')->nullable();
             $table->unsignedBigInteger('medical_system_code_type_id')->nullable();
             $table->unsignedBigInteger('province_id')->nullable();
@@ -37,19 +38,24 @@ return new class extends Migration {
             $table->boolean('is_verified')->default(false);
             $table->boolean('profile_completed')->default(false);
             $table->tinyInteger('status')->default(0)->comment('وضعیت حساب');
+            $table->enum('user_type', ['doctor', 'secretary'])->default('doctor');
+            $table->string('api_token', 80)->unique()->nullable();
+            $table->rememberToken();
             $table->timestamp('mobile_verified_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->enum('user_type', ['doctor', 'secretary'])->default('doctor');
             $table->timestamp('last_login_at')->nullable();
-            $table->rememberToken();
-            $table->string('api_token', 80)->unique()->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('province_id')->references('id')->on('zone')->onDelete('set null');
             $table->foreign('city_id')->references('id')->on('zone')->onDelete('set null');
-            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('set null');
+
+            $table->foreign('specialty_id')->references('id')->on('sub_specialties')->onDelete('set null');
             $table->foreign('medical_system_code_type_id')->references('id')->on('medical_system_code_types')->onDelete('set null');
+            $table->foreign('academic_degree_id')
+                ->references('id')
+                ->on('academic_degrees')
+                ->onDelete('set null');
         });
         DB::statement('
         UPDATE doctors 

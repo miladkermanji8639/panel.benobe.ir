@@ -22,8 +22,10 @@
 <link rel="stylesheet" href="{{ asset('dr-assets/panel/css/font.css') }}">
 <link type="text/css" href="{{ asset('dr-assets/panel/jalali-datepicker/jalalidatepicker.min.css') }}"
  rel="stylesheet" />
- <link type="text/css" href="{{ asset('dr-assets/css/select2/select2.min.css') }}" rel="stylesheet" />
 @include('dr.panel.alerts.toast.success')
 @include('dr.panel.alerts.toast.error')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css">
-<script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js"></script>
+{{-- tom select --}}
+<link rel="stylesheet" href="{{ asset('dr-asset/panel/css/toastify/toastify.min.css') }}">
+{{-- tom select --}}
+<link rel="stylesheet" href="{{ asset('dr-asset/panel/css/tom-select.bootstrap5.min.css') }}">
+{{-- tom select --}}
