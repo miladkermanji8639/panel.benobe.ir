@@ -129,6 +129,7 @@ class DrProfileController
             ], 500);
         }
     }
+    
     public function niceId()
     {
         return view("dr.panel.profile.edit-niceId");
