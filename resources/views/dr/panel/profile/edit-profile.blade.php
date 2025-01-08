@@ -539,7 +539,7 @@
       <form class="w-100" action="{{ route('dr-static-password-update') }}" method="POST"
        id="staticPasswordForm">
        @csrf
-       <div class="d-flex align-items-center mt-2">
+       <div class="d-flex align-items-center mt-3">
         <div class="password_toggle__AXK9v d-flex align-items-center">
 
          <input type="checkbox" id="static_password_enabled" name="static_password_enabled" value="1"
@@ -622,7 +622,7 @@
     <div class="loading-spinner d-none"></div>
     <div>
      <div class="accordion_content__bS0xm">
-      <div class="d-flex align-items-center mt-2">
+      <div class="d-flex align-items-center mt-3">
        <div class="password_toggle__AXK9v d-flex align-items-center">
         <input type="checkbox" id="two_factor_enabled" name="two_factor_enabled" value="1"
          {{ Auth::guard('doctor')->user()->two_factor_secret_enabled ? 'checked' : '' }}>
