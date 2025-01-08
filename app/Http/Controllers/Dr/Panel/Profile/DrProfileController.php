@@ -260,25 +260,25 @@ class DrProfileController
         $doctor = Auth::guard('doctor')->user();
 
         // اعتبارسنجی داده‌ها
-       $request->validate([
-    'ita_phone' => [
-        'nullable',
-        'string',
-        'max:20',
-        'regex:/^(?!09{1}(\\d)\\1{8}$)09(?:01|02|03|12|13|14|15|16|18|19|20|21|22|30|33|35|36|38|39|90|91|92|93|94)\\d{7}$/i'
-    ],
-    'ita_username' => 'nullable|string|max:100',
-    'whatsapp_phone' => [
-        'nullable',
-        'string',
-        'max:20',
-        'regex:/^(?!09{1}(\\d)\\1{8}$)09(?:01|02|03|12|13|14|15|16|18|19|20|21|22|30|33|35|36|38|39|90|91|92|93|94)\\d{7}$/i'
-    ],
-    'secure_call' => 'nullable|boolean',
-], [
-    'ita_phone.regex' => 'شماره موبایل ایتا را به درستی وارد کنید.',
-    'whatsapp_phone.regex' => 'شماره موبایل واتس‌اپ را به درستی وارد کنید.',
-]);
+        $request->validate([
+            'ita_phone' => [
+                'nullable',
+                'string',
+                'max:20',
+                'regex:/^(?!09{1}(\\d)\\1{8}$)09(?:01|02|03|12|13|14|15|16|18|19|20|21|22|30|33|35|36|38|39|90|91|92|93|94)\\d{7}$/i'
+            ],
+            'ita_username' => 'nullable|string|max:100',
+            'whatsapp_phone' => [
+                'nullable',
+                'string',
+                'max:20',
+                'regex:/^(?!09{1}(\\d)\\1{8}$)09(?:01|02|03|12|13|14|15|16|18|19|20|21|22|30|33|35|36|38|39|90|91|92|93|94)\\d{7}$/i'
+            ],
+            'secure_call' => 'nullable|boolean',
+        ], [
+            'ita_phone.regex' => 'شماره موبایل ایتا را به درستی وارد کنید.',
+            'whatsapp_phone.regex' => 'شماره موبایل واتس‌اپ را به درستی وارد کنید.',
+        ]);
 
         // ذخیره یا به‌روزرسانی اطلاعات ایتا
         $doctor->messengers()->updateOrCreate(
@@ -305,6 +305,105 @@ class DrProfileController
         return response()->json([
             'success' => true,
             'message' => 'اطلاعات پیام‌رسان‌ها با موفقیت به‌روزرسانی شد.',
+        ]);
+    }
+    public function updateStaticPassword(Request $request)
+    {
+        // Rate Limiting
+        $key = 'update_static_password_' . $request->ip();
+        $maxAttempts = 5;
+        $decayMinutes = 2;
+
+        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
+            $seconds = RateLimiter::availableIn($key);
+            return response()->json([
+                'success' => false,
+                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $seconds . ' ثانیه دیگر صبر کنید.',
+                'error_type' => 'rate_limit'
+            ], 429);
+        }
+
+        RateLimiter::hit($key, $decayMinutes * 60);
+
+        // Validate the request
+        $validator = Validator::make($request->all(), [
+            'static_password_enabled' => 'required|boolean',
+            'password' => 'required_if:static_password_enabled,true|string|min:6|confirmed',
+        ], [
+            'password.required_if' => 'رمز عبور الزامی است.',
+            'password.confirmed' => 'تکرار رمز عبور با رمز عبور اصلی مطابقت ندارد.',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        try {
+            $doctor = Auth::guard('doctor')->user();
+
+            // Update the static password enabled field
+            $doctor->static_password_enabled = $request->static_password_enabled;
+
+            // If enabled, set the password
+            if ($request->static_password_enabled) {
+                $doctor->password = bcrypt($request->password);
+            } else {
+                // If disabled, clear the password
+                $doctor->password = null;
+            }
+
+            $doctor->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'تنظیمات رمز عبور ثابت با موفقیت به‌روزرسانی شد.'
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Static Password Update Error: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'خطای سرور در به‌روزرسانی رمز عبور ثابت',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+    // در کنترلر DrProfileController
+
+    public function updateTwoFactorAuth(Request $request)
+    {
+        // Rate Limiting
+        $key = 'update_two_factor_auth_' . $request->ip();
+        $maxAttempts = 5;
+        $decayMinutes = 2;
+
+        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
+            $seconds = RateLimiter::availableIn($key);
+            return response()->json([
+                'success' => false,
+                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $seconds . ' ثانیه دیگر صبر کنید.',
+                'error_type' => 'rate_limit'
+            ], 429);
+        }
+
+        RateLimiter::hit($key, $decayMinutes * 60);
+
+        $request->validate([
+            'two_factor_enabled' => 'required|boolean',
+            'two_factor_secret' => $request->two_factor_enabled ? 'required|string|min:6' : 'nullable', // شرطی کردن اعتبارسنجی
+        ]);
+
+        $doctor = Auth::guard('doctor')->user();
+        $doctor->two_factor_secret_enabled = $request->two_factor_enabled;
+        $doctor->two_factor_secret = $request->two_factor_enabled ? bcrypt($request->two_factor_secret) : null; // اگر غیرفعال است، مقدار null قرار دهید
+        $doctor->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'تنظیمات گذرواژه دو مرحله‌ای با موفقیت به‌روزرسانی شد.',
         ]);
     }
     public function niceId()

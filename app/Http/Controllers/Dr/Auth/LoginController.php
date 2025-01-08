@@ -195,6 +195,7 @@ class LoginController
     if ($loginAttempts->isLocked($doctor->mobile)) {
       return $this->handleRateLimitError($doctor->mobile);
     }
+    
     if ($doctor && password_verify($request->password, $doctor->password) && $doctor->status === 1 && $doctor->user_type === 'doctor') {
       $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
 

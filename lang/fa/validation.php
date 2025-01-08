@@ -72,6 +72,8 @@ return [
         "specialty_id" => " تخصص ها",
         "specialty_oms_id" => " تخصص های نظام",
         "sayam_code" => "کد سیام",
+        "static_password_enabled" => "فعالسازی کلمه عبور",
+        "two_factor_secret_enabled" => "فعالسازی  گذرواژه دو مرحله ای",
         "type" => "نوع مرکز درمانی ",
         "license_number" => "کد نظام پزشکی",
         "medical_system_code_type" => " نوع کد نظام پزشکی",

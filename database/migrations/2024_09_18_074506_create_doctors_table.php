@@ -20,7 +20,9 @@ return new class extends Migration {
             $table->string('alternative_mobile')->nullable();
             $table->string('national_code')->unique()->nullable();
             $table->string('password')->nullable();
+            $table->boolean('static_password_enabled')->default(false)->comment('آیا رمز عبور ثابت فعال است؟');
             $table->string('two_factor_secret')->nullable();
+            $table->boolean('two_factor_secret_enabled')->default(false)->comment('آیا رمز عبور ثابت فعال است؟');
             $table->timestamp('two_factor_confirmed_at')->nullable();
             $table->string('license_number')->unique()->nullable();
             $table->unsignedBigInteger('academic_degree_id')->nullable();

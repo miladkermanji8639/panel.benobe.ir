@@ -429,8 +429,8 @@
        <div class="w-100">
 
         <div class="w-100">
-         <input type="text" name="ita_phone" class="form-control h-50 border-radius-4" placeholder="شماره موبایل" maxlength="11"
-          value="{{ $messengers->where('messenger_type', 'ita')->first()->phone_number ?? '' }}">
+         <input type="text" name="ita_phone" class="form-control h-50 border-radius-4" placeholder="شماره موبایل"
+          maxlength="11" value="{{ $messengers->where('messenger_type', 'ita')->first()->phone_number ?? '' }}">
         </div>
         <div class="mt-2 w-100">
          <input type="text" name="ita_username" class="form-control h-50 border-radius-4 mt-2"
@@ -503,10 +503,13 @@
     </div>
    </div>
   </div>
+
+
+
   <div class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8">
    <div class="d-flex justify-content-between align-items-center">
     <div>
-     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
        d="M18 10.75C17.59 10.75 17.25 10.41 17.25 10V8C17.25 4.85 16.36 2.75 12 2.75C7.64 2.75 6.75 4.85 6.75 8V10C6.75 10.41 6.41 10.75 6 10.75C5.59 10.75 5.25 10.41 5.25 10V8C5.25 5.1 5.95 1.25 12 1.25C18.05 1.25 18.75 5.1 18.75 8V10C18.75 10.41 18.41 10.75 18 10.75Z"
        fill="#3F3F79"></path>
@@ -532,27 +535,42 @@
     <div class="loading-spinner d-none"></div>
     <div>
      <div class="accordion_content__bS0xm">
-      <div class="d-flex align-items-center mt-2">
-       <div class="password_toggle__AXK9v d-flex align-items-center">
-        <input type="checkbox" id="switch"><label for="switch">Toggle</label>
+
+      <form class="w-100" action="{{ route('dr-static-password-update') }}" method="POST"
+       id="staticPasswordForm">
+       @csrf
+       <div class="d-flex align-items-center mt-2">
+        <div class="password_toggle__AXK9v d-flex align-items-center">
+
+         <input type="checkbox" id="static_password_enabled" name="static_password_enabled" value="1"
+          {{ Auth::guard('doctor')->user()->static_password_enabled ? 'checked' : '' }}>
+         <label for="static_password_enabled">Toggle</label>
+         <span class="mx-1">رمزعبور ثابت فعال است</span>
+
+
+        </div>
        </div>
-       <span class="mx-1">رمزعبور ثابت فعال است</span>
-      </div>
-      <form class="w-100">
        <div class="w-100 d-flex justify-content-between gap-4 flex-xs-wrap flex-xs-column">
         <div class="w-100">
-         <label for="name" class="label-top-input"> کلمه عبور</label>
-         <input type="text" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative daraje">
+         <label for="password" class="label-top-input"> کلمه عبور</label>
+         <input type="password" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative daraje"
+          id="password" name="password" placeholder="رمز عبور"
+          {{ Auth::guard('doctor')->user()->static_password_enabled ? '' : 'disabled' }}>
          <svg class="show-pass-1" width="24" height="24" viewBox="0 0 24 24" fill="none"
           xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
-           d="M2.75 12C2.75 11.6616 2.88577 11.0954 3.24331 10.409C3.59385 9.73591 4.13459 8.9926 4.88371 8.3011C6.37297 6.9264 8.69232 5.75 12 5.75C15.3077 5.75 17.627 6.9264 19.1163 8.3011C19.8654 8.9926 20.4061 9.73591 20.7567 10.409C21.1142 11.0954 21.25 11.6616 21.25 12C21.25 12.3384 21.1142 12.9046 20.7567 13.591C20.4061 14.2641 19.8654 15.0074 19.1163 15.6989C17.627 17.0736 15.3077 18.25 12 18.25C8.69232 18.25 6.37297 17.0736 4.88371 15.6989C4.13459 15.0074 3.59385 14.2641 3.24331 13.591C2.88577 12.9046 2.75 12.3384 2.75 12ZM12 4.25C8.30768 4.25 5.62703 5.5736 3.86629 7.1989C2.99041 8.0074 2.34365 8.88909 1.91294 9.71605C1.48923 10.5296 1.25 11.3384 1.25 12C1.25 12.6616 1.48923 13.4704 1.91294 14.284C2.34365 15.1109 2.99041 15.9926 3.86629 16.8011C5.62703 18.4264 8.30768 19.75 12 19.75C15.6923 19.75 18.373 18.4264 20.1337 16.8011C21.0096 15.9926 21.6564 15.1109 22.0871 14.284C22.5108 13.4704 22.75 12.6616 22.75 12C22.75 11.3384 22.5108 10.5296 22.0871 9.71605C21.6564 8.88909 21.0096 8.0074 20.1337 7.1989C18.373 5.5736 15.6923 4.25 12 4.25ZM9.7499 12C9.7499 10.7574 10.7573 9.75002 11.9999 9.75002C13.2425 9.75002 14.2499 10.7574 14.2499 12C14.2499 13.2427 13.2425 14.25 11.9999 14.25C10.7573 14.25 9.7499 13.2427 9.7499 12ZM11.9999 8.25002C9.92883 8.25002 8.2499 9.92896 8.2499 12C8.2499 14.0711 9.92883 15.75 11.9999 15.75C14.071 15.75 15.7499 14.0711 15.7499 12C15.7499 9.92896 14.071 8.25002 11.9999 8.25002Z"
-           fill="#22282F"></path>
+           d="M12 8.25C9.92893 8.25 8.25 9.92893 8.25 12C8.25 14.0711 9.92893 15.75 12 15.75C14.0711 15.75 15.75 14.0711 15.75 12C15.75 9.92893 14.0711 8.25 12 8.25ZM9.75 12C9.75 10.7574 10.7574 9.75 12 9.75C13.2426 9.75 14.25 10.7574 14.25 12C14.25 13.2426 13.2426 14.25 12 14.25C10.7574 14.25 9.75 13.2426 9.75 12Z"
+           fill="#1C274C" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+           d="M12 3.25C7.48587 3.25 4.44529 5.9542 2.68057 8.24686L2.64874 8.2882C2.24964 8.80653 1.88206 9.28392 1.63269 9.8484C1.36564 10.4529 1.25 11.1117 1.25 12C1.25 12.8883 1.36564 13.5471 1.63269 14.1516C1.88206 14.7161 2.24964 15.1935 2.64875 15.7118L2.68057 15.7531C4.44529 18.0458 7.48587 20.75 12 20.75C16.5141 20.75 19.5547 18.0458 21.3194 15.7531L21.3512 15.7118C21.7504 15.1935 22.1179 14.7161 22.3673 14.1516C22.6344 13.5471 22.75 12.8883 22.75 12C22.75 11.1117 22.6344 10.4529 22.3673 9.8484C22.1179 9.28391 21.7504 8.80652 21.3512 8.28818L21.3194 8.24686C19.5547 5.9542 16.5141 3.25 12 3.25ZM3.86922 9.1618C5.49864 7.04492 8.15036 4.75 12 4.75C15.8496 4.75 18.5014 7.04492 20.1308 9.1618C20.5694 9.73159 20.8263 10.0721 20.9952 10.4545C21.1532 10.812 21.25 11.2489 21.25 12C21.25 12.7511 21.1532 13.188 20.9952 13.5455C20.8263 13.9279 20.5694 14.2684 20.1308 14.8382C18.5014 16.9551 15.8496 19.25 12 19.25C8.15036 19.25 5.49864 16.9551 3.86922 14.8382C3.43064 14.2684 3.17374 13.9279 3.00476 13.5455C2.84684 13.188 2.75 12.7511 2.75 12C2.75 11.2489 2.84684 10.812 3.00476 10.4545C3.17374 10.0721 3.43063 9.73159 3.86922 9.1618Z"
+           fill="#1C274C" />
          </svg>
         </div>
         <div class="w-100">
-         <label for="name" class="label-top-input">تکرار کلمه عبور</label>
-         <input type="text" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative">
+         <label for="password_confirmation" class="label-top-input">تکرار کلمه عبور</label>
+         <input type="password" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative"
+          id="password_confirmation" name="password_confirmation" placeholder="تکرار رمز عبور"
+          {{ Auth::guard('doctor')->user()->static_password_enabled ? '' : 'disabled' }}>
          <svg class="show-pass-2" width="24" height="24" viewBox="0 0 24 24" fill="none"
           xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
@@ -562,8 +580,71 @@
         </div>
        </div>
        <div class="w-100 mt-3">
-        <button class="btn btn-primary w-100 h-50" type="submit">
-         <span class="button_text__51wVM">ذخیره رمزعبور</span>
+        <button type="submit" class="btn btn-primary h-50 col-12 d-flex justify-content-center align-items-center"
+         id="btn-save-pass" {{ Auth::guard('doctor')->user()->static_password_enabled ? '' : 'disabled' }}>
+         <span class="button_text">ذخیره تغیرات</span>
+         <div class="loader"></div>
+        </button>
+
+       </div>
+      </form>
+     </div>
+    </div>
+
+   </div>
+  </div>
+  <div class="option-card-box-shodow p-3 col-xs-12 col-sm-12 col-md-12 col-lg-8">
+   <div class="d-flex justify-content-between align-items-center">
+    <div>
+     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+       d="M18 10.75C17.59 10.75 17.25 10.41 17.25 10V8C17.25 4.85 16.36 2.75 12 2.75C7.64 2.75 6.75 4.85 6.75 8V10C6.75 10.41 6.41 10.75 6 10.75C5.59 10.75 5.25 10.41 5.25 10V8C5.25 5.1 5.95 1.25 12 1.25C18.05 1.25 18.75 5.1 18.75 8V10C18.75 10.41 18.41 10.75 18 10.75Z"
+       fill="#3F3F79"></path>
+      <path
+       d="M12 19.25C10.21 19.25 8.75 17.79 8.75 16C8.75 14.21 10.21 12.75 12 12.75C13.79 12.75 15.25 14.21 15.25 16C15.25 17.79 13.79 19.25 12 19.25ZM12 14.25C11.04 14.25 10.25 15.04 10.25 16C10.25 16.96 11.04 17.75 12 17.75C12.96 17.75 13.75 16.96 13.75 16C13.75 15.04 12.96 14.25 12 14.25Z"
+       fill="#3F3F79"></path>
+      <path
+       d="M17 22.75H7C2.59 22.75 1.25 21.41 1.25 17V15C1.25 10.59 2.59 9.25 7 9.25H17C21.41 9.25 22.75 10.59 22.75 15V17C22.75 21.41 21.41 22.75 17 22.75ZM7 10.75C3.42 10.75 2.75 11.43 2.75 15V17C2.75 20.57 3.42 21.25 7 21.25H17C20.58 21.25 21.25 20.57 21.25 17V15C21.25 11.43 20.58 10.75 17 10.75H7Z"
+       fill="#3F3F79"></path>
+     </svg>
+     <span class="txt-card-span mx-1">فعال‌سازی گذرواژه دو مرحله‌ای</span>
+    </div>
+    <div>
+     <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg"
+      style="transform: rotate(90deg)" class="chevron_bottom__M8fF9">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+       d="M0.658146 0.39655C0.95104 0.103657 1.42591 0.103657 1.71881 0.39655L6.21881 4.89655C6.5117 5.18944 6.5117 5.66432 6.21881 5.95721L1.71881 10.4572C1.42591 10.7501 0.95104 10.7501 0.658146 10.4572C0.365253 10.1643 0.365253 9.68944 0.658146 9.39655L4.62782 5.42688L0.658146 1.45721C0.365253 1.16432 0.365253 0.689443 0.658146 0.39655Z"
+       fill="#000"></path>
+     </svg>
+    </div>
+   </div>
+   <div class="drop-toggle-styles two-factor-data-drop-toggle">
+    <div class="loading-spinner d-none"></div>
+    <div>
+     <div class="accordion_content__bS0xm">
+      <div class="d-flex align-items-center mt-2">
+       <div class="password_toggle__AXK9v d-flex align-items-center">
+        <input type="checkbox" id="two_factor_enabled" name="two_factor_enabled" value="1"
+         {{ Auth::guard('doctor')->user()->two_factor_secret_enabled ? 'checked' : '' }}>
+        <label for="two_factor_enabled">Toggle</label>
+       </div>
+       <span class="mx-1"> گذرواژه دو مرحله ای فعال است</span>
+      </div>
+      <form class="w-100" action="{{ route('dr-two-factor-update') }}" method="POST" id="twoFactorForm">
+       @csrf
+       <div class="w-100 d-flex justify-content-between gap-4 flex-xs-wrap flex-xs-column">
+        <div class="w-100">
+         <label for="two_factor_secret" class="label-top-input"> کلید مخفی</label>
+         <input type="text" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative daraje"
+          id="two_factor_secret" name="two_factor_secret" placeholder="کلید مخفی"
+          {{ Auth::guard('doctor')->user()->two_factor_secret_enabled ? '' : 'disabled' }}>
+        </div>
+       </div>
+       <div class="w-100 mt-3">
+        <button type="submit" class="btn btn-primary h-50 col-12 d-flex justify-content-center align-items-center"
+         id="btn-save-two-factor" {{ Auth::guard('doctor')->user()->two_factor_secret_enabled ? '' : 'disabled' }}>
+         <span class="button_text">ذخیره تغیرات</span>
+         <div class="loader"></div>
         </button>
        </div>
       </form>
@@ -571,6 +652,11 @@
     </div>
    </div>
   </div>
+
+
+
+
+
   <div class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8">
    <div class="d-flex justify-content-between align-items-center">
     <div>
@@ -1503,6 +1589,7 @@
  });
  /*  edit mobile */
 </script>
+
 <script>
  document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('messengersForm');
@@ -1576,6 +1663,387 @@
        background: "red",
       },
      }).showToast();
+    });
+  });
+ });
+</script>
+
+
+<script>
+ document.getElementById("staticPasswordForm").addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = this;
+  const submitButton = form.querySelector('button[type="submit"]');
+  const loader = submitButton.querySelector('.loader');
+  const buttonText = submitButton.querySelector('.button_text');
+
+  // Show loading state
+  buttonText.style.display = 'none';
+  loader.style.display = 'block';
+
+  fetch(form.action, {
+    method: form.method,
+    body: new FormData(form),
+    headers: {
+     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+     'Accept': 'application/json',
+     'X-Requested-With': 'XMLHttpRequest'
+    }
+   })
+   .then(response => {
+    // Reset button to initial state
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
+    if (!response.ok) {
+     return response.json().then(errorData => {
+      throw errorData;
+     });
+    }
+    return response.json();
+   })
+   .then(data => {
+    // Reset button to initial state
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
+    if (data.success) {
+     // Show success toast
+     Toastify({
+      text: data.message || "تنظیمات با موفقیت به‌روزرسانی شد",
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "green"
+      }
+     }).showToast();
+    } else {
+     // Show error toast
+     Toastify({
+      text: data.message || "خطا در به‌روزرسانی تنظیمات",
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "red"
+      }
+     }).showToast();
+    }
+   })
+   .catch(error => {
+    // Reset button to initial state
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
+
+    // نمایش خطاهای اعتبارسنجی
+    if (error.errors) {
+     handleValidationErrors(error.errors);
+    } else {
+     // Show error toast
+     Toastify({
+      text: error.message || 'خطا در برقراری ارتباط با سرور',
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "red"
+      }
+     }).showToast();
+    }
+   });
+ });
+
+ function handleValidationErrors(errors) {
+  // پاک کردن خطاهای قبلی
+  clearPreviousErrors();
+  // نمایش خطاها
+  Object.keys(errors).forEach(field => {
+   const inputElement = document.querySelector(`[name="${field}"]`);
+   if (inputElement) {
+    // ایجاد المان خطا
+    const errorElement = document.createElement('div');
+    errorElement.className = 'text-danger validation-error mt-1 font-size-13 d-block';
+    // نمایش تمام خطاهای مربوط به فیلد
+    errorElement.textContent = errors[field][0];
+    // اضافه کردن کلاس خطا به اینپوت
+    inputElement.classList.add('is-invalid');
+    // قرار دادن المان خطا بعد از اینپوت
+    inputElement.parentNode.insertBefore(errorElement, inputElement.nextSibling);
+   }
+  });
+  // نمایش توست خطا
+  Toastify({
+   text: "لطفاً خطاهای فرم را بررسی کنید",
+   duration: 3000,
+   close: true,
+   gravity: "top",
+   position: 'right',
+   style: {
+    background: "red"
+   }
+  }).showToast();
+ }
+
+ function clearPreviousErrors() {
+  // حذف خطاهای قبلی
+  document.querySelectorAll('.validation-error').forEach(el => el.remove());
+  document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+ }
+ document.addEventListener('DOMContentLoaded', function() {
+  const toggleSwitch = document.querySelector('input[name="static_password_enabled"]');
+  const passwordInput = document.querySelector('input[name="password"]');
+  const confirmPasswordInput = document.querySelector('input[name="password_confirmation"]');
+  const saveButton = document.getElementById('btn-save-pass');
+
+  toggleSwitch.addEventListener('change', function() {
+   if (this.checked) {
+    passwordInput.removeAttribute('disabled');
+    confirmPasswordInput.removeAttribute('disabled');
+    saveButton.removeAttribute('disabled');
+   } else {
+    passwordInput.setAttribute('disabled', 'disabled');
+    confirmPasswordInput.setAttribute('disabled', 'disabled');
+    saveButton.setAttribute('disabled', 'disabled');
+
+    // ارسال درخواست Ajax برای غیرفعال کردن رمز عبور ثابت
+    fetch("{{ route('dr-static-password-update') }}", {
+      method: 'POST',
+      headers: {
+       'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+       'Accept': 'application/json',
+       'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+       static_password_enabled: false
+      }),
+     })
+     .then(response => response.json())
+     .then(data => {
+      if (data.success) {
+       Toastify({
+        text: data.message,
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        style: {
+         background: "green",
+        },
+       }).showToast();
+      } else {
+       Toastify({
+        text: data.message || "خطا در به‌روزرسانی تنظیمات",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        style: {
+         background: "red",
+        },
+       }).showToast();
+      }
+     })
+     .catch(error => {
+      Toastify({
+       text: "خطا در برقراری ارتباط با سرور",
+       duration: 3000,
+       gravity: "top",
+       position: "right",
+       style: {
+        background: "red",
+       },
+      }).showToast();
+     });
+   }
+  });
+ });
+ document.addEventListener('DOMContentLoaded', function() {
+  const showPass1 = document.querySelector('.show-pass-2');
+  const showPass2 = document.querySelector('.show-pass-1');
+  const passwordInput = document.querySelector('input[name="password"]');
+  const confirmPasswordInput = document.querySelector('input[name="password_confirmation"]');
+
+  // تابع برای تغییر وضعیت نمایش پسورد
+  function togglePasswordVisibility(inputElement, iconElement) {
+   if (inputElement.type === 'password') {
+    inputElement.type = 'text';
+    iconElement.innerHTML =
+     `<path fill-rule="evenodd" clip-rule="evenodd" d="M2.75 12C2.75 11.6616 2.88577 11.0954 3.24331 10.409C3.59385 9.73591 4.13459 8.9926 4.88371 8.3011C6.37297 6.9264 8.69232 5.75 12 5.75C15.3077 5.75 17.627 6.9264 19.1163 8.3011C19.8654 8.9926 20.4061 9.73591 20.7567 10.409C21.1142 11.0954 21.25 11.6616 21.25 12C21.25 12.3384 21.1142 12.9046 20.7567 13.591C20.4061 14.2641 19.8654 15.0074 19.1163 15.6989C17.627 17.0736 15.3077 18.25 12 18.25C8.69232 18.25 6.37297 17.0736 4.88371 15.6989C4.13459 15.0074 3.59385 14.2641 3.24331 13.591C2.88577 12.9046 2.75 12.3384 2.75 12ZM12 4.25C8.30768 4.25 5.62703 5.5736 3.86629 7.1989C2.99041 8.0074 2.34365 8.88909 1.91294 9.71605C1.48923 10.5296 1.25 11.3384 1.25 12C1.25 12.6616 1.48923 13.4704 1.91294 14.284C2.34365 15.1109 2.99041 15.9926 3.86629 16.8011C5.62703 18.4264 8.30768 19.75 12 19.75C15.6923 19.75 18.373 18.4264 20.1337 16.8011C21.0096 15.9926 21.6564 15.1109 22.0871 14.284C22.5108 13.4704 22.75 12.6616 22.75 12C22.75 11.3384 22.5108 10.5296 22.0871 9.71605C21.6564 8.88909 21.0096 8.0074 20.1337 7.1989C18.373 5.5736 15.6923 4.25 12 4.25ZM9.7499 12C9.7499 10.7574 10.7573 9.75002 11.9999 9.75002C13.2425 9.75002 14.2499 10.7574 14.2499 12C14.2499 13.2427 13.2425 14.25 11.9999 14.25C10.7573 14.25 9.7499 13.2427 9.7499 12ZM11.9999 8.25002C9.92883 8.25002 8.2499 9.92896 8.2499 12C8.2499 14.0711 9.92883 15.75 11.9999 15.75C14.071 15.75 15.7499 14.0711 15.7499 12C15.7499 9.92896 14.071 8.25002 11.9999 8.25002Z" fill="#22282F"></path>`;
+   } else {
+    inputElement.type = 'password';
+    iconElement.innerHTML =
+     `<path fill-rule="evenodd" clip-rule="evenodd" d="M3.53023 2.4697C3.23734 2.17681 2.76247 2.17681 2.46957 2.4697C2.17668 2.76259 2.17668 3.23747 2.46957 3.53036L5.13723 6.19801C3.91106 7.01861 2.99173 8.00411 2.35714 8.96369C1.64412 10.0419 1.25 11.1513 1.25 12C1.25 12.6616 1.48923 13.4704 1.91294 14.284C2.34365 15.1109 2.99041 15.9926 3.86629 16.8011C5.62703 18.4264 8.30768 19.75 12 19.75C14.1796 19.75 16.0109 19.2887 17.5107 18.5715L20.4696 21.5304C20.7625 21.8233 21.2373 21.8233 21.5302 21.5304C21.8231 21.2375 21.8231 20.7626 21.5302 20.4697L3.53023 2.4697ZM16.3748 17.4356L14.0679 15.1287C13.4751 15.5211 12.7637 15.75 11.9999 15.75C9.92883 15.75 8.2499 14.0711 8.2499 12C8.2499 11.2363 8.47885 10.5248 8.87127 9.93206L6.22202 7.2828C5.0408 8.01882 4.17938 8.92754 3.60829 9.7911C2.98821 10.7287 2.75 11.5502 2.75 12C2.75 12.3384 2.88577 12.9046 3.24331 13.5911C3.59385 14.2641 4.13459 15.0074 4.88371 15.6989C6.37297 17.0736 8.69232 18.25 12 18.25C13.7211 18.25 15.1715 17.9315 16.3748 17.4356ZM9.96904 11.0298C9.82845 11.3235 9.7499 11.6522 9.7499 12C9.7499 13.2427 10.7573 14.25 11.9999 14.25C12.3477 14.25 12.6765 14.1715 12.9701 14.0309L9.96904 11.0298ZM12 5.75001C10.9594 5.75001 10.0189 5.86643 9.17331 6.06728C8.7703 6.16299 8.36601 5.91388 8.2703 5.51088C8.17458 5.10788 8.42369 4.70359 8.82669 4.60787C9.78973 4.37915 10.8467 4.25001 12 4.25001C15.6923 4.25001 18.373 5.5736 20.1337 7.1989C21.0096 8.00741 21.6564 8.88909 22.0871 9.71606C22.5108 10.5296 22.75 11.3384 22.75 12C22.75 13.2108 21.9456 15.0051 20.4152 16.5311C20.1218 16.8236 19.647 16.8229 19.3545 16.5296C19.062 16.2362 19.0627 15.7614 19.3561 15.4689C20.7151 14.1139 21.25 12.6791 21.25 12C21.25 11.6616 21.1142 11.0954 20.7567 10.409C20.4061 9.73592 19.8654 8.9926 19.1163 8.30111C17.627 6.92641 15.3077 5.75001 12 5.75001Z" fill="#22282F"></path>`;
+   }
+  }
+
+
+  // اضافه کردن رویداد کلیک برای SVG اول
+  showPass1.addEventListener('click', function() {
+   togglePasswordVisibility(passwordInput, showPass1);
+  });
+  // اضافه کردن رویداد کلیک برای SVG دوم
+  showPass2.addEventListener('click', function() {
+   togglePasswordVisibility(confirmPasswordInput, showPass2);
+  });
+ });
+
+ document.addEventListener('DOMContentLoaded', function() {
+  const toggleSwitch = document.querySelector('input[name="two_factor_enabled"]');
+  const secretInput = document.querySelector('input[name="two_factor_secret"]');
+  const saveButton = document.getElementById('btn-save-two-factor');
+
+  toggleSwitch.addEventListener('change', function() {
+   if (this.checked) {
+    secretInput.removeAttribute('disabled');
+    saveButton.removeAttribute('disabled');
+   } else {
+    secretInput.setAttribute('disabled', 'disabled');
+    saveButton.setAttribute('disabled', 'disabled');
+
+    // ارسال درخواست Ajax برای غیرفعال کردن گذرواژه دو مرحله‌ای
+    fetch("{{ route('dr-two-factor-update') }}", {
+      method: 'POST',
+      headers: {
+       'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+       'Accept': 'application/json',
+       'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+       two_factor_enabled: 0, // غیرفعال کردن
+       two_factor_secret: null // ارسال null به جای رشته خالی
+      }),
+     })
+     .then(response => response.json())
+     .then(data => {
+      if (data.success) {
+       Toastify({
+        text: data.message,
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        style: {
+         background: "green",
+        },
+       }).showToast();
+      } else {
+       Toastify({
+        text: data.message || "خطا در به‌روزرسانی تنظیمات",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        style: {
+         background: "red",
+        },
+       }).showToast();
+      }
+     })
+     .catch(error => {
+      Toastify({
+       text: "خطا در برقراری ارتباط با سرور",
+       duration: 3000,
+       gravity: "top",
+       position: "right",
+       style: {
+        background: "red",
+       },
+      }).showToast();
+     });
+   }
+  });
+
+  // ارسال فرم گذرواژه دو مرحله‌ای
+  document.getElementById("twoFactorForm").addEventListener('submit', function(e) {
+   e.preventDefault();
+   const form = this;
+   const submitButton = form.querySelector('button[type="submit"]');
+   const loader = submitButton.querySelector('.loader');
+   const buttonText = submitButton.querySelector('.button_text');
+
+   // Show loading state
+   buttonText.style.display = 'none';
+   loader.style.display = 'block';
+
+   // اعتبارسنجی کلید مخفی اگر تاگل فعال باشد
+   if (toggleSwitch.checked && !secretInput.value) {
+    Toastify({
+     text: "لطفاً کلید مخفی را وارد کنید",
+     duration: 3000,
+     close: true,
+     gravity: "top",
+     position: 'right',
+     style: {
+      background: "red"
+     }
+    }).showToast();
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
+    return;
+   }
+
+   fetch(form.action, {
+     method: form.method,
+     headers: {
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+     },
+     body: JSON.stringify({
+      two_factor_enabled: toggleSwitch.checked ? 1 : 0,
+      two_factor_secret: secretInput.value
+     }),
+    })
+    .then(response => response.json())
+    .then(data => {
+     // Reset button to initial state
+     buttonText.style.display = 'block';
+     loader.style.display = 'none';
+     if (data.success) {
+      // Show success toast
+      Toastify({
+       text: data.message || "تنظیمات با موفقیت به‌روزرسانی شد",
+       duration: 3000,
+       close: true,
+       gravity: "top",
+       position: 'right',
+       style: {
+        background: "green"
+       }
+      }).showToast();
+     } else {
+      // Show error toast
+      Toastify({
+       text: data.message || "خطا در به‌روزرسانی تنظیمات",
+       duration: 3000,
+       close: true,
+       gravity: "top",
+       position: 'right',
+       style: {
+        background: "red"
+       }
+      }).showToast();
+     }
+    })
+    .catch(error => {
+     // Reset button to initial state
+     buttonText.style.display = 'block';
+     loader.style.display = 'none';
+
+     // نمایش خطاهای اعتبارسنجی
+     if (error.errors) {
+      handleValidationErrors(error.errors);
+     } else {
+      // Show error toast
+      Toastify({
+       text: error.message || 'خطا در برقراری ارتباط با سرور',
+       duration: 3000,
+       close: true,
+       gravity: "top",
+       position: 'right',
+       style: {
+        background: "red"
+       }
+      }).showToast();
+     }
     });
   });
  });

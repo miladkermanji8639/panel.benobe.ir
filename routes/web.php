@@ -484,6 +484,9 @@ Route::prefix('dr')
           Route::post('/dr-uuid-update', [DrProfileController::class, 'DrUUIDUpdate'])
             ->name('dr-uuid-update');
           Route::put('/dr-profile-messengers', [DrProfileController::class, 'updateMessengers'])->name('dr-messengers-update');
+          Route::post('dr-static-password-update', [DrProfileController::class, 'updateStaticPassword'])->name('dr-static-password-update');
+          Route::post('dr-two-factor-update', [DrProfileController::class, 'updateTwoFactorAuth'])
+            ->name('dr-two-factor-update');
           Route::get('niceId', [DrProfileController::class, 'niceId'])->name('dr-edit-profile-niceId');
           Route::get('security', [DrProfileController::class, 'security'])->name('dr-edit-profile-security');
           Route::get('upgrade', [DrProfileController::class, 'upgrade'])->name('dr-edit-profile-upgrade');
