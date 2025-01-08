@@ -773,31 +773,30 @@
 
  // تابع اولیه برای تام سلکت
  function initTomSelect(selector, options = {}) {
-  return new TomSelect(selector, {
-   plugins: ['clear_button'],
-   searchField: ['text', 'name'],
-   placeholder: options.placeholder || 'انتخاب کنید',
-   maxItems: options.maxItems || 1,
-   render: {
-    option: function(data, escape) {
-     return '<div class="d-flex justify-content-between">' +
-      '<span>' + escape(data.text || data.name) + '</span>' +
-      '</div>';
+  const element = document.querySelector(selector);
+  if (element && !element.tomselect) {
+   return new TomSelect(element, {
+    plugins: ['clear_button'],
+    searchField: ['text', 'name'],
+    placeholder: options.placeholder || 'انتخاب کنید',
+    maxItems: options.maxItems || 1,
+    render: {
+     option: function(data, escape) {
+      return '<div class="d-flex justify-content-between">' +
+       '<span>' + escape(data.text || data.name) + '</span>' +
+       '</div>';
+     },
+     item: function(data, escape) {
+      return '<div>' + escape(data.text || data.name) + '</div>';
+     }
     },
-    item: function(data, escape) {
-     return '<div>' + escape(data.text || data.name) + '</div>';
-    }
-   },
-   locale: 'fa',
-   ...options
-  });
+    locale: 'fa',
+   });
+  }
  }
 
  // تابع اجرای اولیه
  // تابع اجرای اولیه
- document.addEventListener('DOMContentLoaded', function() {
-  initAllTomSelects();
- });
 
  function initAllTomSelects() {
   // درجه علمی
@@ -834,7 +833,7 @@
   });
 
   // تخصص‌های اضافی از دیتابیس
-  document.querySelectorAll('[id^="specialty"]').forEach(el => {
+  document.querySelectorAll('#specialty').forEach(el => {
    if (el.id !== 'specialties_list') {
     initTomSelect(`#${el.id}`, {
      placeholder: 'انتخاب تخصص',
