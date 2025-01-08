@@ -248,7 +248,7 @@
         <!-- تخصص‌های اضافه شده از دیتابیس -->
         @foreach ($specialties as $index => $specialty)
          @if ($index > 0)
-          <div class="w-100 mt-3 specialty-item">
+          <div class="w-100 mt-3 specialty-item" data-specialty-id="{{ $specialty->id }}">
            <div class="text-left mt-3 remove-form-item" onclick="removeInput(this)">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
              xmlns="http://www.w3.org/2000/svg">
@@ -728,30 +728,7 @@
    }
   });
 
-  window.removeInput = function(button) {
-   const inputGroup = button.closest('.specialty-item'); // پیدا کردن المان والد با کلاس specialty-item
 
-   Swal.fire({
-     title: 'آیا مطمئن هستید؟',
-     text: 'این عمل قابل بازگشت نیست!',
-     icon: 'warning',
-     showCancelButton: true,
-     confirmButtonColor: '#3085d6',
-     cancelButtonColor: '#d33',
-     confirmButtonText: 'بله، حذف کن!',
-     cancelButtonText: 'خیر، انصراف',
-    })
-    .then((result) => {
-     if (result.isConfirmed) {
-      inputGroup.remove(); // حذف المان والد
-      updateAddButtonState(); // به‌روزرسانی وضعیت دکمه "اضافه کردن تخصص"
-      Swal.fire('حذف شد!', 'عنصر با موفقیت حذف شد.', 'success');
-     }
-    })
-    .catch((error) => {
-     console.error('خطایی در نمایش SweetAlert رخ داد:', error);
-    });
-  };
  });
 
  function updateAddButtonState() {
@@ -764,9 +741,75 @@
   }
  }
 
- // فراخوانی این تابع پس از هر بار اضافه کردن تخصص جدید
- updateAddButtonState();
+ const deleteSpecialtyRoute = "{{ route('dr-delete-specialty', ['id' => '__ID__']) }}";
 
+ function removeInput(button) {
+  // پیدا کردن المان والد که دارای data-specialty-id است
+  const inputGroup = button.closest('.specialty-item');
+
+  // خواندن مقدار data-specialty-id
+  const specialtyId = inputGroup.getAttribute('data-specialty-id');
+
+  // بررسی اینکه specialtyId مقدار معتبری دارد
+  if (!specialtyId) {
+   console.error('specialtyId is undefined or invalid');
+   Swal.fire('خطا!', 'شناسه تخصص نامعتبر است.', 'error');
+   return;
+  }
+
+  Swal.fire({
+   title: 'آیا مطمئن هستید؟',
+   text: 'این عمل قابل بازگشت نیست!',
+   icon: 'warning',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: 'بله، حذف کن!',
+   cancelButtonText: 'خیر، انصراف',
+  }).then((result) => {
+   if (result.isConfirmed) {
+    // ساخت URL با استفاده از نام مسیر و جایگزینی __ID__ با specialtyId
+    const url = deleteSpecialtyRoute.replace('__ID__', specialtyId);
+
+    // ارسال درخواست حذف به سرور
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+       'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+       'Accept': 'application/json',
+       'X-Requested-With': 'XMLHttpRequest'
+      }
+     })
+     .then(response => response.json())
+     .then(data => {
+      if (data.success) {
+       // حذف المان از صفحه
+       inputGroup.remove();
+
+       // نمایش پیام موفقیت
+       Swal.fire('حذف شد!', 'تخصص با موفقیت حذف شد.', 'success');
+
+       // به‌روزرسانی وضعیت دکمه "اضافه کردن تخصص"
+       updateAddButtonState();
+      } else {
+       // نمایش پیام خطا
+       Swal.fire('خطا!', 'خطا در حذف تخصص.', 'error');
+      }
+     })
+     .catch(error => {
+      console.error('خطا در برقراری ارتباط با سرور:', error);
+      Swal.fire('خطا!', 'خطا در برقراری ارتباط با سرور.', 'error');
+     });
+   }
+  });
+ }
+
+
+ // فراخوانی این تابع پس از هر بار اضافه کردن تخصص جدید
+ $(document).ready(function() {
+  updateAddButtonState();
+
+ });
  // تابع اولیه برای تام سلکت
  function initTomSelect(selector, options = {}) {
   return new TomSelect(selector, {

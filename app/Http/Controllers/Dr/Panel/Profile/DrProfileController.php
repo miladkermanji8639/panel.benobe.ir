@@ -233,6 +233,28 @@ class DrProfileController
             ]);
         }
     }
+    public function deleteSpecialty($id)
+    {
+        try {
+            // پیدا کردن تخصص بر اساس ID
+            $specialty = DoctorSpecialty::findOrFail($id);
+
+            // حذف تخصص
+            $specialty->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'تخصص با موفقیت حذف شد.'
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Delete Specialty Error: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'خطا در حذف تخصص.'
+            ], 500);
+        }
+    }
     public function niceId()
     {
         return view("dr.panel.profile.edit-niceId");

@@ -480,6 +480,7 @@ Route::prefix('dr')
             ->name('dr-mobile-confirm');
           Route::post('/dr-specialty-update', [DrProfileController::class, 'DrSpecialtyUpdate'])
             ->name('dr-specialty-update');
+          Route::delete('/dr/delete-specialty/{id}', [DrProfileController::class, 'deleteSpecialty'])->name('dr-delete-specialty');
           Route::post('/dr-uuid-update', [DrProfileController::class, 'DrUUIDUpdate'])
             ->name('dr-uuid-update');
           Route::get('niceId', [DrProfileController::class, 'niceId'])->name('dr-edit-profile-niceId');
