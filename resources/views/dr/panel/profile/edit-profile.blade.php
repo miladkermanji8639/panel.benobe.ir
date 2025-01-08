@@ -414,7 +414,9 @@
        واتساپ خود را وارد.</span>
       <span class="font-size-15 mt-1">شماره موبایل این پیام رسان ها در دسترس بیمار قرار میگیرد.</span>
      </div>
-     <form action="" method="post">
+     <form id="messengersForm">
+      @csrf
+      @method('PUT')
       <div>
        <h6 class="text-left font-weight-bold d-block font-size-13">پیام رسان های داخلی</h6>
       </div>
@@ -425,14 +427,17 @@
          alt=""><span class="text-sm mx-1">ایتا</span>
        </div>
        <div class="w-100">
-        <form action="" method="post" class="w-100">
-         <div class="w-100">
-          <input type="text" class="form-control h-50 border-radius-4" placeholder="شماره موبایل">
-         </div>
-         <div class="mt-2 w-100">
-          <input type="text" class="form-control h-50 border-radius-4" placeholder="نام کاربری ایتا">
-         </div>
-        </form>
+
+        <div class="w-100">
+         <input type="text" name="ita_phone" class="form-control h-50 border-radius-4" placeholder="شماره موبایل" maxlength="11"
+          value="{{ $messengers->where('messenger_type', 'ita')->first()->phone_number ?? '' }}">
+        </div>
+        <div class="mt-2 w-100">
+         <input type="text" name="ita_username" class="form-control h-50 border-radius-4 mt-2"
+          placeholder="نام کاربری ایتا"
+          value="{{ $messengers->where('messenger_type', 'ita')->first()->username ?? '' }}">
+        </div>
+
        </div>
       </div>
       <div class="mt-2">
@@ -447,7 +452,9 @@
        </div>
        <div class="w-100">
         <div class="w-100">
-         <input type="text" class="form-control h-50  border-radius-4 col-12" placeholder="شماره موبایل">
+         <input type="text" name="whatsapp_phone" class="form-control h-50 border-radius-4 col-12"
+          placeholder="شماره موبایل" maxlength="11"
+          value="{{ $messengers->where('messenger_type', 'whatsapp')->first()->phone_number ?? '' }}">
         </div>
        </div>
       </div>
@@ -455,7 +462,7 @@
        <h6 class="text-left font-weight-bold d-block font-size-13"> تماس امن</h6>
       </div>
       <div
-       class="d-flex gap-4 justify-content-between align-items-center p-3 border border-solid rounded-lg border-slate-200 ">
+       class="d-flex gap-4 justify-content-between align-items-center p-3 border border-solid rounded-lg border-slate-200 mt-2">
        <div>
         <span class="text-responsive font-size-13 font-weight-bold">تماس امن به عنوان راه ارتباط جانبی در کنار هر یک از
          پیام‌رسان‌ها قرار می‌گیرد.</span>
@@ -472,13 +479,23 @@
        </div>
        <div class="flex flex-col gap-2">
         <div class="flex items-center rounded-lg elative MuiBox-root muirtl-0">
-         <div class="password_toggle__AXK9v"><input type="checkbox" id="switch" name="secureCall"
-           checked=""><label for="switch">Toggle</label></div>
+         <div class="password_toggle__AXK9v">
+          <input type="checkbox" id="secure_call" name="secure_call" value="1"
+           {{ ($messengers->where('messenger_type', 'ita')->first()->is_secure_call ?? false) ||
+           ($messengers->where('messenger_type', 'whatsapp')->first()->is_secure_call ?? false)
+               ? 'checked'
+               : '' }}>
+          <label for="secure_call">Toggle</label>
+         </div>
         </div>
        </div>
       </div>
       <div class="mt-3">
-       <button class="btn btn-primary w-100 h-50 border-radius-4">ثبت تغیرات</button>
+       <button type="submit"
+        class="btn btn-primary w-100 h-50 border-radius-4 d-flex justify-content-center align-items-center">
+        <span class="button_text">ثبت تغییرات</span>
+        <div class="loader"></div>
+       </button>
       </div>
      </form>
      <div>
@@ -1485,5 +1502,82 @@
   });
  });
  /*  edit mobile */
+</script>
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('messengersForm');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const buttonText = submitButton.querySelector('.button_text');
+  const loader = submitButton.querySelector('.loader');
+
+  form.addEventListener('submit', function(e) {
+   e.preventDefault();
+
+   // نمایش لودینگ و مخفی کردن متن دکمه
+   buttonText.style.display = 'none';
+   loader.style.display = 'block';
+
+   // ارسال درخواست Ajax
+   fetch("{{ route('dr-messengers-update') }}", {
+     method: 'PUT',
+     headers: {
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+     },
+     body: JSON.stringify({
+      ita_phone: form.querySelector('input[name="ita_phone"]').value,
+      ita_username: form.querySelector('input[name="ita_username"]').value,
+      whatsapp_phone: form.querySelector('input[name="whatsapp_phone"]').value,
+      secure_call: form.querySelector('input[name="secure_call"]').checked ? 1 : 0,
+     }),
+    })
+    .then(response => response.json())
+    .then(data => {
+     // بازگرداندن دکمه به حالت اولیه
+     buttonText.style.display = 'block';
+     loader.style.display = 'none';
+
+     // نمایش پیام موفقیت یا خطا
+     if (data.success) {
+      Toastify({
+       text: data.message,
+       duration: 3000,
+       gravity: "top",
+       position: "right",
+       style: {
+        background: "green",
+       },
+      }).showToast();
+     } else {
+      Toastify({
+       text: data.message || "خطا در به‌روزرسانی اطلاعات",
+       duration: 3000,
+       gravity: "top",
+       position: "right",
+       style: {
+        background: "red",
+       },
+      }).showToast();
+     }
+    })
+    .catch(error => {
+     // بازگرداندن دکمه به حالت اولیه
+     buttonText.style.display = 'block';
+     loader.style.display = 'none';
+
+     // نمایش خطا
+     Toastify({
+      text: "خطا در برقراری ارتباط با سرور",
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      style: {
+       background: "red",
+      },
+     }).showToast();
+    });
+  });
+ });
 </script>
 @endsection

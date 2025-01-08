@@ -115,8 +115,11 @@ class Doctor extends Authenticatable
         return $this->belongsToMany(SubSpecialty::class, 'doctor_specialty', 'doctor_id', 'specialty_id')
             ->withPivot('academic_degree_id', 'specialty_title'); // اضافه کردن فیلدهای اضافی
     }
+    public function messengers()
+    {
+        return $this->hasMany(DoctorMessenger::class);
+    }
 
-   
 
 
 

@@ -483,6 +483,7 @@ Route::prefix('dr')
           Route::delete('/dr/delete-specialty/{id}', [DrProfileController::class, 'deleteSpecialty'])->name('dr-delete-specialty');
           Route::post('/dr-uuid-update', [DrProfileController::class, 'DrUUIDUpdate'])
             ->name('dr-uuid-update');
+          Route::put('/dr-profile-messengers', [DrProfileController::class, 'updateMessengers'])->name('dr-messengers-update');
           Route::get('niceId', [DrProfileController::class, 'niceId'])->name('dr-edit-profile-niceId');
           Route::get('security', [DrProfileController::class, 'security'])->name('dr-edit-profile-security');
           Route::get('upgrade', [DrProfileController::class, 'upgrade'])->name('dr-edit-profile-upgrade');

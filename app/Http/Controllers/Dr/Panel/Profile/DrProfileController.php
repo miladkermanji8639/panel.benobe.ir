@@ -67,11 +67,11 @@ class DrProfileController
         $academic_degrees = AcademicDegree::active()
             ->orderBy('sort_order')
             ->get();
-
+        $messengers = $doctor->messengers;
 
         $sub_specialties = SubSpecialty::getOptimizedList();
 
-        return view("dr.panel.profile.edit-profile", compact(['specialtyName', 'academic_degrees', 'sub_specialties', 'currentSpecialty', 'specialties', 'doctorSpecialtyId', 'existingSpecialtiesCount']));
+        return view("dr.panel.profile.edit-profile", compact(['specialtyName', 'academic_degrees', 'sub_specialties', 'currentSpecialty', 'specialties', 'doctorSpecialtyId', 'existingSpecialtiesCount', 'messengers']));
     }
     public function DrSpecialtyUpdate(Request $request)
     {
@@ -254,6 +254,58 @@ class DrProfileController
                 'message' => 'خطا در حذف تخصص.'
             ], 500);
         }
+    }
+    public function updateMessengers(Request $request)
+    {
+        $doctor = Auth::guard('doctor')->user();
+
+        // اعتبارسنجی داده‌ها
+       $request->validate([
+    'ita_phone' => [
+        'nullable',
+        'string',
+        'max:20',
+        'regex:/^(?!09{1}(\\d)\\1{8}$)09(?:01|02|03|12|13|14|15|16|18|19|20|21|22|30|33|35|36|38|39|90|91|92|93|94)\\d{7}$/i'
+    ],
+    'ita_username' => 'nullable|string|max:100',
+    'whatsapp_phone' => [
+        'nullable',
+        'string',
+        'max:20',
+        'regex:/^(?!09{1}(\\d)\\1{8}$)09(?:01|02|03|12|13|14|15|16|18|19|20|21|22|30|33|35|36|38|39|90|91|92|93|94)\\d{7}$/i'
+    ],
+    'secure_call' => 'nullable|boolean',
+], [
+    'ita_phone.regex' => 'شماره موبایل ایتا را به درستی وارد کنید.',
+    'whatsapp_phone.regex' => 'شماره موبایل واتس‌اپ را به درستی وارد کنید.',
+]);
+
+        // ذخیره یا به‌روزرسانی اطلاعات ایتا
+        $doctor->messengers()->updateOrCreate(
+            ['messenger_type' => 'ita'],
+            [
+                'phone_number' => $request->ita_phone,
+                'username' => $request->ita_username,
+                'is_secure_call' => $request->secure_call,
+            ]
+        );
+
+        // ذخیره یا به‌روزرسانی اطلاعات واتساپ
+        $doctor->messengers()->updateOrCreate(
+            ['messenger_type' => 'whatsapp'],
+            [
+                'phone_number' => $request->whatsapp_phone,
+                'is_secure_call' => $request->secure_call,
+            ]
+        );
+
+
+
+        // پاسخ JSON برای Ajax
+        return response()->json([
+            'success' => true,
+            'message' => 'اطلاعات پیام‌رسان‌ها با موفقیت به‌روزرسانی شد.',
+        ]);
     }
     public function niceId()
     {
