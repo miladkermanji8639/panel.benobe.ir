@@ -211,6 +211,7 @@
        <div class="d-flex justify-content-between gap-4 flex-xs-wrap flex-xs-column">
         <div class="mt-2 w-100">
          <label for="name" class="label-top-input">درجه علمی</label>
+         <input type="hidden" name="is_edit" id="is_edit" value="0">
          <select name="academic_degree_id" id="academic_degree_id"
           class="form-control h-50  border-radius-6 mt-3 col-12 position-relative daraje">
           @foreach ($academic_degrees as $academic_degree)
@@ -623,27 +624,9 @@
    noResultsText: 'نتیجه‌ای یافت نشد',
    labelField: 'name',
    searchField: ['name'],
-   load: function(query, callback) {
-    var url = '/api/specialties?search=' + encodeURIComponent(query);
-    fetch(url)
-     .then(response => response.json())
-     .then(data => {
-      callback(data.data);
-     })
-     .catch(() => {
-      callback();
-     });
-   },
    placeholder: 'انتخاب تخصص...',
    maxItems: 1,
-   render: {
-    option: function(item, escape) {
-     return `<div>
-        ${escape(item.name)}
-        ${item.category ? `<small class="text-muted">(${escape(item.category)})</small>` : ''}
-     </div>`;
-    }
-   }
+
   });
 
  });
@@ -653,6 +636,7 @@
   let inputCount = 0; // شمارش ورودی‌های اضافی
 
   addButton.addEventListener('click', () => {
+    document.getElementById('is_edit').value = 1;
    if (inputCount < 3) {
     inputCount++;
     const newInputGroup = document.createElement('div');
@@ -810,17 +794,7 @@
    valueField: 'id',
    labelField: 'name',
    searchField: ['name'],
-   load: function(query, callback) {
-    var url = '/api/specialties?search=' + encodeURIComponent(query);
-    fetch(url)
-     .then(response => response.json())
-     .then(data => {
-      callback(data.data);
-     })
-     .catch(() => {
-      callback();
-     });
-   }
+
   });
 
   // درجه علمی برای تخصص‌های اضافی از دیتابیس
@@ -828,29 +802,6 @@
    if (el.id !== 'academic_degree_id') {
     initTomSelect(`#${el.id}`, {
      placeholder: 'انتخاب درجه علمی'
-    });
-   }
-  });
-
-  // تخصص‌های اضافی از دیتابیس
-  document.querySelectorAll('#specialty').forEach(el => {
-   if (el.id !== 'specialties_list') {
-    initTomSelect(`#${el.id}`, {
-     placeholder: 'انتخاب تخصص',
-     valueField: 'id',
-     labelField: 'name',
-     searchField: ['name'],
-     load: function(query, callback) {
-      var url = '/api/specialties?search=' + encodeURIComponent(query);
-      fetch(url)
-       .then(response => response.json())
-       .then(data => {
-        callback(data.data);
-       })
-       .catch(() => {
-        callback();
-       });
-     }
     });
    }
   });
@@ -1001,6 +952,10 @@
  document.getElementById("specialtyEdit").addEventListener('submit', function(e) {
   e.preventDefault();
   const form = this;
+  const formData = new FormData(form);
+
+  // اگر در حال ویرایش هستید، مقدار is_edit را به 1 تغییر دهید
+  formData.set('is_edit', 1);
   const submitButton = form.querySelector('button[type="submit"]');
   const loader = submitButton.querySelector('.loader');
   const buttonText = submitButton.querySelector('.button_text');
