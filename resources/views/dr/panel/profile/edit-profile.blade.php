@@ -211,7 +211,6 @@
        <div class="d-flex justify-content-between gap-4 flex-xs-wrap flex-xs-column">
         <div class="mt-2 w-100">
          <label for="name" class="label-top-input">درجه علمی</label>
-         <input type="hidden" name="is_edit" id="is_edit" value="0">
          <select name="academic_degree_id" id="academic_degree_id"
           class="form-control h-50  border-radius-6 mt-3 col-12 position-relative daraje">
           @foreach ($academic_degrees as $academic_degree)
@@ -241,10 +240,15 @@
          class="form-control h-50 w-100 border-radius-6 mt-3  ">
        </div>
        <div id="additionalInputs">
+        <h6 class="font-weight-bold mt-3">تخصص های اضافی</h6>
+        <div class="alert alert-warning mt-2">
+         تخصص های اضافه شده شما قابل ویرایش نیستند اگه قصد تغییر یا ویرایش تخصص را دارید ابتدا آن را پاک کنید و مجدد
+         تخصص جدید بسازید
+        </div>
         <!-- تخصص‌های اضافه شده از دیتابیس -->
         @foreach ($specialties as $index => $specialty)
          @if ($index > 0)
-          <div class="w-100 mt-3">
+          <div class="w-100 mt-3 specialty-item">
            <div class="text-left mt-3 remove-form-item" onclick="removeInput(this)">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
              xmlns="http://www.w3.org/2000/svg">
@@ -259,7 +263,7 @@
               <div class="w-100">
                <label for="degree{{ $index + 1 }}" class="label-top-input">درجه علمی</label>
                <select name="degrees[{{ $index }}]" id="degree{{ $index + 1 }}"
-                class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative daraje">
+                class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative daraje" disabled>
                 @foreach ($academic_degrees as $academic_degree)
                  <option value="{{ $academic_degree->id }}"
                   {{ $specialty->academic_degree_id == $academic_degree->id ? 'selected' : '' }}>
@@ -271,7 +275,7 @@
               <div class="w-100">
                <label for="specialty{{ $index + 1 }}" class="label-top-input">تخصص</label>
                <select name="specialties[{{ $index }}]" id="specialty{{ $index + 1 }}"
-                class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative takhasos-input">
+                class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative takhasos-input" disabled>
                 @foreach ($sub_specialties as $specialtyOption)
                  <option value="{{ $specialtyOption->id }}"
                   {{ $specialty->specialty_id == $specialtyOption->id ? 'selected' : '' }}>
@@ -285,7 +289,8 @@
               <label for="title{{ $index + 1 }}" class="label-top-input-special-takhasos-elem-create">عنوان
                تخصص</label>
               <input type="text" name="titles[{{ $index }}]" id="title{{ $index + 1 }}"
-               class="form-control h-50 w-100 border-radius-6 mt-3" value="{{ $specialty->specialty_title }}">
+               class="form-control h-50 w-100 border-radius-6 mt-3" value="{{ $specialty->specialty_title }}"
+               disabled>
              </div>
             </div>
            </div>
@@ -299,9 +304,11 @@
          <span class="button_text">ذخیره تغیرات</span>
          <div class="loader"></div>
         </button>
+
         <button
-         class="btn btn-dark h-50 col-lg-1 col-xs-2 col-md-1 col-sm-1 d-flex justify-content-center align-items-center fs-6 add-form-item"
-         type="button" id="addButton">
+         class="btn btn-dark h-50 col-lg-1 col-xs-2 col-md-1 col-sm-1 d-flex justify-content-center align-items-center fs-6 add-form-item "
+         type="button" id="addButton"
+         {{ $existingSpecialtiesCount >= 3 || $existingSpecialtiesCount < 1 ? 'disabled' : '' }}>
          <svg class="svg-plus" xmlns="http://www.w3.org/2000/svg" width="13px" height="13px" viewBox="0 0 8 8"
           id="meteor-icon-kit__regular-plus-xxs" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd"
@@ -350,22 +357,28 @@
         <li><small> لطفاً توجه نمایید ، آی دی هر مطب باید به نام مطب و یا نام پزشک اشاره کند و نمی ‌توان از نام
           های کلی همانند tehrandoctor و یا pezeshk 1 استفاده کرد. </small></li>
        </ul>
-       <div class="row">
-        <div class="col-12 position-relative">
-         <h4 class="text-left"><span class="color-999">benobe.ir/ </span><span class="color-nobat"> 21309
-          </span></h4>
-         <div class="mt-3 w-100">
-          <label class="label-top-input-special-takhasos"> آی دی خود را وارد نمایید : </label>
-          <input perfix="[object Object]" class="form-control mt-2 h-50" type="text" value="21309">
+       <form action="{{ route('dr-uuid-update') }}" method="POST" id="uuid-form">
+        @csrf
+        <div class="row">
+         <div class="col-12 position-relative">
+          <h4 class="text-left"><span class="color-999">benobe.ir/ </span><span class="color-nobat"> 21309
+           </span></h4>
+          <div class="mt-3 w-100">
+           <label class="label-top-input-special-takhasos"> آی دی خود را وارد نمایید : </label>
+           <input class="form-control mt-2 h-50" type="text" value="" name="uuid">
+          </div>
          </div>
         </div>
-       </div>
-       <div class="row mt-3">
-        <div class="w-100">
-         <button type="button" class="btn w-100 btn-primary h-50">
-          <span> ویرایش آی دی </span></button>
+        <div class="row mt-3">
+         <div class="w-100">
+          <button type="submit" id="uuid-btn"
+           class="w-100 btn btn-primary h-50 col-lg-12 col-xs-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+           <span class="button_text">ذخیره تغیرات</span>
+           <div class="loader"></div>
+          </button>
+         </div>
         </div>
-       </div>
+       </form>
       </div>
      </div>
     </div>
@@ -626,7 +639,14 @@
    searchField: ['name'],
    placeholder: 'انتخاب تخصص...',
    maxItems: 1,
-
+   render: {
+    option: function(item, escape) {
+     return `<div>
+        ${escape(item.name)}
+        ${item.category ? `<small class="text-muted">(${escape(item.category)})</small>` : ''}
+     </div>`;
+    }
+   }
   });
 
  });
@@ -636,7 +656,6 @@
   let inputCount = 0; // شمارش ورودی‌های اضافی
 
   addButton.addEventListener('click', () => {
-    document.getElementById('is_edit').value = 1;
    if (inputCount < 3) {
     inputCount++;
     const newInputGroup = document.createElement('div');
@@ -698,27 +717,8 @@
      noResultsText: 'نتیجه‌ای یافت نشد',
      labelField: 'name',
      searchField: ['name'],
-     load: function(query, callback) {
-      var url = '/api/specialties?search=' + encodeURIComponent(query);
-      fetch(url)
-       .then(response => response.json())
-       .then(data => {
-        callback(data.data);
-       })
-       .catch(() => {
-        callback();
-       });
-     },
      placeholder: 'انتخاب تخصص...',
      maxItems: 1,
-     render: {
-      option: function(item, escape) {
-       return `<div>
-             ${escape(item.name)}
-             ${item.category ? `<small class="text-muted">(${escape(item.category)})</small>` : ''}
-           </div>`;
-      }
-     }
     });
    } else {
     Swal.fire({
@@ -729,7 +729,7 @@
   });
 
   window.removeInput = function(button) {
-   const inputGroup = button.parentElement.parentElement;
+   const inputGroup = button.closest('.specialty-item'); // پیدا کردن المان والد با کلاس specialty-item
 
    Swal.fire({
      title: 'آیا مطمئن هستید؟',
@@ -743,8 +743,8 @@
     })
     .then((result) => {
      if (result.isConfirmed) {
-      additionalInputs.removeChild(inputGroup);
-      inputCount--; // کاهش شمارش ورودی‌های اضافی
+      inputGroup.remove(); // حذف المان والد
+      updateAddButtonState(); // به‌روزرسانی وضعیت دکمه "اضافه کردن تخصص"
       Swal.fire('حذف شد!', 'عنصر با موفقیت حذف شد.', 'success');
      }
     })
@@ -754,33 +754,43 @@
   };
  });
 
-
- // تابع اولیه برای تام سلکت
- function initTomSelect(selector, options = {}) {
-  const element = document.querySelector(selector);
-  if (element && !element.tomselect) {
-   return new TomSelect(element, {
-    plugins: ['clear_button'],
-    searchField: ['text', 'name'],
-    placeholder: options.placeholder || 'انتخاب کنید',
-    maxItems: options.maxItems || 1,
-    render: {
-     option: function(data, escape) {
-      return '<div class="d-flex justify-content-between">' +
-       '<span>' + escape(data.text || data.name) + '</span>' +
-       '</div>';
-     },
-     item: function(data, escape) {
-      return '<div>' + escape(data.text || data.name) + '</div>';
-     }
-    },
-    locale: 'fa',
-   });
+ function updateAddButtonState() {
+  const existingSpecialtiesCount = document.querySelectorAll('#additionalInputs .specialty-item').length;
+  const addButton = document.getElementById('addButton');
+  if (existingSpecialtiesCount >= 2) { // حداکثر 2 تخصص اضافی
+   addButton.disabled = true;
+  } else {
+   addButton.disabled = false;
   }
  }
 
- // تابع اجرای اولیه
- // تابع اجرای اولیه
+ // فراخوانی این تابع پس از هر بار اضافه کردن تخصص جدید
+ updateAddButtonState();
+
+ // تابع اولیه برای تام سلکت
+ function initTomSelect(selector, options = {}) {
+  return new TomSelect(selector, {
+   plugins: ['clear_button'],
+   searchField: ['text', 'name'],
+   placeholder: options.placeholder || 'انتخاب کنید',
+   maxItems: options.maxItems || 1,
+   render: {
+    option: function(data, escape) {
+     return '<div class="d-flex justify-content-between">' +
+      '<span>' + escape(data.text || data.name) + '</span>' +
+      '</div>';
+    },
+    item: function(data, escape) {
+     return '<div>' + escape(data.text || data.name) + '</div>';
+    }
+   },
+   locale: 'fa',
+   ...options
+  });
+ }
+
+
+
 
  function initAllTomSelects() {
   // درجه علمی
@@ -794,7 +804,6 @@
    valueField: 'id',
    labelField: 'name',
    searchField: ['name'],
-
   });
 
   // درجه علمی برای تخصص‌های اضافی از دیتابیس
@@ -805,16 +814,28 @@
     });
    }
   });
+
+  // تخصص‌های اضافی از دیتابیس
+  document.querySelectorAll('[id^="specialty"]').forEach(el => {
+   if (el.id !== 'specialties_list') {
+    initTomSelect(`#${el.id}`, {
+     placeholder: 'انتخاب تخصص',
+     valueField: 'id',
+     labelField: 'name',
+     searchField: ['name'],
+    });
+   }
+  });
  }
 
  // اصلاح تابع اضافه کردن ورودی جدید
  function addNewSpecialtyInput() {
   const additionalInputs = document.getElementById('additionalInputs');
-  const inputCount = additionalInputs.children.length; // شمارش ورودی‌های اضافی
+  const inputCount = document.querySelectorAll('#additionalInputs .specialty-item').length;
 
   if (inputCount < 2) { // حداکثر 2 ورودی اضافی
    const newInputGroup = document.createElement('div');
-   newInputGroup.classList.add('w-100', 'mt-3');
+   newInputGroup.classList.add('w-100', 'mt-3', 'specialty-item'); // اضافه کردن کلاس specialty-item
 
    newInputGroup.innerHTML = `
             <div>
@@ -859,6 +880,9 @@
    initTomSelect(`#specialty${inputCount + 1}`, {
     placeholder: 'انتخاب تخصص'
    });
+
+   // به‌روزرسانی وضعیت دکمه "اضافه کردن تخصص"
+   updateAddButtonState();
   } else {
    Swal.fire({
     title: 'حداکثر تخصص برای هر دکتر 3 تخصص میباشد',
@@ -867,9 +891,6 @@
   }
  }
  // اجرا در زمان بارگذاری
- $(document).ready(function() {
-  initAllTomSelects();
- });
 </script>
 <script>
  // بررسی زمان آخرین درخواست
@@ -952,16 +973,14 @@
  document.getElementById("specialtyEdit").addEventListener('submit', function(e) {
   e.preventDefault();
   const form = this;
-  const formData = new FormData(form);
-
-  // اگر در حال ویرایش هستید، مقدار is_edit را به 1 تغییر دهید
-  formData.set('is_edit', 1);
   const submitButton = form.querySelector('button[type="submit"]');
   const loader = submitButton.querySelector('.loader');
   const buttonText = submitButton.querySelector('.button_text');
+
   // مخفی کردن متن دکمه و نمایش لودینگ
   buttonText.style.display = 'none';
   loader.style.display = 'block';
+
   fetch(form.action, {
     method: form.method,
     body: new FormData(form),
@@ -998,10 +1017,158 @@
        background: "green"
       }
      }).showToast();
+
+     // به‌روزرسانی مقادیر سلکت‌باکس‌ها و اینپوت‌ها
+     if (data.specialties) {
+      updateSpecialties(data.specialties);
+     }
     } else {
      // نمایش توست خطا
      Toastify({
       text: data.message || "خطا در به‌روزرسانی تخصص",
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "red"
+      }
+     }).showToast();
+    }
+   })
+   .catch(error => {
+    // بازگردانی دکمه به حالت اولیه
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
+    // نمایش توست خطا
+    Toastify({
+     text: error.message || 'خطا در برقراری ارتباط با سرور',
+     duration: 3000,
+     close: true,
+     gravity: "top",
+     position: 'right',
+     style: {
+      background: "red"
+     }
+    }).showToast();
+   });
+ });
+
+ function updateSpecialties(specialties) {
+  if (!specialties || !Array.isArray(specialties)) {
+   console.error('داده‌های تخصص‌ها نامعتبر است:', specialties);
+   return;
+  }
+
+  const additionalInputs = document.getElementById('additionalInputs');
+  additionalInputs.innerHTML = ''; // پاک کردن تخصص‌های قبلی
+
+  specialties.forEach((specialty, index) => {
+   // اگر تخصص اصلی نباشد، آن را نمایش دهید
+   if (!specialty.is_main) {
+    const newInputGroup = document.createElement('div');
+    newInputGroup.classList.add('w-100', 'mt-3', 'specialty-item');
+
+    newInputGroup.innerHTML = `
+                <div>
+                    <div class="text-left mt-3 remove-form-item" onclick="removeInput(this)">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.46967 4.46967C4.76256 4.17678 5.23744 4.17678 5.53033 4.46967L10 8.93934L14.4697 4.46967C14.7626 4.17678 15.2374 4.17678 15.5303 4.46967C15.8232 4.76256 15.8232 5.23744 15.5303 5.53033L11.0607 10L15.5303 14.4697C15.8232 14.7626 15.8232 15.2374 15.5303 15.5303C15.2374 15.8232 14.7626 15.8232 14.4697 15.5303L10 11.0607L5.53033 15.5303C5.23744 15.8232 4.76256 15.8232 4.46967 15.5303C4.17678 15.2374 4.17678 14.7626 4.46967 14.4697L8.93934 10L4.46967 5.53033C4.17678 5.23744 4.17678 4.76256 4.46967 4.46967Z" fill="#000"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="mt-2">
+                            <div class="d-flex justify-content-between gap-4">
+                                <div class="w-100">
+                                    <label for="degree${index + 1}" class="label-top-input">درجه علمی</label>
+                                    <select name="degrees[${index}]" id="degree${index + 1}" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative daraje">
+                                        @foreach ($academic_degrees as $academic_degree)
+                                            <option value="{{ $academic_degree->id }}" ${specialty.academic_degree_id == {{ $academic_degree->id }} ? 'selected' : ''}>{{ $academic_degree->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="w-100">
+                                    <label for="specialty${index + 1}" class="label-top-input">تخصص</label>
+                                    <select name="specialties[${index}]" id="specialty${index + 1}" class="form-control h-50 w-100 border-radius-6 mt-3 col-12 position-relative takhasos-input">
+                                        @foreach ($sub_specialties as $specialtyOption)
+                                            <option value="{{ $specialtyOption->id }}" ${specialty.specialty_id == {{ $specialtyOption->id }} ? 'selected' : ''}>{{ $specialtyOption->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="title${index + 1}" class="label-top-input-special-takhasos-elem-create">عنوان تخصص</label>
+                                <input type="text" name="titles[${index}]" id="title${index + 1}" class="form-control h-50 w-100 border-radius-6 mt-3" value="${specialty.specialty_title}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+    additionalInputs.appendChild(newInputGroup);
+    initTomSelect(`#degree${index + 1}`, {
+     placeholder: 'انتخاب درجه علمی'
+    });
+    initTomSelect(`#specialty${index + 1}`, {
+     placeholder: 'انتخاب تخصص'
+    });
+   }
+  });
+
+  // به‌روزرسانی وضعیت دکمه "اضافه کردن تخصص"
+  updateAddButtonState();
+ }
+ document.getElementById("uuid-form").addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = this;
+  const submitButton = form.querySelector('button[type="submit"]');
+  const loader = submitButton.querySelector('.loader');
+  const buttonText = submitButton.querySelector('.button_text');
+
+  // مخفی کردن متن دکمه و نمایش لودینگ
+  buttonText.style.display = 'none';
+  loader.style.display = 'block';
+
+  fetch(form.action, {
+    method: form.method,
+    body: new FormData(form),
+    headers: {
+     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+     'Accept': 'application/json',
+     'X-Requested-With': 'XMLHttpRequest'
+    }
+   })
+   .then(response => {
+    // بازگردانی دکمه به حالت اولیه
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
+    if (!response.ok) {
+     return response.json().then(errorData => {
+      throw new Error(errorData.message || 'خطای نامشخص');
+     });
+    }
+    return response.json();
+   })
+   .then(data => {
+    // بازگردانی دکمه به حالت اولیه
+    buttonText.style.display = 'block';
+    loader.style.display = 'none';
+    if (data.success) {
+     // نمایش توست موفقیت
+     Toastify({
+      text: data.message || "آیدی شما با موفقیت به‌روز شد",
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "green"
+      }
+     }).showToast();
+    } else {
+     // نمایش توست خطا
+     Toastify({
+      text: data.message || "خطا در به‌روزرسانی آیدی",
       duration: 3000,
       close: true,
       gravity: "top",
@@ -1066,26 +1233,8 @@
   document.querySelectorAll('.validation-error').forEach(el => el.remove());
   document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
  }
- // تابع به‌روزرسانی نام در المان‌های مختلف
- function updateNameElements(firstName, lastName) {
-  const fullName = `${firstName} ${lastName}`;
-  // به‌روزرسانی نام در سایدبار
-  const sidebarNameElements = document.querySelectorAll('.sidebar-full-name');
-  sidebarNameElements.forEach(element => {
-   element.textContent = fullName;
-  });
-  // به‌روزرسانی نام در هدر پروفایل
-  const headerNameElements = document.querySelectorAll('.profile-header-name');
-  headerNameElements.forEach(element => {
-   element.textContent = fullName;
-  });
-  // به‌روزرسانی نام در بخش‌های دیگر در صورت نیاز
-  // مثال:
-  const welcomeNameElement = document.getElementById('welcome-name');
-  if (welcomeNameElement) {
-   welcomeNameElement.textContent = firstName;
-  }
- }
+
+
  /*  edit mobile */
  // متغیرهای سراسری
  // متغیرهای سراسری

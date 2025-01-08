@@ -62,6 +62,7 @@ class DrProfileController
         $specialties = DoctorSpecialty::where('doctor_id', $doctor->id)->get();
         $doctorSpecialties = DoctorSpecialty::where('doctor_id', $doctor->id)->get();
         /*  dd($doctorSpecialties); */
+        $existingSpecialtiesCount = DoctorSpecialty::where('doctor_id', $doctor->id)->count();
         $doctorSpecialtyId = DoctorSpecialty::where('doctor_id', $doctor->id)->first();
         $academic_degrees = AcademicDegree::active()
             ->orderBy('sort_order')
@@ -70,21 +71,28 @@ class DrProfileController
 
         $sub_specialties = SubSpecialty::getOptimizedList();
 
-        return view("dr.panel.profile.edit-profile", compact(['specialtyName', 'academic_degrees', 'sub_specialties', 'currentSpecialty', 'specialties', 'doctorSpecialtyId']));
+        return view("dr.panel.profile.edit-profile", compact(['specialtyName', 'academic_degrees', 'sub_specialties', 'currentSpecialty', 'specialties', 'doctorSpecialtyId', 'existingSpecialtiesCount']));
     }
     public function DrSpecialtyUpdate(Request $request)
     {
+        // Rate Limiting
+        $key = 'DrSpecialtyUpdate_' . $request->ip();
+        $maxAttempts = 5;
+        $decayMinutes = 2;
+
+        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
+            $seconds = RateLimiter::availableIn($key);
+            return response()->json([
+                'success' => false,
+                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $seconds . ' ثانیه دیگر صبر کنید.',
+                'error_type' => 'rate_limit'
+            ], 429);
+        }
+
+        RateLimiter::hit($key, $decayMinutes * 60);
         $doctor = Auth::guard('doctor')->user();
 
         // بررسی تعداد تخصص‌ها
-        $existingSpecialtiesCount = DoctorSpecialty::where('doctor_id', $doctor->id)->count();
-        if ($existingSpecialtiesCount >= 3 && !$request->has('is_edit')) {
-            return response()->json([
-                'success' => false,
-                'message' => 'حداکثر 3 تخصص مجاز است'
-            ], 400);
-        }
-
         $validator = Validator::make($request->all(), [
             'academic_degree_id' => 'required|exists:academic_degrees,id',
             'specialty_id' => 'required|exists:sub_specialties,id',
@@ -113,11 +121,6 @@ class DrProfileController
                     'specialty_title' => $request->specialty_title
                 ]
             );
-
-            // حذف تخصص‌های قبلی غیر اصلی
-            DoctorSpecialty::where('doctor_id', $doctor->id)
-                ->where('is_main', false)
-                ->delete();
 
             // اضافه کردن تخصص‌های جدید
             if ($request->has('degrees') && $request->has('specialties')) {
@@ -151,9 +154,13 @@ class DrProfileController
 
             DB::commit();
 
+            // دریافت تخصص‌های جدید از دیتابیس
+            $updatedSpecialties = DoctorSpecialty::where('doctor_id', $doctor->id)->where('is_main', 0)->get();
+
             return response()->json([
                 'success' => true,
-                'message' => 'اطلاعات تخصص با موفقیت به‌روزرسانی شد.'
+                'message' => 'اطلاعات تخصص با موفقیت به‌روزرسانی شد.',
+                'specialties' => $updatedSpecialties // ارسال تخصص‌های جدید به صفحه
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -166,7 +173,66 @@ class DrProfileController
             ], 500);
         }
     }
+    public function DrUUIDUpdate(Request $request)
+    {
+        // Rate Limiting
+        $key = 'DrSpecialtyUpdate_' . $request->ip();
+        $maxAttempts = 5;
+        $decayMinutes = 2;
 
+        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
+            $seconds = RateLimiter::availableIn($key);
+            return response()->json([
+                'success' => false,
+                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $seconds . ' ثانیه دیگر صبر کنید.',
+                'error_type' => 'rate_limit'
+            ], 429);
+        }
+
+        RateLimiter::hit($key, $decayMinutes * 60);
+        $doctor = Auth::guard('doctor')->user();
+
+        // اعتبارسنجی UUID
+        $validator = Validator::make($request->all(), [
+            'uuid' => [
+                'string',
+                'nullable',
+                'unique:doctors,uuid,' . $doctor->id,
+                'regex:/^[a-zA-Z0-9_-]+$/', // فقط حروف انگلیسی، اعداد، خط تیره و زیرخط
+                function ($attribute, $value, $fail) {
+                    // بررسی تکراری نبودن UUID
+                    $existingDoctor = Doctor::where('uuid', $value)
+                        ->where('id', '!=', Auth::guard('doctor')->id())
+                        ->first();
+
+                    if ($existingDoctor) {
+                        $fail('این UUID قبلاً توسط پزشک دیگری ثبت شده است');
+                    }
+                }
+            ],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // به‌روزرسانی UUID
+        $doctor->uuid = $request->uuid;
+        if ($doctor->save()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'آیدی شما با موفقیت تغییر کرد'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'خطایی رخ داده'
+            ]);
+        }
+    }
     public function niceId()
     {
         return view("dr.panel.profile.edit-niceId");
