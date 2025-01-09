@@ -1258,4 +1258,13 @@
     });
   });
  });
+
+ document.addEventListener('DOMContentLoaded', function () {
+    const incompleteSections = @json($doctor->getIncompleteProfileSections());
+
+    if (incompleteSections.includes('پیام‌رسان‌ها')) {
+        document.getElementById('messengers-section').classList.add('border-warning');
+    }
+    // همین‌طور برای سایر بخش‌ها
+});
 </script>

@@ -57,7 +57,7 @@ class DrProfileController
     }
     public function edit()
     {
-        $doctor = Auth::guard('doctor')->user();
+        $doctor = Auth::guard('doctor')->user()->first();
         $currentSpecialty = DoctorSpecialty::where('doctor_id', $doctor->id)->first();
         $specialtyName = $currentSpecialty->specialty_title ?? 'نامشخص';
         $specialties = DoctorSpecialty::where('doctor_id', $doctor->id)->get();
@@ -71,8 +71,8 @@ class DrProfileController
         $messengers = $doctor->messengers;
 
         $sub_specialties = SubSpecialty::getOptimizedList();
-
-        return view("dr.panel.profile.edit-profile", compact(['specialtyName', 'academic_degrees', 'sub_specialties', 'currentSpecialty', 'specialties', 'doctorSpecialtyId', 'existingSpecialtiesCount', 'messengers']));
+        $incompleteSections = $doctor->getIncompleteProfileSections();
+        return view("dr.panel.profile.edit-profile", compact(['specialtyName', 'academic_degrees', 'sub_specialties', 'currentSpecialty', 'specialties', 'doctorSpecialtyId', 'existingSpecialtiesCount', 'messengers', 'doctor','incompleteSections']));
     }
     public function DrSpecialtyUpdate(Request $request)
     {
@@ -91,7 +91,7 @@ class DrProfileController
         }
 
         RateLimiter::hit($key, $decayMinutes * 60);
-        $doctor = Auth::guard('doctor')->user();
+        $doctor = Auth::guard('doctor')->user()->first();
 
         // بررسی تعداد تخصص‌ها
         $validator = Validator::make($request->all(), [
@@ -154,7 +154,7 @@ class DrProfileController
             }
 
             DB::commit();
-
+            $this->updateProfileCompletion($doctor);
             // دریافت تخصص‌های جدید از دیتابیس
             $updatedSpecialties = DoctorSpecialty::where('doctor_id', $doctor->id)->where('is_main', 0)->get();
 
@@ -191,7 +191,7 @@ class DrProfileController
         }
 
         RateLimiter::hit($key, $decayMinutes * 60);
-        $doctor = Auth::guard('doctor')->user();
+        $doctor = Auth::guard('doctor')->user()->first();
 
         // اعتبارسنجی UUID
         $validator = Validator::make($request->all(), [
@@ -223,6 +223,8 @@ class DrProfileController
         // به‌روزرسانی UUID
         $doctor->uuid = $request->uuid;
         if ($doctor->save()) {
+            $this->updateProfileCompletion($doctor);
+
             return response()->json([
                 'success' => true,
                 'message' => 'آیدی شما با موفقیت تغییر کرد'
@@ -258,7 +260,7 @@ class DrProfileController
     }
     public function updateMessengers(Request $request)
     {
-        $doctor = Auth::guard('doctor')->user();
+        $doctor = Auth::guard('doctor')->user()->first();
 
         // اعتبارسنجی داده‌ها
         $request->validate([
@@ -300,6 +302,7 @@ class DrProfileController
             ]
         );
 
+        $this->updateProfileCompletion($doctor);
 
 
         // پاسخ JSON برای Ajax
@@ -343,7 +346,7 @@ class DrProfileController
         }
 
         try {
-            $doctor = Auth::guard('doctor')->user();
+            $doctor = Auth::guard('doctor')->user()->first();
 
             // Update the static password enabled field
             $doctor->static_password_enabled = $request->static_password_enabled;
@@ -399,7 +402,7 @@ class DrProfileController
             'two_factor_secret' => $request->two_factor_enabled ? 'required|string|min:6' : 'nullable', // شرطی کردن اعتبارسنجی
         ]);
 
-        $doctor = Auth::guard('doctor')->user();
+        $doctor = Auth::guard('doctor')->user()->first();
         $doctor->two_factor_secret_enabled = $request->two_factor_enabled;
         $doctor->two_factor_secret = $request->two_factor_enabled ? Hash::make($request->two_factor_secret) : null; // استفاده از Hash::make برای هش کردن رمز عبور دو مرحله‌ای
         $doctor->save();
@@ -463,7 +466,7 @@ class DrProfileController
             }
 
             // دریافت کاربر احراز هویت شده
-            $doctor = Auth::guard('doctor')->user();
+            $doctor = Auth::guard('doctor')->user()->first();
 
             // به‌روزرسانی اطلاعات
             $doctor->update([
@@ -473,7 +476,7 @@ class DrProfileController
                 'license_number' => $request->license_number,
                 'bio' => $request->description,
             ]);
-
+            $this->updateProfileCompletion($doctor);
             // بازگرداندن پاسخ موفقیت
             return response()->json([
                 'success' => true,
@@ -491,6 +494,12 @@ class DrProfileController
                 'error' => $e->getMessage()
             ], 500);
         }
+    }
+    private function updateProfileCompletion(Doctor $doctor)
+    {
+        
+        $doctor->profile_completed = $doctor->isProfileComplete();
+        $doctor->save();
     }
     public function sendMobileOtp(Request $request)
     {
@@ -511,7 +520,7 @@ class DrProfileController
             'mobile.regex' => 'شماره موبایل نامعتبر است'
         ]);
 
-        $doctor = Auth::guard('doctor')->user();
+        $doctor = Auth::guard('doctor')->user()->first();
         return $this->sendOtp($doctor, $request->mobile);
     }
 

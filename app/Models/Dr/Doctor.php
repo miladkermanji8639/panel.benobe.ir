@@ -134,10 +134,56 @@ class Doctor extends Authenticatable
     {
         return $query->where('is_active', true);
     }
+    public function doctorSpecialties()
+    {
+        return $this->hasMany(DoctorSpecialty::class);
+    }
+    public function isProfileComplete(): bool
+    {
+        return $this->first_name &&
+            $this->last_name &&
+            $this->national_code &&
+            $this->license_number &&
+            $this->doctorSpecialties()->where('is_main', true)->exists() &&
+            $this->uuid &&
+            $this->messengers()->exists() &&
+            $this->messengers->every(function ($messenger) {
+                return $messenger->phone_number || $messenger->username;
+            });
+    }
 
-  
-  
+    public function getIncompleteProfileSections(): array
+    {
+        $incompleteSections = [];
 
-    // UUID Generation
-    
+        if (!$this->first_name) {
+            $incompleteSections[] = 'نام';
+        }
+        if (!$this->last_name) {
+            $incompleteSections[] = 'نام خانوادگی';
+        }
+        if (!$this->national_code) {
+            $incompleteSections[] = 'کد ملی';
+        }
+        if (!$this->license_number) {
+            $incompleteSections[] = 'شماره نظام پزشکی';
+        }
+        if (!$this->doctorSpecialties()->where('is_main', true)->exists()) {
+            $incompleteSections[] = 'تخصص و درجه علمی';
+        }
+        if (!$this->uuid) {
+            $incompleteSections[] = 'آیدی';
+        }
+        if (
+            !$this->messengers()->exists() || $this->messengers->contains(function ($messenger) {
+                return !$messenger->phone_number && !$messenger->username;
+            })
+        ) {
+            $incompleteSections[] = 'پیام‌رسان‌ها';
+        }
+
+        return $incompleteSections;
+    }
+   
+
 }

@@ -9,10 +9,15 @@
 @section('content')
 @section('bread-crumb-title', ' ویرایش پروفایل ')
 <div class="main-content mb-5">
- @if (session()->has('complete-profile'))
-  <div class="alert alert-warning  text-center">
+ @if (!$doctor->profile_completed && count($incompleteSections) > 0)
+  <div class="alert alert-warning text-center">
    <span class="font-weight-bold">
-    {{ session()->get('complete-profile') }}
+    پروفایل شما کامل نیست. لطفا بخش‌های زیر را تکمیل کنید:
+    <ul class="w-100 d-flex gap-4">
+     @foreach ($doctor->getIncompleteProfileSections() as $section)
+      <li class="badge badge-danger p-2">{{ $section }}</li>
+     @endforeach
+    </ul>
    </span>
   </div>
  @endif
@@ -46,7 +51,12 @@
     </div>
    </div>
   </div>
-  <div class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8" id="personal-data">
+  <div
+   class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8  @if (in_array('نام', $incompleteSections) ||
+           in_array('نام خانوادگی', $incompleteSections) ||
+           in_array('کد ملی', $incompleteSections) ||
+           in_array('شماره نظام پزشکی', $incompleteSections)) border border-warning @endif"
+   id="personal-data">
    <div class="d-flex justify-content-between align-items-center personal-data-clicked">
     <div>
      <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -176,7 +186,8 @@
    </div>
   </div>
   {{-- mobileedit modal --}}
-  <div class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8">
+  <div
+   class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8 @if (in_array('تخصص و درجه علمی', $incompleteSections)) border border-warning @endif">
    <div class="d-flex justify-content-between align-items-center">
     <div>
      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -321,7 +332,8 @@
     </div>
    </div>
   </div>
-  <div class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8">
+  <div
+   class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8  @if (in_array('آیدی', $incompleteSections)) border border-warning @endif">
    <div class="d-flex justify-content-between align-items-center">
     <div>
      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -364,7 +376,8 @@
            </span></h4>
           <div class="mt-3 w-100">
            <label class="label-top-input-special-takhasos"> آی دی خود را وارد نمایید : </label>
-           <input class="form-control mt-2 h-50" type="text" value="{{ Auth::guard('doctor')->user()->uuid }}" name="uuid">
+           <input class="form-control mt-2 h-50" type="text" value="{{ Auth::guard('doctor')->user()->uuid }}"
+            name="uuid">
           </div>
          </div>
         </div>
@@ -383,7 +396,7 @@
     </div>
    </div>
   </div>
-  <div class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8">
+  <div class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8 border" id="messengers-section">
    <div class="d-flex justify-content-between align-items-center">
     <div>
      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -693,4 +706,5 @@
  var appointmentsSearchUrl = "{{ route('search.appointments') }}";
 </script>
 @include('dr.panel.profile.option.profile-option')
+
 @endsection
