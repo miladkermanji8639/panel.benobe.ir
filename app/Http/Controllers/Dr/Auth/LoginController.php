@@ -200,6 +200,7 @@ class LoginController
     if ($doctor && Hash::check($request->password, $doctor->password) && $doctor->status === 1 && $doctor->user_type === 'doctor') {
       // ذخیره اطلاعات کاربر در session به جای لاگین کامل
       session(['doctor_temp_login' => $doctor->id]);
+      session(['step3_completed' => true]);
 
       if ($doctor->two_factor_secret_enabled) {
         $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
