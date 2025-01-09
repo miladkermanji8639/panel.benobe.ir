@@ -13,6 +13,7 @@ use App\Models\Dr\DoctorSpecialty;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\RateLimiter;
 use Modules\SendOtp\App\Http\Services\MessageService;
@@ -349,7 +350,9 @@ class DrProfileController
 
             // If enabled, set the password
             if ($request->static_password_enabled) {
-                $doctor->password = bcrypt($request->password);
+
+                $hashedPass = Hash::make($request->password); // استفاده از Hash::make برای هش ک
+                $doctor->password = $hashedPass;
             } else {
                 // If disabled, clear the password
                 $doctor->password = null;
@@ -398,7 +401,7 @@ class DrProfileController
 
         $doctor = Auth::guard('doctor')->user();
         $doctor->two_factor_secret_enabled = $request->two_factor_enabled;
-        $doctor->two_factor_secret = $request->two_factor_enabled ? bcrypt($request->two_factor_secret) : null; // اگر غیرفعال است، مقدار null قرار دهید
+        $doctor->two_factor_secret = $request->two_factor_enabled ? Hash::make($request->two_factor_secret) : null; // استفاده از Hash::make برای هش کردن رمز عبور دو مرحله‌ای
         $doctor->save();
 
         return response()->json([

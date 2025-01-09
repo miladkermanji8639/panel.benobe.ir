@@ -20,7 +20,7 @@ class ManagersTableSeeder extends Seeder
             'last_name' => 'کرماجی',
             'date_of_birth' => null,
             'email' => 'miladkermaji09@gmail.com',
-            'mobile' => '0918271839',
+            'mobile' => '09182718639',
             'national_code' => null,
             'sex' => null,
             'status' => '0',

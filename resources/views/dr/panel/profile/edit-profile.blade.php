@@ -539,7 +539,7 @@
       <form class="w-100" action="{{ route('dr-static-password-update') }}" method="POST"
        id="staticPasswordForm">
        @csrf
-       <div class="d-flex align-items-center mt-3">
+       <div class="d-flex align-items-center mt-2">
         <div class="password_toggle__AXK9v d-flex align-items-center">
 
          <input type="checkbox" id="static_password_enabled" name="static_password_enabled" value="1"
@@ -1685,9 +1685,7 @@
     method: form.method,
     body: new FormData(form),
     headers: {
-     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-     'Accept': 'application/json',
-     'X-Requested-With': 'XMLHttpRequest'
+     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     }
    })
    .then(response => {

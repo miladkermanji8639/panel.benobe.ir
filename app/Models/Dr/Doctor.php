@@ -37,6 +37,7 @@ class Doctor extends Authenticatable
         'alternative_mobile',
         'national_code',
         'password',
+        'static_password_enabled',
         'license_number',
         'academic_degree_id',
         'specialty_id',
@@ -134,24 +135,9 @@ class Doctor extends Authenticatable
         return $query->where('is_active', true);
     }
 
-    public function scopeVerified($query)
-    {
-        return $query->where('is_verified', true);
-    }
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
+  
+  
 
     // UUID Generation
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            if (empty($model->uuid)) {
-                $model->uuid = 'DR-' . str_pad(static::max('id') + 1, 6, '0', STR_PAD_LEFT);
-            }
-        });
-    }
+    
 }

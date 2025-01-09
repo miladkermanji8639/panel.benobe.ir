@@ -1,16 +1,17 @@
 <?php
 namespace App\Http\Controllers\Dr\Auth;
 
-use App\Http\Services\LoginAttemptsService\LoginAttemptsService;
-use App\Models\Dr\Doctor;
-use App\Models\Dr\LoginAttempt;
-use App\Models\Dr\Otp;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Dr\Otp;
+use App\Models\Dr\Doctor;
 use Illuminate\Support\Str;
-use Modules\SendOtp\App\Http\Services\SMS\SmsService;
+use Illuminate\Http\Request;
+use App\Models\Dr\LoginAttempt;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Modules\SendOtp\App\Http\Services\MessageService;
+use Modules\SendOtp\App\Http\Services\SMS\SmsService;
+use App\Http\Services\LoginAttemptsService\LoginAttemptsService;
 
 class LoginController
 {
@@ -195,19 +196,29 @@ class LoginController
     if ($loginAttempts->isLocked($doctor->mobile)) {
       return $this->handleRateLimitError($doctor->mobile);
     }
-    
-    if ($doctor && password_verify($request->password, $doctor->password) && $doctor->status === 1 && $doctor->user_type === 'doctor') {
-      $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
 
-      // تنظیم session برای استپ 3
-      session(['step3_completed' => true]);
+    if ($doctor && Hash::check($request->password, $doctor->password) && $doctor->status === 1 && $doctor->user_type === 'doctor') {
+      // ذخیره اطلاعات کاربر در session به جای لاگین کامل
+      session(['doctor_temp_login' => $doctor->id]);
 
-      Auth::guard('doctor')->login($doctor);
-      return response()->json([
-        'success' => true,
-        'redirect' => route('dr-two-factor')
-      ]);
+      if ($doctor->two_factor_secret_enabled) {
+        $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
+
+        return response()->json([
+          'success' => true,
+          'redirect' => route('dr-two-factor')
+        ]);
+      } else {
+        Auth::guard('doctor')->login($doctor); // لاگین کامل اگر دو عاملی فعال نباشد
+        $loginAttempts->resetLoginAttempts($doctor->mobile);
+
+        return response()->json([
+          'success' => true,
+          'redirect' => route('dr-panel')
+        ]);
+      }
     }
+
     $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
 
     return response()->json([
@@ -222,7 +233,15 @@ class LoginController
       'two_factor_secret' => 'nullable|string'
     ]);
 
-    $doctor = Doctor::findOrFail(Auth::guard('doctor')->id());
+    $doctorId = session('doctor_temp_login');
+    if (!$doctorId) {
+      return response()->json([
+        'success' => false,
+        'errors' => ['two_factor_secret' => 'دسترسی غیرمجاز']
+      ], 422);
+    }
+
+    $doctor = Doctor::findOrFail($doctorId)->first();
     $loginAttemptMobileCheckLogin = LoginAttempt::where('doctor_id', $doctor->id)
       ->where('mobile', $doctor->mobile)
       ->first();
@@ -245,8 +264,9 @@ class LoginController
         $doctor->two_factor_confirmed_at = now();
         $doctor->save();
 
-        // پاک کردن session مربوط به استپ 3
-        session()->forget('step3_completed');
+        // لاگین کامل کاربر
+        Auth::guard('doctor')->login($doctor);
+        session()->forget('doctor_temp_login');
 
         return response()->json([
           'success' => true,
@@ -261,13 +281,14 @@ class LoginController
       ], 422);
     }
 
-    if ($request->two_factor_secret === $doctor->two_factor_secret) {
+    if (Hash::check($request->two_factor_secret, $doctor->two_factor_secret)) {
       $loginAttempts->resetLoginAttempts($doctor->mobile);
       $doctor->two_factor_confirmed_at = now();
       $doctor->save();
 
-      // پاک کردن session مربوط به استپ 3
-      session()->forget('step3_completed');
+      // لاگین کامل کاربر
+      Auth::guard('doctor')->login($doctor);
+      session()->forget('doctor_temp_login');
 
       return response()->json([
         'success' => true,

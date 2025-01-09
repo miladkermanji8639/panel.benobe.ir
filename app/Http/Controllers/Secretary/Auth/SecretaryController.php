@@ -175,7 +175,7 @@ class SecretaryController
 
         $otp = Otp::where('token', $token)
             ->where('used', 0)
-            ->where('created_at', '>=', Carbon::now()->subMinute(2)->toDateTimeString())
+            ->where('created_at', '>=', Carbon::now()->subMinutes(2)->toDateTimeString())
             ->first();
 
         if (empty($otp) || $otp->otp_code !== $request->otp_code) {

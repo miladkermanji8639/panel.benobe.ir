@@ -502,8 +502,8 @@
      method: 'POST',
      data: form.serialize(),
      success: function(response) {
-      showToast("  لطفا کد دو عاملی را در صورت فعالسازی وارد کنید ", 'success');
-      window.location.href = response.redirect; // انتقال به استپ 4
+      showToast("موفقیت آمیز", 'success');
+       window.location.href = response.redirect; // انتقال به استپ 4
      },
      error: function(xhr) {
       resetButton(submitButton, 'ادامه');
