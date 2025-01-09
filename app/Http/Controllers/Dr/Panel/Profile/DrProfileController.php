@@ -11,16 +11,28 @@ use App\Models\Dr\SubSpecialty;
 use App\Models\Dr\AcademicDegree;
 use App\Models\Dr\DoctorSpecialty;
 use Illuminate\Support\Facades\DB;
+use App\Traits\HandlesRateLimiting;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Support\Facades\RateLimiter;
 use Modules\SendOtp\App\Http\Services\MessageService;
 use Modules\SendOtp\App\Http\Services\SMS\SmsService;
 
 class DrProfileController
 {
+    use HandlesRateLimiting;
+    protected $doctor;
+    public function __construct()
+    {
+        $this->doctor = Auth::guard('doctor')->user()->first();
+    }
+    protected function getAuthenticatedDoctor()
+    {
+        return Auth::guard('doctor')->user()->first();
+    }
     /**
      * Display a listing of the resource.
      */
@@ -57,7 +69,7 @@ class DrProfileController
     }
     public function edit()
     {
-        $doctor = Auth::guard('doctor')->user()->first();
+        $doctor = $this->getAuthenticatedDoctor();
         $currentSpecialty = DoctorSpecialty::where('doctor_id', $doctor->id)->first();
         $specialtyName = $currentSpecialty->specialty_title ?? 'نامشخص';
         $specialties = DoctorSpecialty::where('doctor_id', $doctor->id)->get();
@@ -72,26 +84,18 @@ class DrProfileController
 
         $sub_specialties = SubSpecialty::getOptimizedList();
         $incompleteSections = $doctor->getIncompleteProfileSections();
-        return view("dr.panel.profile.edit-profile", compact(['specialtyName', 'academic_degrees', 'sub_specialties', 'currentSpecialty', 'specialties', 'doctorSpecialtyId', 'existingSpecialtiesCount', 'messengers', 'doctor','incompleteSections']));
+        return view("dr.panel.profile.edit-profile", compact(['specialtyName', 'academic_degrees', 'sub_specialties', 'currentSpecialty', 'specialties', 'doctorSpecialtyId', 'existingSpecialtiesCount', 'messengers', 'doctor', 'incompleteSections']));
     }
     public function DrSpecialtyUpdate(Request $request)
     {
-        // Rate Limiting
-        $key = 'DrSpecialtyUpdate_' . $request->ip();
-        $maxAttempts = 5;
-        $decayMinutes = 2;
+        $key = 'update_static_password_' . $request->ip();
+        $response = $this->checkRateLimit($key);
 
-        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
-            $seconds = RateLimiter::availableIn($key);
-            return response()->json([
-                'success' => false,
-                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $seconds . ' ثانیه دیگر صبر کنید.',
-                'error_type' => 'rate_limit'
-            ], 429);
+        if ($response) {
+            return $response; // اگر محدودیت اعمال شد، پاسخ را برگردانید
         }
 
-        RateLimiter::hit($key, $decayMinutes * 60);
-        $doctor = Auth::guard('doctor')->user()->first();
+        $doctor = $this->getAuthenticatedDoctor();
 
         // بررسی تعداد تخصص‌ها
         $validator = Validator::make($request->all(), [
@@ -178,20 +182,12 @@ class DrProfileController
     {
         // Rate Limiting
         $key = 'DrSpecialtyUpdate_' . $request->ip();
-        $maxAttempts = 5;
-        $decayMinutes = 2;
+        $response = $this->checkRateLimit($key);
 
-        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
-            $seconds = RateLimiter::availableIn($key);
-            return response()->json([
-                'success' => false,
-                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $seconds . ' ثانیه دیگر صبر کنید.',
-                'error_type' => 'rate_limit'
-            ], 429);
+        if ($response) {
+            return $response; // اگر محدودیت اعمال شد، پاسخ را برگردانید
         }
-
-        RateLimiter::hit($key, $decayMinutes * 60);
-        $doctor = Auth::guard('doctor')->user()->first();
+        $doctor = $this->getAuthenticatedDoctor();
 
         // اعتبارسنجی UUID
         $validator = Validator::make($request->all(), [
@@ -260,8 +256,13 @@ class DrProfileController
     }
     public function updateMessengers(Request $request)
     {
-        $doctor = Auth::guard('doctor')->user()->first();
+        $doctor = $this->getAuthenticatedDoctor();
+        $key = "updateMessengers_" . $request->ip;
+        $response = $this->checkRateLimit($key);
 
+        if ($response) {
+            return $response; // اگر محدودیت اعمال شد، پاسخ را برگردانید
+        }
         // اعتبارسنجی داده‌ها
         $request->validate([
             'ita_phone' => [
@@ -315,19 +316,11 @@ class DrProfileController
     {
         // Rate Limiting
         $key = 'update_static_password_' . $request->ip();
-        $maxAttempts = 5;
-        $decayMinutes = 2;
+        $response = $this->checkRateLimit($key);
 
-        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
-            $seconds = RateLimiter::availableIn($key);
-            return response()->json([
-                'success' => false,
-                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $seconds . ' ثانیه دیگر صبر کنید.',
-                'error_type' => 'rate_limit'
-            ], 429);
+        if ($response) {
+            return $response; // اگر محدودیت اعمال شد، پاسخ را برگردانید
         }
-
-        RateLimiter::hit($key, $decayMinutes * 60);
 
         // Validate the request
         $validator = Validator::make($request->all(), [
@@ -346,7 +339,7 @@ class DrProfileController
         }
 
         try {
-            $doctor = Auth::guard('doctor')->user()->first();
+            $doctor = $this->getAuthenticatedDoctor();
 
             // Update the static password enabled field
             $doctor->static_password_enabled = $request->static_password_enabled;
@@ -383,26 +376,18 @@ class DrProfileController
     {
         // Rate Limiting
         $key = 'update_two_factor_auth_' . $request->ip();
-        $maxAttempts = 5;
-        $decayMinutes = 2;
+        $response = $this->checkRateLimit($key);
 
-        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
-            $seconds = RateLimiter::availableIn($key);
-            return response()->json([
-                'success' => false,
-                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $seconds . ' ثانیه دیگر صبر کنید.',
-                'error_type' => 'rate_limit'
-            ], 429);
+        if ($response) {
+            return $response; // اگر محدودیت اعمال شد، پاسخ را برگردانید
         }
-
-        RateLimiter::hit($key, $decayMinutes * 60);
 
         $request->validate([
             'two_factor_enabled' => 'required|boolean',
             'two_factor_secret' => $request->two_factor_enabled ? 'required|string|min:6' : 'nullable', // شرطی کردن اعتبارسنجی
         ]);
 
-        $doctor = Auth::guard('doctor')->user()->first();
+        $doctor = $this->getAuthenticatedDoctor();
         $doctor->two_factor_secret_enabled = $request->two_factor_enabled;
         $doctor->two_factor_secret = $request->two_factor_enabled ? Hash::make($request->two_factor_secret) : null; // استفاده از Hash::make برای هش کردن رمز عبور دو مرحله‌ای
         $doctor->save();
@@ -429,44 +414,20 @@ class DrProfileController
     /**
      * Update the specified resource in storage.
      */
-    public function update_profile(Request $request)
+    public function update_profile(UpdateProfileRequest $request)
     {
         // Rate Limiting
         // Rate Limiting
         $key = 'update_profile_' . $request->ip();
-        $maxAttempts = 5;
-        $decayMinutes = 2;
+        $response = $this->checkRateLimit($key);
 
-        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
-            $seconds = RateLimiter::availableIn($key);
-            return response()->json([
-                'success' => false,
-                'message' => 'شما بیش از حد تلاش کرده‌اید. لطفاً ' . $seconds . ' ثانیه دیگر صبر کنید.',
-                'error_type' => 'rate_limit'
-            ], 429);
+        if ($response) {
+            return $response; // اگر محدودیت اعمال شد، پاسخ را برگردانید
         }
 
-        RateLimiter::hit($key, $decayMinutes * 60);
-
         try {
-            // اعتبارسنجی داده‌ها
-            $validator = Validator::make($request->all(), [
-                'first_name' => 'required|string|max:255',
-                'last_name' => 'required|string|max:255',
-                'national_code' => 'nullable|string|max:10',
-                'license_number' => 'nullable|string|max:20',
-                'description' => 'nullable|string',
-            ]);
-            // اگر اعتبارسنجی شکست خورد
-            if ($validator->fails()) {
-                return response()->json([
-                    'success' => false,
-                    'errors' => $validator->errors()
-                ], 422);
-            }
-
             // دریافت کاربر احراز هویت شده
-            $doctor = Auth::guard('doctor')->user()->first();
+            $doctor = $this->getAuthenticatedDoctor();
 
             // به‌روزرسانی اطلاعات
             $doctor->update([
@@ -497,12 +458,18 @@ class DrProfileController
     }
     private function updateProfileCompletion(Doctor $doctor)
     {
-        
+
         $doctor->profile_completed = $doctor->isProfileComplete();
         $doctor->save();
     }
     public function sendMobileOtp(Request $request)
     {
+        $key = 'sendMobileOtp_' . $request->ip();
+        $response = $this->checkRateLimit($key, '3', '1');
+
+        if ($response) {
+            return $response; // اگر محدودیت اعمال شد، پاسخ را برگردانید
+        }
         $request->validate([
             'mobile' => [
                 'required',
@@ -520,7 +487,7 @@ class DrProfileController
             'mobile.regex' => 'شماره موبایل نامعتبر است'
         ]);
 
-        $doctor = Auth::guard('doctor')->user()->first();
+        $doctor = $this->getAuthenticatedDoctor();
         return $this->sendOtp($doctor, $request->mobile);
     }
 
@@ -551,6 +518,12 @@ class DrProfileController
     // متد تایید کد OTP
     public function mobileConfirm(Request $request, $token)
     {
+        $key = 'mobileConfirm' . $request->ip();
+        $response = $this->checkRateLimit($key);
+
+        if ($response) {
+            return $response; // اگر محدودیت اعمال شد، پاسخ را برگردانید
+        }
         // اعتبارسنجی درخواست
         $validator = Validator::make($request->all(), [
             'otp' => 'required|array',
