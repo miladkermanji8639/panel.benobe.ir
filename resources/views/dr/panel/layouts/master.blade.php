@@ -6,10 +6,10 @@
  @yield('styles')
  <title>
   @if (Auth::guard('doctor')->check())
-   پنل {{ Auth::guard('doctor')->user()->user_type === 'doctor' ? 'منشی' : 'دکتر' }} | به نوبه
+   پنل {{ Auth::guard('doctor')->user()->user_type === 'doctor' ? 'دکتر' : 'منشی' }} | به نوبه
   @endif
  </title>
- @include("dr.panel.my-tools.loader-btn")
+ @include('dr.panel.my-tools.loader-btn')
 </head>
 
 <body>
