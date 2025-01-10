@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Dr\Panel\Turn;
 
+use App\Models\Dr\Appointment;
 use Illuminate\Http\Request;
 
 class DrScheduleController
 {
     public function index(Request $request)
     {
-        return view("dr.panel.turn.schedule.appointments");
+        $appointments = Appointment::with(['doctor','patient','insurance'])->get();
+        return view("dr.panel.turn.schedule.appointments",compact('appointments'));
     }
     public function myAppointments(Request $request)
     {

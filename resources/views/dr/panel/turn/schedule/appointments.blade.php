@@ -58,131 +58,144 @@
 </div>
 <div class="my-appointments-list w-100 mt-3">
  <div class="my-appointments-lists-cards d-flex gap-10 w-100 flex-wrap">
-  <di class="my-appointments-lists-card w-100 d-flex justify-content-between align-items-center p-3 my-border">
-   <div class="d-flex align-items-center gap-10 cursor-pointer" data-toggle="modal" data-target="#userInfoModalCenter">
-    <button class="btn h-50 border border-success bg-light-success d-flex justify-content-center align-items-center">
-     12:10
+  @if (count($appointments) > 0)
+   @foreach ($appointments as $appointment)
+    <div class="my-appointments-lists-card w-100 d-flex justify-content-between align-items-center p-3 my-border">
+     <div class="d-flex align-items-center gap-10 cursor-pointer" data-toggle="modal"
+      data-target="#userInfoModalCenter">
+      <button class="btn h-50 border border-success bg-light-success d-flex justify-content-center align-items-center">
+       {{ date('H:i', strtotime($appointment->reserved_at)) }}
+      </button>
+      <div class="d-flex flex-column gap-10">
+       <span class="font-weight-bold">
+        {{ $appointment->patient->first_name . ' ' . $appointment->patient->last_name }}
+
+       </span>
+       <span class="font-weight-light font-size-13">
+        {{ $appointment->patient->mobile }}
+
+       </span>
+       <span class="font-weight-light text-danger font-size-13">
+        {{ $appointment->payment_status === 'pending' ? 'درحال پرداخت' : ($appointment->payment_status === 'paid' ? 'پرداخت شده' : ($appointment->payment_status === 'unpaid' ? 'پرداخت نشده' : '')) }}
+
+       </span>
+      </div>
+     </div>
+     <!-- Modal -->
+
+
+     <div><span class="font-size-13 font-weight-bold">{{ $appointment->patient->national_code }}</span></div>
+     <div>
+      <button class="btn btn-outline-info" data-toggle="modal" data-target="#endVisitModalCenter">پایان ویزیت</button>
+
+     </div>
+    </div>
+   @endforeach
+  @else
+   <div class="container-fluid h-50 d-flex justify-content-center align-items-center align-self-center">
+    <div class="text-center" >
+     <p class="font-weight-bold">برای تاریخی که انتخاب کردید، در مرکز موردنظر هیچ نوبتی موجود نیست.</p>
+    </div>
+   </div>
+  @endif
+
+ </div>
+</div>
+<div class="modal  fade" id="endVisitModalCenter" tabindex="-1" role="dialog"
+ aria-labelledby="endVisitModalCenterTitle" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content border-radius-6">
+   <div class="modal-header">
+    <h6 class="modal-title font-weight-bold" id="exampleModalCenterTitle"> توضیحات درمان</h6>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
     </button>
-    <div class="d-flex flex-column gap-10">
-     <span class="font-weight-bold">
-      صبا کرمی
-
-     </span>
-     <span class="font-weight-light font-size-13">
-      09180607211
-
-     </span>
-     <span class="font-weight-light text-danger font-size-13">
-      پرداخت نشده
+   </div>
+   <div class="modal-body">
+    <div>
+     <span class="font-weight-bold">پزشک گرامی</span>
+     <br>
+     <p class="mt-2 font-size-14">
+      لطفا در صورتی که برای بیمار نسخه الکترونیک ثبت کرده اید <span class="font-weight-bold">“کد پیگیری
+       نسخه”</span> و در صورت نیاز <span class="font-weight-bold">“توضیحات درمان”</span> خود را
+      یادداشت نمایید.
+     </p>
+     <span class="mt-2">
+      (این توضیحات در قسمت "نوبت‌های من" بیمار ذخیره می‌شود.)
 
      </span>
     </div>
+    <div class="mt-3">
+     <form action="">
+      <input type="text" placeholder="توضیحات خود را وارد کنید" class="h-50 my-form-control-light w-100">
+      <button class="h-50 w-100 btn btn-primary mt-3">ثبت</button>
+     </form>
+    </div>
    </div>
-   <!-- Modal -->
-   <div class="modal  fade" id="userInfoModalCenter" tabindex="-1" role="dialog"
-    aria-labelledby="userInfoModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-     <div class="modal-content border-radius-6">
-      <div class="modal-header">
-       <h6 class="modal-title font-weight-bold" id="exampleModalCenterTitle">اطلاعات بیمار</h6>
-       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-       </button>
+  </div>
+ </div>
+</div>
+<div class="modal  fade" id="userInfoModalCenter" tabindex="-1" role="dialog"
+ aria-labelledby="userInfoModalCenterTitle" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div class="modal-content border-radius-6">
+   <div class="modal-header">
+    <h6 class="modal-title font-weight-bold" id="exampleModalCenterTitle">اطلاعات بیمار</h6>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+    </button>
+   </div>
+   <div class="modal-body">
+    <div class="">
+     <div class="w-100 d-flex">
+      <div class="bg-light-success  top-user-modal-info time-card">
+       <div class="text-black font-weight-bold">۱۲:۱۰</div>
       </div>
-      <div class="modal-body">
-       <div class="">
-        <div class="w-100 d-flex">
-         <div class="bg-light-success  top-user-modal-info time-card">
-          <div class="text-black font-weight-bold">۱۲:۱۰</div>
-         </div>
-         <div class="bg-light-success border border-success top-user-modal-info date-card">
-          <div class="text-black font-weight-bold">شنبه ۲۶ آبان</div>
-         </div>
-        </div>
-        <div class="w-100 mt-2">
-         <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40" dir="rtl">
-          <div class="text-dark font-weight-bold font-size-13">نام و نام خانوادگی</div>
-          <div class="text-dark font-weight-bold font-size-13">صبا کرمی</div>
-         </div>
-         <div class="d-flex justify-content-between align-items-center bg-light p-2 h-40 mt-2" dir="rtl">
-          <div class="text-dark font-weight-bold font-size-13">موبایل</div>
-          <div class=" text-dark font-weight-bold font-size-13">09180607211</div>
-         </div>
-         <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40 mt-2" dir="rtl">
-          <div class="text-dark font-weight-bold font-size-13">کدملی</div>
-          <div class="text-dark font-weight-bold font-size-13">3720574245</div>
-         </div>
-         <div class="d-flex justify-content-between align-items-center bg-light p-2 h-40 mt-2" dir="rtl">
-          <div class="text-dark font-weight-bold font-size-13">کد پیگیری</div>
-          <div class="text-dark font-weight-bold font-size-13">2432927888</div>
-         </div>
-         <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40 mt-2" dir="rtl">
-          <div class="text-dark font-weight-bold font-size-13">وضعیت پرداخت</div>
-          <div class="text-dark font-weight-bold font-size-13">پرداخت نشده</div>
-         </div>
-         <div class="d-flex justify-content-between align-items-center bg-light p-2 h-40 mt-2" dir="rtl">
-          <div class="text-dark font-weight-bold font-size-13">نوع نوبت</div>
-          <div class="text-dark font-weight-bold font-size-13">حضوری</div>
-         </div>
-         <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40 mt-2" dir="rtl">
-          <div class="text-dark font-weight-bold font-size-13">نام مرکز</div>
-          <div class="text-dark font-weight-bold font-size-13">مطب یاسر محمدی</div>
-         </div>
-        </div>
-        <button class="btn btn-outline-danger h-50 w-100 mt-3" type="button">
-         لغو نوبت
-        </button>
-        <button class="btn btn-primary h-50 w-100 mt-3" type="button"
-         onclick="location.href='{{ route('prescription.create') }}'">
-         تجویز نسخه
-        </button>
-
-       </div>
+      <div class="bg-light-success border border-success top-user-modal-info date-card">
+       <div class="text-black font-weight-bold">شنبه ۲۶ آبان</div>
       </div>
      </div>
-    </div>
-   </div>
-
-   <div><span class="font-size-13 font-weight-bold">3720574245</span></div>
-   <div>
-    <button class="btn btn-outline-info" data-toggle="modal" data-target="#endVisitModalCenter">پایان ویزیت</button>
-    <div class="modal  fade" id="endVisitModalCenter" tabindex="-1" role="dialog"
-     aria-labelledby="endVisitModalCenterTitle" aria-hidden="true">
-     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content border-radius-6">
-       <div class="modal-header">
-        <h6 class="modal-title font-weight-bold" id="exampleModalCenterTitle"> توضیحات درمان</h6>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-        </button>
-       </div>
-       <div class="modal-body">
-        <div>
-         <span class="font-weight-bold">پزشک گرامی</span>
-         <br>
-         <p class="mt-2 font-size-14">
-          لطفا در صورتی که برای بیمار نسخه الکترونیک ثبت کرده اید <span class="font-weight-bold">“کد پیگیری
-           نسخه”</span> و در صورت نیاز <span class="font-weight-bold">“توضیحات درمان”</span> خود را
-          یادداشت نمایید.
-         </p>
-         <span class="mt-2">
-          (این توضیحات در قسمت "نوبت‌های من" بیمار ذخیره می‌شود.)
-
-         </span>
-        </div>
-        <div class="mt-3">
-         <form action="">
-          <input type="text" placeholder="توضیحات خود را وارد کنید" class="h-50 my-form-control-light w-100">
-          <button class="h-50 w-100 btn btn-primary mt-3">ثبت</button>
-         </form>
-        </div>
-       </div>
+     <div class="w-100 mt-2">
+      <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40" dir="rtl">
+       <div class="text-dark font-weight-bold font-size-13">نام و نام خانوادگی</div>
+       <div class="text-dark font-weight-bold font-size-13">صبا کرمی</div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center bg-light p-2 h-40 mt-2" dir="rtl">
+       <div class="text-dark font-weight-bold font-size-13">موبایل</div>
+       <div class=" text-dark font-weight-bold font-size-13">09180607211</div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40 mt-2" dir="rtl">
+       <div class="text-dark font-weight-bold font-size-13">کدملی</div>
+       <div class="text-dark font-weight-bold font-size-13">3720574245</div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center bg-light p-2 h-40 mt-2" dir="rtl">
+       <div class="text-dark font-weight-bold font-size-13">کد پیگیری</div>
+       <div class="text-dark font-weight-bold font-size-13">2432927888</div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40 mt-2" dir="rtl">
+       <div class="text-dark font-weight-bold font-size-13">وضعیت پرداخت</div>
+       <div class="text-dark font-weight-bold font-size-13">پرداخت نشده</div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center bg-light p-2 h-40 mt-2" dir="rtl">
+       <div class="text-dark font-weight-bold font-size-13">نوع نوبت</div>
+       <div class="text-dark font-weight-bold font-size-13">حضوری</div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40 mt-2" dir="rtl">
+       <div class="text-dark font-weight-bold font-size-13">نام مرکز</div>
+       <div class="text-dark font-weight-bold font-size-13">مطب یاسر محمدی</div>
       </div>
      </div>
+     <button class="btn btn-outline-danger h-50 w-100 mt-3" type="button">
+      لغو نوبت
+     </button>
+     <button class="btn btn-primary h-50 w-100 mt-3" type="button"
+      onclick="location.href='{{ route('prescription.create') }}'">
+      تجویز نسخه
+     </button>
+
     </div>
    </div>
-  </di>
-
+  </div>
  </div>
 </div>
 @endsection
