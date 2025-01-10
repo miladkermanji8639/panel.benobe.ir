@@ -369,7 +369,8 @@
         @csrf
         <div class="row">
          <div class="col-12 position-relative">
-          <h4 class="text-left"><span class="color-999">benobe.ir/ </span><span class="color-nobat"> 21309
+          <h4 class="text-left"><span class="color-999">benobe.ir/ </span><span class="color-nobat"> 
+            {{  Auth::guard('doctor')->user()->uuid  ?? '1997' }}
            </span></h4>
           <div class="mt-3 w-100">
            <label class="label-top-input-special-takhasos"> آی دی خود را وارد نمایید : </label>

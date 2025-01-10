@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dr\Panel\Profile;
 
+use App\Http\Requests\DoctorSpecialtyRequest;
 use Carbon\Carbon;
 use App\Models\Dr\Otp;
 use App\Models\Dr\Doctor;
@@ -86,7 +87,7 @@ class DrProfileController
         $incompleteSections = $doctor->getIncompleteProfileSections();
         return view("dr.panel.profile.edit-profile", compact(['specialtyName', 'academic_degrees', 'sub_specialties', 'currentSpecialty', 'specialties', 'doctorSpecialtyId', 'existingSpecialtiesCount', 'messengers', 'doctor', 'incompleteSections']));
     }
-    public function DrSpecialtyUpdate(Request $request)
+    public function DrSpecialtyUpdate(DoctorSpecialtyRequest $request)
     {
         $key = 'update_static_password_' . $request->ip();
         $response = $this->checkRateLimit($key);
@@ -98,14 +99,7 @@ class DrProfileController
         $doctor = $this->getAuthenticatedDoctor();
 
         // بررسی تعداد تخصص‌ها
-        $validator = Validator::make($request->all(), [
-            'academic_degree_id' => 'required|exists:academic_degrees,id',
-            'specialty_id' => 'required|exists:sub_specialties,id',
-            'specialty_title' => 'required|string',
-            'degrees.*' => 'sometimes|exists:academic_degrees,id',
-            'specialties.*' => 'sometimes|exists:sub_specialties,id',
-            'titles.*' => 'sometimes|string'
-        ]);
+        $validator = Validator::make($request->all(), $request->rules());
 
         if ($validator->fails()) {
             return response()->json([

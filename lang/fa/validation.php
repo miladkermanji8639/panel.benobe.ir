@@ -75,6 +75,7 @@ return [
         "static_password_enabled" => "فعالسازی کلمه عبور",
         "two_factor_secret_enabled" => "فعالسازی  گذرواژه دو مرحله ای",
         "type" => "نوع مرکز درمانی ",
+        "specialty_title" =>"عنوان تخصص",
         "license_number" => "کد نظام پزشکی",
         "medical_system_code_type" => " نوع کد نظام پزشکی",
         "medical_system_code_type_id" => " نوع کد نظام پزشکی",
