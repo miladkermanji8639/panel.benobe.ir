@@ -52,10 +52,7 @@
    </div>
   </div>
   <div
-   class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8  @if (in_array('نام', $incompleteSections) ||
-           in_array('نام خانوادگی', $incompleteSections) ||
-           in_array('کد ملی', $incompleteSections) ||
-           in_array('شماره نظام پزشکی', $incompleteSections)) border border-warning @endif"
+   class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8"
    id="personal-data">
    <div class="d-flex justify-content-between align-items-center personal-data-clicked">
     <div>
@@ -187,7 +184,7 @@
   </div>
   {{-- mobileedit modal --}}
   <div
-   class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8 @if (in_array('تخصص و درجه علمی', $incompleteSections)) border border-warning @endif">
+   class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8" id="specialty-section">
    <div class="d-flex justify-content-between align-items-center">
     <div>
      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -333,7 +330,7 @@
    </div>
   </div>
   <div
-   class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8  @if (in_array('آیدی', $incompleteSections)) border border-warning @endif">
+   class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8" id="uuid-section">
    <div class="d-flex justify-content-between align-items-center">
     <div>
      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -396,7 +393,7 @@
     </div>
    </div>
   </div>
-  <div class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8 border" id="messengers-section">
+  <div class="option-card-box-shodow p-3 col-xs-12 col-sm-12  col-md-12 col-lg-8 " id="messengers-section">
    <div class="d-flex justify-content-between align-items-center">
     <div>
      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

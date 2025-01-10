@@ -456,6 +456,27 @@ class DrProfileController
             ], 500);
         }
     }
+    public function checkProfileCompleteness()
+    {
+        try {
+            $doctor = Auth::guard('doctor')->user();
+            $incompleteSections = $doctor->getIncompleteProfileSections();
+
+            return response()->json([
+                'success' => true,
+                'profile_completed' => $doctor->profile_completed,
+                'incomplete_sections' => $incompleteSections
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Profile Completeness Check Error: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'خطا در بررسی وضعیت پروفایل',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
     private function updateProfileCompletion(Doctor $doctor)
     {
 

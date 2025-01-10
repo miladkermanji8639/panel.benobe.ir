@@ -474,6 +474,11 @@ Route::prefix('dr')
         Route::prefix('profile')->group(function () {
           Route::get('edit-profile', [DrProfileController::class, 'edit'])->name('dr-edit-profile');
           Route::post('update-profile', [DrProfileController::class, 'update_profile'])->name('dr-update-profile');
+          Route::get(
+            '/dr-check-profile-completeness',
+            [DrProfileController::class, 'checkProfileCompleteness']
+          )
+            ->name('dr-check-profile-completeness');
           Route::post('/send-mobile-otp', [DrProfileController::class, 'sendMobileOtp'])
             ->name('dr-send-mobile-otp');
           Route::post('/mobile-confirm/{token}', [DrProfileController::class, 'mobileConfirm'])

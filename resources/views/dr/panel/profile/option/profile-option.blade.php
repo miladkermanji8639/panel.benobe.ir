@@ -1,5 +1,47 @@
 {{-- resources/views/dr/panel/profile/option/profile-option.blade.php --}}
 <script>
+ function updateAlert() {
+  fetch("{{ route('dr-check-profile-completeness') }}", {
+    method: 'GET',
+    headers: {
+     'X-Requested-With': 'XMLHttpRequest',
+     'Accept': 'application/json',
+     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    }
+   })
+   .then(response => response.json())
+   .then(profileData => {
+    // حذف هشدارهای قبلی
+    const existingAlert = document.querySelector('.alert-warning');
+    if (existingAlert) {
+     existingAlert.remove();
+    }
+
+    // اگر پروفایل کامل نیست
+    if (!profileData.profile_completed) {
+     // ایجاد هشدار
+     const alertHtml = `
+                <div class="alert alert-warning text-center">
+                    <span class="font-weight-bold">
+                        پروفایل شما کامل نیست. لطفا بخش‌های زیر را تکمیل کنید:
+                        <ul class="w-100 d-flex gap-4">
+                            ${profileData.incomplete_sections.map(section => 
+                                `<li class="badge badge-danger p-2">${section}</li>`
+                            ).join('')}
+                        </ul>
+                    </span>
+                </div>
+            `;
+
+     // اضافه کردن هشدار به بالای محتوا
+     const mainContent = document.querySelector('.main-content');
+     mainContent.insertAdjacentHTML('afterbegin', alertHtml);
+    }
+   })
+   .catch(error => {
+    console.error('خطا در بررسی وضعیت پروفایل:', error);
+   });
+ }
  document.addEventListener('DOMContentLoaded', function() {
   new TomSelect('#academic_degree_id', {
    plugins: ['clear_button'],
@@ -115,6 +157,7 @@
    }
   });
  });
+
  function updateAddButtonState() {
   const existingSpecialtiesCount = document.querySelectorAll('#additionalInputs .specialty-item').length;
   const addButton = document.getElementById('addButton');
@@ -124,7 +167,87 @@
    addButton.disabled = false;
   }
  }
+
+ // تابع بررسی وضعیت پروفایل در زمان بارگذاری اولیه
+ function checkInitialProfileCompleteness() {
+  fetch("{{ route('dr-check-profile-completeness') }}", {
+    method: 'GET',
+    headers: {
+     'X-Requested-With': 'XMLHttpRequest',
+     'Accept': 'application/json',
+     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    }
+   })
+   .then(response => response.json())
+   .then(profileData => {
+    // حذف هشدارهای قبلی
+    const existingAlert = document.querySelector('.alert-warning');
+    if (existingAlert) {
+     existingAlert.remove();
+    }
+
+    // اگر پروفایل کامل نیست
+    if (!profileData.profile_completed) {
+     // ایجاد هشدار
+     const alertHtml = `
+                <div class="alert alert-warning text-center">
+                    <span class="font-weight-bold">
+                        پروفایل شما کامل نیست. لطفا بخش‌های زیر را تکمیل کنید:
+                        <ul class="w-100 d-flex gap-4">
+                            ${profileData.incomplete_sections.map(section => 
+                                `<li class="badge badge-danger p-2">${section}</li>`
+                            ).join('')}
+                        </ul>
+                    </span>
+                </div>
+            `;
+
+     // اضافه کردن هشدار به بالای محتوا
+     const mainContent = document.querySelector('.main-content');
+     mainContent.insertAdjacentHTML('afterbegin', alertHtml);
+
+     // نقشه‌بندی بخش‌ها
+     const sectionMappings = {
+      'نام': '#personal-data',
+      'نام خانوادگی': '#personal-data',
+      'کد ملی': '#personal-data',
+      'شماره نظام پزشکی': '#personal-data',
+      'تخصص و درجه علمی': '#specialty-section',
+      'آیدی': '#uuid-section',
+      'پیام‌رسان‌ها': '#messengers-section'
+     };
+
+     // حذف کلاس‌های قبلی
+     Object.values(sectionMappings).forEach(selector => {
+      const section = document.querySelector(selector);
+      if (section) {
+       section.classList.remove('border', 'border-warning');
+      }
+     });
+
+     // اضافه کردن کلاس به بخش‌های ناقص
+     profileData.incomplete_sections.forEach(section => {
+      const selector = sectionMappings[section];
+      if (selector) {
+       const sectionElement = document.querySelector(selector);
+       if (sectionElement) {
+        sectionElement.classList.add('border', 'border-warning');
+       }
+      }
+     });
+    }
+   })
+   .catch(error => {
+    console.error('خطا در بررسی وضعیت پروفایل:', error);
+   });
+ }
+
+ // اجرای تابع در زمان بارگذاری اولیه صفحه
+ document.addEventListener('DOMContentLoaded', function() {
+  checkInitialProfileCompleteness();
+ });
  const deleteSpecialtyRoute = "{{ route('dr-delete-specialty', ['id' => '__ID__']) }}";
+
  function removeInput(button) {
   // پیدا کردن المان والد که دارای data-specialty-id است
   const inputGroup = button.closest('.specialty-item');
@@ -204,6 +327,7 @@
    ...options
   });
  }
+
  function initAllTomSelects() {
   // درجه علمی
   initTomSelect('#academic_degree_id', {
@@ -341,6 +465,9 @@
        background: "green"
       }
      }).showToast();
+     updateAlert();
+     callCheckProfileCompleteness();
+     updateProfileSections(data);
     } else {
      // نمایش توست خطا
      Toastify({
@@ -417,6 +544,9 @@
        background: "green"
       }
      }).showToast();
+     updateAlert();
+     callCheckProfileCompleteness();
+     updateProfileSections(data);
      // به‌روزرسانی مقادیر سلکت‌باکس‌ها و اینپوت‌ها
      if (data.specialties) {
       updateSpecialties(data.specialties);
@@ -452,6 +582,7 @@
     }).showToast();
    });
  });
+
  function updateSpecialties(specialties) {
   if (!specialties || !Array.isArray(specialties)) {
    console.error('داده‌های تخصص‌ها نامعتبر است:', specialties);
@@ -556,6 +687,9 @@
        background: "green"
       }
      }).showToast();
+     updateAlert();
+     callCheckProfileCompleteness();
+     updateProfileSections(data);
     } else {
      // نمایش توست خطا
      Toastify({
@@ -872,6 +1006,9 @@
         background: "green",
        },
       }).showToast();
+      updateAlert();
+      callCheckProfileCompleteness();
+      updateProfileSections(data);
      } else {
       Toastify({
        text: data.message || "خطا در به‌روزرسانی اطلاعات",
@@ -980,6 +1117,7 @@
     }
    });
  });
+
  function handleValidationErrors(errors) {
   // پاک کردن خطاهای قبلی
   clearPreviousErrors();
@@ -1010,6 +1148,7 @@
    }
   }).showToast();
  }
+
  function clearPreviousErrors() {
   // حذف خطاهای قبلی
   document.querySelectorAll('.validation-error').forEach(el => el.remove());
@@ -1259,12 +1398,115 @@
   });
  });
 
- document.addEventListener('DOMContentLoaded', function () {
-    const incompleteSections = @json($doctor->getIncompleteProfileSections());
+ document.addEventListener('DOMContentLoaded', function() {
+  const incompleteSections = @json($doctor->getIncompleteProfileSections());
 
-    if (incompleteSections.includes('پیام‌رسان‌ها')) {
-        document.getElementById('messengers-section').classList.add('border-warning');
+  if (incompleteSections.includes('پیام‌رسان‌ها')) {
+   document.getElementById('messengers-section').classList.add('border-warning');
+  }
+  // همین‌طور برای سایر بخش‌ها
+ });
+
+ function checkProfileCompleteness() {
+  fetch("{{ route('dr-check-profile-completeness') }}", {
+    method: 'GET',
+    headers: {
+     'X-Requested-With': 'XMLHttpRequest',
+     'Accept': 'application/json',
+     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     }
-    // همین‌طور برای سایر بخش‌ها
-});
+   })
+   .then(response => {
+    // اگر پاسخ موفقیت‌آمیز نبود
+    if (!response.ok) {
+     // چاپ متن پاسخ برای دیباگ
+     return response.text().then(text => {
+      console.error('Raw response:', text);
+      throw new Error('Server response was not ok');
+     });
+    }
+    // پارس کردن JSON
+    return response.json();
+   })
+   .then(data => {
+    // کدهای قبلی...
+   })
+   .catch(error => {
+    console.error('خطا در بررسی وضعیت پروفایل:', error);
+
+    // نمایش توست خطا
+    Toastify({
+     text: "خطا در دریافت اطلاعات پروفایل",
+     duration: 3000,
+     gravity: "top",
+     position: "right",
+     style: {
+      background: "red"
+     }
+    }).showToast();
+   });
+ }
+
+ function updateProfileSections(data) {
+  console.log('Update Profile Sections Called');
+
+  fetch("{{ route('dr-check-profile-completeness') }}", {
+    method: 'GET',
+    headers: {
+     'X-Requested-With': 'XMLHttpRequest',
+     'Accept': 'application/json',
+     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    }
+   })
+   .then(response => {
+    if (!response.ok) {
+     return response.text().then(text => {
+      console.error('Raw response:', text);
+      throw new Error('Server response was not ok');
+     });
+    }
+    return response.json();
+   })
+   .then(profileData => {
+    // نقشه‌بندی بخش‌ها
+    const sectionMappings = {
+     'نام': '#personal-data',
+     'نام خانوادگی': '#personal-data',
+     'کد ملی': '#personal-data',
+     'شماره نظام پزشکی': '#personal-data',
+     'تخصص و درجه علمی': '#specialty-section',
+     'آیدی': '#uuid-section',
+     'پیام‌رسان‌ها': '#messengers-section'
+    };
+
+    // حذف کلاس‌های قبلی
+    Object.values(sectionMappings).forEach(selector => {
+     const section = document.querySelector(selector);
+     if (section) {
+      section.classList.remove('border', 'border-warning');
+     }
+    });
+
+    // اضافه کردن کلاس به بخش‌های ناقص
+    profileData.incomplete_sections.forEach(section => {
+     const selector = sectionMappings[section];
+     if (selector) {
+      const sectionElement = document.querySelector(selector);
+      if (sectionElement) {
+       sectionElement.classList.add('border', 'border-warning');
+      }
+     }
+    });
+   })
+   .catch(error => {
+    console.error('خطا در بررسی وضعیت پروفایل:', error);
+   });
+ }
+ // فراخوانی تابع پس از هر به‌روزرسانی پروفایل
+ function callCheckProfileCompleteness() {
+  checkProfileCompleteness();
+ }
+
+ // فراخوانی در زمان بارگذاری اولیه صفحه
+ document.addEventListener('DOMContentLoaded', checkProfileCompleteness);
 </script>
