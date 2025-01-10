@@ -17,14 +17,14 @@ $(document).ready(function () {
 
   // هنگامی که بر روی عنوان کلیک می‌شود
   $('.d-flex.justify-content-between.align-items-center').on('click', function (event) {
-    event.stopPropagation(); // جلوگیری از انتشار رویداد به والدین
+  /*   event.stopPropagation(); */ // جلوگیری از انتشار رویداد به والدین
     const $currentCard = $(this).closest('.option-card-box-shodow').find('.drop-toggle-styles');
     const $icon = $(this).find('svg.chevron_bottom__M8fF9');
 
     // اگر دراپ‌تاگل فعلی باز نیست، آن را باز کن
     if ($currentCard.is(':hidden')) {
       $currentCard.find('.loading-spinner').removeClass('d-none');
-      $currentCard.slideDown(300, function () {
+      $currentCard.slideDown(500, function () {
         $currentCard.find('.loading-spinner').addClass('d-none');
       });
       $icon.css({
@@ -33,7 +33,7 @@ $(document).ready(function () {
       });
     } else {
       // در غیر این صورت، آن را ببند
-      $currentCard.slideUp(300);
+      $currentCard.slideUp(500);
       $icon.css({ transform: 'rotate(90deg)', transition: 'transform 0.3s' });
     }
   });
@@ -42,15 +42,4 @@ $(document).ready(function () {
   $('.password_toggle__AXK9v').on('click', function (event) {
     event.stopPropagation(); // جلوگیری از انتشار رویداد به والدین
   });
-
-  // هنگامی که کاربر در جایی خارج از دراپ‌تاگل کلیک می‌کند
-/*   $(document).on("click", function (event) {
-    if (!$(event.target).closest(".option-card-box-shodow").length) {
-      $(".drop-toggle-styles").slideUp(300);
-      $("svg.chevron_bottom__M8fF9").css({
-        transform: "rotate(90deg)",
-        transition: "transform 0.3s",
-      });
-    }
-  }); */
 });
