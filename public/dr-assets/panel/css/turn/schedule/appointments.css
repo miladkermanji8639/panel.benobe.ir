@@ -16,6 +16,25 @@
  border-radius: 50%;
  position: absolute;
 }
+
+@media screen and (max-width: 1290px) {
+
+.appointments-filter-drop-toggle {
+    width: 320px;
+    height: 215px;
+    border-radius: 8px;
+    padding: 10px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 150;
+    border: 1px solid #ddd;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: #fff;
+    display: none;
+    margin-top: 10px;
+}
+}
 @media screen and (min-width: 557px) {
  .datepicker-container {
   position: absolute !important;
@@ -43,23 +62,36 @@
   margin-left: 0 !important;
   margin-right: 10px !important;
  }
+  .text-425-none{
+   font-size: 12px;
+   font-weight: bolder;
+  }
 }
 @media screen and (max-width: 425px) {
+ .text-425-none{
+  display: none;
+
+ }
+ .p-4{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+ }
+ .text-btn-425{
+  font-size: 11px;
+  font-weight: bold;
+ }
+
  .top-appointment {
   display: flex !important;
   justify-content: center !important;
-  flex-wrap: wrap !important;
   gap: 10px !important;
  }
  .selectDate_datepicker__xkZeS {
   width: 100% !important;
  }
- .notif-option {
-  display: flex !important;
-  justify-content: end !important;
-  width: 100% !important;
-  margin-top: 15px;
- }
+.padding-12-30 {
+    padding: 12px 8px !important;
+}
  .breadcrumb-item {
   font-size: 15px !important;
  }
@@ -67,4 +99,82 @@
   margin-left: 0 !important;
   margin-right: 10px !important;
  }
+}
+
+
+
+
+.appointments-filter-drop-toggle {
+    width: 320px;
+    height: 215px;
+    border-radius: 8px;
+    padding: 10px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 150;
+    border: 1px solid #ddd;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: #fff;
+    display: none;
+    margin-top: 10px;
+    right: inherit;
+    top: 85px;
+    left: 0px;
+    bottom: inherit;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-icon {
+    transition: transform 0.3s ease;
+}
+
+.dropdown-toggle.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.appointments-filter-drop-toggle.show {
+    display: block;
+}
+.bg-light-success{
+ background-color: #f4fcfa !important;
+ border-color: #e5f7f3 !important;
+}
+.my-border{
+ border: 1px solid #ddd;
+ border-radius: 12px;
+}
+.my-appointments-lists-card{
+ background-color: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+}
+.top-user-modal-info{
+ width: 50%;
+ height: 50px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ border: 1px solid green !important;
+}
+
+.time-card{
+border-left: 1px solid green !important;
+border-top-right-radius: 12px;
+border-bottom-right-radius: 12px;
+}
+.date-card{
+border-top-left-radius: 12px;
+border-bottom-left-radius: 12px;
+}
+.h-40{
+    height: 40px !important;
+}
+.border-radius-6{
+    border-radius: 6px !important;
 }

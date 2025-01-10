@@ -18,7 +18,7 @@
    <a href="{{ route('dr-panel') }}">داشبورد</a>
   </li>
   <li
-   class="item-li i-courses {{ Request::routeIs('dr-appointments') || Request::routeIs('my-dr-appointments') || Request::routeIs('dr-appointments_open') || Request::routeIs('dr-manual_nobat') || Request::routeIs('dr-scheduleSetting') || Request::routeIs('dr-manual_nobat_setting') ? 'is-active' : '' }}"
+   class="item-li i-courses {{ Request::routeIs('dr-appointments') || Request::routeIs('dr-appointments_open') || Request::routeIs('dr-manual_nobat') || Request::routeIs('dr-scheduleSetting') || Request::routeIs('dr-manual_nobat_setting') ? 'is-active' : '' }}"
    id="nobat-dehi">
    <a href="#" class="d-flex justify-content-between w-100 align-items-center">
     نوبت اینترنتی
@@ -34,9 +34,6 @@
    <ul class="drop-toggle d-none">
     <li class="item-li  {{ Request::routeIs('dr-appointments') ? 'is-active' : '' }}">
      <a href="{{ route('dr-appointments') }}"> مراجعین من</a>
-    </li>
-    <li class="item-li  {{ Request::routeIs('dr-appointments') ? 'is-active' : '' }}">
-     <a href="{{ route('my-dr-appointments') }}"> نوبت های من</a>
     </li>
     <li class="item-li  {{ Request::routeIs('dr-workhours') ? 'is-active' : '' }}">
      <a href="{{ route('dr-workhours') }}"> ساعت کاری</a>
@@ -209,7 +206,7 @@
    <a href="{{ route('dr-bime') }}">بیمه ها</a>
   </li>
   <li
-   class="item-li i-users {{ Request::routeIs('dr-edit-profile') || Request::routeIs('dr-edit-profile-security') || Request::routeIs('dr-edit-profile-upgrade') || Request::routeIs('dr-my-performance') || Request::routeIs('dr-subuser') ? 'is-active' : '' }} d-flex flex-column justify-content-center"
+   class="item-li i-users {{ Request::routeIs('dr-edit-profile') || Request::routeIs('dr-edit-profile-security') || Request::routeIs('dr-edit-profile-upgrade') || Request::routeIs('dr-my-performance') || Request::routeIs('dr-subuser') || Request::routeIs('my-dr-appointments') ? 'is-active' : '' }} d-flex flex-column justify-content-center"
    id="hesab-karbari">
    <a href="#" class="d-flex justify-content-between w-100 align-items-center">
     حساب کاربری
@@ -225,6 +222,9 @@
    <ul class="drop-toggle d-none">
     <li class="item-li  {{ Request::routeIs('dr-edit-profile') ? 'is-active' : '' }}">
      <a href="{{ route('dr-edit-profile') }}">حساب کاربری</a>
+    </li>
+        <li class="item-li  {{ Request::routeIs('my-dr-appointments') ? 'is-active' : '' }}">
+     <a href="{{ route('my-dr-appointments') }}"> نوبت های من</a>
     </li>
     <li class="item-li  {{ Request::routeIs('dr-edit-profile-security') ? 'is-active' : '' }}">
      <a href="{{ route('dr-edit-profile-security') }}"> امنیت</a>

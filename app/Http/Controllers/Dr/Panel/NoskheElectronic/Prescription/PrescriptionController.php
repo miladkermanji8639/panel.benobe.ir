@@ -19,7 +19,7 @@ class PrescriptionController
      */
     public function create()
     {
-        //
+        return view('dr.panel.noskhe-electronic.prescription.create');
     }
 
     /**

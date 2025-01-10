@@ -17,7 +17,7 @@
  <div class="content">
   @include('dr.panel.layouts.partials.header')
 
-  <div class="top-dr-panel d-flex justify-content-between w-100">
+  <div class="top-dr-panel d-flex justify-content-between w-100 align-items-start">
    <div class="p-3 bg-white">
     <nav aria-label="breadcrumb">
      <ol class="breadcrumb bg-white">

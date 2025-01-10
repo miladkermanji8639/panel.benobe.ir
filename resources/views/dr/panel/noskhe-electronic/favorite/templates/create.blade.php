@@ -14,7 +14,7 @@
  @section('bread-crumb-title',' افزودن نسخه پراستفاده ')
 
  <div class="d-flex justify-content-center">
-  <div class="noskhe-option-content-layouts mt-4 p-2 position-relative col-11 p-3">
+  <div class="noskhe-option-content-layouts mt-4 position-relative col-11 p-3">
    <div class="">
     <div class="top-noskhe-create">
      <form action="" method="post">

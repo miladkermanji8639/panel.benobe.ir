@@ -135,6 +135,30 @@
  .my-738px-input input {
   width: 88vw !important;
  }
+
+.details-wrapper{
+  width: 100% !important;
+  overflow-y: hidden !important;
+  overflow-x: scroll !important;
+  text-wrap: nowrap !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+
+  
+}
+#patient-profile-details-wrapper{
+  width: 100% !important;
+  overflow-y: hidden !important;
+  overflow-x: scroll !important;
+  text-wrap: nowrap !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+}
+
+
+
+
+
 }
 @media only screen and (max-width: 359px) {
  .top-noskhe-create form .gap-20 {

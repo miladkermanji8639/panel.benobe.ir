@@ -7,108 +7,217 @@
  {{ 'به نوبه | پنل دکتر' }}
 @endsection
 @section('content')
- @section('bread-crumb-title','لیست نوبت ها')
+@section('bread-crumb-title', 'لیست نوبت ها')
 
- <div class="appointments-content w-100 d-flex justify-content-center">
-  <div class="appointments-content-wrapper">
-   <div class="top-appointment d-flex justify-content-around p-4 align-items-center">
-    <div>
-     <span class="text-dark font-weight-bold">لیست نوبت ها</span>
-    </div>
-    <div class="">
-     <button class="selectDate_datepicker__xkZeS cursor-pointer text-center h-50 bg-light-blue position-relative">
-      <input type="text" class="observer-example bg-transparent text-center cursor-pointer pwt-datepicker-input-element"
-       readonly="">
+<div class="appointments-content w-100 d-flex justify-content-center ">
+ <div class="appointments-content-wrapper position-relative">
+  <div class="top-appointment d-flex justify-content-between p-4 align-items-center">
+   <div>
+    <span class="text-dark font-weight-bold text-425-none">لیست نوبت ها</span>
+   </div>
+   <div class="position-relative">
+    <button class="selectDate_datepicker__xkZeS cursor-pointer text-center h-50 bg-light-blue position-relative">
+     <input type="text"
+      class="observer-example bg-transparent text-center cursor-pointer pwt-datepicker-input-element" readonly="">
 
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="#333" class="calendar-svg"
-       xmlns="http://www.w3.org/2000/svg">
-       <rect x="2.63989" y="3.49097" width="15" height="14" rx="4" fill="#000" fill-opacity="0">
-       </rect>
-       <path fill-rule="evenodd" clip-rule="evenodd"
-        d="M7.41668 1.59094C7.41668 1.17673 7.08089 0.840942 6.66668 0.840942C6.25247 0.840942 5.91668 1.17673 5.91668 1.59094V2.54303C5.89207 2.54591 5.86779 2.54901 5.84377 2.55236C3.7414 2.84563 2.08883 4.49821 1.79556 6.60057C1.7499 6.92787 1.74994 7.30407 1.75 7.89547L1.75001 7.96269V10.7568L1.75001 10.8057C1.75 12.408 1.74999 13.6773 1.86869 14.6816C1.99055 15.7125 2.24639 16.5612 2.82821 17.2702C3.02559 17.5107 3.24613 17.7312 3.48664 17.9286C4.19559 18.5104 5.04429 18.7663 6.07526 18.8881C7.07948 19.0068 8.34883 19.0068 9.9511 19.0068H10H10.0489C11.6512 19.0068 12.9205 19.0068 13.9248 18.8881C14.9557 18.7663 15.8044 18.5104 16.5134 17.9286C16.7539 17.7312 16.9744 17.5107 17.1718 17.2702C17.7536 16.5612 18.0095 15.7125 18.1313 14.6816C18.25 13.6773 18.25 12.408 18.25 10.8057V10.7568V10.7079C18.25 9.10564 18.25 7.83628 18.1313 6.83206C18.0095 5.80109 17.7536 4.95239 17.1718 4.24344C16.9744 4.00293 16.7539 3.78239 16.5134 3.58501C15.8411 3.0333 15.0432 2.7747 14.0833 2.64551V1.59094C14.0833 1.17673 13.7475 0.840942 13.3333 0.840942C12.9191 0.840942 12.5833 1.17673 12.5833 1.59094V2.53227C11.8482 2.5068 11.0082 2.5068 10.0489 2.50681H10.0489L10 2.50681H7.41668V1.59094ZM12.5833 4.09175V4.03308C11.8742 4.00728 11.0294 4.00681 10 4.00681H7.41668V4.09175C7.41668 4.50596 7.08089 4.84175 6.66668 4.84175C6.25247 4.84175 5.91668 4.50596 5.91668 4.09175V4.05956C4.54258 4.30981 3.47554 5.41443 3.28118 6.8078C3.25182 7.01823 3.25001 7.28176 3.25001 7.96269V10.7568C3.25001 12.4189 3.25124 13.5996 3.35832 14.5055C3.46344 15.3948 3.66158 15.9212 3.98773 16.3186C4.12278 16.4832 4.27367 16.634 4.43823 16.7691C4.83563 17.0952 5.36198 17.2934 6.25134 17.3985C7.15725 17.5056 8.3379 17.5068 10 17.5068C11.6621 17.5068 12.8428 17.5056 13.7487 17.3985C14.638 17.2934 15.1644 17.0952 15.5618 16.7691C15.7263 16.634 15.8772 16.4832 16.0123 16.3186C16.3384 15.9212 16.5366 15.3948 16.6417 14.5055C16.7488 13.5996 16.75 12.4189 16.75 10.7568C16.75 9.0947 16.7488 7.91405 16.6417 7.00814C16.5366 6.11878 16.3384 5.59244 16.0123 5.19503C15.8772 5.03047 15.7263 4.87958 15.5618 4.74453C15.2165 4.46113 14.7738 4.27438 14.0801 4.16132C14.045 4.54292 13.7241 4.84175 13.3333 4.84175C12.9191 4.84175 12.5833 4.50596 12.5833 4.09175ZM5.83334 6.67429C5.41913 6.67429 5.08334 7.01007 5.08334 7.42429C5.08334 7.8385 5.41913 8.17429 5.83334 8.17429H14.1667C14.5809 8.17429 14.9167 7.8385 14.9167 7.42429C14.9167 7.01007 14.5809 6.67429 14.1667 6.67429H5.83334ZM7.50001 10.7576C7.50001 11.2179 7.12692 11.5909 6.66668 11.5909C6.20644 11.5909 5.83334 11.2179 5.83334 10.7576C5.83334 10.2974 6.20644 9.92428 6.66668 9.92428C7.12692 9.92428 7.50001 10.2974 7.50001 10.7576ZM6.66668 14.9243C7.12692 14.9243 7.50001 14.5512 7.50001 14.0909C7.50001 13.6307 7.12692 13.2576 6.66668 13.2576C6.20644 13.2576 5.83334 13.6307 5.83334 14.0909C5.83334 14.5512 6.20644 14.9243 6.66668 14.9243ZM10.8334 14.0909C10.8334 14.5512 10.4603 14.9243 10 14.9243C9.53978 14.9243 9.16669 14.5512 9.16669 14.0909C9.16669 13.6307 9.53978 13.2576 10 13.2576C10.4603 13.2576 10.8334 13.6307 10.8334 14.0909ZM13.3334 14.9243C13.7936 14.9243 14.1667 14.5512 14.1667 14.0909C14.1667 13.6307 13.7936 13.2576 13.3334 13.2576C12.8731 13.2576 12.5 13.6307 12.5 14.0909C12.5 14.5512 12.8731 14.9243 13.3334 14.9243ZM10.8334 10.7576C10.8334 11.2179 10.4603 11.5909 10 11.5909C9.53978 11.5909 9.16669 11.2179 9.16669 10.7576C9.16669 10.2974 9.53978 9.92428 10 9.92428C10.4603 9.92428 10.8334 10.2974 10.8334 10.7576ZM13.3334 11.5909C13.7936 11.5909 14.1667 11.2179 14.1667 10.7576C14.1667 10.2974 13.7936 9.92428 13.3334 9.92428C12.8731 9.92428 12.5 10.2974 12.5 10.7576C12.5 11.2179 12.8731 11.5909 13.3334 11.5909Z"
-        fill="#000"></path>
-      </svg>
-     </button>
-    </div>
-    <div class="d-flex notif-option" >
-     <div>
-      <span class="bell-red-badge">
-      </span>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24px" role="img">
-       <path
-        d="M12.02 2.91c-3.31 0-6 2.69-6 6v2.89c0 .61-.26 1.54-.57 2.06L4.3 15.77c-.71 1.18-.22 2.49 1.08 2.93 4.31 1.44 8.96 1.44 13.27 0 1.21-.4 1.74-1.83 1.08-2.93l-1.15-1.91c-.3-.52-.56-1.45-.56-2.06V8.91c0-3.3-2.7-6-6-6z"
-        stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"></path>
-       <path d="M13.87 3.2a6.754 6.754 0 00-3.7 0c.29-.74 1.01-1.26 1.85-1.26.84 0 1.56.52 1.85 1.26z" stroke="currentColor"
-        stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
-       <path d="M15.02 19.06c0 1.65-1.35 3-3 3-.82 0-1.58-.34-2.12-.88a3.01 3.01 0 01-.88-2.12" stroke="currentColor"
-        stroke-width="1.5" stroke-miterlimit="10"></path>
-      </svg>
-     </div>
-     <div class="mx-4">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24px" stroke="currentColor" stroke-width="2"
-       stroke-linecap="round" stroke-linejoin="round"
-       class="plasmic-default__svg plasmic_all__FLoMj PlasmicQuickAccessWallet_svg__4uUbY lucide lucide-wallet"
-       viewBox="0 0 24 24" role="img">
-       <path d="M19 7V4a1 1 0 00-1-1H5a2 2 0 000 4h15a1 1 0 011 1v4h-3a2 2 0 000 4h3a1 1 0 001-1v-2a1 1 0 00-1-1"></path>
-       <path d="M3 5v14a2 2 0 002 2h15a1 1 0 001-1v-4"></path>
-      </svg>
-      <span>
-       0تومان
+     <svg width="20" height="20" viewBox="0 0 20 20" fill="#333" class="calendar-svg"
+      xmlns="http://www.w3.org/2000/svg">
+      <rect x="2.63989" y="3.49097" width="15" height="14" rx="4" fill="#000" fill-opacity="0">
+      </rect>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+       d="M7.41668 1.59094C7.41668 1.17673 7.08089 0.840942 6.66668 0.840942C6.25247 0.840942 5.91668 1.17673 5.91668 1.59094V2.54303C5.89207 2.54591 5.86779 2.54901 5.84377 2.55236C3.7414 2.84563 2.08883 4.49821 1.79556 6.60057C1.7499 6.92787 1.74994 7.30407 1.75 7.89547L1.75001 7.96269V10.7568L1.75001 10.8057C1.75 12.408 1.74999 13.6773 1.86869 14.6816C1.99055 15.7125 2.24639 16.5612 2.82821 17.2702C3.02559 17.5107 3.24613 17.7312 3.48664 17.9286C4.19559 18.5104 5.04429 18.7663 6.07526 18.8881C7.07948 19.0068 8.34883 19.0068 9.9511 19.0068H10H10.0489C11.6512 19.0068 12.9205 19.0068 13.9248 18.8881C14.9557 18.7663 15.8044 18.5104 16.5134 17.9286C16.7539 17.7312 16.9744 17.5107 17.1718 17.2702C17.7536 16.5612 18.0095 15.7125 18.1313 14.6816C18.25 13.6773 18.25 12.408 18.25 10.8057V10.7568V10.7079C18.25 9.10564 18.25 7.83628 18.1313 6.83206C18.0095 5.80109 17.7536 4.95239 17.1718 4.24344C16.9744 4.00293 16.7539 3.78239 16.5134 3.58501C15.8411 3.0333 15.0432 2.7747 14.0833 2.64551V1.59094C14.0833 1.17673 13.7475 0.840942 13.3333 0.840942C12.9191 0.840942 12.5833 1.17673 12.5833 1.59094V2.53227C11.8482 2.5068 11.0082 2.5068 10.0489 2.50681H10.0489L10 2.50681H7.41668V1.59094ZM12.5833 4.09175V4.03308C11.8742 4.00728 11.0294 4.00681 10 4.00681H7.41668V4.09175C7.41668 4.50596 7.08089 4.84175 6.66668 4.84175C6.25247 4.84175 5.91668 4.50596 5.91668 4.09175V4.05956C4.54258 4.30981 3.47554 5.41443 3.28118 6.8078C3.25182 7.01823 3.25001 7.28176 3.25001 7.96269V10.7568C3.25001 12.4189 3.25124 13.5996 3.35832 14.5055C3.46344 15.3948 3.66158 15.9212 3.98773 16.3186C4.12278 16.4832 4.27367 16.634 4.43823 16.7691C4.83563 17.0952 5.36198 17.2934 6.25134 17.3985C7.15725 17.5056 8.3379 17.5068 10 17.5068C11.6621 17.5068 12.8428 17.5056 13.7487 17.3985C14.638 17.2934 15.1644 17.0952 15.5618 16.7691C15.7263 16.634 15.8772 16.4832 16.0123 16.3186C16.3384 15.9212 16.5366 15.3948 16.6417 14.5055C16.7488 13.5996 16.75 12.4189 16.75 10.7568C16.75 9.0947 16.7488 7.91405 16.6417 7.00814C16.5366 6.11878 16.3384 5.59244 16.0123 5.19503C15.8772 5.03047 15.7263 4.87958 15.5618 4.74453C15.2165 4.46113 14.7738 4.27438 14.0801 4.16132C14.045 4.54292 13.7241 4.84175 13.3333 4.84175C12.9191 4.84175 12.5833 4.50596 12.5833 4.09175ZM5.83334 6.67429C5.41913 6.67429 5.08334 7.01007 5.08334 7.42429C5.08334 7.8385 5.41913 8.17429 5.83334 8.17429H14.1667C14.5809 8.17429 14.9167 7.8385 14.9167 7.42429C14.9167 7.01007 14.5809 6.67429 14.1667 6.67429H5.83334ZM7.50001 10.7576C7.50001 11.2179 7.12692 11.5909 6.66668 11.5909C6.20644 11.5909 5.83334 11.2179 5.83334 10.7576C5.83334 10.2974 6.20644 9.92428 6.66668 9.92428C7.12692 9.92428 7.50001 10.2974 7.50001 10.7576ZM6.66668 14.9243C7.12692 14.9243 7.50001 14.5512 7.50001 14.0909C7.50001 13.6307 7.12692 13.2576 6.66668 13.2576C6.20644 13.2576 5.83334 13.6307 5.83334 14.0909C5.83334 14.5512 6.20644 14.9243 6.66668 14.9243ZM10.8334 14.0909C10.8334 14.5512 10.4603 14.9243 10 14.9243C9.53978 14.9243 9.16669 14.5512 9.16669 14.0909C9.16669 13.6307 9.53978 13.2576 10 13.2576C10.4603 13.2576 10.8334 13.6307 10.8334 14.0909ZM13.3334 14.9243C13.7936 14.9243 14.1667 14.5512 14.1667 14.0909C14.1667 13.6307 13.7936 13.2576 13.3334 13.2576C12.8731 13.2576 12.5 13.6307 12.5 14.0909C12.5 14.5512 12.8731 14.9243 13.3334 14.9243ZM10.8334 10.7576C10.8334 11.2179 10.4603 11.5909 10 11.5909C9.53978 11.5909 9.16669 11.2179 9.16669 10.7576C9.16669 10.2974 9.53978 9.92428 10 9.92428C10.4603 9.92428 10.8334 10.2974 10.8334 10.7576ZM13.3334 11.5909C13.7936 11.5909 14.1667 11.2179 14.1667 10.7576C14.1667 10.2974 13.7936 9.92428 13.3334 9.92428C12.8731 9.92428 12.5 10.2974 12.5 10.7576C12.5 11.2179 12.8731 11.5909 13.3334 11.5909Z"
+       fill="#000"></path>
+     </svg>
+    </button>
+   </div>
+   <div class="dropdown-container">
+    <button class="btn btn-light h-50 btn-filter-appointment-toggle">
+     <span class="text-btn-425">کل نوبت ها</span>
+     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="1em" class="dropdown-icon"
+      role="img">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+       d="M12.53 15.53a.75.75 0 01-1.06 0l-6-6a.75.75 0 011.06-1.06L12 13.94l5.47-5.47a.75.75 0 111.06 1.06l-6 6z"
+       fill="currentColor"></path>
+     </svg>
+    </button>
 
-      </span>
-     </div>
+    <div class="appointments-filter-drop-toggle">
+     <ul class="d-flex flex-column align-items-center justify-content-center w-100 gap-10">
+      <li class="btn border w-100 bg-light-blue border-radius-4"><span>کل نوبت ها</span></li>
+      <li class="btn border w-100 border-radius-4"><span>نوبت های مطب</span></li>
+      <li class="btn border w-100 border-radius-4"><span>نوبت های آنلاین</span></li>
+      <li class="btn border w-100 btn-primary border-radius-4">
+       <span>+</span>
+       <span>فعالسازی نوبت دهی مطب</span>
+      </li>
+     </ul>
     </div>
    </div>
   </div>
  </div>
- <div class="sicks-content h-100 mt-2 d-flex justify-content-center align-items-center">
-  <div class="" style="">
-   <div class="d-flex flex-column  align-items-center">
-    <svg width="167" height="102" viewBox="0 0 167 102" fill="none" xmlns="http://www.w3.org/2000/svg">
-     <path fill-rule="evenodd" clip-rule="evenodd"
-      d="M46 85H129C132.866 85 136 81.866 136 78C136 74.134 132.866 71 129 71C129 71 123 67.866 123 64C123 60.134 126.952 57 131.826 57H142C145.866 57 149 53.866 149 50C149 46.134 145.866 43 142 43H120C123.866 43 127 39.866 127 36C127 32.134 123.866 29 120 29H160C163.866 29 167 25.866 167 22C167 18.134 163.866 15 160 15H62C58.134 15 55 18.134 55 22C55 25.866 58.134 29 62 29H22C18.134 29 15 32.134 15 36C15 39.866 18.134 43 22 43H47C50.866 43 54 46.134 54 50C54 53.866 50.866 57 47 57H7C3.13401 57 0 60.134 0 64C0 67.866 3.13401 71 7 71H46C42.134 71 39 74.134 39 78C39 81.866 42.134 85 46 85ZM153 50C153 53.866 156.134 57 160 57C163.866 57 167 53.866 167 50C167 46.134 163.866 43 160 43C156.134 43 153 46.134 153 50Z"
-      fill="#bac7d469" fill-opacity="0.6"></path>
-     <path fill-rule="evenodd" clip-rule="evenodd"
-      d="M106.672 14L115.974 81.8427L116.809 88.649C117.079 90.8417 115.519 92.8375 113.327 93.1067L54.7665 100.297C52.5738 100.566 50.578 99.007 50.3088 96.8143L41.2931 23.3868C41.1584 22.2904 41.9381 21.2925 43.0344 21.1579C43.0413 21.1571 43.0483 21.1563 43.0552 21.1555L47.9136 20.6105M51.8421 20.1698L56.4291 19.6553L51.8421 20.1698Z"
-      fill="white"></path>
-     <path
-      d="M107.663 13.8642C107.588 13.317 107.083 12.9343 106.536 13.0093C105.989 13.0843 105.606 13.5887 105.681 14.1358L107.663 13.8642ZM115.974 81.8427L116.966 81.7209L116.964 81.7069L115.974 81.8427ZM116.809 88.649L117.802 88.5272L116.809 88.649ZM113.327 93.1067L113.449 94.0993L113.327 93.1067ZM54.7665 100.297L54.8884 101.29L54.7665 100.297ZM50.3088 96.8143L51.3014 96.6924L50.3088 96.8143ZM41.2931 23.3868L42.2856 23.2649L41.2931 23.3868ZM43.0552 21.1555L43.1667 22.1493L43.0552 21.1555ZM48.025 21.6043C48.5739 21.5427 48.9689 21.0479 48.9073 20.499C48.8458 19.9502 48.3509 19.5552 47.8021 19.6167L48.025 21.6043ZM51.7306 19.1761C51.1818 19.2376 50.7868 19.7325 50.8483 20.2813C50.9099 20.8301 51.4047 21.2252 51.9536 21.1636L51.7306 19.1761ZM56.5406 20.6491C57.0895 20.5875 57.4845 20.0927 57.4229 19.5438C57.3613 18.995 56.8665 18.6 56.3177 18.6615L56.5406 20.6491ZM105.681 14.1358L114.983 81.9786L116.964 81.7069L107.663 13.8642L105.681 14.1358ZM114.981 81.9646L115.817 88.7709L117.802 88.5272L116.966 81.7209L114.981 81.9646ZM115.817 88.7709C116.019 90.4154 114.849 91.9122 113.205 92.1142L113.449 94.0993C116.189 93.7627 118.138 91.268 117.802 88.5272L115.817 88.7709ZM113.205 92.1142L54.6446 99.3045L54.8884 101.29L113.449 94.0993L113.205 92.1142ZM54.6446 99.3045C53.0001 99.5064 51.5033 98.3369 51.3014 96.6924L49.3163 96.9362C49.6528 99.677 52.1475 101.626 54.8884 101.29L54.6446 99.3045ZM51.3014 96.6924L42.2856 23.2649L40.3005 23.5086L49.3163 96.9362L51.3014 96.6924ZM42.2856 23.2649C42.2183 22.7167 42.6081 22.2178 43.1563 22.1505L42.9125 20.1654C41.268 20.3673 40.0986 21.8641 40.3005 23.5086L42.2856 23.2649ZM43.1563 22.1505C43.1597 22.1501 43.1632 22.1496 43.1667 22.1493L42.9437 20.1617C42.9333 20.1629 42.9229 20.1641 42.9125 20.1654L43.1563 22.1505ZM43.1667 22.1493L48.025 21.6043L47.8021 19.6167L42.9437 20.1617L43.1667 22.1493ZM51.9536 21.1636L56.5406 20.6491L56.3177 18.6615L51.7306 19.1761L51.9536 21.1636Z"
-      fill="#DFE7EF"></path>
-     <path fill-rule="evenodd" clip-rule="evenodd"
-      d="M104.14 18.2692L112.56 79.7529L113.317 85.9212C113.561 87.9083 112.167 89.7146 110.203 89.9557L57.7613 96.3948C55.7977 96.6359 54.0081 95.2204 53.7641 93.2333L45.6141 26.8568C45.4795 25.7605 46.2591 24.7626 47.3555 24.628L53.8431 23.8314"
-      fill="#E0E8EF" fill-opacity="0.4"></path>
-     <path
-      d="M60.6719 4C60.6719 2.34315 62.015 1 63.6719 1H109.229C110.024 1 110.787 1.31582 111.349 1.87802L112.054 1.17296L111.349 1.87802L124.793 15.3129C125.356 15.8756 125.672 16.639 125.672 17.4349V80C125.672 81.6569 124.329 83 122.672 83H63.6719C62.015 83 60.6719 81.6569 60.6719 80V4Z"
-      fill="white" stroke="#DFE7EF" stroke-width="2"></path>
-     <path d="M109.672 2.40283V14C109.672 15.6569 111.015 17 112.672 17H120.605" stroke="#DFE7EF" stroke-width="2"
-      stroke-linecap="round" stroke-linejoin="round"></path>
-     <path
-      d="M71.6719 22.9527C71.1196 22.9527 70.6719 23.4004 70.6719 23.9527H71.6719V22.9527ZM97.6719 22.9527H71.6719V23.9527H97.6719V22.9527ZM98.6719 23.9527C98.6719 23.4004 98.2242 22.9527 97.6719 22.9527V23.9527H98.6719ZM97.6719 24.9527C98.2242 24.9527 98.6719 24.505 98.6719 23.9527H97.6719V24.9527ZM71.6719 24.9527H97.6719V23.9527H71.6719V24.9527ZM70.6719 23.9527C70.6719 24.505 71.1196 24.9527 71.6719 24.9527V23.9527H70.6719ZM71.6719 32.9529C71.1196 32.9529 70.6719 33.4007 70.6719 33.9529H71.6719V32.9529ZM114.672 32.9529H71.6719V33.9529H114.672V32.9529ZM115.672 33.9529C115.672 33.4007 115.224 32.9529 114.672 32.9529V33.9529H115.672ZM114.672 34.9529C115.224 34.9529 115.672 34.5052 115.672 33.9529H114.672V34.9529ZM71.6719 34.9529H114.672V33.9529H71.6719V34.9529ZM70.6719 33.9529C70.6719 34.5052 71.1196 34.9529 71.6719 34.9529V33.9529H70.6719ZM71.6719 43.9532V42.9532C71.1196 42.9532 70.6719 43.4009 70.6719 43.9532H71.6719ZM71.6719 43.9532H70.6719C70.6719 44.5055 71.1196 44.9532 71.6719 44.9532V43.9532ZM114.672 43.9532H71.6719V44.9532H114.672V43.9532ZM114.672 43.9532V44.9532C115.224 44.9532 115.672 44.5055 115.672 43.9532H114.672ZM114.672 43.9532H115.672C115.672 43.4009 115.224 42.9532 114.672 42.9532V43.9532ZM71.6719 43.9532H114.672V42.9532H71.6719V43.9532ZM71.6719 52.9534C71.1196 52.9534 70.6719 53.4011 70.6719 53.9534H71.6719V52.9534ZM114.672 52.9534H71.6719V53.9534H114.672V52.9534ZM115.672 53.9534C115.672 53.4011 115.224 52.9534 114.672 52.9534V53.9534H115.672ZM114.672 54.9534C115.224 54.9534 115.672 54.5057 115.672 53.9534H114.672V54.9534ZM71.6719 54.9534H114.672V53.9534H71.6719V54.9534ZM70.6719 53.9534C70.6719 54.5057 71.1196 54.9534 71.6719 54.9534V53.9534H70.6719ZM71.6719 63.9537V62.9537C71.1196 62.9537 70.6719 63.4014 70.6719 63.9537H71.6719ZM71.6719 63.9537H70.6719C70.6719 64.506 71.1196 64.9537 71.6719 64.9537V63.9537ZM97.6719 63.9537H71.6719V64.9537H97.6719V63.9537ZM97.6719 63.9537V64.9537C98.2242 64.9537 98.6719 64.506 98.6719 63.9537H97.6719ZM97.6719 63.9537H98.6719C98.6719 63.4014 98.2242 62.9537 97.6719 62.9537V63.9537ZM71.6719 63.9537H97.6719V62.9537H71.6719V63.9537Z"
-      fill="#E0E8EF"></path>
-    </svg><span class="mt-3">نوبتی وجود ندارد</span>
+</div>
+<div class="my-appointments-list w-100 mt-3">
+ <div class="my-appointments-lists-cards d-flex gap-10 w-100 flex-wrap">
+  <di class="my-appointments-lists-card w-100 d-flex justify-content-between align-items-center p-3 my-border">
+   <div class="d-flex align-items-center gap-10 cursor-pointer" data-toggle="modal" data-target="#userInfoModalCenter">
+    <button class="btn h-50 border border-success bg-light-success d-flex justify-content-center align-items-center">
+     12:10
+    </button>
+    <div class="d-flex flex-column gap-10">
+     <span class="font-weight-bold">
+      صبا کرمی
+
+     </span>
+     <span class="font-weight-light font-size-13">
+      09180607211
+
+     </span>
+     <span class="font-weight-light text-danger font-size-13">
+      پرداخت نشده
+
+     </span>
+    </div>
    </div>
-   <table class="table w-full text-sm text-right d-none">
-    <thead class="text-xs text-gray-700 uppercase border-b border-solid bg-gray-50 border-b-gray-100">
-     <tr>
-      <th scope="col" class="px-6 py-3">نام بیمار</th>
-      <th scope="col" class="px-6 py-3">شماره‌موبایل</th>
-      <th scope="col" class="px-6 py-3">وضعیت نسخه</th>
-      <th scope="col" class="px-6 py-3">بیمه</th>
-      <th scope="col" class="px-6 py-3">تاریخ نوبت</th>
-      <th scope="col" class="px-6 py-3"></th>
-     </tr>
-    </thead>
-    <tbody></tbody>
-   </table>
-  </div>
+   <!-- Modal -->
+   <div class="modal  fade" id="userInfoModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="userInfoModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+     <div class="modal-content border-radius-6">
+      <div class="modal-header">
+       <h6 class="modal-title font-weight-bold" id="exampleModalCenterTitle">اطلاعات بیمار</h6>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+       </button>
+      </div>
+      <div class="modal-body">
+       <div class="">
+        <div class="w-100 d-flex">
+         <div class="bg-light-success  top-user-modal-info time-card">
+          <div class="text-black font-weight-bold">۱۲:۱۰</div>
+         </div>
+         <div class="bg-light-success border border-success top-user-modal-info date-card">
+          <div class="text-black font-weight-bold">شنبه ۲۶ آبان</div>
+         </div>
+        </div>
+        <div class="w-100 mt-2">
+         <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40" dir="rtl">
+          <div class="text-dark font-weight-bold font-size-13">نام و نام خانوادگی</div>
+          <div class="text-dark font-weight-bold font-size-13">صبا کرمی</div>
+         </div>
+         <div class="d-flex justify-content-between align-items-center bg-light p-2 h-40 mt-2" dir="rtl">
+          <div class="text-dark font-weight-bold font-size-13">موبایل</div>
+          <div class=" text-dark font-weight-bold font-size-13">09180607211</div>
+         </div>
+         <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40 mt-2" dir="rtl">
+          <div class="text-dark font-weight-bold font-size-13">کدملی</div>
+          <div class="text-dark font-weight-bold font-size-13">3720574245</div>
+         </div>
+         <div class="d-flex justify-content-between align-items-center bg-light p-2 h-40 mt-2" dir="rtl">
+          <div class="text-dark font-weight-bold font-size-13">کد پیگیری</div>
+          <div class="text-dark font-weight-bold font-size-13">2432927888</div>
+         </div>
+         <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40 mt-2" dir="rtl">
+          <div class="text-dark font-weight-bold font-size-13">وضعیت پرداخت</div>
+          <div class="text-dark font-weight-bold font-size-13">پرداخت نشده</div>
+         </div>
+         <div class="d-flex justify-content-between align-items-center bg-light p-2 h-40 mt-2" dir="rtl">
+          <div class="text-dark font-weight-bold font-size-13">نوع نوبت</div>
+          <div class="text-dark font-weight-bold font-size-13">حضوری</div>
+         </div>
+         <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40 mt-2" dir="rtl">
+          <div class="text-dark font-weight-bold font-size-13">نام مرکز</div>
+          <div class="text-dark font-weight-bold font-size-13">مطب یاسر محمدی</div>
+         </div>
+        </div>
+        <button class="btn btn-outline-danger h-50 w-100 mt-3" type="button">
+         لغو نوبت
+        </button>
+        <button class="btn btn-primary h-50 w-100 mt-3" type="button"
+         onclick="location.href='{{ route('prescription.create') }}'">
+         تجویز نسخه
+        </button>
+
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <div><span class="font-size-13 font-weight-bold">3720574245</span></div>
+   <div>
+    <button class="btn btn-outline-info" data-toggle="modal" data-target="#endVisitModalCenter">پایان ویزیت</button>
+    <div class="modal  fade" id="endVisitModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="endVisitModalCenterTitle" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content border-radius-6">
+       <div class="modal-header">
+        <h6 class="modal-title font-weight-bold" id="exampleModalCenterTitle"> توضیحات درمان</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+        </button>
+       </div>
+       <div class="modal-body">
+        <div>
+         <span class="font-weight-bold">پزشک گرامی</span>
+         <br>
+         <p class="mt-2 font-size-14">
+          لطفا در صورتی که برای بیمار نسخه الکترونیک ثبت کرده اید <span class="font-weight-bold">“کد پیگیری
+           نسخه”</span> و در صورت نیاز <span class="font-weight-bold">“توضیحات درمان”</span> خود را
+          یادداشت نمایید.
+         </p>
+         <span class="mt-2">
+          (این توضیحات در قسمت "نوبت‌های من" بیمار ذخیره می‌شود.)
+
+         </span>
+        </div>
+        <div class="mt-3">
+         <form action="">
+          <input type="text" placeholder="توضیحات خود را وارد کنید" class="h-50 my-form-control-light w-100">
+          <button class="h-50 w-100 btn btn-primary mt-3">ثبت</button>
+         </form>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </di>
+
  </div>
+</div>
 @endsection
 @section('scripts')
- <script src="{{ asset('dr-assets/panel/jalali-datepicker/run-jalali.js') }}"></script>
- <script src="{{ asset('dr-assets/panel/js/dr-panel.js') }}"></script>
- <script>
-  var appointmentsSearchUrl = "{{ route('search.appointments') }}";
-  var updateStatusAppointmentUrl =
-   "{{ route('updateStatusAppointment', ':id') }}";
- </script>
+<script src="{{ asset('dr-assets/panel/jalali-datepicker/run-jalali.js') }}"></script>
+<script src="{{ asset('dr-assets/panel/js/dr-panel.js') }}"></script>
+<script>
+ var appointmentsSearchUrl = "{{ route('search.appointments') }}";
+ var updateStatusAppointmentUrl =
+  "{{ route('updateStatusAppointment', ':id') }}";
+
+
+ // با jQuery
+ $(document).ready(function() {
+  $('.btn-filter-appointment-toggle').on('click', function() {
+   $(this).toggleClass('active');
+   $('.appointments-filter-drop-toggle').toggleClass('show');
+  });
+
+  // بستن دراپ با کلیک خارج از المنت
+  $(document).on('click', function(event) {
+   if (!$(event.target).closest('.dropdown-container').length) {
+    $('.btn-filter-appointment-toggle').removeClass('active');
+    $('.appointments-filter-drop-toggle').removeClass('show');
+   }
+  });
+
+  // انتخاب آیتم‌های فیلتر (به جز آیتم آخر)
+  $('.appointments-filter-drop-toggle li:not(:last-child)').on('click', function() {
+   // حذف کلاس bg-light-blue از همه آیتم‌ها
+   $('.appointments-filter-drop-toggle li:not(:last-child)').removeClass('bg-light-blue');
+
+   // اضافه کردن کلاس bg-light-blue به آیتم کلیک شده
+   $(this).addClass('bg-light-blue');
+  });
+ });
+</script>
 @endsection

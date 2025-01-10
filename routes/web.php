@@ -461,6 +461,7 @@ Route::prefix('dr')
         });
         Route::group(['prefix' => 'noskhe-electronic'], function () {
           Route::get('prescription/', [PrescriptionController::class, 'index'])->name('prescription.index');
+          Route::get('prescription/create', [PrescriptionController::class, 'create'])->name('prescription.create');
           Route::get('providers/', [ProvidersController::class, 'index'])->name('providers.index');
           Route::group(['prefix' => 'favorite'], function () {
             Route::get('templates/', [FavoriteTemplatesController::class, 'index'])->name('favorite.templates.index');
