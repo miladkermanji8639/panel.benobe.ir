@@ -145,12 +145,24 @@ class LoginController
   }
   public function loginWithMobilePass(MobilePassRequest $request)
   {
-    
+
     $doctor = Doctor::where('mobile', $request->mobile)->first();
-    
+
     $loginAttempts = new LoginAttemptsService();
-    if ($loginAttempts->isLocked($doctor->mobile)) {
-      return $this->handleRateLimitError($doctor->mobile);
+    if ($doctor) {
+      if ($loginAttempts->isLocked($doctor->mobile)) {
+        return $this->handleRateLimitError($doctor->mobile);
+      }
+    } else {
+      if ($loginAttempts->isLocked($request->mobile)) {
+        return $this->handleRateLimitError($request->mobile);
+      }
+    }
+    if (!$doctor || $doctor->mobile === null) {
+      return response()->json([
+        'success' => false,
+        'errors' => ['mobile-pass-errors' => 'کاربری با این شماره موبایل وجود  ندارد']
+      ], 422);
     }
     if ($doctor && $doctor->static_password_enabled) {
       if ($doctor && Hash::check($request->password, $doctor->password) && $doctor->status === 1 && $doctor->user_type === 'doctor') {
@@ -171,14 +183,14 @@ class LoginController
             'redirect' => route('dr-panel')
           ]);
         }
-      }else{
+      } else {
         return response()->json([
           'success' => false,
           'errors' => ['mobile-pass-errors' => 'شماره موبایل یا کلمه عبور نادرست است']
         ], 422);
       }
     } else {
-      $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
+      $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile ?? $request->mobile);
       return response()->json([
         'success' => false,
         'errors' => ['mobile-pass-errors' => 'شما این قابلیت را هنوز فعال نکرده اید   و به این بخش دسترسی ندارید']
