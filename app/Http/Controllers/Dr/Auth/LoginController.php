@@ -121,14 +121,14 @@ class LoginController
       'type' => 0, // فقط موبایل
     ]);
     // ارسال SMS
-    $smsService = new SmsService();
-    $smsService->setSenderNumber(env('SMS_SENDER_NUMBER'));
-    $smsService->setOtpId(env('SMS_OTP_ID'));
-    $smsService->setParameters([$otpCode]);
-    $smsService->setRecipientNumbers([$doctor->mobile]);
-    $messagesService = new MessageService($smsService);
+    $messagesService = new MessageService(
+      SmsService::create($otpCode, $doctor->mobile)
+    );
     $messagesService->send();
     return response()->json(['token' => $token, 'otp_code' => $otpCode]); // توکن و کد جدید را برمی‌گرداند // Return the new token and OTP
+
+
+    
   }
 
 

@@ -26,7 +26,15 @@ class SmsService implements MessageInterface
 
     return $pishgamRayanSms->SendWebServiceSmsRequest($this->otpId, $this->parameters, $this->senderNumber, $this->recipientNumbers);
   }
-
+  public static function create($otpCode, $newMobile)
+  {
+    $smsService = new self();
+    $smsService->setSenderNumber(env('SMS_SENDER_NUMBER'));
+    $smsService->setOtpId(env('SMS_OTP_ID'));
+    $smsService->setParameters([$otpCode]);
+    $smsService->setRecipientNumbers([$newMobile]);
+    return $smsService;
+  }
   public function getOtpId()
   {
     return $this->otpId;

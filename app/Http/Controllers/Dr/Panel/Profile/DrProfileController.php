@@ -525,12 +525,9 @@ class DrProfileController
         ]);
 
         // ارسال SMS
-        $smsService = new SmsService();
-        $smsService->setSenderNumber(env('SMS_SENDER_NUMBER'));
-        $smsService->setOtpId(env('SMS_OTP_ID'));
-        $smsService->setParameters([$otpCode]);
-        $smsService->setRecipientNumbers([$newMobile]);
-        $messagesService = new MessageService($smsService);
+        $messagesService = new MessageService(
+            SmsService::create($otpCode, $newMobile)
+        );
         $messagesService->send();
 
         return response()->json(['token' => $token, 'otp_code' => $otpCode]); // توکن و کد جدید را برمی‌گرداند
