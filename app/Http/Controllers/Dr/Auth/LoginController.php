@@ -145,35 +145,47 @@ class LoginController
   }
   public function loginWithMobilePass(MobilePassRequest $request)
   {
+    
     $doctor = Doctor::where('mobile', $request->mobile)->first();
+    
     $loginAttempts = new LoginAttemptsService();
     if ($loginAttempts->isLocked($doctor->mobile)) {
       return $this->handleRateLimitError($doctor->mobile);
     }
-    if ($doctor && Hash::check($request->password, $doctor->password) && $doctor->status === 1 && $doctor->user_type === 'doctor') {
-      // ذخیره اطلاعات کاربر در session به جای لاگین کامل
-      session(['doctor_temp_login' => $doctor->id]);
-      session(['step3_completed' => true]);
-      if ($doctor->two_factor_secret_enabled) {
-        $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
+    if ($doctor && $doctor->static_password_enabled) {
+      if ($doctor && Hash::check($request->password, $doctor->password) && $doctor->status === 1 && $doctor->user_type === 'doctor') {
+        // ذخیره اطلاعات کاربر در session به جای لاگین کامل
+        session(['doctor_temp_login' => $doctor->id]);
+        session(['step3_completed' => true]);
+        if ($doctor->two_factor_secret_enabled) {
+          $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
+          return response()->json([
+            'success' => true,
+            'redirect' => route('dr-two-factor')
+          ]);
+        } else {
+          Auth::guard('doctor')->login($doctor); // لاگین کامل اگر دو عاملی فعال نباشد
+          $loginAttempts->resetLoginAttempts($doctor->mobile);
+          return response()->json([
+            'success' => true,
+            'redirect' => route('dr-panel')
+          ]);
+        }
+      }else{
         return response()->json([
-          'success' => true,
-          'redirect' => route('dr-two-factor')
-        ]);
-      } else {
-        Auth::guard('doctor')->login($doctor); // لاگین کامل اگر دو عاملی فعال نباشد
-        $loginAttempts->resetLoginAttempts($doctor->mobile);
-        return response()->json([
-          'success' => true,
-          'redirect' => route('dr-panel')
-        ]);
+          'success' => false,
+          'errors' => ['mobile-pass-errors' => 'شماره موبایل یا کلمه عبور نادرست است']
+        ], 422);
       }
+    } else {
+      $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
+      return response()->json([
+        'success' => false,
+        'errors' => ['mobile-pass-errors' => 'شما این قابلیت را هنوز فعال نکرده اید   و به این بخش دسترسی ندارید']
+      ], 422);
     }
-    $loginAttempts->incrementLoginAttempt($doctor->id ?? null, $doctor->mobile);
-    return response()->json([
-      'success' => false,
-      'errors' => ['mobile-pass-errors' => 'شماره موبایل یا کلمه عبور نادرست است']
-    ], 422);
+
+
   }
   public function twoFactorFormCheck(TwoFactorRequest $request)
   {
