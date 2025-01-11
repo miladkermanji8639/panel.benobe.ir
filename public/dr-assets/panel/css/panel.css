@@ -368,9 +368,6 @@
   justify-content: space-around !important;
  }
 
- .calendar-svg {
-  display: none;
- }
 
  .turning_selectDate__MLRSb button {
   width: 91.5vw !important;
@@ -548,9 +545,6 @@
   justify-content: space-around !important;
  }
 
- .calendar-svg {
-  display: none;
- }
 
  .selectDate_datepicker__xkZeS {
   border: 1px solid #ddd;
@@ -812,11 +806,7 @@ button {
  text-align: center;
 }
 
-.calendar-svg {
- position: absolute;
- right: 145px;
- bottom: 33px;
-}
+
 
 .fs-13 {
  font-size: 13px !important;

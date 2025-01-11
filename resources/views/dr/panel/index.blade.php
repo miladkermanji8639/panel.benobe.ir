@@ -37,11 +37,12 @@
   <div class="d-flex justify-content-between gap-10 align-items-center c-a-wrapper">
    <div>
     <div class="turning_selectDate__MLRSb">
-     <button class="selectDate_datepicker__xkZeS cursor-pointer text-center h-50 bg-light-blue">
-      <input type="text" class="observer-example bg-transparent text-center cursor-pointer" readonly />
+     <button
+      class="selectDate_datepicker__xkZeS cursor-pointer text-center h-50 bg-light-blue d-flex justify-content-center align-items-center">
+      <span class="mx-1">1403/10/22</span>
       {{-- <span type="text" class="observer-example bg-transparent text-center cursor-pointer"></span> --}}
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="calendar-svg"
-       xmlns="http://www.w3.org/2000/svg">
+      <svg style="margin-top: -4px" width="20" height="20" viewBox="0 0 20 20" fill="none"
+       class="calendar-svg" xmlns="http://www.w3.org/2000/svg">
        <rect x="2.63989" y="3.49097" width="15" height="14" rx="4" fill="#000" fill-opacity="0">
        </rect>
        <path fill-rule="evenodd" clip-rule="evenodd"
@@ -392,7 +393,6 @@
 </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('dr-assets/panel/jalali-datepicker/run-jalali.js') }}"></script>
 <script src="{{ asset('dr-assets/panel/js/dr-panel.js') }}"></script>
 <script>
  var appointmentsSearchUrl = "{{ route('search.appointments') }}";
