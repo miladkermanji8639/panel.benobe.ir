@@ -1,0 +1,196 @@
+body {
+ direction: rtl;
+ background-color: #f8f9fa;
+}
+
+.calendar {
+ max-width: 500px;
+ margin: auto;
+ border: 2px solid #ddd;
+ border-radius: 10px;
+ padding: 20px;
+ background-color: white;
+}
+.calendar-day.active {
+ background-color: #cce5ff;
+ /* رنگ آبی روشن */
+ border-color: #004085;
+ color: #004085;
+}
+.calendar-header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 10px 0;
+}
+
+.calendar-body {
+ display: grid;
+ grid-template-columns: repeat(7, 1fr);
+ grid-gap: 5px;
+ margin-top: 10px;
+}
+
+.calendar-day {
+ text-align: center;
+ background-color: white;
+ border: 1px solid #ddd;
+ border-radius: 5px;
+ aspect-ratio: 1.7;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ cursor: pointer;
+ transition: background-color 0.3s ease;
+}
+
+.calendar-day:hover {
+ background-color: #f0f0f0;
+}
+
+.calendar-day.friday {
+ color: red;
+}
+
+.calendar-day.active {
+ background-color: #cce5ff;
+ border-color: #004085;
+}
+
+.calendar-day.selected {
+ background-color: #d1ecf1;
+ border-color: #0c5460;
+}
+
+.calendar-day-name {
+ font-weight: bold;
+ text-align: center;
+}
+
+.my-badge-success {
+ position: absolute;
+ top: -4px;
+ left: -3px;
+ width: 22px;
+ height: 22px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ line-height: middle;
+ padding-top: 2px;
+ background-color: #28a745;
+ color: white;
+ border-radius: 50%;
+ font-size: 0.75rem;
+
+}
+
+.my-sm-badge-success {
+ position: absolute;
+ top: -4px;
+ left: -3px;
+ width: 18px;
+ height: 18px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ line-height: middle;
+ padding-top: 2px;
+ background-color: #28a745;
+ color: white;
+ border-radius: 50%;
+ font-size: 0.65rem;
+
+}
+
+#calendar-reschedule .calendar-day {
+ font-size: 13px;
+ font-weight: bold;
+}
+
+
+
+.form-select {
+ width: auto;
+ display: inline-block;
+ padding: 5px;
+ border-radius: 5px;
+ border: 1px solid #ddd;
+ margin-left: 10px;
+}
+
+.form-select:focus {
+ outline: none;
+ border-color: #004085;
+ box-shadow: 0 0 5px rgba(0, 64, 133, .5);
+}
+
+.calendar-day {
+ font-size: 15px;
+}
+
+@media only screen and (max-width:768px) {
+ .calendar-day {
+  font-size: 11px;
+  font-weight: bold;
+ }
+
+ .top-dr-panel {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  flex-direction: column;
+ }
+
+ .d-none-768 {
+  display: none !important;
+ }
+
+ .my-badge-success {
+  font-size: 11px;
+  width: 19px;
+  height: 19px;
+ }
+}
+
+@media only screen and (max-width:425px) {
+ .calendar-body-g-425 {
+  display: none !important;
+ }
+
+ .calendar-day {
+  font-size: 10px;
+  text-align: left !important;
+ }
+
+ .d-none-425 {
+  display: none !important;
+ }
+
+ .my-badge-success {
+  font-size: 10px;
+  width: 15px;
+  height: 15px;
+ }
+
+ .my-sm-badge-success {
+  font-size: 10px;
+  width: 15px;
+  height: 15px;
+ }
+
+ .calendar-body-425 {
+  display: flex !important;
+  text-align: center !important;
+  justify-content: space-between !important;
+ }
+
+ .calendar-body-425 .calendar-day-name {
+  text-align: center !important;
+  width: 100%;
+ }
+
+ .calendar-day {
+  font-size: 11px;
+  font-weight: bold;
+ }
+}

@@ -367,14 +367,6 @@
   flex-wrap: wrap !important;
   justify-content: space-around !important;
  }
-
-
- .turning_selectDate__MLRSb button {
-  width: 91.5vw !important;
-  font-size: 15px !important;
-  font-weight: bold !important;
- }
-
  .selectDate_datepicker__xkZeS {
   border: 1px solid #ddd;
  }

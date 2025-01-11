@@ -4,11 +4,7 @@
  border-radius: 10px;
  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.appointments-content-wrapper .calendar-svg {
- position: absolute;
- top: 14px;
- right: 130px;
-}
+
 .bell-red-badge {
  width: 8px;
  height: 8px;

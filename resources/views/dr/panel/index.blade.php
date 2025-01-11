@@ -1,6 +1,7 @@
 @extends('dr.panel.layouts.master')
 @section('styles')
  <link type="text/css" href="{{ asset('dr-assets/panel/css/panel.css') }}" rel="stylesheet" />
+
 @endsection
 @section('site-header')
  {{ 'به نوبه | پنل دکتر' }}
@@ -38,8 +39,9 @@
    <div>
     <div class="turning_selectDate__MLRSb">
      <button
-      class="selectDate_datepicker__xkZeS cursor-pointer text-center h-50 bg-light-blue d-flex justify-content-center align-items-center">
-      <span class="mx-1">1403/10/22</span>
+      class="selectDate_datepicker__xkZeS cursor-pointer text-center h-50 bg-light-blue d-flex justify-content-center align-items-center"
+      data-toggle="modal" data-target="#calendarModal">
+      <span class="mx-1"></span>
       {{-- <span type="text" class="observer-example bg-transparent text-center cursor-pointer"></span> --}}
       <svg style="margin-top: -4px" width="20" height="20" viewBox="0 0 20 20" fill="none"
        class="calendar-svg" xmlns="http://www.w3.org/2000/svg">
@@ -50,6 +52,22 @@
         fill="#000"></path>
       </svg>
      </button>
+
+     <div class="modal fade " id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered " role="document">
+       <div class="modal-content border-radius-8">
+        <div class="my-modal-header p-3">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+         </button>
+        </div>
+        <div class="modal-body">
+         <x-jalali-calendar />
+        </div>
+       </div>
+      </div>
+     </div>
     </div>
    </div>
    <div>
@@ -171,7 +189,6 @@
   </div>
  </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/jalali-moment/dist/jalali-moment.browser.js"></script>
 <script>
  $(document).ready(function() {
   let currentDate = moment().format('YYYY-MM-DD');
@@ -408,4 +425,6 @@
   }
  });
 </script>
+<script src="{{ asset('dr-assets/panel/js/calendar/custm-calendar.js') }}"></script>
+
 @endsection
