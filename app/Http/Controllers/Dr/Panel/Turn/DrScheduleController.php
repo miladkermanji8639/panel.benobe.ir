@@ -9,14 +9,18 @@ use Illuminate\Support\Facades\Auth;
 class DrScheduleController
 {
 
-    public function getAuthenticatedDoctor(){
+    public function getAuthenticatedDoctor()
+    {
         return Auth::guard('doctor')->user()->first();
     }
     public function index(Request $request)
     {
         $doctor = $this->getAuthenticatedDoctor();
-        $appointments = Appointment::with(['doctor','patient','insurance','clinic'])->where('doctor_id',$doctor->id)->get();
-        return view("dr.panel.turn.schedule.appointments",compact('appointments'));
+        $now = \Carbon\Carbon::now()->format('Y-m-d H:i:s');
+        $now = explode(" ", $now)[0];
+
+        $appointments = Appointment::with(['doctor', 'patient', 'insurance', 'clinic'])->where('doctor_id', $doctor->id)->where('appointment_date', $now)->get();
+        return view("dr.panel.turn.schedule.appointments", compact('appointments'));
     }
     public function myAppointments(Request $request)
     {
@@ -25,15 +29,19 @@ class DrScheduleController
     public function showByDateAppointments(Request $request)
     {
         $doctor = $this->getAuthenticatedDoctor();
-        $date = $request->input('date'); // Get the date from the request
+        $selectedDate = $request->input('date', \Morilog\Jalali\Jalalian::now()->format('Y/m/d'));
 
-        // Convert the date to the appropriate format if necessary
+        // تبدیل تاریخ شمسی به میلادی برای جستجو در دیتابیس
+        $gregorianDate = \Morilog\Jalali\Jalalian::fromFormat('Y/m/d', $selectedDate)->toCarbon();
+        // فیلتر نوبت‌ها بر اساس تاریخ
         $appointments = Appointment::with(['doctor', 'patient', 'insurance', 'clinic'])
             ->where('doctor_id', $doctor->id)
-            ->whereDate('reserved_at', '=', $date) // Filter by the selected date
+            ->where('appointment_date', '=', $gregorianDate)
             ->get();
 
-        return view('dr.panel.turn.schedule.appointments_partial', compact('appointments'));
+        return response()->json([
+            'appointments' => $appointments
+        ]);
     }
     public function show(string $id)
     {

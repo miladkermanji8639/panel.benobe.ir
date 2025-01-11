@@ -9,18 +9,18 @@
 @section('content')
 @section('bread-crumb-title', 'لیست نوبت ها')
 
-<div class="appointments-content w-100 d-flex justify-content-center ">
+<div class="appointments-content w-100 d-flex justify-content-center">
  <div class="appointments-content-wrapper position-relative">
   <div class="top-appointment d-flex justify-content-between p-4 align-items-center">
    <div>
     <span class="text-dark font-weight-bold text-425-none">لیست نوبت ها</span>
    </div>
    <div class="position-relative">
-   <div class="turning_selectDate__MLRSb">
+    <div class="turning_selectDate__MLRSb">
      <button
       class="selectDate_datepicker__xkZeS cursor-pointer text-center h-50 bg-light-blue d-flex justify-content-center align-items-center"
       data-toggle="modal" data-target="#calendarModal">
-      <span class="mx-1"></span>
+      <span id="datepicker" class="mx-1"></span>
       {{-- <span type="text" class="observer-example bg-transparent text-center cursor-pointer"></span> --}}
       <svg style="margin-top: -4px" width="20" height="20" viewBox="0 0 20 20" fill="none"
        class="calendar-svg" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +76,7 @@
  </div>
 </div>
 <div class="my-appointments-list w-100 mt-3">
- <div class="my-appointments-lists-cards d-flex gap-10 w-100 flex-wrap">
+ <div class="my-appointments-lists-cards d-flex gap-10 w-100 flex-wrap position-relative">
   @if (count($appointments) > 0)
    @foreach ($appointments as $appointment)
     <div class="my-appointments-lists-card w-100 d-flex justify-content-between align-items-center p-3 my-border">
@@ -100,8 +100,6 @@
         {{ $appointment->patient->mobile }}
        </span><span class="font-weight-light text-danger font-size-13">
         {{ $appointment->payment_status === 'pending' ? 'درحال پرداخت' : ($appointment->payment_status === 'paid' ? 'پرداخت شده' : ($appointment->payment_status === 'unpaid' ? 'پرداخت نشده' : '')) }}
-       </span>
-       
        </span>
       </div>
      </div>
@@ -222,87 +220,6 @@
 @section('scripts')
 <script src="{{ asset('dr-assets/panel/jalali-datepicker/run-jalali.js') }}"></script>
 <script src="{{ asset('dr-assets/panel/js/dr-panel.js') }}"></script>
-<script>
- var showByDateAppointmentsUrl = "{{ route('show-by-date-appointments') }}";
-
-
-
- // با jQuery
- $(document).ready(function() {
-  $('.btn-filter-appointment-toggle').on('click', function() {
-   $(this).toggleClass('active');
-   $('.appointments-filter-drop-toggle').toggleClass('show');
-  });
-
-  // بستن دراپ با کلیک خارج از المنت
-  $(document).on('click', function(event) {
-   if (!$(event.target).closest('.dropdown-container').length) {
-    $('.btn-filter-appointment-toggle').removeClass('active');
-    $('.appointments-filter-drop-toggle').removeClass('show');
-   }
-  });
-
-  // انتخاب آیتم‌های فیلتر (به جز آیتم آخر)
-  $('.appointments-filter-drop-toggle li:not(:last-child)').on('click', function() {
-   // حذف کلاس bg-light-blue از همه آیتم‌ها
-   $('.appointments-filter-drop-toggle li:not(:last-child)').removeClass('bg-light-blue');
-
-   // اضافه کردن کلاس bg-light-blue به آیتم کلیک شده
-   $(this).addClass('bg-light-blue');
-  });
- });
-</script>
-<script>
-  
- $(document).ready(function() {
-  $('#datepicker').on('change', function() {
-   var selectedDate = $(this).val(); // Get the selected date
-  console.log(selectedDate);
-  
-   // Make an AJAX request to fetch appointments for the selected date
-   $.ajax({
-    url: showByDateAppointmentsUrl, // URL to fetch appointments
-    method: 'GET',
-    data: {
-     date: selectedDate
-    }, // Send the selected date
-    success: function(response) {
-     // Update the appointment list with the response
-     $('.my-appointments-lists-cards').html(response);
-    },
-    error: function(xhr) {
-     console.error('Error fetching appointments:', xhr);
-    }
-   });
-  });
- });
-</script>
-<script>
- $(document).ready(function() {
-  $('#userInfoModalCenter').on('show.bs.modal', function(event) {
-   var button = $(event.relatedTarget); // دکمه‌ای که مودال را باز کرده است
-   var time = button.data('time'); // زمان
-   var date = button.data('date'); // تاریخ
-   var fullname = button.data('fullname'); // نام و نام خانوادگی
-   var mobile = button.data('mobile'); // موبایل
-   var tracking_code = button.data('tracking-code'); // موبایل
-   var nationalCode = button.data('national-code'); // کد ملی
-   var paymentStatus = button.data('payment-status'); // وضعیت پرداخت
-   var appointmentType = button.data('appointment-type'); // نوع نوبت
-   var centerName = button.data('center-name'); // نام مرکز
-
-   var modal = $(this);
-   modal.find('.time-card .text-black').text(time); // زمان
-   modal.find('.date-card .text-black').text(date); // تاریخ
-   modal.find('.fullname').text(fullname); // نام و نام خانوادگی
-   modal.find('.mobile').text(mobile); // موبایل
-   modal.find('.national-code').text(nationalCode); // کد ملی
-   modal.find('.payment-status').text(paymentStatus); // وضعیت پرداخت
-   modal.find('.appointment-type').text(appointmentType); // نوع نوبت
-   modal.find('.center-name').text(centerName); // نام مرکز
-   modal.find('.tracking-code').text(tracking_code); // نام مرکز
-  });
- });
-</script>
 <script src="{{ asset('dr-assets/panel/js/calendar/custm-calendar.js') }}"></script>
+@include('dr.panel.turn.schedule.option.appointments')
 @endsection
