@@ -285,7 +285,6 @@
      });
     });
     document.addEventListener('click', function(event) {
-     S
      if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
       dropdownMenu.classList.remove('show');
      }

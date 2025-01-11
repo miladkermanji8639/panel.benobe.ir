@@ -17,7 +17,7 @@
    </div>
    <div class="position-relative">
     <button class="selectDate_datepicker__xkZeS cursor-pointer text-center h-50 bg-light-blue position-relative">
-     <input type="text"
+     <input type="text" id="datepicker"
       class="observer-example bg-transparent text-center cursor-pointer pwt-datepicker-input-element" readonly="">
 
      <svg width="20" height="20" viewBox="0 0 20 20" fill="#333" class="calendar-svg"
@@ -61,39 +61,40 @@
   @if (count($appointments) > 0)
    @foreach ($appointments as $appointment)
     <div class="my-appointments-lists-card w-100 d-flex justify-content-between align-items-center p-3 my-border">
-     <div class="d-flex align-items-center gap-10 cursor-pointer" data-toggle="modal"
-      data-target="#userInfoModalCenter">
+     <div class="d-flex align-items-center gap-10 cursor-pointer" data-toggle="modal" data-target="#userInfoModalCenter"
+      data-time="{{ date('H:i', strtotime($appointment->reserved_at)) }}"
+      data-tracking-code="{{ $appointment->tracking_code }}"
+      data-date="{{ \Morilog\Jalali\Jalalian::fromDateTime($appointment->reserved_at)->format('l, j F') }}"
+      data-fullname="{{ $appointment->patient->first_name . ' ' . $appointment->patient->last_name }}"
+      data-mobile="{{ $appointment->patient->mobile }}" data-national-code="{{ $appointment->patient->national_code }}"
+      data-payment-status="{{ $appointment->payment_status === 'pending' ? 'درحال پرداخت' : ($appointment->payment_status === 'paid' ? 'پرداخت شده' : 'پرداخت نشده') }}"
+      data-appointment-type="{{ $appointment->appointment_type === 'online' ? ' آنلاین' : ($appointment->appointment_type === 'in_person' ? 'حضوری' : 'تلفنی') }}"
+      data-center-name="{{ $appointment->clinic->name ?? '' }}">
       <button class="btn h-50 border border-success bg-light-success d-flex justify-content-center align-items-center">
        {{ date('H:i', strtotime($appointment->reserved_at)) }}
       </button>
       <div class="d-flex flex-column gap-10">
        <span class="font-weight-bold">
         {{ $appointment->patient->first_name . ' ' . $appointment->patient->last_name }}
-
        </span>
        <span class="font-weight-light font-size-13">
         {{ $appointment->patient->mobile }}
-
-       </span>
-       <span class="font-weight-light text-danger font-size-13">
+       </span><span class="font-weight-light text-danger font-size-13">
         {{ $appointment->payment_status === 'pending' ? 'درحال پرداخت' : ($appointment->payment_status === 'paid' ? 'پرداخت شده' : ($appointment->payment_status === 'unpaid' ? 'پرداخت نشده' : '')) }}
-
+       </span>
+       {{ $appointment->payment_status === 'pending' ? 'درحال پرداخت' : ($appointment->payment_status === 'paid' ? 'پرداخت شده' : ($appointment->payment_status === 'unpaid' ? 'پرداخت نشده' : '')) }}
        </span>
       </div>
      </div>
-     <!-- Modal -->
-
-
      <div><span class="font-size-13 font-weight-bold">{{ $appointment->patient->national_code }}</span></div>
      <div>
       <button class="btn btn-outline-info" data-toggle="modal" data-target="#endVisitModalCenter">پایان ویزیت</button>
-
      </div>
     </div>
    @endforeach
   @else
    <div class="container-fluid h-50 d-flex justify-content-center align-items-center align-self-center">
-    <div class="text-center" >
+    <div class="text-center">
      <p class="font-weight-bold">برای تاریخی که انتخاب کردید، در مرکز موردنظر هیچ نوبتی موجود نیست.</p>
     </div>
    </div>
@@ -148,41 +149,41 @@
    <div class="modal-body">
     <div class="">
      <div class="w-100 d-flex">
-      <div class="bg-light-success  top-user-modal-info time-card">
-       <div class="text-black font-weight-bold">۱۲:۱۰</div>
+      <div class="bg-light-success top-user-modal-info time-card">
+       <div class="text-black font-weight-bold"></div> <!-- زمان -->
       </div>
       <div class="bg-light-success border border-success top-user-modal-info date-card">
-       <div class="text-black font-weight-bold">شنبه ۲۶ آبان</div>
+       <div class="text-black font-weight-bold"></div> <!-- تاریخ -->
       </div>
      </div>
      <div class="w-100 mt-2">
       <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40" dir="rtl">
        <div class="text-dark font-weight-bold font-size-13">نام و نام خانوادگی</div>
-       <div class="text-dark font-weight-bold font-size-13">صبا کرمی</div>
+       <div class="text-dark font-weight-bold font-size-13 fullname"></div>
       </div>
       <div class="d-flex justify-content-between align-items-center bg-light p-2 h-40 mt-2" dir="rtl">
        <div class="text-dark font-weight-bold font-size-13">موبایل</div>
-       <div class=" text-dark font-weight-bold font-size-13">09180607211</div>
+       <div class=" text-dark font-weight-bold font-size-13 mobile"></div>
       </div>
       <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40 mt-2" dir="rtl">
        <div class="text-dark font-weight-bold font-size-13">کدملی</div>
-       <div class="text-dark font-weight-bold font-size-13">3720574245</div>
+       <div class="text-dark font-weight-bold font-size-13 national-code"></div>
       </div>
       <div class="d-flex justify-content-between align-items-center bg-light p-2 h-40 mt-2" dir="rtl">
        <div class="text-dark font-weight-bold font-size-13">کد پیگیری</div>
-       <div class="text-dark font-weight-bold font-size-13">2432927888</div>
+       <div class="text-dark font-weight-bold font-size-13 tracking-code"></div>
       </div>
       <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40 mt-2" dir="rtl">
        <div class="text-dark font-weight-bold font-size-13">وضعیت پرداخت</div>
-       <div class="text-dark font-weight-bold font-size-13">پرداخت نشده</div>
+       <div class="text-dark font-weight-bold font-size-13 payment-status"> </div>
       </div>
       <div class="d-flex justify-content-between align-items-center bg-light p-2 h-40 mt-2" dir="rtl">
        <div class="text-dark font-weight-bold font-size-13">نوع نوبت</div>
-       <div class="text-dark font-weight-bold font-size-13">حضوری</div>
+       <div class="text-dark font-weight-bold font-size-13 appointment-type"></div>
       </div>
       <div class="d-flex justify-content-between align-items-center bg-light-blue p-2 h-40 mt-2" dir="rtl">
        <div class="text-dark font-weight-bold font-size-13">نام مرکز</div>
-       <div class="text-dark font-weight-bold font-size-13">مطب یاسر محمدی</div>
+       <div class="text-dark font-weight-bold font-size-13 center-name"></div>
       </div>
      </div>
      <button class="btn btn-outline-danger h-50 w-100 mt-3" type="button">
@@ -203,9 +204,8 @@
 <script src="{{ asset('dr-assets/panel/jalali-datepicker/run-jalali.js') }}"></script>
 <script src="{{ asset('dr-assets/panel/js/dr-panel.js') }}"></script>
 <script>
- var appointmentsSearchUrl = "{{ route('search.appointments') }}";
- var updateStatusAppointmentUrl =
-  "{{ route('updateStatusAppointment', ':id') }}";
+ var showByDateAppointmentsUrl = "{{ route('show-by-date-appointments') }}";
+
 
 
  // با jQuery
@@ -230,6 +230,58 @@
 
    // اضافه کردن کلاس bg-light-blue به آیتم کلیک شده
    $(this).addClass('bg-light-blue');
+  });
+ });
+</script>
+<script>
+  
+ $(document).ready(function() {
+  $('#datepicker').on('change', function() {
+   var selectedDate = $(this).val(); // Get the selected date
+  console.log(selectedDate);
+  
+   // Make an AJAX request to fetch appointments for the selected date
+   $.ajax({
+    url: showByDateAppointmentsUrl, // URL to fetch appointments
+    method: 'GET',
+    data: {
+     date: selectedDate
+    }, // Send the selected date
+    success: function(response) {
+     // Update the appointment list with the response
+     $('.my-appointments-lists-cards').html(response);
+    },
+    error: function(xhr) {
+     console.error('Error fetching appointments:', xhr);
+    }
+   });
+  });
+ });
+</script>
+<script>
+ $(document).ready(function() {
+  $('#userInfoModalCenter').on('show.bs.modal', function(event) {
+   var button = $(event.relatedTarget); // دکمه‌ای که مودال را باز کرده است
+   var time = button.data('time'); // زمان
+   var date = button.data('date'); // تاریخ
+   var fullname = button.data('fullname'); // نام و نام خانوادگی
+   var mobile = button.data('mobile'); // موبایل
+   var tracking_code = button.data('tracking-code'); // موبایل
+   var nationalCode = button.data('national-code'); // کد ملی
+   var paymentStatus = button.data('payment-status'); // وضعیت پرداخت
+   var appointmentType = button.data('appointment-type'); // نوع نوبت
+   var centerName = button.data('center-name'); // نام مرکز
+
+   var modal = $(this);
+   modal.find('.time-card .text-black').text(time); // زمان
+   modal.find('.date-card .text-black').text(date); // تاریخ
+   modal.find('.fullname').text(fullname); // نام و نام خانوادگی
+   modal.find('.mobile').text(mobile); // موبایل
+   modal.find('.national-code').text(nationalCode); // کد ملی
+   modal.find('.payment-status').text(paymentStatus); // وضعیت پرداخت
+   modal.find('.appointment-type').text(appointmentType); // نوع نوبت
+   modal.find('.center-name').text(centerName); // نام مرکز
+   modal.find('.tracking-code').text(tracking_code); // نام مرکز
   });
  });
 </script>

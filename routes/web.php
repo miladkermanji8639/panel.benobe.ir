@@ -427,6 +427,7 @@ Route::prefix('dr')
           Route::prefix('schedule')->group(function () {
             Route::get('/my-appointments', [DrScheduleController::class, 'myAppointments'])->name('my-dr-appointments');
             Route::get('/appointments', [DrScheduleController::class, 'index'])->name('dr-appointments');
+            Route::get('/show-by-date-appointments', [DrScheduleController::class, 'showByDateAppointments'])->name('show-by-date-appointments');
             Route::get('/moshavere_setting', [DrMoshavereSettingController::class, 'index'])->name('dr-moshavere_setting');
             Route::get('/moshavere_waiting', [MoshavereWaitingController::class, 'index'])->name('dr-moshavere_waiting');
             Route::get('/manual_nobat', [ManualNobatController::class, 'index'])->name('dr-manual_nobat');

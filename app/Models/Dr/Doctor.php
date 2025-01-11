@@ -99,7 +99,10 @@ class Doctor extends Authenticatable
     {
         return "$this->first_name $this->last_name";
     }
-
+    public function clinics()
+    {
+        return $this->hasMany(Clinic::class);
+    }
     public function province()
     {
         return $this->belongsTo(Zone::class, 'province_id');

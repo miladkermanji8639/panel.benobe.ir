@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('doctor_id');
             $table->unsignedBigInteger('patient_id')->nullable();
             $table->unsignedBigInteger('insurance_id')->nullable();
-
+            $table->unsignedBigInteger('clinic_id')->nullable();
             // فیلدهای جدید
             $table->integer('duration')->nullable(); // مدت زمان نوبت (دقیقه)
             $table->enum('consultation_type', ['general', 'specialized', 'emergency'])->nullable();
@@ -44,6 +44,10 @@ return new class extends Migration {
             $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
             $table->foreign('patient_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('insurance_id')->references('id')->on('insurances')->onDelete('set null');
+            $table->foreign('clinic_id')
+                ->references('id')
+                ->on('clinics')
+                ->onDelete('set null');
         });
     }
 

@@ -68,6 +68,7 @@ return [
         "town" => " استان",
         "city_id" => " شهر",
         "province_id" => " استان",
+        "two_factor_secret" => "گذرواژه دو مرحله ای",
         "specialization" => " تخصص ها",
         "specialty_id" => " تخصص ها",
         "specialty_oms_id" => " تخصص های نظام",
