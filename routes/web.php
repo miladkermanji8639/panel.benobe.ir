@@ -448,6 +448,11 @@ Route::prefix('dr')
               ->name('update-work-day-status');
             Route::post('/update-auto-scheduling', [ScheduleSettingController::class, 'updateAutoScheduling'])
               ->name('update-auto-scheduling');
+            // routes/web.php
+            Route::post('/copy-work-hours', [ScheduleSettingController::class, 'copyWorkHours'])
+              ->name('copy-work-hours');
+            Route::post('/save-time-slot', [ScheduleSettingController::class, 'saveTimeSlot'])
+              ->name('save-time-slot');
             Route::get('/scheduleSetting/my-special-days', [ScheduleSettingController::class, 'mySpecialDays'])->name('dr-mySpecialDays');
             Route::get('/turnContract', [ScheduleSettingController::class, 'turnContract'])->name('dr-scheduleSetting-turnContract');
             Route::delete('/appointments/destroy/{id}', [AppointmentController::class, 'destroyAppointment'])->name('appointments.destroy');

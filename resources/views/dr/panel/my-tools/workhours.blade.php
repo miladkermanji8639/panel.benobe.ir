@@ -1,5 +1,171 @@
 {{-- resources\views\dr\panel\my-tools\workhours.blade.php --}}
 <script>
+ $(document).on('click', '#saveSelection', function() {
+  const selectedDays = [];
+  const startTime = $('#morning-start-saturday').val(); // فرض بر این است که روز شنبه انتخاب شده
+  const endTime = $('#morning-end-saturday').val(); // فرض بر این است که روز شنبه انتخاب شده
+  const maxAppointments = $('#morning-patients-saturday').val(); // فرض بر این است که روز شنبه انتخاب شده
+
+  $('input[type="checkbox"]:checked').each(function() {
+   selectedDays.push($(this).attr("id").split('-')[0]); // گرفتن نام روز
+  });
+
+  // ارسال درخواست AJAX برای کپی کردن مقادیر
+  $.ajax({
+   url: "{{ route('copy-work-hours') }}", // آدرس روت برای کپی کردن
+   method: 'POST',
+   data: {
+    days: selectedDays,
+    start_time: startTime,
+    end_time: endTime,
+    max_appointments: maxAppointments,
+    _token: '{{ csrf_token() }}'
+   },
+   success: function(response) {
+    // نمایش پیام موفقیت
+    Toastify({
+     text: 'ساعت کاری با موفقیت کپی شد',
+     duration: 3000,
+     gravity: "top",
+     position: 'right',
+     style: {
+      background: "green"
+     }
+    }).showToast();
+    // به‌روزرسانی UI بر اساس پاسخ
+   },
+   error: function(xhr) {
+    // نمایش پیام خطا
+    Toastify({
+     text: 'خطا در کپی کردن ساعت کاری',
+     duration: 3000,
+     gravity: "top",
+     position: 'right',
+     style: {
+      background: "red"
+     }
+    }).showToast();
+   }
+  });
+ });
+
+
+  $(document).on('click', '.add-row-btn', function() {
+   const day = $(this).data('day');
+   const $container = $(`#morning-${day}-details`);
+
+   // گرفتن مقادیر از المان پدر
+   const startTime = $(`#morning-start-${day}`).val();
+   const endTime = $(`#morning-end-${day}`).val();
+   const maxAppointments = $(`#morning-patients-${day}`).val() || 1;
+
+   // ارسال درخواست برای ذخیره‌سازی
+   $.ajax({
+    url: "{{ route('save-time-slot') }}", // روت مربوطه
+    method: 'POST',
+    data: {
+     day: day,
+     start_time: startTime,
+     end_time: endTime,
+     max_appointments: maxAppointments,
+     _token: '{{ csrf_token() }}'
+    },
+    success: function(response) {
+     // ایجاد المان جدید
+     const newRow = `
+                <div class="mt-3 form-row d-flex justify-content-between w-100 p-2" data-slot-id="${response.slot_id}">
+                    <div class="d-flex justify-content-start align-items-center gap-4">
+                        <div class="form-group position-relative timepicker-ui">
+                            <label class="label-top-input-special-takhasos">از</label>
+                            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="${startTime}" readonly>
+                        </div>
+                        <div class="form-group position-relative timepicker-ui">
+                            <label class="label-top-input-special-takhasos">تا</label>
+                            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${endTime}" readonly>
+                        </div>
+                        <div class="form-group col-sm-3 position-relative">
+                            <label class="label-top-input-special-takhasos">تعداد نوبت</label>
+                            <input type="text" class="form-control h-50 text-center max-appointments" value="${maxAppointments}" readonly>
+                        </div>
+                        <div class="form-group col-sm-2 position-relative">
+                            <button class="btn btn-light btn-sm remove-row-btn" data-slot-id="${response.slot_id}">
+                                <img src="${trashSvg}">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+     // اضافه کردن به کانتینر
+     $container.append(newRow);
+
+     // نمایش توست موفقیت
+     Toastify({
+      text: 'اسلات زمانی با موفقیت اضافه شد',
+      duration: 3000,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "green"
+      }
+     }).showToast();
+    },
+    error: function(xhr) {
+     // نمایش توست خطا
+     Toastify({
+      text: 'خطا در ذخیره‌سازی اسلات زمانی',
+      duration: 3000,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "red"
+      }
+     }).showToast(); // درست نوشتن showToast
+    }
+   });
+  });
+  
+
+function addNewRow(day) {
+    const newRow = `
+        <div class="mt-3 form-row d-flex justify-content-between w-100 p-2">
+            <div class="d-flex justify-content-start align-items-center gap-4">
+                <div class="form-group position-relative timepicker-ui">
+                    <label class="label-top-input-special-takhasos">از</label>
+                    <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="08:00">
+                </div>
+                <div class="form-group position-relative timepicker-ui">
+                    <label class="label-top-input-special-takhasos">تا</label>
+                    <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="12:00">
+                </div>
+                <div class="form-group col-sm-3 position-relative">
+                    <label class="label-top-input-special-takhasos">تعداد نوبت</label>
+                    <input type="text" name="max-appointments" class="form-control h-50 text-center max-appointments" min="0" value="1">
+                </div>
+                <div class="form-group col-sm-2 position-relative">
+                    <button class="btn btn-light btn-sm remove-row-btn">
+                        <img src="${trashSvg}">
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    const $container = $(`#morning-${day}-details`);
+    $container.append(newRow);
+}
+
+ $(document).on('click', '[data-toggle="modal"]', function() {
+  const targetModal = $(this).data('target');
+  $(targetModal).modal('show');
+ });
+
+ $(document).on('click', '.close, .btn-secondary', function() {
+  $(this).closest('.modal').modal('hide');
+ });
+ $(document).on('hidden.bs.modal', function() {
+  $('.modal-backdrop').remove(); // حذف اوپاسیتی
+ });
  $(document).ready(function() {
   // تغییر وضعیت روزهای کاری با AJAX
   $.each(["saturday", "sunday", "monday", "tuesday", "wednesday", "thursday", "friday"], function(index, day) {
@@ -204,19 +370,20 @@
 
    // فقط روزهای تیک خورده را جمع‌آوری کن
    days.forEach(day => {
-    // بررسی اینکه آیا روز تیک خورده است
     if ($(`#${day}`).is(':checked')) {
+     const slots = collectSlots(day);
+
      data.days[day] = {
       is_working: true,
       work_hours: {
        start: $(`#morning-start-${day}`).val(),
        end: $(`#morning-end-${day}`).val()
       },
-      slots: collectSlots(day)
+      slots: slots
      };
     }
    });
-
+   console.log('Final Data to Send:', data);
    // ارسال درخواست AJAX
    $.ajax({
     url: "{{ route('dr-save-work-schedule') }}",
@@ -242,7 +409,7 @@
      }).showToast();
 
      if (response.data && response.data.calendar_days) {
-      
+
       $('input[name="calendar_days"]').val(response.data.calendar_days);
      }
     },
@@ -288,13 +455,23 @@
   // تابع جمع‌آوری اسلات‌ها
   function collectSlots(day) {
    const slots = [];
-   $(`#morning-${day}-details .mt-3`).each(function() {
-    slots.push({
-     start_time: $(this).find('input').first().val(),
-     end_time: $(this).find('input').eq(1).val(),
-     max_appointments: $(this).find('input[name="max-appointments"]').val() || 1
-    });
+
+   $(`#morning-${day}-details .form-row`).each(function() {
+    const $row = $(this);
+    const startTime = $row.find('.start-time').val();
+    const endTime = $row.find('.end-time').val();
+    const maxAppointments = $row.find('.max-appointments').val() || 1;
+
+    // فقط اضافه کردن اسلات‌های با زمان شروع و پایان
+    if (startTime && endTime) {
+     slots.push({
+      start_time: startTime,
+      end_time: endTime,
+      max_appointments: parseInt(maxAppointments)
+     });
+    }
    });
+
    return slots;
   }
 
@@ -375,39 +552,57 @@
     `;
   });
   $("#work-hours").html(workHoursHtml);
-
+  $(document).on('click', '.remove-row-btn', function() {
+   // حذف ردیف مربوطه
+   $(this).closest('.form-row').remove();
+  });
 
   // Function to add a new row
   function addNewRow(day) {
-   var newRow = `
-      <div class="mt-3 d-flex justify-content-between w-100 p-2">
-        <div class="form-row d-flex ">
-          <div class="d-flex justify-content-start align-items-center gap-4">
-            <div class="form-group  position-relative timepicker-ui">
+   const newRow = `
+      <div class="mt-3 form-row d-flex justify-content-between w-100 p-2">
+        <div class="d-flex justify-content-start align-items-center gap-4">
+          <div class="form-group position-relative timepicker-ui">
             <label class="label-top-input-special-takhasos">از</label>
-            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13" value="08:00">
+            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="08:00">
           </div>
-          <div class="form-group  position-relative timepicker-ui">
+          <div class="form-group position-relative timepicker-ui">
             <label class="label-top-input-special-takhasos">تا</label>
-            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13" value="12:00">
+            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="12:00">
           </div>
           <div class="form-group col-sm-3 position-relative">
             <label class="label-top-input-special-takhasos">تعداد نوبت</label>
-            <input type="text" readonly class="form-control h-50 text-center" min="0">
+            <input type="text" name="max-appointments" class="form-control h-50 text-center max-appointments" min="0" value="1">
           </div>
           <div class="form-group col-sm-2 position-relative">
             <button class="btn btn-light btn-sm remove-row-btn">
               <img src="${trashSvg}">
             </button>
           </div>
-          </div>
         </div>
         <div class="d-flex align-items-center">
-               <span class="btn btn-light btn-sm">شنبه ساعت 9 الی 21</span>
+          <span class="btn btn-light btn-sm">شنبه ساعت 9 الی 21</span>
         </div>
       </div>
     `;
-   $("#morning-" + day + "-details").append(newRow);
+
+   const $container = $(`#morning-${day}-details`);
+   const $newRow = $(newRow);
+
+   // اضافه کردن ردیف جدید
+   $container.append($newRow);
+
+   // تنظیم timepicker برای ورودی‌های جدید
+   const newTimeInputs = $newRow.find('.timepicker-ui-input');
+   newTimeInputs.each(function() {
+    const newTimepicker = new window.tui.TimepickerUI(this, {
+     clockType: '24h',
+     theme: 'basic',
+     mobile: 'true',
+     enableScrollbar: 'true'
+    });
+    newTimepicker.create();
+   });
   }
   // Manage select all checkbox
   $("#selectAll").on("change", function() {
@@ -424,10 +619,7 @@
    $("#checkboxModal").modal("hide"); // بستن مدال
   });
   // Event listeners for adding and removing rows
-  $(document).on("click", ".add-row-btn", function() {
-   var day = $(this).data("day");
-   addNewRow(day);
-  });
+
   $(document).on("click", ".remove-row-btn", function() {
    $(this).closest(".mt-3").remove();
   });
@@ -675,8 +867,8 @@
        <x-my-check :isChecked="false" id="time-label-modal" day="" />
        <div class="input-group position-relative mx-2">
         <label class="label-top-input-special-takhasos"> هر نوبت </label>
-        <input type="text" value="{{ old('time-count') }}" class="form-control   text-center h-50 border-radius-0"
-         name="time-count">
+        <input type="text" value="{{ old('time-count') }}"
+         class="form-control   text-center h-50 border-radius-0" name="time-count">
         <div class="input-group-append"><span class="input-group-text px-2">دقیقه</span></div>
        </div>
       </div>

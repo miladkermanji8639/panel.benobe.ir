@@ -26,7 +26,7 @@ class ScheduleSettingController
     $appointmentConfig = DoctorAppointmentConfig::firstOrCreate(
       ['doctor_id' => $doctor->id],
       [
-        'auto_scheduling' => false,
+        'auto_scheduling' => true,
         'online_consultation' => false,
         'holiday_availability' => false
       ]
@@ -38,6 +38,97 @@ class ScheduleSettingController
       'appointmentConfig' => $appointmentConfig,
       'workSchedules' => $workSchedules
     ]);
+  }
+  public function copyWorkHours(Request $request)
+  {
+    $validated = $request->validate([
+      'days' => 'required|array',
+      'start_time' => 'required|string',
+      'end_time' => 'required|string',
+      'max_appointments' => 'required|integer'
+    ]);
+
+    $doctor = Auth::guard('doctor')->user();
+
+    DB::beginTransaction();
+    try {
+      foreach ($validated['days'] as $day) {
+        // بروزرسانی یا ایجاد رکورد برای هر روز
+        DoctorWorkSchedule::updateOrCreate(
+          [
+            'doctor_id' => $doctor->id,
+            'day' => $day
+          ],
+          [
+            'is_working' => true,
+            'work_hours' => [
+              'start' => $validated['start_time'],
+              'end' => $validated['end_time']
+            ],
+            'max_appointments' => $validated['max_appointments']
+          ]
+        );
+      }
+
+      DB::commit();
+
+      return response()->json([
+        'message' => 'ساعات کاری با موفقیت کپی شد',
+        'status' => true
+      ]);
+    } catch (\Exception $e) {
+      DB::rollBack();
+      Log::error('خطا در کپی ساعات کاری: ' . $e->getMessage());
+
+      return response()->json([
+        'message' => 'خطا در کپی ساعات کاری',
+        'status' => false
+      ], 500);
+    }
+  }
+  public function saveTimeSlot(Request $request)
+  {
+    $validated = $request->validate([
+      'day' => 'required|in:saturday,sunday,monday,tuesday,wednesday,thursday,friday',
+      'start_time' => 'required|string',
+      'end_time' => 'required|string',
+      'max_appointments' => 'required|integer'
+    ]);
+
+    $doctor = Auth::guard('doctor')->user();
+
+    try {
+      // بازیابی یا ایجاد رکورد WorkSchedule
+      $workSchedule = DoctorWorkSchedule::firstOrCreate(
+        [
+          'doctor_id' => $doctor->id,
+          'day' => $validated['day']
+        ],
+        [
+          'is_working' => true
+        ]
+      );
+
+      // ایجاد اسلات جدید
+      $slot = AppointmentSlot::create([
+        'work_schedule_id' => $workSchedule->id,
+        'time_slots' => (['start_time' => $validated['start_time'], 'end_time' => $validated['end_time']]),
+        'max_appointments' => $validated['max_appointments']
+      ]);
+
+      return response()->json([
+        'message' => 'اسلات زمانی با موفقیت ذخیره شد',
+        'slot_id' => $slot->id,
+        'status' => true
+      ]);
+    } catch (\Exception $e) {
+      Log::error('خطا در ذخیره‌سازی اسلات: ' . $e->getMessage());
+
+      return response()->json([
+        'message' => 'خطا در ذخیره‌سازی اسلات',
+        'status' => false
+      ], 500);
+    }
   }
   public function updateWorkDayStatus(Request $request)
   {
@@ -157,14 +248,6 @@ class ScheduleSettingController
     try {
       $doctor = Auth::guard('doctor')->user();
 
-      // لاگ کردن اطلاعات دریافتی
-      Log::info('Received Data', [
-        'auto_scheduling' => $validatedData['auto_scheduling'] ?? false,
-        'calendar_days' => $request->input('calendar_days'),
-        'online_consultation' => $validatedData['online_consultation'] ?? false,
-        'holiday_availability' => $validatedData['holiday_availability'] ?? false,
-      ]);
-
       // حذف تنظیمات قبلی
       DoctorWorkSchedule::where('doctor_id', $doctor->id)->delete();
       AppointmentSlot::whereHas('workSchedule', function ($query) use ($doctor) {
@@ -176,20 +259,11 @@ class ScheduleSettingController
         ['doctor_id' => $doctor->id],
         [
           'auto_scheduling' => $validatedData['auto_scheduling'] ?? false,
-          'calendar_days' => $request->input('calendar_days'), // مستقیماً مقدار دریافتی را استفاده کنید
+          'calendar_days' => $request->input('calendar_days'),
           'online_consultation' => $validatedData['online_consultation'] ?? false,
           'holiday_availability' => $validatedData['holiday_availability'] ?? false,
         ]
       );
-
-      // لاگ کردن نتیجه آپدیت
-      Log::info('Updated Appointment Config', [
-        'id' => $appointmentConfig->id,
-        'doctor_id' => $appointmentConfig->doctor_id,
-        'calendar_days' => $appointmentConfig->calendar_days,
-        'auto_scheduling' => $appointmentConfig->auto_scheduling,
-      ]);
-
       // ذخیره برنامه کاری روزها
       foreach ($validatedData['days'] as $day => $dayConfig) {
         $workSchedule = DoctorWorkSchedule::create([
@@ -198,6 +272,22 @@ class ScheduleSettingController
           'is_working' => $dayConfig['is_working'] ?? false,
           'work_hours' => $dayConfig['work_hours'] ?? null,
         ]);
+
+        // ذخیره اسلات‌ها
+        if (isset($dayConfig['slots']) && is_array($dayConfig['slots'])) {
+          foreach ($dayConfig['slots'] as $slot) {
+            Log::info('Saving Slot', $slot); // لاگ برای اسلات‌ها
+
+            AppointmentSlot::create([
+              'work_schedule_id' => $workSchedule->id,
+              'start_time' => $slot['start_time'],
+              'end_time' => $slot['end_time'],
+              'max_appointments' => $slot['max_appointments'] ?? 1,
+              'slot_type' => $this->determineSlotType($slot['start_time']),
+              'is_active' => true
+            ]);
+          }
+        }
       }
 
       DB::commit();

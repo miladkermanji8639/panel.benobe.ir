@@ -14,19 +14,20 @@ return new class extends Migration {
             $table->id(); // شناسه منحصر به فرد
 
             $table->unsignedBigInteger('work_schedule_id')->nullable(); // شناسه برنامه کاری
-
-            $table->time('start_time')->nullable(); // زمان شروع اسلات
-            $table->time('end_time')->nullable(); // زمان پایان اسلات
+            $table->json('time_slots')->nullable();
 
             $table->integer('max_appointments')->default(1);
             // حداکثر تعداد نوبت‌ها در این اسلات
-
-            $table->enum('slot_type', ['morning', 'afternoon', 'evening'])->default('morning');
-            // نوع اسلات (صبح، عصر، شب)
-
+            $table->integer('current_appointments')->default(0);
             $table->boolean('is_active')->default(true);
-            // آیا این اسلات فعال است؟
+            $table->boolean('is_booked')->default(false);
 
+            $table->date('slot_date')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->index(['work_schedule_id', 'slot_date']);
+            $table->index('slot_date');
             // تعریف کلید خارجی برای ارتباط با جدول برنامه کاری
             $table->foreign('work_schedule_id')
                 ->references('id')
