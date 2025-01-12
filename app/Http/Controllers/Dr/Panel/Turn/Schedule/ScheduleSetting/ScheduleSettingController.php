@@ -117,15 +117,15 @@ class ScheduleSettingController
       ]);
 
       return response()->json([
-        'message' => 'اسلات زمانی با موفقیت ذخیره شد',
+        'message' => ' موفقیت آمیز',
         'slot_id' => $slot->id,
         'status' => true
       ]);
     } catch (\Exception $e) {
-      Log::error('خطا در ذخیره‌سازی اسلات: ' . $e->getMessage());
+      Log::error('خطا در ذخیره‌سازی: ' . $e->getMessage());
 
       return response()->json([
-        'message' => 'خطا در ذخیره‌سازی اسلات',
+        'message' => 'خطا در ذخیره‌سازی ',
         'status' => false
       ], 500);
     }
@@ -416,14 +416,13 @@ class ScheduleSettingController
       $appointmentSlot->delete();
 
       return response()->json([
-        'message' => 'اسلات زمانی با موفقیت حذف شد',
+        'message' => 'حذف موفقیت آمیز',
         'status' => true
       ]);
     } catch (\Exception $e) {
-      Log::error('خطا در حذف اسلات زمانی: ' . $e->getMessage());
 
       return response()->json([
-        'message' => 'خطا در حذف اسلات زمانی',
+        'message' => 'خطا در حذف  ',
         'status' => false
       ], 500);
     }

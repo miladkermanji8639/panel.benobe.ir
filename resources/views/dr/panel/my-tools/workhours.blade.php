@@ -104,7 +104,7 @@
 
     // نمایش توست موفقیت
     Toastify({
-     text: 'اسلات زمانی با موفقیت اضافه شد',
+     text: 'موفقیت آمیز',
      duration: 3000,
      gravity: "top",
      position: 'right',
@@ -116,7 +116,7 @@
    error: function(xhr) {
     // نمایش توست خطا
     Toastify({
-     text: 'خطا در ذخیره‌سازی اسلات زمانی',
+     text: 'خطا در ذخیره‌سازی  ',
      duration: 3000,
      gravity: "top",
      position: 'right',
@@ -195,7 +195,7 @@ $(document).on('click', '.remove-row-btn', function() {
      success: function(response) {
       $(`[data-slot-id="${slotId}"]`).remove();
       Toastify({
-       text: 'اسلات زمانی با موفقیت حذف شد',
+       text: 'حذف موفقیت آمیز',
        duration: 3000,
        gravity: "top",
        position: 'right',
@@ -206,7 +206,7 @@ $(document).on('click', '.remove-row-btn', function() {
      },
      error: function(xhr) {
       Toastify({
-       text: 'خطا در حذف اسلات زمانی',
+       text: 'خطا در حذف ',
        duration: 3000,
        gravity: "top",
        position: 'right',
@@ -1024,12 +1024,12 @@ $(document).ready(function() {
     </div>
    </div>
    <div class="w-100 d-flex justify-content-between p-3 gap-4">
-    <button type="button" class="btn btn-secondary h-50 w-50" data-dismiss="modal">لغو</button>
-    <button type="submit" class="btn btn-primary h-50 col-12 d-flex justify-content-center align-items-center"
-     id="saveSelection">
-     <span class="button_text">ذخیره تغیرات</span>
-     <div class="loader"></div>
-    </button>
+     <button type="submit" class="btn btn-primary h-50 col-8 d-flex justify-content-center align-items-center w-100"
+      id="saveSelection">
+      <span class="button_text">ذخیره تغیرات</span>
+      <div class="loader"></div>
+     </button>
+    <button type="button" class="btn btn-danger h-50 w-50 col-4" data-dismiss="modal">لغو</button>
    </div>
   </div>
  </div>
