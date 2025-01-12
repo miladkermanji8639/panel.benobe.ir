@@ -440,6 +440,8 @@ Route::prefix('dr')
             // ذخیره‌سازی تنظیمات ساعات کاری
             Route::post('save-work-schedule', [ScheduleSettingController::class, 'saveWorkSchedule'])
               ->name('dr-save-work-schedule');
+            Route::post('save-schedule', [ScheduleSettingController::class, 'saveSchedule'])
+              ->name('save-schedule');
 
             // بازیابی تنظیمات ساعات کاری
             Route::get('get-work-schedule', [ScheduleSettingController::class, 'getWorkSchedule'])

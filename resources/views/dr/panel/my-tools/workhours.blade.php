@@ -50,84 +50,101 @@
  });
 
 
-  $(document).on('click', '.add-row-btn', function() {
-   const day = $(this).data('day');
-   const $container = $(`#morning-${day}-details`);
+ $(document).on('click', '.add-row-btn', function() {
+  const day = $(this).data('day');
+  const $container = $(`#morning-${day}-details`);
 
-   // گرفتن مقادیر از المان پدر
-   const startTime = $(`#morning-start-${day}`).val();
-   const endTime = $(`#morning-end-${day}`).val();
-   const maxAppointments = $(`#morning-patients-${day}`).val() || 1;
+  // گرفتن مقادیر از المان پدر
+  const startTime = $(`#morning-start-${day}`).val();
+  const endTime = $(`#morning-end-${day}`).val();
+  const maxAppointments = $(`#morning-patients-${day}`).val() || 1;
 
-   // ارسال درخواست برای ذخیره‌سازی
-   $.ajax({
-    url: "{{ route('save-time-slot') }}", // روت مربوطه
-    method: 'POST',
-    data: {
-     day: day,
-     start_time: startTime,
-     end_time: endTime,
-     max_appointments: maxAppointments,
-     _token: '{{ csrf_token() }}'
-    },
-    success: function(response) {
-     // ایجاد المان جدید
-     const newRow = `
-                <div class="mt-3 form-row d-flex justify-content-between w-100 p-2" data-slot-id="${response.slot_id}">
-                    <div class="d-flex justify-content-start align-items-center gap-4">
-                        <div class="form-group position-relative timepicker-ui">
-                            <label class="label-top-input-special-takhasos">از</label>
-                            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="${startTime}" readonly>
-                        </div>
-                        <div class="form-group position-relative timepicker-ui">
-                            <label class="label-top-input-special-takhasos">تا</label>
-                            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${endTime}" readonly>
-                        </div>
-                        <div class="form-group col-sm-3 position-relative">
-                            <label class="label-top-input-special-takhasos">تعداد نوبت</label>
-                            <input type="text" class="form-control h-50 text-center max-appointments" value="${maxAppointments}" readonly>
-                        </div>
-                        <div class="form-group col-sm-2 position-relative">
-                            <button class="btn btn-light btn-sm remove-row-btn" data-slot-id="${response.slot_id}">
-                                <img src="${trashSvg}">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-     // اضافه کردن به کانتینر
-     $container.append(newRow);
-
-     // نمایش توست موفقیت
-     Toastify({
-      text: 'اسلات زمانی با موفقیت اضافه شد',
-      duration: 3000,
-      gravity: "top",
-      position: 'right',
-      style: {
-       background: "green"
-      }
-     }).showToast();
-    },
-    error: function(xhr) {
-     // نمایش توست خطا
-     Toastify({
-      text: 'خطا در ذخیره‌سازی اسلات زمانی',
-      duration: 3000,
-      gravity: "top",
-      position: 'right',
-      style: {
-       background: "red"
-      }
-     }).showToast(); // درست نوشتن showToast
-    }
-   });
-  });
-  
-
-function addNewRow(day) {
+  // ارسال درخواست برای ذخیره‌سازی
+  $.ajax({
+   url: "{{ route('save-time-slot') }}",
+   method: 'POST',
+   data: {
+    day: day,
+    start_time: startTime,
+    end_time: endTime,
+    max_appointments: maxAppointments,
+    _token: '{{ csrf_token() }}'
+   },
+   success: function(response) {
+    // ایجاد المان جدید با همان استایل قبلی
     const newRow = `
+      <div class="mt-3 form-row d-flex justify-content-between w-100 p-2" data-slot-id="${response.slot_id}">
+        <div class="d-flex justify-content-start align-items-center gap-4">
+          <div class="form-group position-relative timepicker-ui">
+            <label class="label-top-input-special-takhasos">از</label>
+            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="${startTime}" readonly>
+          </div>
+          <div class="form-group position-relative timepicker-ui">
+            <label class="label-top-input-special-takhasos">تا</label>
+            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${endTime}" readonly>
+          </div>
+          <div class="form-group col-sm-3 position-relative">
+            <label class="label-top-input-special-takhasos">تعداد نوبت</label>
+            <input type="text" class="form-control h-50 text-center max-appointments" value="${maxAppointments}" readonly>
+          </div>
+          <div class="form-group col-sm-2 position-relative">
+            <button class="btn btn-light btn-sm remove-row-btn" data-slot-id="${response.slot_id}">
+              <img src="${trashSvg}">
+            </button>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <span class="btn btn-light btn-sm">${getPersianDayName(day)} ساعت ${startTime} الی ${endTime}</span>
+        </div>
+      </div>
+    `;
+
+    // اضافه کردن به کانتینر
+    $container.append(newRow);
+
+    // نمایش توست موفقیت
+    Toastify({
+     text: 'اسلات زمانی با موفقیت اضافه شد',
+     duration: 3000,
+     gravity: "top",
+     position: 'right',
+     style: {
+      background: "green"
+     }
+    }).showToast();
+   },
+   error: function(xhr) {
+    // نمایش توست خطا
+    Toastify({
+     text: 'خطا در ذخیره‌سازی اسلات زمانی',
+     duration: 3000,
+     gravity: "top",
+     position: 'right',
+     style: {
+      background: "red"
+     }
+    }).showToast();
+   }
+  });
+ });
+
+ // تابع تبدیل نام روز به فارسی (اگر قبلاً تعریف نشده باشد)
+ function getPersianDayName(day) {
+  const dayNames = {
+   "saturday": "شنبه",
+   "sunday": "یکشنبه",
+   "monday": "دوشنبه",
+   "tuesday": "سه‌شنبه",
+   "wednesday": "چهارشنبه",
+   "thursday": "پنج‌شنبه",
+   "friday": "جمعه"
+  };
+  return dayNames[day];
+ }
+
+
+ function addNewRow(day) {
+  const newRow = `
         <div class="mt-3 form-row d-flex justify-content-between w-100 p-2">
             <div class="d-flex justify-content-start align-items-center gap-4">
                 <div class="form-group position-relative timepicker-ui">
@@ -151,9 +168,193 @@ function addNewRow(day) {
         </div>
     `;
 
-    const $container = $(`#morning-${day}-details`);
-    $container.append(newRow);
-}
+  const $container = $(`#morning-${day}-details`);
+  $container.append(newRow);
+ }
+
+ $(document).on('click', '.remove-row-btn', function() {
+  const slotId = $(this).data('slot-id');
+
+  Swal.fire({
+   title: 'آیا مطمئن هستید؟',
+   text: "این عمل قابل بازگشت نیست!",
+   icon: 'warning',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: 'بله، حذف شود!',
+   cancelButtonText: 'لغو'
+  }).then((result) => {
+   if (result.isConfirmed) {
+    $.ajax({
+     url: `/appointment-slots/${slotId}`,
+     method: 'DELETE',
+     data: {
+      _token: '{{ csrf_token() }}'
+     },
+     success: function(response) {
+      $(`[data-slot-id="${slotId}"]`).remove();
+      Toastify({
+       text: 'اسلات زمانی با موفقیت حذف شد',
+       duration: 3000,
+       gravity: "top",
+       position: 'right',
+       style: {
+        background: "green"
+       }
+      }).showToast();
+     },
+     error: function(xhr) {
+      Toastify({
+       text: 'خطا در حذف اسلات زمانی',
+       duration: 3000,
+       gravity: "top",
+       position: 'right',
+       style: {
+        background: "red"
+       }
+      }).showToast();
+     }
+    });
+   }
+  });
+ });
+
+ $(document).ready(function() {
+  // تابع ذخیره‌سازی برنامه کاری
+  function saveWorkSchedule() {
+   const submitButton = document.getElementById("save-work-schedule")
+   const loader = submitButton.querySelector('.loader');
+   const buttonText = submitButton.querySelector('.button_text');
+   buttonText.style.display = 'none';
+   loader.style.display = 'block';
+   const data = {
+    auto_scheduling: $('#appointment-toggle').is(':checked') ? true : false,
+    calendar_days: parseInt($('input[name="calendar_days"]').val()) || 30,
+    online_consultation: $('#posible-appointments').is(':checked') ? true : false,
+    holiday_availability: $('#posible-appointments-inholiday').is(':checked') ? true : false,
+    days: {}
+   };
+
+   // جمع‌آوری اطلاعات برای هر روز
+   const days = [
+    "saturday", "sunday", "monday", "tuesday",
+    "wednesday", "thursday", "friday"
+   ];
+
+   // فقط روزهای تیک خورده را جمع‌آوری کن
+   days.forEach(day => {
+    if ($(`#${day}`).is(':checked')) {
+     const slots = collectSlots(day);
+
+     data.days[day] = {
+      is_working: true,
+      work_hours: {
+       start: $(`#morning-start-${day}`).val(),
+       end: $(`#morning-end-${day}`).val()
+      },
+      slots: slots
+     };
+    }
+   });
+   console.log('Final Data to Send:', data);
+   // ارسال درخواست AJAX
+   $.ajax({
+    url: "{{ route('dr-save-work-schedule') }}",
+    method: 'POST',
+    data: JSON.stringify(data),
+    contentType: 'application/json',
+    headers: {
+     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    success: function(response) {
+     buttonText.style.display = 'block';
+     loader.style.display = 'none';
+     // نمایش پیام موفقیت
+     Toastify({
+      text: ' تنظیمات با موفقیت ذخیره شد',
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "green"
+      }
+     }).showToast();
+
+     if (response.data && response.data.calendar_days) {
+
+      $('input[name="calendar_days"]').val(response.data.calendar_days);
+     }
+    },
+
+    error: function(xhr) {
+     // نمایش خطاهای دقیق
+     buttonText.style.display = 'block';
+     loader.style.display = 'none';
+     if (xhr.responseJSON && xhr.responseJSON.errors || xhr.responseJSON.message) {
+      let errorMessage = '';
+      $.each(xhr.responseJSON.errors, function(field, messages) {
+       errorMessage += messages.join('\n') + '\n';
+      });
+
+      // نمایش خطا با SweetAlert
+      Toastify({
+       text: xhr.responseJSON.message || 'خطا در برقراری ارتباط با سرور',
+       duration: 3000,
+       title: 'خطا',
+       close: true,
+       gravity: "top",
+       position: 'right',
+       style: {
+        background: "red"
+       }
+      }).showToast();
+     } else {
+      Toastify({
+       text: 'خطا در برقراری ارتباط با سرور',
+       duration: 3000,
+       close: true,
+       gravity: "top",
+       position: 'right',
+       style: {
+        background: "red"
+       }
+      }).showToast();
+     }
+    }
+   });
+  }
+
+  // تابع جمع‌آوری اسلات‌ها
+  function collectSlots(day) {
+   const slots = [];
+
+   $(`#morning-${day}-details .form-row`).each(function() {
+    const $row = $(this);
+    const startTime = $row.find('.start-time').val();
+    const endTime = $row.find('.end-time').val();
+    const maxAppointments = $row.find('.max-appointments').val() || 1;
+
+    // فقط اضافه کردن اسلات‌های با زمان شروع و پایان
+    if (startTime && endTime) {
+     slots.push({
+      start_time: startTime,
+      end_time: endTime,
+      max_appointments: parseInt(maxAppointments)
+     });
+    }
+   });
+
+   return slots;
+  }
+
+  // گوش دادن به رویداد کلیک برای ذخیره‌سازی
+  $('#save-work-schedule').on('click', saveWorkSchedule);
+ });
+
+
+
 
  $(document).on('click', '[data-toggle="modal"]', function() {
   const targetModal = $(this).data('target');
@@ -348,109 +549,7 @@ function addNewRow(day) {
  });
  $(document).ready(function() {
   // تابع ذخیره‌سازی برنامه کاری
-  function saveWorkSchedule() {
-   const submitButton = document.getElementById("save-work-schedule")
-   const loader = submitButton.querySelector('.loader');
-   const buttonText = submitButton.querySelector('.button_text');
-   buttonText.style.display = 'none';
-   loader.style.display = 'block';
-   const data = {
-    auto_scheduling: $('#appointment-toggle').is(':checked') ? true : false,
-    calendar_days: parseInt($('input[name="calendar_days"]').val()) || 30,
-    online_consultation: $('#posible-appointments').is(':checked') ? true : false,
-    holiday_availability: $('#posible-appointments-inholiday').is(':checked') ? true : false,
-    days: {}
-   };
 
-   // جمع‌آوری اطلاعات برای هر روز
-   const days = [
-    "saturday", "sunday", "monday", "tuesday",
-    "wednesday", "thursday", "friday"
-   ];
-
-   // فقط روزهای تیک خورده را جمع‌آوری کن
-   days.forEach(day => {
-    if ($(`#${day}`).is(':checked')) {
-     const slots = collectSlots(day);
-
-     data.days[day] = {
-      is_working: true,
-      work_hours: {
-       start: $(`#morning-start-${day}`).val(),
-       end: $(`#morning-end-${day}`).val()
-      },
-      slots: slots
-     };
-    }
-   });
-   console.log('Final Data to Send:', data);
-   // ارسال درخواست AJAX
-   $.ajax({
-    url: "{{ route('dr-save-work-schedule') }}",
-    method: 'POST',
-    data: JSON.stringify(data),
-    contentType: 'application/json',
-    headers: {
-     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    success: function(response) {
-     buttonText.style.display = 'block';
-     loader.style.display = 'none';
-     // نمایش پیام موفقیت
-     Toastify({
-      text: ' تنظیمات با موفقیت ذخیره شد',
-      duration: 3000,
-      close: true,
-      gravity: "top",
-      position: 'right',
-      style: {
-       background: "green"
-      }
-     }).showToast();
-
-     if (response.data && response.data.calendar_days) {
-
-      $('input[name="calendar_days"]').val(response.data.calendar_days);
-     }
-    },
-
-    error: function(xhr) {
-     // نمایش خطاهای دقیق
-     buttonText.style.display = 'block';
-     loader.style.display = 'none';
-     if (xhr.responseJSON && xhr.responseJSON.errors || xhr.responseJSON.message) {
-      let errorMessage = '';
-      $.each(xhr.responseJSON.errors, function(field, messages) {
-       errorMessage += messages.join('\n') + '\n';
-      });
-
-      // نمایش خطا با SweetAlert
-      Toastify({
-       text: xhr.responseJSON.message || 'خطا در برقراری ارتباط با سرور',
-       duration: 3000,
-       title: 'خطا',
-       close: true,
-       gravity: "top",
-       position: 'right',
-       style: {
-        background: "red"
-       }
-      }).showToast();
-     } else {
-      Toastify({
-       text: 'خطا در برقراری ارتباط با سرور',
-       duration: 3000,
-       close: true,
-       gravity: "top",
-       position: 'right',
-       style: {
-        background: "red"
-       }
-      }).showToast();
-     }
-    }
-   });
-  }
 
   // تابع جمع‌آوری اسلات‌ها
   function collectSlots(day) {
@@ -475,8 +574,27 @@ function addNewRow(day) {
    return slots;
   }
 
-  // گوش دادن به رویداد کلیک برای ذخیره‌سازی
-  $('#save-work-schedule').on('click', saveWorkSchedule);
+  $(document).on('click', '#save-work-schedule', function() {
+   const submitButton = document.getElementById("save-work-schedule")
+   const loader = submitButton.querySelector('.loader');
+   const buttonText = submitButton.querySelector('.button_text');
+   buttonText.style.display = 'none';
+   loader.style.display = 'block';
+
+   // ارسال درخواست AJAX و پس از اتمام، نمایش دوباره متن دکمه و مخفی کردن لودر
+   $.ajax({
+    // تنظیمات AJAX
+    success: function(response) {
+     buttonText.style.display = 'block';
+     loader.style.display = 'none';
+    },
+    error: function(xhr) {
+     buttonText.style.display = 'block';
+     loader.style.display = 'none';
+    }
+   });
+  });
+
  });
  //appointments code
  $(document).ready(function() {
@@ -552,10 +670,7 @@ function addNewRow(day) {
     `;
   });
   $("#work-hours").html(workHoursHtml);
-  $(document).on('click', '.remove-row-btn', function() {
-   // حذف ردیف مربوطه
-   $(this).closest('.form-row').remove();
-  });
+
 
   // Function to add a new row
   function addNewRow(day) {
@@ -620,9 +735,7 @@ function addNewRow(day) {
   });
   // Event listeners for adding and removing rows
 
-  $(document).on("click", ".remove-row-btn", function() {
-   $(this).closest(".mt-3").remove();
-  });
+
   $.each(days, function(index, day) {
    $("#" + day).on("change", function() {
     if ($(this).is(":checked")) {
@@ -711,8 +824,8 @@ function addNewRow(day) {
    $("#CalculatorModal").removeClass("show");
    $(".modal-backdrop").remove();
   });
-  $(document).on("click", "[data-target='#scheduleModal']", function() {
-   const day = $(this).data("day"); // دریافت روز انتخاب شده
+  $(document).on('click', '[data-target="#scheduleModal"]', function() {
+   const day = $(this).data('day'); // دریافت روز انتخاب شده
    const persianDay = day === "saturday" ? "شنبه" :
     day === "sunday" ? "یکشنبه" :
     day === "monday" ? "دوشنبه" :
@@ -721,12 +834,14 @@ function addNewRow(day) {
     day === "thursday" ? "پنج‌شنبه" :
     "جمعه"; // تبدیل روز به فارسی
    $("#scheduleModalLabel").text(`برنامه زمانبندی برای نوبت های ${persianDay}`); // تغییر عنوان مودال
-   $("#scheduleModal").modal("show"); // نمایش مودال
+   $("#scheduleModal").modal('show'); // نمایش مودال
   });
 
-  $(document).on("click", "#saveSchedule", function() {
-   const scheduleStart = $("#schedule-start").val();
-   const scheduleEnd = $("#schedule-end").val();
+
+
+  $(document).on('click', '#saveSchedule', function() {
+   const scheduleStart = $('#schedule-start').val();
+   const scheduleEnd = $('#schedule-end').val();
    const selectedDays = [];
 
    // دریافت روزهای انتخاب شده
@@ -734,11 +849,38 @@ function addNewRow(day) {
     selectedDays.push($(this).attr("id")); // یا هر اقدامی که بخواهید با روزهای انتخاب شده انجام دهید
    });
 
-   console.log("Selected Days:", selectedDays);
-   console.log("Schedule Start:", scheduleStart);
-   console.log("Schedule End:", scheduleEnd);
-
-   $("#scheduleModal").modal("hide");
+   $.ajax({
+    url: "{{ route('save-schedule') }}",
+    method: 'POST',
+    data: {
+     days: selectedDays,
+     start_time: scheduleStart,
+     end_time: scheduleEnd,
+     _token: '{{ csrf_token() }}'
+    },
+    success: function(response) {
+     Toastify({
+      text: 'برنامه باز شدن نوبت‌ها با موفقیت ذخیره شد',
+      duration: 3000,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "green"
+      }
+     }).showToast();
+    },
+    error: function(xhr) {
+     Toastify({
+      text: 'خطا در ذخیره‌سازی برنامه باز شدن نوبت‌ها',
+      duration: 3000,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "red"
+      }
+     }).showToast();
+    }
+   });
   });
 
  });

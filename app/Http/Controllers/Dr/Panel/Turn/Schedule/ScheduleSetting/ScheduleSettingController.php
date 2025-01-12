@@ -234,6 +234,50 @@ class ScheduleSettingController
       ], 500);
     }
   }
+  public function saveSchedule(Request $request)
+  {
+    $validated = $request->validate([
+      'days' => 'required|array',
+      'start_time' => 'required|string',
+      'end_time' => 'required|string'
+    ]);
+
+    $doctor = Auth::guard('doctor')->user();
+
+    DB::beginTransaction();
+    try {
+      foreach ($validated['days'] as $day) {
+        DoctorWorkSchedule::updateOrCreate(
+          [
+            'doctor_id' => $doctor->id,
+            'day' => $day
+          ],
+          [
+            'is_working' => true,
+            'work_hours' => [
+              'start' => $validated['start_time'],
+              'end' => $validated['end_time']
+            ]
+          ]
+        );
+      }
+
+      DB::commit();
+
+      return response()->json([
+        'message' => 'برنامه باز شدن نوبت‌ها با موفقیت ذخیره شد',
+        'status' => true
+      ]);
+    } catch (\Exception $e) {
+      DB::rollBack();
+      Log::error('خطا در ذخیره‌سازی برنامه باز شدن نوبت‌ها: ' . $e->getMessage());
+
+      return response()->json([
+        'message' => 'خطا در ذخیره‌سازی برنامه باز شدن نوبت‌ها',
+        'status' => false
+      ], 500);
+    }
+  }
   public function saveWorkSchedule(Request $request)
   {
     $validatedData = $request->validate([
@@ -364,5 +408,21 @@ class ScheduleSettingController
   public function vacation()
   {
     return view("dr.panel.turn.schedule.scheduleSetting.vacation");
+  }
+  public function destroy(AppointmentSlot $appointmentSlot)
+  {
+    try {
+      $appointmentSlot->delete();
+      return response()->json([
+        'message' => 'اسلات زمانی با موفقیت حذف شد',
+        'status' => true
+      ]);
+    } catch (\Exception $e) {
+      Log::error('خطا در حذف اسلات زمانی: ' . $e->getMessage());
+      return response()->json([
+        'message' => 'خطا در حذف اسلات زمانی',
+        'status' => false
+      ], 500);
+    }
   }
 }
