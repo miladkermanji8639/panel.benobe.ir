@@ -437,6 +437,17 @@ Route::prefix('dr')
             Route::get('/scheduleSetting', [ScheduleSettingController::class, 'index'])->name('dr-scheduleSetting');
             Route::get('/scheduleSetting/vacation', [ScheduleSettingController::class, 'vacation'])->name('dr-vacation');
             Route::get('/scheduleSetting/workhours', [ScheduleSettingController::class, 'workhours'])->name('dr-workhours');
+            // ذخیره‌سازی تنظیمات ساعات کاری
+            Route::post('save-work-schedule', [ScheduleSettingController::class, 'saveWorkSchedule'])
+              ->name('dr-save-work-schedule');
+
+            // بازیابی تنظیمات ساعات کاری
+            Route::get('get-work-schedule', [ScheduleSettingController::class, 'getWorkSchedule'])
+              ->name('dr-get-work-schedule');
+            Route::post('/dr/update-work-day-status', [ScheduleSettingController::class, 'updateWorkDayStatus'])
+              ->name('update-work-day-status');
+            Route::post('/update-auto-scheduling', [ScheduleSettingController::class, 'updateAutoScheduling'])
+              ->name('update-auto-scheduling');
             Route::get('/scheduleSetting/my-special-days', [ScheduleSettingController::class, 'mySpecialDays'])->name('dr-mySpecialDays');
             Route::get('/turnContract', [ScheduleSettingController::class, 'turnContract'])->name('dr-scheduleSetting-turnContract');
             Route::delete('/appointments/destroy/{id}', [AppointmentController::class, 'destroyAppointment'])->name('appointments.destroy');

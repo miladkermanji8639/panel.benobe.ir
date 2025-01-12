@@ -67,6 +67,8 @@ return [
         "national_code" => "کد ملی",
         "town" => " استان",
         "city_id" => " شهر",
+        "is_working" => "فعالسازی روز",
+        "calendar_days" => " تعداد روز های باز تقویم",
         "province_id" => " استان",
         "two_factor_secret" => "گذرواژه دو مرحله ای",
         "specialization" => " تخصص ها",

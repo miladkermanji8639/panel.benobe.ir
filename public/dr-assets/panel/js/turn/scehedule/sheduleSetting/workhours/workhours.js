@@ -1,3 +1,5 @@
+
+/* public\dr - assets\panel\js\turn\scehedule\sheduleSetting\workhours\workhours.js */
 $(document).ready(function () {
  const DOMElements = document.querySelectorAll('.timepicker-ui');
  const options = {

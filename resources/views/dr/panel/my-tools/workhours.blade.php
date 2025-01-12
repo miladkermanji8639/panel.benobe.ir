@@ -1,15 +1,326 @@
+{{-- resources\views\dr\panel\my-tools\workhours.blade.php --}}
 <script>
+ $(document).ready(function() {
+  // تغییر وضعیت روزهای کاری با AJAX
+  $.each(["saturday", "sunday", "monday", "tuesday", "wednesday", "thursday", "friday"], function(index, day) {
+   $(`#${day}`).on('change', function() {
+    // تبدیل به 0 یا 1
+    const isWorking = $(this).is(':checked') ? 1 : 0;
+
+    $.ajax({
+     url: "{{ route('update-work-day-status') }}",
+     method: 'POST',
+     data: {
+      day: day,
+      is_working: isWorking, // استفاده از 0 یا 1
+      _token: '{{ csrf_token() }}'
+     },
+     dataType: 'json',
+     success: function(response) {
+      // نمایش بخش مربوط به روز
+      if (isWorking) {
+       $(`.work-hours-${day}`).removeClass('d-none');
+
+       Toastify({
+        text: `روز ${getPersianDayName(day)} فعال شد`,
+        duration: 3000,
+        gravity: "top",
+        position: 'right',
+        style: {
+         background: "green"
+        }
+       }).showToast();
+      } else {
+       $(`.work-hours-${day}`).addClass('d-none');
+
+       Toastify({
+        text: `روز ${getPersianDayName(day)} غیرفعال شد`,
+        duration: 3000,
+        gravity: "top",
+        position: 'right',
+        style: {
+         background: "red"
+        }
+       }).showToast();
+      }
+     },
+     error: function(xhr) {
+      // برگرداندن چک‌باکس به وضعیت قبلی
+      $(`#${day}`).prop('checked', isWorking === 1);
+
+      // نمایش پیغام خطا
+      let errorMessage = 'خطا در تغییر وضعیت روز';
+      if (xhr.responseJSON && xhr.responseJSON.errors) {
+       errorMessage = Object.values(xhr.responseJSON.errors).flat().join('\n');
+      } else if (xhr.responseJSON && xhr.responseJSON.message) {
+       errorMessage = xhr.responseJSON.message;
+      }
+
+      Toastify({
+       text: errorMessage,
+       duration: 3000,
+       gravity: "top",
+       position: 'right',
+       style: {
+        background: "red"
+       }
+      }).showToast();
+     }
+    });
+   });
+  });
+
+  // تابع تبدیل نام روز به فارسی
+  function getPersianDayName(day) {
+   const dayNames = {
+    "saturday": "شنبه",
+    "sunday": "یکشنبه",
+    "monday": "دوشنبه",
+    "tuesday": "سه‌شنبه",
+    "wednesday": "چهارشنبه",
+    "thursday": "پنج‌شنبه",
+    "friday": "جمعه"
+   };
+   return dayNames[day];
+  }
+ });
+ $(document).ready(function() {
+  $('#appointment-toggle').on('change', function() {
+   const isAutoSchedulingEnabled = $(this).is(':checked') ? 1 : 0;
+
+   $.ajax({
+    url: '{{ route('update-auto-scheduling') }}',
+    method: 'POST',
+    data: {
+     auto_scheduling: isAutoSchedulingEnabled,
+     _token: '{{ csrf_token() }}'
+    },
+    dataType: 'json',
+    success: function(response) {
+     Toastify({
+      text: isAutoSchedulingEnabled ?
+       'نوبت دهی خودکار فعال شد' : 'نوبت دهی خودکار غیرفعال شد',
+      duration: 3000,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: isAutoSchedulingEnabled ? "green" : "red"
+      }
+     }).showToast();
+    },
+    error: function(xhr) {
+     // Revert toggle if update fails
+     $('#appointment-toggle').prop('checked', !isAutoSchedulingEnabled);
+
+     // Show error message
+     Toastify({
+      text: xhr.responseJSON.message || 'خطا در به‌روزرسانی تنظیمات',
+      duration: 3000,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "red"
+      }
+     }).showToast();
+    }
+   });
+  });
+ });
+ $(document).ready(function() {
+  // بارگذاری تنظیمات اولیه
+  $.ajax({
+   url: "{{ route('dr-get-work-schedule') }}",
+   method: 'GET',
+   success: function(response) {
+    // تنظیم تیک روزها
+    response.workSchedules.forEach(function(schedule) {
+     $(`#${schedule.day}`).prop('checked', schedule.is_working);
+
+     // نمایش بخش مربوط به روز
+     if (schedule.is_working) {
+      $(`.work-hours-${schedule.day}`).removeClass('d-none');
+     }
+
+     // پر کردن ساعات کاری
+     if (schedule.work_hours) {
+      $(`#morning-start-${schedule.day}`).val(schedule.work_hours.start);
+      $(`#morning-end-${schedule.day}`).val(schedule.work_hours.end);
+     }
+
+     // بارگذاری اسلات‌ها
+     if (schedule.slots && schedule.slots.length > 0) {
+      schedule.slots.forEach(function(slot, index) {
+       if (index > 0) {
+        addNewRow(schedule.day);
+       }
+
+       const slotInputs = $(`#morning-${schedule.day}-details .mt-3`).eq(index).find('input');
+       slotInputs.eq(0).val(slot.start_time);
+       slotInputs.eq(1).val(slot.end_time);
+       slotInputs.eq(2).val(slot.max_appointments);
+      });
+     }
+    });
+
+    // تنظیم مقادیر کانفیگ
+    if (response.appointmentConfig) {
+     $('#appointment-toggle').prop('checked', response.appointmentConfig.auto_scheduling);
+     $('input[name="calendar_days"]').val(response.appointmentConfig.calendar_days);
+     $('#posible-appointments').prop('checked', response.appointmentConfig.online_consultation);
+     $('#posible-appointments-inholiday').prop('checked', response.appointmentConfig.holiday_availability);
+    }
+   },
+   error: function() {
+    Toastify({
+     text: 'خطا در بارگذاری تنظیمات',
+     style: {
+      background: "red"
+     }
+    }).showToast();
+   }
+  });
+ });
+ $(document).ready(function() {
+  // تابع ذخیره‌سازی برنامه کاری
+  function saveWorkSchedule() {
+   const submitButton = document.getElementById("save-work-schedule")
+   const loader = submitButton.querySelector('.loader');
+   const buttonText = submitButton.querySelector('.button_text');
+   buttonText.style.display = 'none';
+   loader.style.display = 'block';
+   const data = {
+    auto_scheduling: $('#appointment-toggle').is(':checked') ? true : false,
+    calendar_days: parseInt($('input[name="calendar_days"]').val()) || 30,
+    online_consultation: $('#posible-appointments').is(':checked') ? true : false,
+    holiday_availability: $('#posible-appointments-inholiday').is(':checked') ? true : false,
+    days: {}
+   };
+
+   // جمع‌آوری اطلاعات برای هر روز
+   const days = [
+    "saturday", "sunday", "monday", "tuesday",
+    "wednesday", "thursday", "friday"
+   ];
+
+   // فقط روزهای تیک خورده را جمع‌آوری کن
+   days.forEach(day => {
+    // بررسی اینکه آیا روز تیک خورده است
+    if ($(`#${day}`).is(':checked')) {
+     data.days[day] = {
+      is_working: true,
+      work_hours: {
+       start: $(`#morning-start-${day}`).val(),
+       end: $(`#morning-end-${day}`).val()
+      },
+      slots: collectSlots(day)
+     };
+    }
+   });
+
+   // ارسال درخواست AJAX
+   $.ajax({
+    url: "{{ route('dr-save-work-schedule') }}",
+    method: 'POST',
+    data: JSON.stringify(data),
+    contentType: 'application/json',
+    headers: {
+     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    success: function(response) {
+     buttonText.style.display = 'block';
+     loader.style.display = 'none';
+     // نمایش پیام موفقیت
+     Toastify({
+      text: ' تنظیمات با موفقیت ذخیره شد',
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "green"
+      }
+     }).showToast();
+
+     if (response.data && response.data.calendar_days) {
+      
+      $('input[name="calendar_days"]').val(response.data.calendar_days);
+     }
+    },
+
+    error: function(xhr) {
+     // نمایش خطاهای دقیق
+     buttonText.style.display = 'block';
+     loader.style.display = 'none';
+     if (xhr.responseJSON && xhr.responseJSON.errors || xhr.responseJSON.message) {
+      let errorMessage = '';
+      $.each(xhr.responseJSON.errors, function(field, messages) {
+       errorMessage += messages.join('\n') + '\n';
+      });
+
+      // نمایش خطا با SweetAlert
+      Toastify({
+       text: xhr.responseJSON.message || 'خطا در برقراری ارتباط با سرور',
+       duration: 3000,
+       title: 'خطا',
+       close: true,
+       gravity: "top",
+       position: 'right',
+       style: {
+        background: "red"
+       }
+      }).showToast();
+     } else {
+      Toastify({
+       text: 'خطا در برقراری ارتباط با سرور',
+       duration: 3000,
+       close: true,
+       gravity: "top",
+       position: 'right',
+       style: {
+        background: "red"
+       }
+      }).showToast();
+     }
+    }
+   });
+  }
+
+  // تابع جمع‌آوری اسلات‌ها
+  function collectSlots(day) {
+   const slots = [];
+   $(`#morning-${day}-details .mt-3`).each(function() {
+    slots.push({
+     start_time: $(this).find('input').first().val(),
+     end_time: $(this).find('input').eq(1).val(),
+     max_appointments: $(this).find('input[name="max-appointments"]').val() || 1
+    });
+   });
+   return slots;
+  }
+
+  // گوش دادن به رویداد کلیک برای ذخیره‌سازی
+  $('#save-work-schedule').on('click', saveWorkSchedule);
+ });
  //appointments code
  $(document).ready(function() {
-  var days = [
-   "saturday",
-   "sunday",
-   "monday",
-   "tuesday",
-   "wednesday",
-   "thursday",
-   "friday",
+  const days = [
+   "saturday", "sunday", "monday", "tuesday",
+   "wednesday", "thursday", "friday"
   ];
+
+  // تبدیل نام روز به فارسی
+  function getPersianDayName(day) {
+   const dayNames = {
+    "saturday": "شنبه",
+    "sunday": "یکشنبه",
+    "monday": "دوشنبه",
+    "tuesday": "سه‌شنبه",
+    "wednesday": "چهارشنبه",
+    "thursday": "پنج‌شنبه",
+    "friday": "جمعه"
+   };
+   return dayNames[day];
+  }
   var workHoursHtml = "";
   $.each(days, function(index, day) {
    workHoursHtml += `
@@ -54,7 +365,7 @@
               </div>
               </div>
             <div class="d-flex align-items-center">
-               <button type="button" class="btn btn-primary btn-sm h-50" data-toggle="modal" data-target="#scheduleModal" data-day="${day}">برنامه باز شدن نوبت ها  </button>
+               <button type="button" class="btn btn-outline-primary btn-sm h-50" data-toggle="modal" data-target="#scheduleModal" data-day="${day}">برنامه باز شدن نوبت ها  </button>
 
             </div>
             </div>
@@ -64,6 +375,8 @@
     `;
   });
   $("#work-hours").html(workHoursHtml);
+
+
   // Function to add a new row
   function addNewRow(day) {
    var newRow = `
@@ -147,8 +460,6 @@
     const endTimeMinutes = parseInt(endTimeParts[1]);
     totalMinutes = (endTimeHours * 60 + endTimeMinutes) - (startTimeHours * 60 + startTimeMinutes);
     // مقداردهی اولیه به ورودی‌های مودال
-    // $("input[name='appointment-count']").val(""); // تعداد نوبت
-    // $("input[name='time-count']").val(""); // زمان هر نوبت
    } else {
     totalMinutes = 0; // در صورت خالی بودن، تعداد دقایق را صفر قرار می‌دهیم
    }
@@ -291,7 +602,11 @@
 
     </div>
     <div class="w-100 d-flex justify-content-end">
-     <button type="button" class="btn btn-primary h-50 w-100" id="saveSchedule">ذخیره</button>
+     <button type="submit" class="btn btn-primary h-50 col-12 d-flex justify-content-center align-items-center"
+      id="saveSchedule">
+      <span class="button_text">ذخیره تغیرات</span>
+      <div class="loader"></div>
+     </button>
     </div>
    </div>
 
@@ -325,7 +640,11 @@
    </div>
    <div class="w-100 d-flex justify-content-between p-3 gap-4">
     <button type="button" class="btn btn-secondary h-50 w-50" data-dismiss="modal">لغو</button>
-    <button type="button" class="btn btn-primary h-50 w-50" id="saveSelection">ذخیره</button>
+    <button type="submit" class="btn btn-primary h-50 col-12 d-flex justify-content-center align-items-center"
+     id="saveSelection">
+     <span class="button_text">ذخیره تغیرات</span>
+     <div class="loader"></div>
+    </button>
    </div>
   </div>
  </div>
@@ -364,7 +683,12 @@
      </div>
     </div>
     <div class="w-100 d-flex justify-content-end p-1 gap-4 mt-3">
-     <button type="button" class="btn btn-primary h-50 w-100" id="saveSelectionCalculator">ذخیره</button>
+
+     <button type="submit" class="btn btn-primary h-50 col-12 d-flex justify-content-center align-items-center"
+      id="saveSelectionCalculator">
+      <span class="button_text">ذخیره تغیرات</span>
+      <div class="loader"></div>
+     </button>
     </div>
    </div>
   </div>
