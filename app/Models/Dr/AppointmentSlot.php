@@ -4,11 +4,9 @@ namespace App\Models\Dr;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AppointmentSlot extends Model
 {
-    use SoftDeletes;
 
     protected $fillable = [
         'work_schedule_id',

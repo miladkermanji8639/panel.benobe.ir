@@ -409,16 +409,19 @@ class ScheduleSettingController
   {
     return view("dr.panel.turn.schedule.scheduleSetting.vacation");
   }
-  public function destroy(AppointmentSlot $appointmentSlot)
+  public function destroy($id)
   {
     try {
+      $appointmentSlot = AppointmentSlot::findOrFail($id);
       $appointmentSlot->delete();
+
       return response()->json([
         'message' => 'اسلات زمانی با موفقیت حذف شد',
         'status' => true
       ]);
     } catch (\Exception $e) {
       Log::error('خطا در حذف اسلات زمانی: ' . $e->getMessage());
+
       return response()->json([
         'message' => 'خطا در حذف اسلات زمانی',
         'status' => false

@@ -442,7 +442,7 @@ Route::prefix('dr')
               ->name('dr-save-work-schedule');
             Route::post('save-schedule', [ScheduleSettingController::class, 'saveSchedule'])
               ->name('save-schedule');
-
+            Route::delete('/appointment-slots/{id}', [ScheduleSettingController::class, 'destroy'])->name('appointment.slots.destroy');
             // بازیابی تنظیمات ساعات کاری
             Route::get('get-work-schedule', [ScheduleSettingController::class, 'getWorkSchedule'])
               ->name('dr-get-work-schedule');
