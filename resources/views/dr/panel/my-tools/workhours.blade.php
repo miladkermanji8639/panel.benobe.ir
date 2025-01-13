@@ -1,5 +1,10 @@
 {{-- resources\views\dr\panel\my-tools\workhours.blade.php --}}
 <script>
+ $(document).on('change', '#select-all-copy-modal', function() {
+  const isChecked = $(this).is(':checked');
+  $('#checkboxModal input[type="checkbox"]').not(this).prop('checked', isChecked);
+ });
+
  function initializeTimePickers() {
   if (typeof window.tui === 'undefined' || typeof window.tui.TimepickerUI === 'undefined') {
    return;
@@ -85,8 +90,13 @@
   const endTime = $('#morning-end-saturday').val();
   const maxAppointments = $('#morning-patients-saturday').val();
 
-  $('input[type="checkbox"]:checked').each(function() {
-   selectedDays.push($(this).attr("id").split('-')[0]);
+  // اضافه کردن شنبه به لیست روزهای انتخاب شده
+  selectedDays.push('saturday');
+
+  $('#checkboxModal input[type="checkbox"]:checked').each(function() {
+   if ($(this).attr('id') !== 'select-all-copy-modal') {
+    selectedDays.push($(this).attr("id").replace('-copy-modal', ''));
+   }
   });
 
   $.ajax({
@@ -109,6 +119,8 @@
       background: "green"
      }
     }).showToast();
+    $('#checkboxModal').modal('hide');
+    $('.modal-backdrop').remove(); // حذف backdrop
    },
    error: function(xhr) {
     const errorMessage = xhr.responseJSON?.message || 'خطا در کپی کردن ساعت کاری';
@@ -121,8 +133,13 @@
       background: "red"
      }
     }).showToast();
+    $('#checkboxModal').modal('hide');
+    $('.modal-backdrop').remove(); // حذف backdrop
    }
   });
+ });
+ $(document).on('hidden.bs.modal', '#checkboxModal', function() {
+  $('.modal-backdrop').remove(); // حذف backdrop
  });
  $(document).on('click', '.add-row-btn', function() {
   const day = $(this).data('day');
@@ -591,15 +608,15 @@
            <div class="d-flex justify-content-start align-items-center gap-4">
              <div class="form-group position-relative timepicker-ui">
                <label class="label-top-input-special-takhasos">از</label>
-               <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="${slot.start_time || '08:00'}" readonly>
+               <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="${slot.time_slots.start_time}" readonly>
              </div>
              <div class="form-group position-relative timepicker-ui">
                <label class="label-top-input-special-takhasos">تا</label>
-               <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${slot.end_time || '12:00'}" readonly>
+               <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${slot.time_slots.end_time}" readonly>
              </div>
              <div class="form-group col-sm-3 position-relative">
                <label class="label-top-input-special-takhasos">تعداد نوبت</label>
-               <input type="text" class="form-control h-50 text-center max-appointments" value="${slot.max_appointments || 1}" readonly>
+               <input type="text" class="form-control h-50 text-center max-appointments" value="${slot.time_slots.max_appointments}" readonly>
              </div>
              <div class="form-group col-sm-2 position-relative">
                <button class="btn btn-light btn-sm remove-row-btn" data-slot-id="${slot.id}">
@@ -801,14 +818,6 @@
    $('input[type="checkbox"]').not(this).prop("checked", isChecked);
   });
   // Save selection
-  $("#saveSelection").on("click", function() {
-   var selectedDays = [];
-   $('input[type="checkbox"]:checked').each(function() {
-    selectedDays.push($(this).val());
-   });
-   console.log("Selected days:", selectedDays); // می‌توانید اینجا هر عملی را که می‌خواهید انجام دهید
-   $("#checkboxModal").modal("hide"); // بستن مدال
-  });
   // Event listeners for adding and removing rows
   $.each(days, function(index, day) {
    $("#" + day).on("change", function() {

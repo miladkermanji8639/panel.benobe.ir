@@ -63,7 +63,8 @@ class ScheduleSettingController
             'is_working' => true,
             'work_hours' => [
               'start' => $validated['start_time'],
-              'end' => $validated['end_time']
+              'end' => $validated['end_time'],
+              'max_appointments' => $validated['max_appointments']
             ],
             'max_appointments' => $validated['max_appointments']
           ]
@@ -95,6 +96,7 @@ class ScheduleSettingController
       'max_appointments' => 'required|integer'
     ]);
 
+
     $doctor = Auth::guard('doctor')->user();
 
     try {
@@ -102,17 +104,18 @@ class ScheduleSettingController
       $workSchedule = DoctorWorkSchedule::firstOrCreate(
         [
           'doctor_id' => $doctor->id,
-          'day' => $validated['day']
+          'day' => $validated['day'],
+          
+          
         ],
         [
           'is_working' => true
         ]
       );
-
       // ایجاد اسلات جدید
-      $slot = AppointmentSlot::create([
+      $slot = AppointmentSlot::updateOrCreate([
         'work_schedule_id' => $workSchedule->id,
-        'time_slots' => (['start_time' => $validated['start_time'], 'end_time' => $validated['end_time']]),
+        'time_slots' => (['start_time' => $validated['start_time'], 'end_time' => $validated['end_time'], 'max_appointments' => $validated['max_appointments']]),
         'max_appointments' => $validated['max_appointments']
       ]);
 
