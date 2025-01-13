@@ -39,53 +39,119 @@ class ScheduleSettingController
       'workSchedules' => $workSchedules
     ]);
   }
+  // در کنترلر ScheduleSettingController
   public function copyWorkHours(Request $request)
   {
     $validated = $request->validate([
-      'days' => 'required|array',
-      'start_time' => 'required|string',
-      'end_time' => 'required|string',
-      'max_appointments' => 'required|integer'
+      'source_day' => 'required|string',
+      'target_days' => 'required|array',
     ]);
 
     $doctor = Auth::guard('doctor')->user();
 
     DB::beginTransaction();
     try {
-      foreach ($validated['days'] as $day) {
-        // بروزرسانی یا ایجاد رکورد برای هر روز
-        DoctorWorkSchedule::updateOrCreate(
+      $sourceWorkSchedule = DoctorWorkSchedule::where('doctor_id', $doctor->id)
+        ->where('day', $validated['source_day'])
+        ->first();
+
+      if (!$sourceWorkSchedule) {
+        return response()->json([
+          'message' => 'روز مبدأ یافت نشد',
+          'status' => false
+        ], 404);
+      }
+
+      $sourceSlots = AppointmentSlot::where('work_schedule_id', $sourceWorkSchedule->id)->get();
+
+      if ($sourceSlots->isEmpty()) {
+        return response()->json([
+          'message' => 'اسلاتی برای کپی وجود ندارد',
+          'status' => false
+        ], 400);
+      }
+
+      // استخراج اطلاعات work_hours از اسلات‌ها
+      $workHours = $sourceSlots->map(function ($slot) {
+        $timeSlots = $slot->time_slots;
+        return [
+          'start' => $timeSlots['start_time'] ?? $timeSlots['start'],
+          'end' => $timeSlots['end_time'] ?? $timeSlots['end'],
+          'max_appointments' => $slot->max_appointments
+        ];
+      })->toArray();
+
+      foreach ($validated['target_days'] as $targetDay) {
+        $targetWorkSchedule = DoctorWorkSchedule::updateOrCreate(
           [
             'doctor_id' => $doctor->id,
-            'day' => $day
+            'day' => $targetDay
           ],
           [
             'is_working' => true,
-            'work_hours' => [
-              'start' => $validated['start_time'],
-              'end' => $validated['end_time'],
-              'max_appointments' => $validated['max_appointments']
-            ],
-            'max_appointments' => $validated['max_appointments']
+            'work_hours' => $workHours,
+            'max_appointments' => $sourceWorkSchedule->max_appointments ?? 1
           ]
         );
+
+        // حذف اسلات‌های قبلی
+        AppointmentSlot::where('work_schedule_id', $targetWorkSchedule->id)->delete();
+
+        // ایجاد اسلات‌های جدید
+        foreach ($sourceSlots as $sourceSlot) {
+          $timeSlots = $sourceSlot->time_slots;
+
+          AppointmentSlot::create([
+            'work_schedule_id' => $targetWorkSchedule->id,
+            'time_slots' => $timeSlots,
+            'max_appointments' => $sourceSlot->max_appointments,
+            'is_active' => $sourceSlot->is_active
+          ]);
+        }
       }
 
       DB::commit();
 
       return response()->json([
         'message' => 'ساعات کاری با موفقیت کپی شد',
-        'status' => true
+        'status' => true,
+        'target_days' => $validated['target_days']
       ]);
+
     } catch (\Exception $e) {
       DB::rollBack();
       Log::error('خطا در کپی ساعات کاری: ' . $e->getMessage());
+      Log::error('جزئیات خطا: ' . $e->getTraceAsString());
 
       return response()->json([
-        'message' => 'خطا در کپی ساعات کاری',
+        'message' => 'خطا در کپی ساعات کاری: ' . $e->getMessage(),
         'status' => false
       ], 500);
     }
+  }
+
+  // متد برای بررسی وجود اسلات
+  public function checkDaySlots(Request $request)
+  {
+    $validated = $request->validate([
+      'day' => 'required|string'
+    ]);
+
+    $doctor = Auth::guard('doctor')->user();
+
+    $workSchedule = DoctorWorkSchedule::where('doctor_id', $doctor->id)
+      ->where('day', $validated['day'])
+      ->first();
+
+    if (!$workSchedule) {
+      return response()->json(['hasSlots' => false]);
+    }
+
+    $slotsCount = AppointmentSlot::where('work_schedule_id', $workSchedule->id)->count();
+
+    return response()->json([
+      'hasSlots' => $slotsCount > 0
+    ]);
   }
   public function saveTimeSlot(Request $request)
   {
@@ -105,8 +171,8 @@ class ScheduleSettingController
         [
           'doctor_id' => $doctor->id,
           'day' => $validated['day'],
-          
-          
+
+
         ],
         [
           'is_working' => true

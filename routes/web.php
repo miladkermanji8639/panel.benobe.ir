@@ -448,6 +448,10 @@ Route::prefix('dr')
               ->name('dr-get-work-schedule');
             Route::post('/dr/update-work-day-status', [ScheduleSettingController::class, 'updateWorkDayStatus'])
               ->name('update-work-day-status');
+            Route::post('/check-day-slots', [
+              ScheduleSettingController::class,
+              'checkDaySlots'
+            ])->name('check-day-slots');
             Route::post('/update-auto-scheduling', [ScheduleSettingController::class, 'updateAutoScheduling'])
               ->name('update-auto-scheduling');
             // routes/web.php

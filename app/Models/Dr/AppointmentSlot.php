@@ -23,7 +23,24 @@ class AppointmentSlot extends Model
         'is_active' => 'boolean',
         'is_booked' => 'boolean'
     ];
+    public function getTimeSlotAttribute($value)
+    {
+        // اگر مقدار JSON بود، دیکد کن
+        if (is_string($value)) {
+            return json_decode($value, true) ?? $value;
+        }
+        return $value;
+    }
 
+    public function setTimeSlotAttribute($value)
+    {
+        // اگر آرایه بود، انکد کن
+        if (is_array($value)) {
+            $this->attributes['time_slots'] = json_encode($value);
+        } else {
+            $this->attributes['time_slots'] = $value;
+        }
+    }
     // متد برای تنظیم اسلات‌های زمانی
     public function setTimeSlots(array $slots)
     {
