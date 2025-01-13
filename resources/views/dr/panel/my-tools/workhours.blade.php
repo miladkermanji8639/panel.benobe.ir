@@ -2,15 +2,16 @@
 <script>
  $(document).on('click', '#saveSelection', function() {
   const selectedDays = [];
-  const startTime = $('#morning-start-saturday').val(); // فرض بر این است که روز شنبه انتخاب شده
-  const endTime = $('#morning-end-saturday').val(); // فرض بر این است که روز شنبه انتخاب شده
-  const maxAppointments = $('#morning-patients-saturday').val(); // فرض بر این است که روز شنبه انتخاب شده
+  const startTime = $('#morning-start-saturday').val();
+  const endTime = $('#morning-end-saturday').val();
+  const maxAppointments = $('#morning-patients-saturday').val();
+
   $('input[type="checkbox"]:checked').each(function() {
-   selectedDays.push($(this).attr("id").split('-')[0]); // گرفتن نام روز
+   selectedDays.push($(this).attr("id").split('-')[0]);
   });
-  // ارسال درخواست AJAX برای کپی کردن مقادیر
+
   $.ajax({
-   url: "{{ route('copy-work-hours') }}", // آدرس روت برای کپی کردن
+   url: "{{ route('copy-work-hours') }}",
    method: 'POST',
    data: {
     days: selectedDays,
@@ -20,7 +21,6 @@
     _token: '{{ csrf_token() }}'
    },
    success: function(response) {
-    // نمایش پیام موفقیت
     Toastify({
      text: 'ساعت کاری با موفقیت کپی شد',
      duration: 3000,
@@ -30,12 +30,11 @@
       background: "green"
      }
     }).showToast();
-    // به‌روزرسانی UI بر اساس پاسخ
    },
    error: function(xhr) {
-    // نمایش پیام خطا
+    const errorMessage = xhr.responseJSON?.message || 'خطا در کپی کردن ساعت کاری';
     Toastify({
-     text: 'خطا در کپی کردن ساعت کاری',
+     text: errorMessage,
      duration: 3000,
      gravity: "top",
      position: 'right',
@@ -49,11 +48,10 @@
  $(document).on('click', '.add-row-btn', function() {
   const day = $(this).data('day');
   const $container = $(`#morning-${day}-details`);
-  // گرفتن مقادیر از المان پدر
   const startTime = $(`#morning-start-${day}`).val();
   const endTime = $(`#morning-end-${day}`).val();
   const maxAppointments = $(`#morning-patients-${day}`).val() || 1;
-  // ارسال درخواست برای ذخیره‌سازی
+
   $.ajax({
    url: "{{ route('save-time-slot') }}",
    method: 'POST',
@@ -65,38 +63,33 @@
     _token: '{{ csrf_token() }}'
    },
    success: function(response) {
-    // ایجاد المان جدید با همان استایل قبلی
     const newRow = `
-      <div class="mt-3 form-row d-flex justify-content-between w-100 p-2" data-slot-id="${response.slot_id}">
-        <div class="d-flex justify-content-start align-items-center gap-4">
-          <div class="form-group position-relative timepicker-ui">
-            <label class="label-top-input-special-takhasos">از</label>
-            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="${startTime}" readonly>
-          </div>
-          <div class="form-group position-relative timepicker-ui">
-            <label class="label-top-input-special-takhasos">تا</label>
-            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${endTime}" readonly>
-          </div>
-          <div class="form-group col-sm-3 position-relative">
-            <label class="label-top-input-special-takhasos">تعداد نوبت</label>
-            <input type="text" class="form-control h-50 text-center max-appointments" value="${maxAppointments}" readonly>
-          </div>
-          <div class="form-group col-sm-2 position-relative">
-            <button class="btn btn-light btn-sm remove-row-btn" data-slot-id="${response.slot_id}">
-              <img src="${trashSvg}">
-            </button>
-          </div>
-        </div>
-        <div class="d-flex align-items-center">
-         <div class="d-flex align-items-center">
-    <button type="button" class="btn btn-outline-primary btn-sm h-50" data-toggle="modal" data-target="#scheduleModal" data-day="${day}">برنامه باز شدن نوبت‌ها</button>
-</div>
-        </div>
-      </div>
-    `;
-    // اضافه کردن به کانتینر
+                <div class="mt-3 form-row d-flex justify-content-between w-100 p-2" data-slot-id="${response.slot_id}">
+                    <div class="d-flex justify-content-start align-items-center gap-4">
+                        <div class="form-group position-relative timepicker-ui">
+                            <label class="label-top-input-special-takhasos">از</label>
+                            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="${startTime}" readonly>
+                        </div>
+                        <div class="form-group position-relative timepicker-ui">
+                            <label class="label-top-input-special-takhasos">تا</label>
+                            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${endTime}" readonly>
+                        </div>
+                        <div class="form-group col-sm-3 position-relative">
+                            <label class="label-top-input-special-takhasos">تعداد نوبت</label>
+                            <input type="text" class="form-control h-50 text-center max-appointments" value="${maxAppointments}" readonly>
+                        </div>
+                        <div class="form-group col-sm-2 position-relative">
+                            <button class="btn btn-light btn-sm remove-row-btn" data-slot-id="${response.slot_id}">
+                                <img src="${trashSvg}">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn btn-outline-primary btn-sm h-50" data-toggle="modal" data-target="#scheduleModal" data-day="${day}">برنامه باز شدن نوبت‌ها</button>
+                    </div>
+                </div>
+            `;
     $container.append(newRow);
-    // نمایش توست موفقیت
     Toastify({
      text: 'موفقیت آمیز',
      duration: 3000,
@@ -108,9 +101,8 @@
     }).showToast();
    },
    error: function(xhr) {
-    // نمایش توست خطا
     Toastify({
-     text: 'خطا در ذخیره‌سازی  ',
+     text: 'خطا در ذخیره‌سازی',
      duration: 3000,
      gravity: "top",
      position: 'right',
@@ -120,6 +112,15 @@
     }).showToast();
    }
   });
+ });
+
+ $(document).on('click', '[data-target="#scheduleModal"]', function() {
+  const day = $(this).data('day');
+  const startTime = $(`#morning-start-${day}`).val();
+  const endTime = $(`#morning-end-${day}`).val();
+  const persianDay = getPersianDayName(day);
+  $("#scheduleModalLabel").text(`برنامه زمانبندی برای نوبت های ${persianDay} ${startTime} الی ${endTime}`);
+  $("#scheduleModal").modal('show');
  });
  // تابع تبدیل نام روز به فارسی (اگر قبلاً تعریف نشده باشد)
  function getPersianDayName(day) {
@@ -528,9 +529,9 @@
              </div>
            </div>
            <div class="d-flex align-items-center">
-          <div class="d-flex align-items-center">
-    <button type="button" class="btn btn-outline-primary btn-sm h-50" data-toggle="modal" data-target="#scheduleModal" data-day="${day}">برنامه باز شدن نوبت‌ها</button>
-</div>
+            <div class="d-flex align-items-center">
+               <button type="button" class="btn btn-outline-primary btn-sm h-50" data-toggle="modal" data-target="#scheduleModal" data-day="">برنامه باز شدن نوبت‌ها</button>
+            </div>
            </div>
          </div>
        `;
@@ -694,8 +695,8 @@
         </div>
         <div class="d-flex align-items-center">
           <div class="d-flex align-items-center">
-    <button type="button" class="btn btn-outline-primary btn-sm h-50" data-toggle="modal" data-target="#scheduleModal" data-day="${day}">برنامه باز شدن نوبت‌ها</button>
-</div>
+              <button type="button" class="btn btn-outline-primary btn-sm h-50" data-toggle="modal" data-target="#scheduleModal" data-day="${day}">برنامه باز شدن نوبت‌ها</button>
+          </div>
         </div>
       </div>
     `;
@@ -834,10 +835,11 @@
    const scheduleStart = $('#schedule-start').val();
    const scheduleEnd = $('#schedule-end').val();
    const selectedDays = [];
-   // دریافت روزهای انتخاب شده
+
    $('input[type="checkbox"]:checked').each(function() {
-    selectedDays.push($(this).attr("id")); // یا هر اقدامی که بخواهید با روزهای انتخاب شده انجام دهید
+    selectedDays.push($(this).attr("id"));
    });
+
    $.ajax({
     url: "{{ route('save-schedule') }}",
     method: 'POST',
@@ -857,6 +859,50 @@
        background: "green"
       }
      }).showToast();
+     $("#scheduleModal").modal('hide'); // بستن مودال
+    },
+    error: function(xhr) {
+     Toastify({
+      text: 'خطا در ذخیره‌سازی برنامه باز شدن نوبت‌ها',
+      duration: 3000,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "red"
+      }
+     }).showToast();
+    }
+   });
+  });
+  $(document).on('click', '#saveSchedule', function() {
+   const scheduleStart = $('#schedule-start').val();
+   const scheduleEnd = $('#schedule-end').val();
+   const selectedDays = [];
+
+   $('input[type="checkbox"]:checked').each(function() {
+    selectedDays.push($(this).attr("id"));
+   });
+
+   $.ajax({
+    url: "{{ route('save-schedule') }}",
+    method: 'POST',
+    data: {
+     days: selectedDays,
+     start_time: scheduleStart,
+     end_time: scheduleEnd,
+     _token: '{{ csrf_token() }}'
+    },
+    success: function(response) {
+     Toastify({
+      text: 'برنامه باز شدن نوبت‌ها با موفقیت ذخیره شد',
+      duration: 3000,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "green"
+      }
+     }).showToast();
+     $("#scheduleModal").modal('hide'); // بستن مودال
     },
     error: function(xhr) {
      Toastify({
