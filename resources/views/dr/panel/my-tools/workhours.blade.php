@@ -1,5 +1,84 @@
 {{-- resources\views\dr\panel\my-tools\workhours.blade.php --}}
 <script>
+ function initializeTimePickers() {
+  if (typeof window.tui === 'undefined' || typeof window.tui.TimepickerUI === 'undefined') {
+   return;
+  }
+
+  $('.timepicker-ui:not([data-timepicker-initialized])').each(function() {
+   const $input = $(this);
+   const inputId = $input.attr('id') || 'unknown';
+
+   try {
+    const timepickerOptions = {
+     input: this,
+     clockType: '24h',
+     theme: 'basic',
+     mobile: true,
+     enableScrollbar: true,
+     disableTimeRangeValidation: true,
+     autoClose: true
+    };
+
+    const timepicker = new window.tui.TimepickerUI(this, timepickerOptions);
+
+    if (!timepicker || typeof timepicker.create !== 'function') {
+     return;
+    }
+
+    timepicker.create();
+
+    const initialValue = $input.val();
+    if (initialValue) {
+     try {
+      timepicker.setTime(initialValue);
+     } catch (setTimeError) {}
+    }
+
+    $input.data('timepicker', timepicker);
+    $input.attr('data-timepicker-initialized', 'true');
+
+    $input.off('focus.timepickerInit click.timepickerInit')
+     .on('focus.timepickerInit click.timepickerInit', function() {
+      try {
+       if (timepicker && typeof timepicker.create === 'function') {
+        timepicker.destroy();
+        timepicker.create();
+
+        const currentValue = $(this).val();
+        if (currentValue) {
+         timepicker.setTime(currentValue);
+        }
+       }
+      } catch (rebuildError) {}
+     });
+
+   } catch (initError) {}
+  });
+ }
+
+ function setupNewDayTimePickers() {
+  $('.day-checkbox').on('change', function() {
+   if ($(this).is(':checked')) {
+    setTimeout(function() {
+     initializeTimePickers();
+    }, 100);
+   }
+  });
+ }
+
+ $(document).ready(function() {
+  setupNewDayTimePickers();
+
+  setTimeout(initializeTimePickers, 100);
+  setTimeout(initializeTimePickers, 300);
+  setTimeout(initializeTimePickers, 500);
+ });
+
+ $(document).on('dynamicContentLoaded', function() {
+  initializeTimePickers();
+  setupNewDayTimePickers();
+ });
  $(document).on('click', '#saveSelection', function() {
   const selectedDays = [];
   const startTime = $('#morning-start-saturday').val();
