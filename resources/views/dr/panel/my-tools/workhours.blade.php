@@ -240,9 +240,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center">
-                        <button type="button" class="btn btn-outline-primary btn-sm h-50" data-toggle="modal" data-target="#scheduleModal" data-day="${day}">برنامه باز شدن نوبت‌ها</button>
-                    </div>
+                   
                 </div>
             `;
 

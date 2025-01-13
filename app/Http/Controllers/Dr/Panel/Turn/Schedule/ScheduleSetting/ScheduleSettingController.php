@@ -66,7 +66,7 @@ class ScheduleSettingController
 
       if ($sourceSlots->isEmpty()) {
         return response()->json([
-          'message' => 'اسلاتی برای کپی وجود ندارد',
+          'message' => 'زمانی برای کپی وجود ندارد لطفا ابتدا یک زمان اضافه کنید ',
           'status' => false
         ], 400);
       }
