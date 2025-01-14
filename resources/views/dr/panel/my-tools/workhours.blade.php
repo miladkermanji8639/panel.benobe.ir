@@ -492,13 +492,13 @@
     const newRow = `
                 <div class="mt-3 form-row d-flex justify-content-between w-100 p-2" data-slot-id="${response.slot_id}">
                     <div class="d-flex justify-content-start align-items-center gap-4">
-                        <div class="form-group position-relative ">
+                        <div class="form-group position-relative timepicker-ui">
                             <label class="label-top-input-special-takhasos">از</label>
-                            <input type="text" class="form-control h-50  text-center font-weight-bold font-size-13 start-time" value="${startTime}" readonly>
+                            <input type="text" class="form-control h-50 timepicker-ui-input  text-center font-weight-bold font-size-13 start-time" value="${startTime}" readonly>
                         </div>
-                        <div class="form-group position-relative ">
+                        <div class="form-group position-relative timepicker-ui">
                             <label class="label-top-input-special-takhasos">تا</label>
-                            <input type="text" class="form-control h-50 text-center font-weight-bold font-size-13 end-time" value="${endTime}" readonly>
+                            <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${endTime}" readonly>
                         </div>
                         <div class="form-group col-sm-3 position-relative">
                             <label class="label-top-input-special-takhasos">تعداد نوبت</label>
@@ -543,25 +543,27 @@
 
  $(document).on('click', '[data-target="#scheduleModal"]', function() {
   const day = $(this).data('day');
-  const startTime = $(`#morning-start-${day}`).val();
-  const endTime = $(`#morning-end-${day}`).val();
   const persianDay = getPersianDayName(day);
-  $("#scheduleModalLabel").text(`برنامه زمانبندی برای نوبت های ${persianDay} ${startTime} الی ${endTime}`);
+  const slotInfo = getSlotInfoForDay(day);
+
+  // به‌روزرسانی عنوان مدال با اطلاعات دقیق
+  $("#scheduleModalLabel").text(
+   `برنامه زمانبندی برای نوبت های ${persianDay} ${slotInfo.startTime} الی ${slotInfo.endTime} (${slotInfo.appointments} نوبت)`
+   );
+
+  // تنظیم مقادیر پیش‌فرض برای مدال
+  $('#schedule-start').val(slotInfo.startTime);
+  $('#schedule-end').val(slotInfo.endTime);
+
+  // پاک کردن چک‌باکس‌های قبلی
+  $('input[type="checkbox"][id$="-copy-modal"]').prop('checked', false);
+  // چک کردن روز جاری
+  $(`#${day}-copy-modal`).prop('checked', true);
+
   $("#scheduleModal").modal('show');
  });
  // تابع تبدیل نام روز به فارسی (اگر قبلاً تعریف نشده باشد)
- function getPersianDayName(day) {
-  const dayNames = {
-   "saturday": "شنبه",
-   "sunday": "یکشنبه",
-   "monday": "دوشنبه",
-   "tuesday": "سه‌شنبه",
-   "wednesday": "چهارشنبه",
-   "thursday": "پنج‌شنبه",
-   "friday": "جمعه"
-  };
-  return dayNames[day];
- }
+
 
  function addNewRow(day) {
   const newRow = `
@@ -831,18 +833,7 @@
    });
   });
   // تابع تبدیل نام روز به فارسی
-  function getPersianDayName(day) {
-   const dayNames = {
-    "saturday": "شنبه",
-    "sunday": "یکشنبه",
-    "monday": "دوشنبه",
-    "tuesday": "سه‌شنبه",
-    "wednesday": "چهارشنبه",
-    "thursday": "پنج‌شنبه",
-    "friday": "جمعه"
-   };
-   return dayNames[day];
-  }
+
  });
  $(document).ready(function() {
   $('#appointment-toggle').on('change', function() {
@@ -1023,6 +1014,31 @@
    });
   });
  });
+
+ function getPersianDayName(day) {
+  const dayNames = {
+   "saturday": "شنبه",
+   "sunday": "یکشنبه",
+   "monday": "دوشنبه",
+   "tuesday": "سه‌شنبه",
+   "wednesday": "چهارشنبه",
+   "thursday": "پنج‌شنبه",
+   "friday": "جمعه"
+  };
+  return dayNames[day] || day;
+ }
+
+ function getSlotInfoForDay(day) {
+  const startTime = $(`#morning-start-${day}`).val() || '08:00';
+  const endTime = $(`#morning-end-${day}`).val() || '12:00';
+  const appointments = $(`#morning-patients-${day}`).val() || 1;
+
+  return {
+   startTime,
+   endTime,
+   appointments
+  };
+ }
  //appointments code
  $(document).ready(function() {
   const days = [
@@ -1030,18 +1046,7 @@
    "wednesday", "thursday", "friday"
   ];
   // تبدیل نام روز به فارسی
-  function getPersianDayName(day) {
-   const dayNames = {
-    "saturday": "شنبه",
-    "sunday": "یکشنبه",
-    "monday": "دوشنبه",
-    "tuesday": "سه‌شنبه",
-    "wednesday": "چهارشنبه",
-    "thursday": "پنج‌شنبه",
-    "friday": "جمعه"
-   };
-   return dayNames[day];
-  }
+
   var workHoursHtml = "";
   $.each(days, function(index, day) {
    workHoursHtml += `
@@ -1233,27 +1238,27 @@
    $("#CalculatorModal").removeClass("show");
    $(".modal-backdrop").remove();
   });
-  $(document).on('click', '[data-target="#scheduleModal"]', function() {
-   const day = $(this).data('day'); // دریافت روز انتخاب شده
-   const persianDay = day === "saturday" ? "شنبه" :
-    day === "sunday" ? "یکشنبه" :
-    day === "monday" ? "دوشنبه" :
-    day === "tuesday" ? "سه‌شنبه" :
-    day === "wednesday" ? "چهارشنبه" :
-    day === "thursday" ? "پنج‌شنبه" :
-    "جمعه"; // تبدیل روز به فارسی
-   $("#scheduleModalLabel").text(`برنامه زمانبندی برای نوبت های ${persianDay}`); // تغییر عنوان مودال
-   $("#scheduleModal").modal('show'); // نمایش مودال
-  });
+
   $(document).on('click', '#saveSchedule', function() {
+   const $button = $(this);
+   const $loader = $button.find('.loader');
+   const $buttonText = $button.find('.button_text');
+
+   // نمایش لودر
+   $buttonText.hide();
+   $loader.show();
+
    const scheduleStart = $('#schedule-start').val();
    const scheduleEnd = $('#schedule-end').val();
-   const selectedDays = [];
 
-   $('input[type="checkbox"]:checked').each(function() {
-    selectedDays.push($(this).attr("id"));
+   // جمع‌آوری روزهای انتخاب شده
+   const selectedDays = [];
+   $('input[type="checkbox"][id$="-copy-modal"]:checked').each(function() {
+    const day = $(this).attr('id').replace('-copy-modal', '');
+    selectedDays.push(day);
    });
 
+   // درخواست AJAX برای ذخیره‌سازی
    $.ajax({
     url: "{{ route('save-schedule') }}",
     method: 'POST',
@@ -1264,6 +1269,12 @@
      _token: '{{ csrf_token() }}'
     },
     success: function(response) {
+     // به‌روزرسانی UI برای روزهای انتخاب شده
+     selectedDays.forEach(day => {
+      $(`#morning-start-${day}`).val(scheduleStart);
+      $(`#morning-end-${day}`).val(scheduleEnd);
+     });
+
      Toastify({
       text: 'برنامه باز شدن نوبت‌ها با موفقیت ذخیره شد',
       duration: 3000,
@@ -1273,7 +1284,8 @@
        background: "green"
       }
      }).showToast();
-     $("#scheduleModal").modal('hide'); // بستن مودال
+
+     $("#scheduleModal").modal('hide');
     },
     error: function(xhr) {
      Toastify({
@@ -1285,52 +1297,15 @@
        background: "red"
       }
      }).showToast();
+    },
+    complete: function() {
+     // مخفی کردن لودر
+     $loader.hide();
+     $buttonText.show();
     }
    });
   });
-  $(document).on('click', '#saveSchedule', function() {
-   const scheduleStart = $('#schedule-start').val();
-   const scheduleEnd = $('#schedule-end').val();
-   const selectedDays = [];
 
-   $('input[type="checkbox"]:checked').each(function() {
-    selectedDays.push($(this).attr("id"));
-   });
-
-   $.ajax({
-    url: "{{ route('save-schedule') }}",
-    method: 'POST',
-    data: {
-     days: selectedDays,
-     start_time: scheduleStart,
-     end_time: scheduleEnd,
-     _token: '{{ csrf_token() }}'
-    },
-    success: function(response) {
-     Toastify({
-      text: 'برنامه باز شدن نوبت‌ها با موفقیت ذخیره شد',
-      duration: 3000,
-      gravity: "top",
-      position: 'right',
-      style: {
-       background: "green"
-      }
-     }).showToast();
-     $("#scheduleModal").modal('hide'); // بستن مودال
-    },
-    error: function(xhr) {
-     Toastify({
-      text: 'خطا در ذخیره‌سازی برنامه باز شدن نوبت‌ها',
-      duration: 3000,
-      gravity: "top",
-      position: 'right',
-      style: {
-       background: "red"
-      }
-     }).showToast();
-    }
-   });
-  });
  });
 </script>
 <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="scheduleModalLabel"
