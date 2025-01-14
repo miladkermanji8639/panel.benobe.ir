@@ -1259,67 +1259,84 @@
    const $loader = $button.find('.loader');
    const $buttonText = $button.find('.button_text');
 
-   // نمایش لودر
    $buttonText.hide();
    $loader.show();
 
    const scheduleStart = $('#schedule-start').val();
    const scheduleEnd = $('#schedule-end').val();
 
-   // جمع‌آوری روزهای انتخاب شده
    const selectedDays = [];
    $('input[type="checkbox"][id$="-copy-modal"]:checked').each(function() {
     const day = $(this).attr('id').replace('-copy-modal', '');
     selectedDays.push(day);
    });
 
-   // درخواست AJAX برای ذخیره‌سازی
-   $.ajax({
-    url: "{{ route('save-schedule') }}",
-    method: 'POST',
-    data: {
-     days: selectedDays,
-     start_time: scheduleStart,
-     end_time: scheduleEnd,
-     _token: '{{ csrf_token() }}'
-    },
-    success: function(response) {
-     // به‌روزرسانی UI برای روزهای انتخاب شده
-     selectedDays.forEach(day => {
+   // درخواست AJAX برای هر روز
+   selectedDays.forEach(function(day) {
+    $.ajax({
+     url: "{{ route('save-appointment-settings') }}",
+     method: 'POST',
+     data: {
+      day: day,
+      start_time: scheduleStart,
+      end_time: scheduleEnd,
+      _token: '{{ csrf_token() }}'
+     },
+     success: function(response) {
+      // به‌روزرسانی UI
       $(`#morning-start-${day}`).val(scheduleStart);
       $(`#morning-end-${day}`).val(scheduleEnd);
-     });
 
-     Toastify({
-      text: 'برنامه باز شدن نوبت‌ها با موفقیت ذخیره شد',
-      duration: 3000,
-      gravity: "top",
-      position: 'right',
-      style: {
-       background: "green"
-      }
-     }).showToast();
+      // نمایش متن توضیحی در کنار دکمه "برنامه باز شدن نوبت‌ها"
+      const $scheduleButton = $(`[data-day="${day}"][data-target="#scheduleModal"] `);
+      $scheduleButton.text(response.display_text);
+     }
+    });
+   });
 
-     $("#scheduleModal").modal('hide');
+   Toastify({
+    text: 'برنامه باز شدن نوبت‌ها با موفقیت ذخیره شد',
+    duration: 3000,
+    gravity: "top",
+    position: 'right',
+    style: {
+     background: "green"
+    }
+   }).showToast();
+
+   $("#scheduleModal").modal('hide');
+   $('.modal-backdrop').remove();
+
+   $loader.hide();
+   $buttonText.show();
+  });
+
+  function loadPreviousAppointmentSettings(day) {
+   $.ajax({
+    url: "{{ route('get-appointment-settings') }}",
+    method: 'GET',
+    data: {
+     day: day
     },
-    error: function(xhr) {
-     Toastify({
-      text: 'خطا در ذخیره‌سازی برنامه باز شدن نوبت‌ها',
-      duration: 3000,
-      gravity: "top",
-      position: 'right',
-      style: {
-       background: "red"
-      }
-     }).showToast();
-    },
-    complete: function() {
-     // مخفی کردن لودر
-     $loader.hide();
-     $buttonText.show();
+    success: function(response) {
+     if (response.status && response.settings) {
+      $('#schedule-start').val(response.settings.start_time);
+      $('#schedule-end').val(response.settings.end_time);
+     }
     }
    });
+  }
+
+  // فراخوانی در زمان باز شدن مدال
+  $(document).on('show.bs.modal', '#scheduleModal', function(event) {
+   const $trigger = $(event.relatedTarget);
+   const day = $trigger.data('day');
+   loadPreviousAppointmentSettings(day);
   });
+
+ 
+
+  // در زمان بارگذاری صفحه
 
  });
 </script>

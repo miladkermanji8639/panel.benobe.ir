@@ -303,49 +303,110 @@ class ScheduleSettingController
       ], 500);
     }
   }
-  public function saveSchedule(Request $request)
+  public function saveAppointmentSettings(Request $request)
   {
     $validated = $request->validate([
-      'days' => 'required|array',
-      'start_time' => 'required|string',
-      'end_time' => 'required|string'
+      'day' => 'required|in:saturday,sunday,monday,tuesday,wednesday,thursday,friday',
+      'start_time' => 'required|date_format:H:i',
+      'end_time' => 'required|date_format:H:i|after:start_time',
+      'max_appointments' => 'nullable|integer|min:1'
+    ]);
+
+    try {
+      $doctor = Auth::guard('doctor')->user();
+
+      // محاسبه تعداد نوبت‌ها اگر ارسال نشده باشد
+      $maxAppointments = $validated['max_appointments'] ??
+        $this->calculateMaxAppointments($validated['start_time'], $validated['end_time']);
+
+      // بازیابی رکورد WorkSchedule
+      $workSchedule = DoctorWorkSchedule::updateOrCreate(
+        [
+          'doctor_id' => $doctor->id,
+          'day' => $validated['day']
+        ],
+        [
+          'is_working' => true,
+          'appointment_settings' => [
+            'start_time' => $validated['start_time'],
+            'end_time' => $validated['end_time'],
+            'max_appointments' => $maxAppointments
+          ]
+        ]
+      );
+
+      // ایجاد متن نمایشی
+      $displayText = sprintf(
+        'برنامه باز شدن نوبت‌های %s از ساعت %s تا %s (%d نوبت)',
+        $this->getDayNameInPersian($validated['day']),
+        $validated['start_time'],
+        $validated['end_time'],
+        $maxAppointments
+      );
+
+      return response()->json([
+        'message' => 'تنظیمات نوبت‌دهی با موفقیت ذخیره شد',
+        'display_text' => $displayText,
+        'data' => $workSchedule->appointment_settings,
+        'status' => true
+      ]);
+    } catch (\Exception $e) {
+      Log::error('خطا در ذخیره‌سازی تنظیمات نوبت‌دهی: ' . $e->getMessage());
+
+      return response()->json([
+        'message' => 'خطا در ذخیره‌سازی تنظیمات',
+        'status' => false
+      ], 500);
+    }
+  }
+
+  private function getDayNameInPersian($day)
+  {
+    $days = [
+      'saturday' => 'شنبه',
+      'sunday' => 'یکشنبه',
+      'monday' => 'دوشنبه',
+      'tuesday' => 'سه‌شنبه',
+      'wednesday' => 'چهارشنبه',
+      'thursday' => 'پنج‌شنبه',
+      'friday' => 'جمعه'
+    ];
+
+    return $days[$day] ?? $day;
+  }
+
+  private function calculateMaxAppointments($startTime, $endTime)
+  {
+    $start = \Carbon\Carbon::createFromFormat('H:i', $startTime);
+    $end = \Carbon\Carbon::createFromFormat('H:i', $endTime);
+
+    // فرض کنید هر نوبت 20 دقیقه طول می‌کشد
+    $diffInMinutes = $start->diffInMinutes($end);
+    return floor($diffInMinutes / 20);
+  }
+  public function getAppointmentSettings(Request $request)
+  {
+    $validated = $request->validate([
+      'day' => 'required|in:saturday,sunday,monday,tuesday,wednesday,thursday,friday'
     ]);
 
     $doctor = Auth::guard('doctor')->user();
 
-    DB::beginTransaction();
-    try {
-      foreach ($validated['days'] as $day) {
-        DoctorWorkSchedule::updateOrCreate(
-          [
-            'doctor_id' => $doctor->id,
-            'day' => $day
-          ],
-          [
-            'is_working' => true,
-            'work_hours' => [
-              'start' => $validated['start_time'],
-              'end' => $validated['end_time']
-            ]
-          ]
-        );
-      }
+    $workSchedule = DoctorWorkSchedule::where('doctor_id', $doctor->id)
+      ->where('day', $validated['day'])
+      ->first();
 
-      DB::commit();
-
+    if ($workSchedule && $workSchedule->appointment_settings) {
       return response()->json([
-        'message' => 'برنامه باز شدن نوبت‌ها با موفقیت ذخیره شد',
+        'settings' => $workSchedule->appointment_settings,
         'status' => true
       ]);
-    } catch (\Exception $e) {
-      DB::rollBack();
-      Log::error('خطا در ذخیره‌سازی برنامه باز شدن نوبت‌ها: ' . $e->getMessage());
-
-      return response()->json([
-        'message' => 'خطا در ذخیره‌سازی برنامه باز شدن نوبت‌ها',
-        'status' => false
-      ], 500);
     }
+
+    return response()->json([
+      'message' => 'تنظیماتی یافت نشد',
+      'status' => false
+    ]);
   }
   public function saveWorkSchedule(Request $request)
   {
