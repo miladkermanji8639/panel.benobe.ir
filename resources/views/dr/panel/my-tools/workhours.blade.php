@@ -170,20 +170,24 @@
 
  // تابع ایجاد HTML برای اسلات
  function createSlotHtml(slot, day) {
+  const startTime = slot.time_slots ? slot.time_slots.start_time : '08:00';
+  const endTime = slot.time_slots ? slot.time_slots.end_time : '12:00';
+  const maxAppointments = slot.max_appointments || 1;
+
   return `
     <div class="mt-3 form-row d-flex justify-content-between w-100 p-2" data-slot-id="${slot.id}">
       <div class="d-flex justify-content-start align-items-center gap-4">
         <div class="form-group position-relative timepicker-ui">
           <label class="label-top-input-special-takhasos">از</label>
-          <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="${slot.time_slots.start_time}" readonly>
+          <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="${startTime}" readonly>
         </div>
         <div class="form-group position-relative timepicker-ui">
           <label class="label-top-input-special-takhasos">تا</label>
-          <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${slot.time_slots.end_time}" readonly>
+          <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${endTime}" readonly>
         </div>
         <div class="form-group col-sm-3 position-relative">
           <label class="label-top-input-special-takhasos">تعداد نوبت</label>
-          <input type="text" class="form-control h-50 text-center max-appointments" value="${slot.max_appointments}" readonly>
+          <input type="text" class="form-control h-50 text-center max-appointments" value="${maxAppointments}" readonly>
         </div>
         <div class="form-group col-sm-2 position-relative">
           <button class="btn btn-light btn-sm remove-row-btn" data-slot-id="${slot.id}">
@@ -385,20 +389,23 @@
 
  // تابع ایجاد ردیف اسلات
  function createSlotHtml(slot, day) {
+  const startTime = slot.time_slots ? slot.time_slots.start_time : '08:00';
+  const endTime = slot.time_slots ? slot.time_slots.end_time : '12:00';
+  const maxAppointments = slot.max_appointments || 1;
   return `
     <div class="mt-3 form-row d-flex justify-content-between w-100 p-2" data-slot-id="${slot.id}">
       <div class="d-flex justify-content-start align-items-center gap-4">
         <div class="form-group position-relative timepicker-ui">
           <label class="label-top-input-special-takhasos">از</label>
-          <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="${slot.time_slots.start_time}" readonly>
+          <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="${startTime}" readonly>
         </div>
         <div class="form-group position-relative timepicker-ui">
           <label class="label-top-input-special-takhasos">تا</label>
-          <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${slot.time_slots.end_time}" readonly>
+          <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${endTime}" readonly>
         </div>
         <div class="form-group col-sm-3 position-relative">
           <label class="label-top-input-special-takhasos">تعداد نوبت</label>
-          <input type="text" class="form-control h-50 text-center max-appointments" value="${slot.max_appointments}" readonly>
+          <input type="text" class="form-control h-50 text-center max-appointments" value="${maxAppointments}" readonly>
         </div>
         <div class="form-group col-sm-2 position-relative">
           <button class="btn btn-light btn-sm remove-row-btn" data-slot-id="${slot.id}">
@@ -929,20 +936,23 @@
      if (schedule.slots && schedule.slots.length > 0) {
       const $container = $(`#morning-${schedule.day}-details`);
       schedule.slots.forEach(function(slot) {
+       const startTime = slot.time_slots ? slot.time_slots.start_time : '08:00';
+       const endTime = slot.time_slots ? slot.time_slots.end_time : '12:00';
+       const maxAppointments = slot.max_appointments || 1;
        const newRow = `
          <div class="mt-3 form-row d-flex justify-content-between w-100 p-2" data-slot-id="${slot.id}">
            <div class="d-flex justify-content-start align-items-center gap-4">
              <div class="form-group position-relative timepicker-ui">
                <label class="label-top-input-special-takhasos">از</label>
-               <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="${slot.time_slots.start_time}" readonly>
+               <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 start-time" value="${startTime}" readonly>
              </div>
              <div class="form-group position-relative timepicker-ui">
                <label class="label-top-input-special-takhasos">تا</label>
-               <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${slot.time_slots.end_time}" readonly>
+               <input type="text" class="form-control h-50 timepicker-ui-input text-center font-weight-bold font-size-13 end-time" value="${endTime}" readonly>
              </div>
              <div class="form-group col-sm-3 position-relative">
                <label class="label-top-input-special-takhasos">تعداد نوبت</label>
-               <input type="text" class="form-control h-50 text-center max-appointments" value="${slot.time_slots.max_appointments}" readonly>
+               <input type="text" class="form-control h-50 text-center max-appointments" value="${maxAppointments}" readonly>
              </div>
              <div class="form-group col-sm-2 position-relative">
                <button class="btn btn-light btn-sm remove-row-btn" data-slot-id="${slot.id}">
