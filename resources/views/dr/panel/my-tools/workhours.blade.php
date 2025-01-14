@@ -568,14 +568,6 @@
   $(`#${day}-copy-modal`).prop('checked', true);
 
   $("#scheduleModal").modal('show');
-
-  console.log('Debug Info:', {
-   day: day,
-   persianDay: persianDay,
-   startTime: startTime,
-   endTime: endTime,
-   maxAppointments: maxAppointments
-  });
  });
  // تابع تبدیل نام روز به فارسی (اگر قبلاً تعریف نشده باشد)
 
@@ -687,7 +679,6 @@
      };
     }
    });
-   console.log('Final Data to Send:', data);
    // ارسال درخواست AJAX
    $.ajax({
     url: "{{ route('dr-save-work-schedule') }}",
@@ -1246,7 +1237,6 @@
    const countNobat = $("#morning-patients-" + day); // این را تغییر دهید
    if (timePerAppointmentInput && !isNaN(timePerAppointmentInput) && timePerAppointmentInput > 0) {
     const newCount = totalMinutes / timePerAppointmentInput; // محاسبه تعداد نوبت‌ها
-    console.log('newCount : ' + newCount);
     countNobat.val(Math.round(newCount)); // قرار دادن مقدار در ورودی
    }
    $("#CalculatorModal").modal("hide"); // بستن مدال
@@ -1254,7 +1244,7 @@
    $(".modal-backdrop").remove();
   });
 
-  $(document).on('click', '#saveSchedule', function() {
+ $(document).on('click', '#saveSchedule', function() {
    const $button = $(this);
    const $loader = $button.find('.loader');
    const $buttonText = $button.find('.button_text');
@@ -1265,51 +1255,123 @@
    const scheduleStart = $('#schedule-start').val();
    const scheduleEnd = $('#schedule-end').val();
 
+   // نقشه تبدیل نام روز فارسی به انگلیسی
+   const dayMap = {
+     'شنبه': 'saturday',
+     'یکشنبه': 'sunday',
+     'دوشنبه': 'monday',
+     'سه‌شنبه': 'tuesday',
+     'چهارشنبه': 'wednesday',
+     'پنج‌شنبه': 'thursday',
+     'جمعه': 'friday'
+   };
+
+   // دریافت روز انتخابی
+   const selected_day_choice_fa = $('.badge-time-styles-day.active-hover').text();
+   const dayEn = dayMap[selected_day_choice_fa];
+
    const selectedDays = [];
    $('input[type="checkbox"][id$="-copy-modal"]:checked').each(function() {
     const day = $(this).attr('id').replace('-copy-modal', '');
     selectedDays.push(day);
    });
 
-   // درخواست AJAX برای هر روز
-   selectedDays.forEach(function(day) {
-    $.ajax({
-     url: "{{ route('save-appointment-settings') }}",
-     method: 'POST',
-     data: {
-      day: day,
-      start_time: scheduleStart,
-      end_time: scheduleEnd,
-      _token: '{{ csrf_token() }}'
-     },
-     success: function(response) {
-      // به‌روزرسانی UI
-      $(`#morning-start-${day}`).val(scheduleStart);
-      $(`#morning-end-${day}`).val(scheduleEnd);
-
-      // نمایش متن توضیحی در کنار دکمه "برنامه باز شدن نوبت‌ها"
-      const $scheduleButton = $(`[data-day="${day}"][data-target="#scheduleModal"] `);
-      $scheduleButton.text(response.display_text);
+   // اگر روزی انتخاب نشده، نمایش خطا
+   if (selectedDays.length === 0) {
+    Toastify({
+     text: 'لطفاً حداقل یک روز را انتخاب کنید',
+     duration: 3000,
+     gravity: "top",
+     position: 'right',
+     style: {
+      background: "red"
      }
-    });
-   });
+    }).showToast();
 
-   Toastify({
-    text: 'برنامه باز شدن نوبت‌ها با موفقیت ذخیره شد',
-    duration: 3000,
-    gravity: "top",
-    position: 'right',
-    style: {
-     background: "green"
+    $loader.hide();
+    $buttonText.show();
+    return;
+   }
+
+   // اگر روز انتخابی وجود ندارد، نمایش خطا
+   if (!dayEn) {
+    Toastify({
+     text: 'لطفاً یک روز را انتخاب کنید',
+     duration: 3000,
+     gravity: "top",
+     position: 'right',
+     style: {
+      background: "red"
+     }
+    }).showToast();
+
+    $loader.hide();
+    $buttonText.show();
+    return;
+   }
+
+   $.ajax({
+    url: "{{ route('save-appointment-settings') }}",
+    method: 'POST',
+    data: {
+     start_time: scheduleStart,
+     end_time: scheduleEnd,
+     selected_days: selectedDays,
+     day: dayEn,  // ارسال روز انتخابی
+     _token: '{{ csrf_token() }}'
+    },
+    success: function(response) {
+     // به‌روزرسانی UI برای هر روز
+     response.results.forEach(function(result) {
+      const day = result.day;
+      const displayText = `برنامه باز شدن نوبت‌ها از ${result.start_time} تا ${result.end_time}`;
+
+      // اضافه کردن متن به دکمه‌های مربوطه
+      $(`[data-toggle="modal"][data-day]`).each(function() {
+       if ($(this).text().includes(day)) {
+        $(this).text(displayText);
+       }
+      });
+     });
+
+     Toastify({
+      text: 'برنامه باز شدن نوبت‌ها با موفقیت ذخیره شد',
+      duration: 3000,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "green"
+      }
+     }).showToast();
+
+     $("#scheduleModal").modal('hide');
+     $('.modal-backdrop').remove();
+    },
+    error: function(xhr) {
+     Toastify({
+      text: xhr.responseJSON.message || 'خطا در ذخیره‌سازی',
+      duration: 3000,
+      gravity: "top",
+      position: 'right',
+      style: {
+       background: "red"
+      }
+     }).showToast();
+    },
+    complete: function() {
+     $loader.hide();
+     $buttonText.show();
     }
-   }).showToast();
+   });
+});
+  /* function checkSaveButton() {
+     const hasSettings = $('[data-slot-id]').length > 0;
+     $('#save-work-schedule').prop('disabled', !hasSettings);
+  }
 
-   $("#scheduleModal").modal('hide');
-   $('.modal-backdrop').remove();
-
-   $loader.hide();
-   $buttonText.show();
-  });
+  // فراخوانی در زمان بارگذاری و پس از اضافه/حذف اسلات
+  $(document).ready(checkSaveButton);
+  $(document).on('click', '.add-row-btn, .remove-row-btn', checkSaveButton); */
 
   function loadPreviousAppointmentSettings(day) {
    $.ajax({
@@ -1326,7 +1388,96 @@
     }
    });
   }
+  $(document).ready(function() {
+   // تابع برای تنظیم وضعیت روزها
+   function setupDaySelection() {
+    // حذف کلاس‌های قبلی
+    $('.badge-time-styles-day').removeClass('active-hover');
 
+    // افزودن رویداد کلیک به روزها
+    $('.badge-time-styles-day').on('click', function() {
+     // حذف کلاس از همه روزها
+     $('.badge-time-styles-day').removeClass('active-hover');
+
+     // اضافه کردن کلاس به روز انتخاب شده
+     $(this).addClass('active-hover');
+
+     // بررسی تنظیمات برای روز انتخابی
+     checkDaySettings($(this).text());
+    });
+   }
+
+   // تابع بررسی تنظیمات روز
+   function checkDaySettings(dayName) {
+    // نقشه تبدیل نام روز فارسی به انگلیسی
+    const dayMap = {
+     'شنبه': 'saturday',
+     'یکشنبه': 'sunday',
+     'دوشنبه': 'monday',
+     'سه‌شنبه': 'tuesday',
+     'چهارشنبه': 'wednesday',
+     'پنج‌شنبه': 'thursday',
+     'جمعه': 'friday'
+    };
+
+    const dayEn = dayMap[dayName];
+
+    // درخواست بررسی تنظیمات روز
+    $.ajax({
+     url: "{{ route('get-appointment-settings') }}",
+     method: 'GET',
+     data: {
+      day: dayEn
+     },
+     success: function(response) {
+      if (response.status && response.settings) {
+       // اگر تنظیمات وجود دارد
+       $('#saveSchedule').prop('disabled', true)
+        .addClass('btn-secondary')
+        .removeClass('btn-primary');
+
+       // پر کردن فیلدها با تنظیمات موجود
+       $('#schedule-start').val(response.settings.start_time);
+       $('#schedule-end').val(response.settings.end_time);
+
+       Toastify({
+        text: `تنظیمات قبلی برای ${dayName} موجود است`,
+        duration: 3000,
+        gravity: "top",
+        position: 'right',
+        style: {
+         background: "green"
+        }
+       }).showToast();
+      } else {
+       // اگر تنظیماتی وجود ندارد
+       $('#saveSchedule').prop('disabled', false)
+        .removeClass('btn-secondary')
+        .addClass('btn-primary');
+      }
+     },
+     error: function() {
+      // در صورت خطا، دکمه را فعال کنید
+      $('#saveSchedule').prop('disabled', false)
+       .removeClass('btn-secondary')
+       .addClass('btn-primary');
+     }
+    });
+   }
+
+   // اجرای تابع در زمان بارگذاری
+   setupDaySelection();
+
+   // اضافه کردن CSS برای استایل‌دهی
+
+
+   // بررسی تنظیمات در زمان تغییر مقادیر
+   $('#schedule-start, #schedule-end').on('change', function() {
+    $('#saveSchedule').prop('disabled', false)
+     .removeClass('btn-secondary')
+     .addClass('btn-primary');
+   });
+  });
   // فراخوانی در زمان باز شدن مدال
   $(document).on('show.bs.modal', '#scheduleModal', function(event) {
    const $trigger = $(event.relatedTarget);
@@ -1334,7 +1485,7 @@
    loadPreviousAppointmentSettings(day);
   });
 
- 
+
 
   // در زمان بارگذاری صفحه
 

@@ -305,6 +305,7 @@ class ScheduleSettingController
   }
   public function saveAppointmentSettings(Request $request)
   {
+    
     $validated = $request->validate([
       'day' => 'required|in:saturday,sunday,monday,tuesday,wednesday,thursday,friday',
       'start_time' => 'required|date_format:H:i',
@@ -315,39 +316,47 @@ class ScheduleSettingController
     try {
       $doctor = Auth::guard('doctor')->user();
 
-      // محاسبه تعداد نوبت‌ها اگر ارسال نشده باشد
+      // محاسبه تعداد نوبت‌ها
       $maxAppointments = $validated['max_appointments'] ??
         $this->calculateMaxAppointments($validated['start_time'], $validated['end_time']);
 
-      // بازیابی رکورد WorkSchedule
-      $workSchedule = DoctorWorkSchedule::updateOrCreate(
-        [
-          'doctor_id' => $doctor->id,
-          'day' => $validated['day']
-        ],
-        [
-          'is_working' => true,
-          'appointment_settings' => [
-            'start_time' => $validated['start_time'],
-            'end_time' => $validated['end_time'],
-            'max_appointments' => $maxAppointments
-          ]
-        ]
-      );
+      // بررسی اینکه آیا روز انتخاب شده است
+      $selectedDays = $request->input('selected_days', []);
+      if (empty($selectedDays)) {
+        return response()->json([
+          'message' => 'لطفاً حداقل یک روز را انتخاب کنید',
+          'status' => false
+        ], 400);
+      }
 
-      // ایجاد متن نمایشی
-      $displayText = sprintf(
-        'برنامه باز شدن نوبت‌های %s از ساعت %s تا %s (%d نوبت)',
-        $this->getDayNameInPersian($validated['day']),
-        $validated['start_time'],
-        $validated['end_time'],
-        $maxAppointments
-      );
+      $results = [];
+      foreach ($selectedDays as $day) {
+        $workSchedule = DoctorWorkSchedule::updateOrCreate(
+          [
+            'doctor_id' => $doctor->id,
+            'day' => $day
+          ],
+          [
+            'is_working' => true,
+            'appointment_settings' => json_encode([
+              'start_time' => $validated['start_time'],
+              'end_time' => $validated['end_time'],
+              'max_appointments' => $maxAppointments,
+              'selected_day' => $request->day
+            ])
+          ]
+        );
+
+        $results[] = [
+          'day' => $this->getDayNameInPersian($day),
+          'start_time' => $validated['start_time'],
+          'end_time' => $validated['end_time']
+        ];
+      }
 
       return response()->json([
         'message' => 'تنظیمات نوبت‌دهی با موفقیت ذخیره شد',
-        'display_text' => $displayText,
-        'data' => $workSchedule->appointment_settings,
+        'results' => $results,
         'status' => true
       ]);
     } catch (\Exception $e) {
@@ -386,14 +395,11 @@ class ScheduleSettingController
   }
   public function getAppointmentSettings(Request $request)
   {
-    $validated = $request->validate([
-      'day' => 'required|in:saturday,sunday,monday,tuesday,wednesday,thursday,friday'
-    ]);
 
     $doctor = Auth::guard('doctor')->user();
 
     $workSchedule = DoctorWorkSchedule::where('doctor_id', $doctor->id)
-      ->where('day', $validated['day'])
+      ->where('day', $request->day)
       ->first();
 
     if ($workSchedule && $workSchedule->appointment_settings) {
