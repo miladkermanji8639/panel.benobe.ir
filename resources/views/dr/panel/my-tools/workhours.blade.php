@@ -542,18 +542,25 @@
  });
 
  $(document).on('click', '[data-target="#scheduleModal"]', function() {
-  const day = $(this).data('day');
-  const persianDay = getPersianDayName(day);
-  const slotInfo = getSlotInfoForDay(day);
+  // دریافت روز از والد ردیف
+  const $row = $(this).closest('.form-row');
+  const $container = $row.closest('[id^="morning-"]');
+  const day = $container.attr('id').replace('morning-', '').replace('-details', '');
 
-  // به‌روزرسانی عنوان مدال با اطلاعات دقیق
+  const startTime = $row.find('.start-time').val() || '08:00';
+  const endTime = $row.find('.end-time').val() || '12:00';
+  const maxAppointments = $row.find('.max-appointments').val() || 1;
+
+  const persianDay = getPersianDayName(day);
+
+  // به‌روزرسانی عنوان مدال با اطلاعات دقیق اسلات
   $("#scheduleModalLabel").text(
-   `برنامه زمانبندی برای نوبت های ${persianDay} ${slotInfo.startTime} الی ${slotInfo.endTime} (${slotInfo.appointments} نوبت)`
-   );
+   `برنامه زمانبندی برای نوبت های ${persianDay} ${startTime} الی ${endTime} (${maxAppointments} نوبت)`
+  );
 
   // تنظیم مقادیر پیش‌فرض برای مدال
-  $('#schedule-start').val(slotInfo.startTime);
-  $('#schedule-end').val(slotInfo.endTime);
+  $('#schedule-start').val(startTime);
+  $('#schedule-end').val(endTime);
 
   // پاک کردن چک‌باکس‌های قبلی
   $('input[type="checkbox"][id$="-copy-modal"]').prop('checked', false);
@@ -561,6 +568,14 @@
   $(`#${day}-copy-modal`).prop('checked', true);
 
   $("#scheduleModal").modal('show');
+
+  console.log('Debug Info:', {
+   day: day,
+   persianDay: persianDay,
+   startTime: startTime,
+   endTime: endTime,
+   maxAppointments: maxAppointments
+  });
  });
  // تابع تبدیل نام روز به فارسی (اگر قبلاً تعریف نشده باشد)
 
