@@ -1244,125 +1244,159 @@
    $(".modal-backdrop").remove();
   });
 
- $(document).on('click', '#saveSchedule', function() {
-   const $button = $(this);
-   const $loader = $button.find('.loader');
-   const $buttonText = $button.find('.button_text');
+  $(document).on('click', '#saveSchedule', function() {
+  const $button = $(this);
+  const $loader = $button.find('.loader');
+  const $buttonText = $button.find('.button_text');
+  const $modalBody = $button.closest('.modal-body');
 
-   $buttonText.hide();
-   $loader.show();
+  $buttonText.hide();
+  $loader.show();
 
-   const scheduleStart = $('#schedule-start').val();
-   const scheduleEnd = $('#schedule-end').val();
+  const scheduleStart = $('#schedule-start').val();
+  const scheduleEnd = $('#schedule-end').val();
 
-   // نقشه تبدیل نام روز فارسی به انگلیسی
-   const dayMap = {
-     'شنبه': 'saturday',
-     'یکشنبه': 'sunday',
-     'دوشنبه': 'monday',
-     'سه‌شنبه': 'tuesday',
-     'چهارشنبه': 'wednesday',
-     'پنج‌شنبه': 'thursday',
-     'جمعه': 'friday'
-   };
+  // نقشه تبدیل نام روز فارسی به انگلیسی
+  const dayMap = {
+    'شنبه': 'saturday',
+    'یکشنبه': 'sunday', 
+    'دوشنبه': 'monday',
+    'سه‌شنبه': 'tuesday', 
+    'چهارشنبه': 'wednesday',
+    'پنج‌شنبه': 'thursday', 
+    'جمعه': 'friday'
+  };
 
-   // دریافت روز انتخابی
-   const selected_day_choice_fa = $('.badge-time-styles-day.active-hover').text();
-   const dayEn = dayMap[selected_day_choice_fa];
+  const selected_day_choice_fa = $('.badge-time-styles-day.active-hover').text();
+  const dayEn = dayMap[selected_day_choice_fa];
 
-   const selectedDays = [];
-   $('input[type="checkbox"][id$="-copy-modal"]:checked').each(function() {
+  const selectedDays = [];
+  $('input[type="checkbox"][id$="-copy-modal"]:checked').each(function() {
     const day = $(this).attr('id').replace('-copy-modal', '');
     selectedDays.push(day);
-   });
+  });
 
-   // اگر روزی انتخاب نشده، نمایش خطا
-   if (selectedDays.length === 0) {
+  if (selectedDays.length === 0 || !dayEn) {
     Toastify({
-     text: 'لطفاً حداقل یک روز را انتخاب کنید',
-     duration: 3000,
-     gravity: "top",
-     position: 'right',
-     style: {
-      background: "red"
-     }
+      text: 'لطفاً حداقل یک روز را انتخاب کنید',
+      duration: 3000,
+      gravity: "top",
+      position: 'right',
+      style: { background: "red" }
     }).showToast();
 
     $loader.hide();
     $buttonText.show();
     return;
-   }
+  }
 
-   // اگر روز انتخابی وجود ندارد، نمایش خطا
-   if (!dayEn) {
-    Toastify({
-     text: 'لطفاً یک روز را انتخاب کنید',
-     duration: 3000,
-     gravity: "top",
-     position: 'right',
-     style: {
-      background: "red"
-     }
-    }).showToast();
-
-    $loader.hide();
-    $buttonText.show();
-    return;
-   }
-
-   $.ajax({
+  $.ajax({
     url: "{{ route('save-appointment-settings') }}",
     method: 'POST',
     data: {
-     start_time: scheduleStart,
-     end_time: scheduleEnd,
-     selected_days: selectedDays,
-     day: dayEn,  // ارسال روز انتخابی
-     _token: '{{ csrf_token() }}'
+      start_time: scheduleStart,
+      end_time: scheduleEnd,
+      selected_days: selectedDays,
+      day: dayEn,
+      _token: '{{ csrf_token() }}'
     },
     success: function(response) {
-     // به‌روزرسانی UI برای هر روز
-     response.results.forEach(function(result) {
-      const day = result.day;
-      const displayText = `برنامه باز شدن نوبت‌ها از ${result.start_time} تا ${result.end_time}`;
-
-      // اضافه کردن متن به دکمه‌های مربوطه
-      $(`[data-toggle="modal"][data-day]`).each(function() {
-       if ($(this).text().includes(day)) {
-        $(this).text(displayText);
-       }
+      // نمایش لیست تنظیمات در همان مدال
+      let settingsListHtml = '<div class="mt-3 settings-list">';
+      response.results.forEach(function(result) {
+        settingsListHtml += `
+          <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2 setting-item" data-day="${result.day}">
+            <span class="font-weight-bold">
+              برنامه باز شدن نوبت‌ها برای ${result.day} از ${result.start_time} تا ${result.end_time}
+            </span>
+            <button class="btn btn-sm btn-light delete-schedule-setting" 
+                    data-day="${result.day}" 
+                    data-start="${result.start_time}" 
+                    data-end="${result.end_time}">
+              <img src="${trashSvg}"/>
+            </button>
+          </div>
+        `;
       });
-     });
+      settingsListHtml += '</div>';
 
-     Toastify({
-      text: 'برنامه باز شدن نوبت‌ها با موفقیت ذخیره شد',
-      duration: 3000,
-      gravity: "top",
-      position: 'right',
-      style: {
-       background: "green"
-      }
-     }).showToast();
+      $modalBody.append(settingsListHtml);
 
-     $("#scheduleModal").modal('hide');
-     $('.modal-backdrop').remove();
+      Toastify({
+        text: 'برنامه باز شدن نوبت‌ها با موفقیت ذخیره شد',
+        duration: 3000,
+        gravity: "top",
+        position: 'right',
+        style: { background: "green" }
+      }).showToast();
+
+      $loader.hide();
+      $buttonText.show();
     },
     error: function(xhr) {
-     Toastify({
-      text: xhr.responseJSON.message || 'خطا در ذخیره‌سازی',
-      duration: 3000,
-      gravity: "top",
-      position: 'right',
-      style: {
-       background: "red"
-      }
-     }).showToast();
-    },
-    complete: function() {
-     $loader.hide();
-     $buttonText.show();
+      Toastify({
+        text: xhr.responseJSON.message || 'خطا در ذخیره‌سازی',
+        duration: 3000,
+        gravity: "top",
+        position: 'right',
+        style: { background: "red" }
+      }).showToast();
+
+      $loader.hide();
+      $buttonText.show();
     }
-   });
+  });
+});
+
+// حذف تنظیمات با تأیید
+$(document).on('click', '.delete-schedule-setting', function() {
+  const $settingItem = $(this).closest('.setting-item');
+  const day = $(this).data('day');
+  const startTime = $(this).data('start');
+  const endTime = $(this).data('end');
+
+  Swal.fire({
+    title: 'آیا مطمئن هستید؟',
+    text: "این تنظیمات حذف خواهد شد!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'بله، حذف شود!',
+    cancelButtonText: 'لغو'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: "{{ route('delete-schedule-setting') }}", // مسیر جدید برای حذف
+        method: 'POST',
+        data: {
+          day: day,
+          start_time: startTime,
+          end_time: endTime,
+          _token: '{{ csrf_token() }}'
+        },
+        success: function(response) {
+          $settingItem.remove();
+          Toastify({
+            text: 'تنظیمات با موفقیت حذف شد',
+            duration: 3000,
+            gravity: "top",
+            position: 'right',
+            style: { background: "green" }
+          }).showToast();
+        },
+        error: function(xhr) {
+          Toastify({
+            text: 'خطا در حذف تنظیمات',
+            duration: 3000,
+            gravity: "top",
+            position: 'right',
+            style: { background: "red" }
+          }).showToast();
+        }
+      });
+    }
+  });
 });
   /* function checkSaveButton() {
      const hasSettings = $('[data-slot-id]').length > 0;

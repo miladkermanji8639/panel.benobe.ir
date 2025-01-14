@@ -305,7 +305,7 @@ class ScheduleSettingController
   }
   public function saveAppointmentSettings(Request $request)
   {
-    
+
     $validated = $request->validate([
       'day' => 'required|in:saturday,sunday,monday,tuesday,wednesday,thursday,friday',
       'start_time' => 'required|date_format:H:i',
@@ -490,7 +490,39 @@ class ScheduleSettingController
       ], 500);
     }
   }
+  public function deleteScheduleSetting(Request $request)
+  {
+    dd($request);
+    $validated = $request->validate([
+      'day' => 'required',
+      'start_time' => 'required',
+      'end_time' => 'required'
+    ]);
 
+    $doctor = Auth::guard('doctor')->user();
+
+    $workSchedule = DoctorWorkSchedule::where('doctor_id', $doctor->id)
+      ->where('day', $validated['day'])
+      ->first();
+
+    if ($workSchedule) {
+      // حذف تنظیمات مربوط به این زمان
+      $appointmentSettings = json_decode($workSchedule->appointment_settings, true);
+
+      // فیلتر کردن و حذف تنظیمات مورد نظر
+      $newSettings = array_filter($appointmentSettings, function ($setting) use ($validated) {
+        return !($setting['start_time'] === $validated['start_time'] &&
+          $setting['end_time'] === $validated['end_time']);
+      });
+
+      $workSchedule->appointment_settings = json_encode($newSettings);
+      $workSchedule->save();
+
+      return response()->json(['message' => 'تنظیمات با موفقیت حذف شد', 'status' => true]);
+    }
+
+    return response()->json(['message' => 'تنظیمات یافت نشد', 'status' => false], 404);
+  }
   /**
    * تعیین نوع اسلات بر اساس زمان
    */
