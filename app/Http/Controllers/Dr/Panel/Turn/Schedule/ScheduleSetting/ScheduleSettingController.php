@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Dr\Panel\Turn\Schedule\ScheduleSetting;
 
-use App\Traits\HandlesRateLimiting;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Dr\AppointmentSlot;
 use Illuminate\Support\Facades\DB;
+use App\Traits\HandlesRateLimiting;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -157,11 +158,10 @@ class ScheduleSettingController
   {
     $validated = $request->validate([
       'day' => 'required|in:saturday,sunday,monday,tuesday,wednesday,thursday,friday',
-      'start_time' => 'required|string',
-      'end_time' => 'required|string',
-      'max_appointments' => 'required|integer'
+      'start_time' => 'required|date_format:H:i',
+      'end_time' => 'required|date_format:H:i|after:start_time',
+      'max_appointments' => 'required|integer|min:1'
     ]);
-
 
     $doctor = Auth::guard('doctor')->user();
 
@@ -171,22 +171,48 @@ class ScheduleSettingController
         [
           'doctor_id' => $doctor->id,
           'day' => $validated['day'],
-
-
         ],
         [
           'is_working' => true
         ]
       );
+
+      // بررسی تداخل زمانی
+      $existingSlots = AppointmentSlot::whereHas('workSchedule', function ($query) use ($doctor, $validated) {
+        $query->where('doctor_id', $doctor->id)
+          ->where('day', $validated['day']);
+      })->get();
+
+      foreach ($existingSlots as $slot) {
+        $slotStart = Carbon::createFromFormat('H:i', $slot->time_slots['start_time']);
+        $slotEnd = Carbon::createFromFormat('H:i', $slot->time_slots['end_time']);
+        $newStart = Carbon::createFromFormat('H:i', $validated['start_time']);
+        $newEnd = Carbon::createFromFormat('H:i', $validated['end_time']);
+
+        if (
+          ($newStart >= $slotStart && $newStart < $slotEnd) ||
+          ($newEnd > $slotStart && $newEnd <= $slotEnd) ||
+          ($newStart <= $slotStart && $newEnd >= $slotEnd)
+        ) {
+          return response()->json([
+            'message' => 'این بازه زمانی با با بازه های موجود تداخل دارد.',
+            'status' => false
+          ], 400);
+        }
+      }
+
       // ایجاد اسلات جدید
-      $slot = AppointmentSlot::updateOrCreate([
+      $slot = AppointmentSlot::create([
         'work_schedule_id' => $workSchedule->id,
-        'time_slots' => (['start_time' => $validated['start_time'], 'end_time' => $validated['end_time'], 'max_appointments' => $validated['max_appointments']]),
+        'time_slots' => [
+          'start_time' => $validated['start_time'],
+          'end_time' => $validated['end_time']
+        ],
         'max_appointments' => $validated['max_appointments']
       ]);
 
       return response()->json([
-        'message' => ' موفقیت آمیز',
+        'message' => 'موفقیت آمیز',
         'slot_id' => $slot->id,
         'status' => true
       ]);
@@ -194,7 +220,7 @@ class ScheduleSettingController
       Log::error('خطا در ذخیره‌سازی: ' . $e->getMessage());
 
       return response()->json([
-        'message' => 'خطا در ذخیره‌سازی ',
+        'message' => 'خطا در ذخیره‌سازی',
         'status' => false
       ], 500);
     }
@@ -411,8 +437,8 @@ class ScheduleSettingController
 
   private function calculateMaxAppointments($startTime, $endTime)
   {
-    $start = \Carbon\Carbon::createFromFormat('H:i', $startTime);
-    $end = \Carbon\Carbon::createFromFormat('H:i', $endTime);
+    $start = Carbon::createFromFormat('H:i', $startTime);
+    $end = Carbon::createFromFormat('H:i', $endTime);
 
     // فرض کنید هر نوبت 20 دقیقه طول می‌کشد
     $diffInMinutes = $start->diffInMinutes($end);
@@ -552,7 +578,7 @@ class ScheduleSettingController
       ->first();
     if ($workSchedule) {
       // دریافت تنظیمات موجود
-       $workSchedule->appointment_settings = NULL;
+      $workSchedule->appointment_settings = NULL;
 
       $workSchedule->save();
 

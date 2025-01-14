@@ -1,10 +1,101 @@
 {{-- resources\views\dr\panel\my-tools\workhours.blade.php --}}
 <script>
+ function fixModalBehavior() {
+  $(document).on('show.bs.modal', '.modal', function() {
+   // حذف هر backdrop قبلی
+   $('.modal-backdrop').remove();
+  });
+
+  $(document).on('hidden.bs.modal', '.modal', function() {
+   // حذف backdrop
+   $('.modal-backdrop').remove();
+
+   // حل مشکل اسکرول
+   $('body').removeClass('modal-open');
+  });
+
+  // حل مشکل چندگانه باز شدن مودال
+  $(document).on('click', '[data-toggle="modal"]', function() {
+   // بستن تمام مودال‌های باز
+   $('.modal.show').modal('hide');
+  });
+ }
+
+ // فراخوانی تابع در زمان بارگذاری
+ $(document).ready(function() {
+  fixModalBehavior();
+ });
+ $(document).on('click', '.modal [data-dismiss="modal"]', function() {
+    $(this).closest('.modal').modal('hide');
+});
  $(document).on('change', '#select-all-copy-modal', function() {
   const isChecked = $(this).is(':checked');
   $('#checkboxModal input[type="checkbox"]').not(this).prop('checked', isChecked);
  });
+function validateTimeSlot(startTime, endTime) {
+    // تبدیل زمان‌ها به دقیقه
+    const startMinutes = timeToMinutes(startTime);
+    const endMinutes = timeToMinutes(endTime);
 
+    // بررسی اینکه زمان پایان از زمان شروع بزرگتر باشد
+    if (startMinutes >= endMinutes) {
+        Toastify({
+            text: 'زمان پایان باید بزرگتر از زمان شروع باشد',
+            duration: 3000,
+            gravity: "top",
+            position: 'right',
+            style: {
+                background: "red"
+            }
+        }).showToast();
+        return false;
+    }
+
+    // بررسی تداخل با اسلات‌های موجود
+    const existingSlots = $(`#morning-${day}-details .form-row`);
+    let hasConflict = false;
+
+    existingSlots.each(function() {
+        const existingStart = $(this).find('.start-time').val();
+        const existingEnd = $(this).find('.end-time').val();
+
+        if (isTimeConflict(startTime, endTime, existingStart, existingEnd)) {
+            hasConflict = true;
+            return false; // خروج از حلقه
+        }
+    });
+
+    if (hasConflict) {
+        Toastify({
+            text: 'این بازه زمانی با اسلات‌های موجود تداخل دارد',
+            duration: 3000,
+            gravity: "top",
+            position: 'right',
+            style: {
+                background: "red"
+            }
+        }).showToast();
+        return false;
+    }
+
+    return true;
+}
+
+function timeToMinutes(time) {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 60 + minutes;
+}
+
+function isTimeConflict(newStart, newEnd, existingStart, existingEnd) {
+    const newStartMinutes = timeToMinutes(newStart);
+    const newEndMinutes = timeToMinutes(newEnd);
+    const existingStartMinutes = timeToMinutes(existingStart);
+    const existingEndMinutes = timeToMinutes(existingEnd);
+
+    return (
+        (newStartMinutes < existingEndMinutes && newEndMinutes > existingStartMinutes)
+    );
+}
 
  function initializeTimepicker() {
   const DOMElement = $(".timepicker-ui");
@@ -546,8 +637,10 @@
     }).showToast();
    },
    error: function(xhr) {
+    
+    
     Toastify({
-     text: 'خطا در ذخیره‌سازی',
+     text: xhr.responseJSON.message,
      duration: 3000,
      gravity: "top",
      position: 'right',
