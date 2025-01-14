@@ -35,34 +35,12 @@
  $(document).on('dynamicContentLoaded', function() {
   initializeTimepicker(); // Initialize timepicker for dynamically loaded content
  });
- // تابع برای بررسی و فعال/غیرفعال کردن دکمه کپی
- function checkCopyButtonStatus(day) {
-  $.ajax({
-   url: "{{ route('check-day-slots') }}",
-   method: 'POST',
-   data: {
-    day: day,
-    _token: '{{ csrf_token() }}'
-   },
-   success: function(response) {
-    const $copyButton = $(`.copy-to-other-day-btn[data-day="${day}"]`);
 
-    if (response.hasSlots) {
-     $copyButton.prop('disabled', false);
-     $copyButton.removeClass('disabled');
-    } else {
-     $copyButton.prop('disabled', true);
-     $copyButton.addClass('disabled');
-    }
-   }
-  });
- }
+ // تابع برای بررسی و فعال/غیرفعال کردن دکمه کپی
+
 
  // بررسی وضعیت دکمه کپی برای همه روزها
- function checkAllCopyButtons() {
-  const days = ['saturday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
-  days.forEach(day => checkCopyButtonStatus(day));
- }
+
 
  // در زمان بارگذاری صفحه
  $(document).on('click', '#saveSelection', function() {
@@ -207,14 +185,16 @@
   `;
  }
  $(document).ready(function() {
-  checkAllCopyButtons();
+
+
+  // برای بازگرداندن حالت اولیه مدال
+  $(document).on('hidden.bs.modal', '#checkboxModal', function() {
+   // نمایش مجدد همه چک‌باکس‌ها
+   $('input[type="checkbox"][id$="-copy-modal"]').closest('div').show();
+  });
  });
 
- // هنگام اضافه کردن اسلات جدید
- $(document).on('click', '.add-row-btn', function() {
-  const day = $(this).data('day');
-  checkCopyButtonStatus(day);
- });
+ // هنگام اضافه کردن اسلات ج
 
  // هنگام کپی کردن
 
@@ -449,6 +429,37 @@
   // اگر آیکون کپی کار نمی‌کند، مطمئن شوید که SVG درست لینک شده است
   $('.copy-to-other-day-btn').each(function() {
    $(this).html(`<img src="${svgUrl}" alt="کپی">`);
+  });
+  $(document).on('click', '.copy-to-other-day-btn', function() {
+   const currentDay = $(this).data('day');
+
+   // ابتدا همه چک‌باکس‌ها را ریست کنید
+   $('input[type="checkbox"][id$="-copy-modal"]').prop('checked', false);
+
+   // چک باکس انتخاب همه را هم ریست کنید
+   $('#select-all-copy-modal').prop('checked', false);
+
+   // مخفی کردن چک‌باکس روز جاری
+   $('input[type="checkbox"][id$="-copy-modal"]').each(function() {
+    const dayId = $(this).attr('id');
+    if (dayId === `${currentDay}-copy-modal`) {
+     $(this).closest('div').removeClass('d-flex').css('display', 'none');
+    } else {
+     $(this).closest('div').addClass('d-flex').css('display', 'flex');
+    }
+   });
+  });
+
+  // در زمان بستن مدال، بازگرداندن حالت اولیه
+  $(document).on('hidden.bs.modal', '#checkboxModal', function() {
+   // بازگرداندن نمایش تمام روزها
+   $('input[type="checkbox"][id$="-copy-modal"]').each(function() {
+    $(this).closest('div').addClass('d-flex').css('display', 'flex');
+   });
+
+   // ریست کردن چک‌باکس‌ها
+   $('input[type="checkbox"][id$="-copy-modal"]').prop('checked', false);
+   $('#select-all-copy-modal').prop('checked', false);
   });
  });
  $(document).on('hidden.bs.modal', '#checkboxModal', function() {
@@ -921,7 +932,7 @@
              </button>
            </div>
            <div class="form-group col-sm-1 position-relative">
-             <button class="btn btn-light btn-sm copy-to-other-day-btn" data-toggle="modal" data-target="#checkboxModal">
+             <button class="btn btn-light btn-sm copy-to-other-day-btn" data-toggle="modal" data-target="#checkboxModal" data-day="${schedule.day}">
                <img src="${svgUrl}">
              </button>
            </div>
@@ -1055,6 +1066,7 @@
    appointments
   };
  }
+
  //appointments code
  $(document).ready(function() {
   const days = [
@@ -1101,7 +1113,7 @@
                 </button>
               </div>
               <div class="form-group col-sm-1 position-relative">
-                <button class="btn btn-light btn-sm copy-to-other-day-btn" data-toggle="modal" data-target="#checkboxModal">
+                <button class="btn btn-light btn-sm copy-to-other-day-btn" data-toggle="modal" data-target="#checkboxModal" data-day="${day}">
                   <img src="${svgUrl}">
                 </button>
               </div>
