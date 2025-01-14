@@ -442,6 +442,7 @@ Route::prefix('dr')
             Route::get('/get-appointment-settings', [ScheduleSettingController::class, 'getAppointmentSettings'])
               ->name('get-appointment-settings');
             Route::post('/delete-schedule-setting', [ScheduleSettingController::class, 'deleteScheduleSetting'])->name('delete-schedule-setting');
+            Route::get('/get-all-days-settings', [ScheduleSettingController::class, 'getAllDaysSettings'])->name('get-all-days-settings');
             // ذخیره‌سازی تنظیمات ساعات کاری
             Route::post('save-work-schedule', [ScheduleSettingController::class, 'saveWorkSchedule'])
               ->name('dr-save-work-schedule');

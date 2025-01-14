@@ -305,7 +305,6 @@ class ScheduleSettingController
   }
   public function saveAppointmentSettings(Request $request)
   {
-
     $validated = $request->validate([
       'day' => 'required|in:saturday,sunday,monday,tuesday,wednesday,thursday,friday',
       'start_time' => 'required|date_format:H:i',
@@ -330,6 +329,31 @@ class ScheduleSettingController
       }
 
       $results = [];
+      $hasExistingSettings = false;
+
+      foreach ($selectedDays as $day) {
+        // بررسی تنظیمات موجود برای هر روز
+        $existingSettings = DoctorWorkSchedule::where('doctor_id', $doctor->id)
+          ->where('day', $day)
+          ->whereNotNull('appointment_settings')
+          ->first();
+
+        if ($existingSettings) {
+          $hasExistingSettings = true;
+          break; // توقف حلقه اگر تنظیمات موجود باشد
+        }
+      }
+
+      // اگر تنظیمات موجود بود، خطا برگردان
+      if ($hasExistingSettings) {
+        return response()->json([
+          'message' => 'پزشک گرامی شما از قبل برای این زمان یک برنامه تعریف کرده‌اید. لطفاً ابتدا آن را حذف کنید و مجدداً تلاش بفرمایید.',
+          'results' => [],
+          'status' => false
+        ], 400);
+      }
+
+      // اگر هیچ تنظیماتی وجود نداشت، ذخیره‌سازی انجام شود
       foreach ($selectedDays as $day) {
         $workSchedule = DoctorWorkSchedule::updateOrCreate(
           [
@@ -359,6 +383,7 @@ class ScheduleSettingController
         'results' => $results,
         'status' => true
       ]);
+
     } catch (\Exception $e) {
       Log::error('خطا در ذخیره‌سازی تنظیمات نوبت‌دهی: ' . $e->getMessage());
 
@@ -490,9 +515,29 @@ class ScheduleSettingController
       ], 500);
     }
   }
+  public function getAllDaysSettings(Request $request)
+  {
+    $doctor = Auth::guard('doctor')->user();
+
+    // بازیابی تنظیمات برای همه روزها
+    $workSchedules = DoctorWorkSchedule::where('doctor_id', $doctor->id)->get();
+
+    $settings = [];
+    foreach ($workSchedules as $schedule) {
+      $settings[] = [
+        'day' => $schedule->day,
+        'start_time' => $schedule->appointment_settings['start_time'] ?? null,
+        'end_time' => $schedule->appointment_settings['end_time'] ?? null,
+      ];
+    }
+
+    return response()->json([
+      'status' => true,
+      'settings' => $settings,
+    ]);
+  }
   public function deleteScheduleSetting(Request $request)
   {
-    dd($request);
     $validated = $request->validate([
       'day' => 'required',
       'start_time' => 'required',
@@ -501,21 +546,14 @@ class ScheduleSettingController
 
     $doctor = Auth::guard('doctor')->user();
 
+    // بازیابی برنامه کاری برای پزشک و روز مشخص
     $workSchedule = DoctorWorkSchedule::where('doctor_id', $doctor->id)
       ->where('day', $validated['day'])
       ->first();
-
     if ($workSchedule) {
-      // حذف تنظیمات مربوط به این زمان
-      $appointmentSettings = json_decode($workSchedule->appointment_settings, true);
+      // دریافت تنظیمات موجود
+       $workSchedule->appointment_settings = NULL;
 
-      // فیلتر کردن و حذف تنظیمات مورد نظر
-      $newSettings = array_filter($appointmentSettings, function ($setting) use ($validated) {
-        return !($setting['start_time'] === $validated['start_time'] &&
-          $setting['end_time'] === $validated['end_time']);
-      });
-
-      $workSchedule->appointment_settings = json_encode($newSettings);
       $workSchedule->save();
 
       return response()->json(['message' => 'تنظیمات با موفقیت حذف شد', 'status' => true]);
