@@ -52,10 +52,14 @@ class ScheduleSettingController
 
   public function copyWorkHours(Request $request)
   {
+    $override = filter_var($request->input('override', false), FILTER_VALIDATE_BOOLEAN);
+
     $validated = $request->validate([
       'source_day' => 'required|string',
       'target_days' => 'required|array|min:1',
+      'override' => 'nullable', // اجازه به null یا مقدار بولی
     ]);
+
 
     $doctor = Auth::guard('doctor')->user();
 
@@ -94,19 +98,49 @@ class ScheduleSettingController
       })->toArray();
 
       foreach ($validated['target_days'] as $targetDay) {
-        $targetWorkSchedule = DoctorWorkSchedule::updateOrCreate(
+        $targetWorkSchedule = DoctorWorkSchedule::firstOrCreate(
           [
             'doctor_id' => $doctor->id,
             'day' => $targetDay,
           ],
           [
             'is_working' => true,
-            'work_hours' => json_encode($workHours), // ذخیره work_hours به صورت JSON
           ]
         );
 
-        // حذف اسلات‌های قبلی
-        AppointmentSlot::where('work_schedule_id', $targetWorkSchedule->id)->delete();
+        if (!empty($validated['override'])) {
+          // حذف اسلات‌های قبلی در صورت درخواست جایگزینی
+          AppointmentSlot::where('work_schedule_id', $targetWorkSchedule->id)->delete();
+        } else {
+          // بررسی تداخل زمانی
+          foreach ($sourceSlots as $sourceSlot) {
+            $sourceStart = Carbon::createFromFormat('H:i', $sourceSlot->time_slots['start_time']);
+            $sourceEnd = Carbon::createFromFormat('H:i', $sourceSlot->time_slots['end_time']);
+
+            foreach ($targetWorkSchedule->slots as $existingSlot) {
+              $existingStart = Carbon::createFromFormat('H:i', $existingSlot->time_slots['start_time']);
+              $existingEnd = Carbon::createFromFormat('H:i', $existingSlot->time_slots['end_time']);
+
+              if (
+                ($sourceStart >= $existingStart && $sourceStart < $existingEnd) ||
+                ($sourceEnd > $existingStart && $sourceEnd <= $existingEnd) ||
+                ($sourceStart <= $existingStart && $sourceEnd >= $existingEnd)
+              ) {
+                return response()->json([
+                  'message' => 'بازه زمانی ' . $sourceStart->format('H:i') . ' تا ' . $sourceEnd->format('H:i') . ' با بازه‌های موجود تداخل دارد.',
+                  'status' => false,
+                  'day' => $targetDay,
+                  'conflicting_slots' => [
+                    'source_start' => $sourceStart->format('H:i'),
+                    'source_end' => $sourceEnd->format('H:i'),
+                    'existing_start' => $existingStart->format('H:i'),
+                    'existing_end' => $existingEnd->format('H:i'),
+                  ]
+                ], 400);
+              }
+            }
+          }
+        }
 
         // ایجاد اسلات‌های جدید
         foreach ($sourceSlots as $sourceSlot) {
@@ -124,8 +158,14 @@ class ScheduleSettingController
       return response()->json([
         'message' => 'ساعات کاری با موفقیت کپی شد',
         'status' => true,
-        'target_days' => $validated['target_days']
+        'target_days' => $validated['target_days'],
+        'workSchedules' => DoctorWorkSchedule::where('doctor_id', $doctor->id)
+          ->whereIn('day', $validated['target_days'])
+          ->with('slots') // ارتباط با اسلات‌ها
+          ->get()
       ]);
+
+
     } catch (\Exception $e) {
       DB::rollBack();
 
@@ -140,6 +180,11 @@ class ScheduleSettingController
       ], 500);
     }
   }
+
+
+
+
+
 
 
 
