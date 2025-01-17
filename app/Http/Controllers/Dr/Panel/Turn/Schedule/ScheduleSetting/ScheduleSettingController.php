@@ -235,7 +235,15 @@ class ScheduleSettingController
           'day' => $validated['day'],
         ],
         [
-          'is_working' => true
+          'is_working' => true,
+          'appointment_settings' => json_encode([
+            'start_time' => $validated['start_time'],
+            'end_time' => $validated['end_time'],
+            'max_appointments' => $this->calculateMaxAppointments(
+              $validated['start_time'],
+              $validated['end_time'],
+            )
+          ]),
         ]
       );
 
@@ -399,70 +407,90 @@ class ScheduleSettingController
   public function saveAppointmentSettings(Request $request)
   {
     $validated = $request->validate([
+      'day' => 'required|in:saturday,sunday,monday,tuesday,wednesday,thursday,friday',
       'start_time' => 'required|date_format:H:i',
       'end_time' => 'required|date_format:H:i|after:start_time',
-      'selected_days' => 'required|array|min:1',
-      'selected_days.*' => 'in:saturday,sunday,monday,tuesday,wednesday,thursday,friday',
+      'max_appointments' => 'nullable|integer|min:1'
     ]);
 
     try {
       $doctor = Auth::guard('doctor')->user();
 
-      // پاک کردن کش قبلی
-      Cache::forget("doctor_{$doctor->id}_work_schedule");
+      // محاسبه تعداد نوبت‌ها
+      $maxAppointments = $validated['max_appointments'] ??
+        $this->calculateMaxAppointments($validated['start_time'], $validated['end_time']);
+
+      // بررسی اینکه آیا روز انتخاب شده است
+      $selectedDays = $request->input('selected_days', []);
+      if (empty($selectedDays)) {
+        return response()->json([
+          'message' => 'لطفاً حداقل یک روز را انتخاب کنید',
+          'status' => false
+        ], 400);
+      }
 
       $results = [];
-      DB::beginTransaction();
+      $hasExistingSettings = false;
 
-      foreach ($validated['selected_days'] as $day) {
+      foreach ($selectedDays as $day) {
+        // بررسی تنظیمات موجود برای هر روز
+        $existingSettings = DoctorWorkSchedule::where('doctor_id', $doctor->id)
+          ->where('day', $day)
+          ->whereNotNull('appointment_settings')
+          ->first();
+
+        if ($existingSettings) {
+          $hasExistingSettings = true;
+          break; // توقف حلقه اگر تنظیمات موجود باشد
+        }
+      }
+
+      // اگر تنظیمات موجود بود، خطا برگردان
+      if ($hasExistingSettings) {
+        return response()->json([
+          'message' => 'پزشک گرامی شما از قبل برای این زمان یک برنامه تعریف کرده‌اید. لطفاً ابتدا آن را حذف کنید و مجدداً تلاش بفرمایید.',
+          'results' => [],
+          'status' => false
+        ], 400);
+      }
+
+      // اگر هیچ تنظیماتی وجود نداشت، ذخیره‌سازی انجام شود
+      foreach ($selectedDays as $day) {
         $workSchedule = DoctorWorkSchedule::updateOrCreate(
           [
             'doctor_id' => $doctor->id,
-            'day' => $day,
+            'day' => $day
           ],
           [
             'is_working' => true,
             'appointment_settings' => json_encode([
               'start_time' => $validated['start_time'],
               'end_time' => $validated['end_time'],
-              'max_appointments' => $this->calculateMaxAppointments(
-                $validated['start_time'],
-                $validated['end_time']
-              )
-            ]),
+              'max_appointments' => $maxAppointments,
+              'selected_day' => $request->day
+            ])
           ]
         );
 
         $results[] = [
           'day' => $this->getDayNameInPersian($day),
           'start_time' => $validated['start_time'],
-          'end_time' => $validated['end_time'],
+          'end_time' => $validated['end_time']
         ];
       }
-
-      // ذخیره تنظیمات جدید در کش
-      Cache::remember(
-        "doctor_{$doctor->id}_work_schedule",
-        now()->addMinutes(30),
-        function () use ($doctor) {
-          return DoctorWorkSchedule::where('doctor_id', $doctor->id)->get();
-        }
-      );
-
-      DB::commit();
 
       return response()->json([
         'message' => 'تنظیمات نوبت‌دهی با موفقیت ذخیره شد',
         'results' => $results,
-        'status' => true,
+        'status' => true
       ]);
+
     } catch (\Exception $e) {
-      DB::rollBack();
-      Log::error('خطا در ذخیره تنظیمات نوبت‌دهی: ' . $e->getMessage());
+      Log::error('خطا در ذخیره‌سازی تنظیمات نوبت‌دهی: ' . $e->getMessage());
 
       return response()->json([
         'message' => 'خطا در ذخیره‌سازی تنظیمات',
-        'status' => false,
+        'status' => false
       ], 500);
     }
   }
@@ -515,45 +543,26 @@ class ScheduleSettingController
 
   public function getAppointmentSettings(Request $request)
   {
-    $validated = $request->validate([
-      'day' => 'required|in:saturday,sunday,monday,tuesday,wednesday,thursday,friday',
-    ]);
 
     $doctor = Auth::guard('doctor')->user();
 
-    try {
-      // تلاش برای بازیابی تنظیمات از کش
-      $workSchedules = Cache::remember(
-        "doctor_{$doctor->id}_work_schedule",
-        now()->addMinutes(30),
-        function () use ($doctor) {
-          return DoctorWorkSchedule::where('doctor_id', $doctor->id)->get();
-        }
-      );
+    $workSchedule = DoctorWorkSchedule::where('doctor_id', $doctor->id)
+      ->where('day', $request->day)
+      ->first();
 
-      // یافتن تنظیمات روز مورد نظر
-      $workSchedule = $workSchedules->where('day', $validated['day'])->first();
-
-      if ($workSchedule && $workSchedule->appointment_settings) {
-        return response()->json([
-          'settings' => json_decode($workSchedule->appointment_settings, true),
-          'status' => true,
-        ]);
-      }
-
+    if ($workSchedule && $workSchedule->appointment_settings) {
       return response()->json([
-        'message' => 'تنظیماتی یافت نشد',
-        'status' => false,
+        'settings' => $workSchedule->appointment_settings,
+        'status' => true
       ]);
-    } catch (\Exception $e) {
-      Log::error('خطا در بازیابی تنظیمات نوبت‌دهی: ' . $e->getMessage());
-
-      return response()->json([
-        'message' => 'خطا در بازیابی تنظیمات',
-        'status' => false,
-      ], 500);
     }
+
+    return response()->json([
+      'message' => 'تنظیماتی یافت نشد',
+      'status' => false
+    ]);
   }
+
 
   public function saveWorkSchedule(Request $request)
   {

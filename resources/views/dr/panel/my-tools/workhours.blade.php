@@ -185,7 +185,7 @@
       background: 'green'
      }
     }).showToast();
-     $('#checkboxModal').modal('hide');
+    $('#checkboxModal').modal('hide');
 
     response.workSchedules.forEach(function(schedule) {
      const day = schedule.day; // روز مقصد
@@ -207,8 +207,7 @@
     // بررسی خطای تداخل
     if (xhr.status === 400) {
      const conflict = Array.isArray(xhr.responseJSON.conflicting_slots) ?
-      xhr.responseJSON.conflicting_slots :
-      []; // اطمینان از اینکه یک آرایه است
+      xhr.responseJSON.conflicting_slots : []; // اطمینان از اینکه یک آرایه است
 
      let conflictMessage = 'بازه‌های زمانی  تداخل دارند: آیا میخواهید جایگزین شود؟؟<br><ul>';
 
@@ -250,7 +249,7 @@
            background: 'green'
           }
          }).showToast();
-          $('#checkboxModal').modal('hide');
+         $('#checkboxModal').modal('hide');
 
          // به‌روزرسانی رابط کاربری برای روزهای مقصد
          response.workSchedules.forEach(function(schedule) {
@@ -746,32 +745,32 @@
    });
   }
  });
-  $(document).on('click', '.copy-to-other-day-btn', function () {
-    const currentDay = $(this).data('day');
+ $(document).on('click', '.copy-to-other-day-btn', function() {
+  const currentDay = $(this).data('day');
 
-    // ابتدا همه چک‌باکس‌ها را ریست کنید
-    $('input[type="checkbox"][id$="-copy-modal"]').prop('checked', false);
+  // ابتدا همه چک‌باکس‌ها را ریست کنید
+  $('input[type="checkbox"][id$="-copy-modal"]').prop('checked', false);
 
-    // چک باکس انتخاب همه را هم ریست کنید
-    $('#select-all-copy-modal').prop('checked', false);
+  // چک باکس انتخاب همه را هم ریست کنید
+  $('#select-all-copy-modal').prop('checked', false);
 
-    // مخفی کردن چک‌باکس روز جاری
-    $('input[type="checkbox"][id$="-copy-modal"]').each(function () {
-      const dayId = $(this).attr('id');
-      if (dayId === `${currentDay}-copy-modal`) {
-        $(this).closest('div').removeClass('d-flex').css('display', 'none');
-      } else {
-        $(this).closest('div').addClass('d-flex').css('display', 'flex');
-      }
-    });
+  // مخفی کردن چک‌باکس روز جاری
+  $('input[type="checkbox"][id$="-copy-modal"]').each(function() {
+   const dayId = $(this).attr('id');
+   if (dayId === `${currentDay}-copy-modal`) {
+    $(this).closest('div').removeClass('d-flex').css('display', 'none');
+   } else {
+    $(this).closest('div').addClass('d-flex').css('display', 'flex');
+   }
   });
+ });
  // برای آیکون کپی
  $(document).ready(function() {
   // اگر آیکون کپی کار نمی‌کند، مطمئن شوید که SVG درست لینک شده است
   $('.copy-to-other-day-btn').each(function() {
    $(this).html(`<img src="${svgUrl}" alt="کپی">`);
   });
-  
+
 
   // در زمان بستن مدال، بازگرداندن حالت اولیه
   $(document).on('hidden.bs.modal', '#checkboxModal', function() {
@@ -889,6 +888,7 @@
   const $row = $(this).closest('.form-row');
   const $container = $row.closest('[id^="morning-"]');
   const day = $container.attr('id').replace('morning-', '').replace('-details', '');
+
 
   const startTime = $row.find('.start-time').val() || '08:00';
   const endTime = $row.find('.end-time').val() || '12:00';
@@ -1214,8 +1214,7 @@
      hideLoading();
      Toastify({
       text: isAutoSchedulingEnabled ?
-       'نوبت‌دهی خودکار فعال شد' :
-       'نوبت‌دهی خودکار غیرفعال شد',
+       'نوبت‌دهی خودکار فعال شد' : 'نوبت‌دهی خودکار غیرفعال شد',
       duration: 3000,
       gravity: 'top',
       position: 'right',
@@ -1529,6 +1528,62 @@
    });
   });
  });
+ $(document).on('click', '[data-target="#scheduleModal"]', function() {
+  const day = $(this).data('day'); // روزی که دکمه کلیک شده است
+  $('#scheduleModal').data('currentDay', day); // ذخیره روز جاری در مدال
+  $('#scheduleModal').modal('show');
+ });
+
+ // در زمان انتخاب روز در مدال
+ $(document).on('click', '.badge-time-styles-day', function () {
+    const selectedDayFa = $(this).text(); // روز فارسی انتخاب‌شده
+    const dayMap = {
+      'شنبه': 'saturday',
+      'یکشنبه': 'sunday',
+      'دوشنبه': 'monday',
+      'سه‌شنبه': 'tuesday',
+      'چهارشنبه': 'wednesday',
+      'پنج‌شنبه': 'thursday',
+      'جمعه': 'friday'
+    };
+    const selectedDayEn = dayMap[selectedDayFa]; // تبدیل به انگلیسی
+    $('#scheduleModal').data('selectedDay', selectedDayEn); // ذخیره روز انتخاب‌شده در مدال
+
+    // ارسال درخواست برای دریافت تنظیمات روز
+    $.ajax({
+      url: "{{ route('get-appointment-settings') }}",
+      method: 'GET',
+      data: { day: selectedDayEn },
+      success: function (response) {
+        if (response.status && response.settings) {
+          // نمایش داده‌ها در مدال
+          $('#schedule-start').val(response.settings.start_time);
+          $('#schedule-end').val(response.settings.end_time);
+
+          // غیرفعال کردن فیلدها در صورت وجود تنظیمات
+          $('#schedule-start, #schedule-end').prop('disabled', true);
+          $('#saveSchedule').prop('disabled', true).removeClass('btn-primary').addClass('btn-secondary');
+
+          // نمایش هشدار
+          const dayFa = Object.keys(dayMap).find(key => dayMap[key] === response.settings.selected_day);
+          $('#scheduleModal .modal-body').append(`
+                    <div class="alert alert-warning">
+                        شما از قبل برای ${dayFa} تنظیمات دارید. لطفاً ابتدا تنظیمات قبلی را حذف کنید.
+                    </div>
+                `);
+        } else {
+          // فعال کردن فیلدها در صورت نبود تنظیمات
+          $('#schedule-start, #schedule-end').prop('disabled', false);
+          $('#saveSchedule').prop('disabled', false).removeClass('btn-secondary').addClass('btn-primary');
+        }
+      },
+      error: function () {
+        alert('خطا در دریافت اطلاعات روز!');
+      }
+    });
+  });
+
+
  // Function to calculate and update input values
  $(document).ready(function() {
   let morningStart, morningEnd; // متغیر برای ذخیره زمان شروع و پایان
@@ -1611,7 +1666,6 @@
    const $button = $(this);
    const $loader = $button.find('.loader');
    const $buttonText = $button.find('.button_text');
-
    const selected_day_choice_fa = $('.badge-time-styles-day.active-hover').text();
 
    // نقشه تبدیل نام روز فارسی به انگلیسی
@@ -1752,22 +1806,22 @@
        _token: '{{ csrf_token() }}'
       },
       success: function(response) {
-       // حذف المان تنظیمات
+       // حذف ردیف تنظیمات
        $settingItem.remove();
 
-       // حذف کلاس اکتیو از روز مربوطه
-       const dayMapEn = {
-        'saturday': 'شنبه',
-        'sunday': 'یکشنبه',
-        'monday': 'دوشنبه',
-        'tuesday': 'سه‌شنبه',
-        'wednesday': 'چهارشنبه',
-        'thursday': 'پنج‌شنبه',
-        'friday': 'جمعه'
-       };
+       // بررسی اینکه آیا دیگر تنظیمی باقی مانده است
+       if ($('.settings-list .setting-item').length === 0) {
+        // حذف هشدار
+        $('.settings-list').remove();
+        $('#scheduleModal .modal-body .alert').remove();
 
-       $(`.badge-time-styles-day:contains('${dayMapEn[day]}')`)
-        .removeClass('active-hover');
+        // فعال کردن فیلدهای مدال
+        $('#schedule-start, #schedule-end').prop('disabled', false);
+        $('#saveSchedule')
+         .prop('disabled', false)
+         .removeClass('btn-secondary')
+         .addClass('btn-primary');
+       }
 
        Toastify({
         text: 'تنظیمات با موفقیت حذف شد',
@@ -1794,6 +1848,7 @@
     }
    });
   });
+
 
   function loadPreviousAppointmentSettings(day) {
    $.ajax({
@@ -1909,6 +1964,7 @@
       day: dayEn
      },
      success: function(response) {
+
       // پاک کردن لیست قبلی
       $('.settings-list').remove();
 
